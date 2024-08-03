@@ -1,0 +1,42 @@
+.container {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.table {
+    --table-striped-color: var(--light-grey);
+    --table-highlight-on-hover-color: rgb(59, 66, 73);
+    --table-border-color: rgb(43, 48, 53);
+}
+
+.columnHeaderWrapper {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    font-size: 13px;
+}
+
+.column1 {
+    width: 10%;
+}
+
+.column2 {
+    width: 50%;
+    user-select: none;
+}
+
+.column3 {
+    width: 27%;
+    position: relative;
+    left: -1px;
+    user-select: none;
+}
+
+.column4 {
+    width: 18%;
+    overflow: hidden;
+    user-select: none;
+}

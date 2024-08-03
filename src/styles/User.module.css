@@ -1,0 +1,102 @@
+.outerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.innerContainer {
+    background: var(--dark-grey);
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    min-width: 24rem;
+    margin-top: 8rem;
+    border-radius: 10px;
+    padding: 1rem 1rem 2rem 1rem;
+    gap: 2rem;
+}
+
+.input {
+    width: 100%;
+    background: var(--light-grey);
+    border: none;
+    color: white;
+}
+
+.inputWrapper {
+    width: 75%;
+}
+
+.button {
+    background: var(--blue-selected);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.loggedInText {
+    display: flex;
+    gap: 0.2rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.loggedInText:hover {
+    text-decoration: underline;
+}
+
+.dropDown {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--light-grey);
+    font-size: 12px;
+    max-height: 20rem;
+    overflow: scroll;
+    overflow: hidden;
+}
+
+.dropDown:hover {
+    background-color: var(--highlight-grey);
+}
+
+.dropItem {
+    color: white;
+    width: 100%;
+}
+
+.dropItem[data-hovered] {
+    background-color: var(--highlight-grey);
+}
+
+.downIcon {
+    transition: transform 150ms ease;
+    transform: rotate(0deg);
+    [data-expanded] & {
+      transform: rotate(180deg);
+    }
+}
+
+.registerButton {
+    background: var(--blue-selected);
+    font-weight: 500;
+}
+
+.registerButton:hover {
+    background: #337697;
+}
+
+.logInButton {
+    background: transparent;
+    font-weight: 500;
+}
+
+.logInButton:hover {
+    background: var(--highlight-grey);
+}

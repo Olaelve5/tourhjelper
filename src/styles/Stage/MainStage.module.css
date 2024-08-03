@@ -1,0 +1,99 @@
+.container {
+    height: calc(var(--height-unit) * 1.6);
+    width: 100%;
+    border-radius: 5px;
+    margin: 5rem 0 10rem 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+}
+
+.headerContainer {
+    position: relative;
+    width: 100%;
+    background: var(--light-grey);
+    border-bottom: 1px solid var(--highlight-grey);
+    box-shadow: 0 5px 8px -8px var(--highlight-grey);
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 1.5rem;
+}
+
+.innerContainer {
+    border-radius: 0 0 5px 5px;
+    background: var(--dark-grey);
+    height: 85%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+}
+
+.imageContainer {
+    border-radius: 5px;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.image {
+    border-radius: 5px;
+    height: 100%;
+    width: auto;
+    transition: transform 0.2s ease;
+}
+
+.expandedImage {
+    position: fixed;
+    width: 70%;
+    margin: auto;
+    z-index: 100;
+    background: #000000c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    max-width: 50rem;
+}
+
+.imageContainer:hover > .expandIconContainer {
+    opacity: 1;
+}
+
+.expandIconContainer {
+    opacity: 0;
+    height: 2rem;
+    background: #000000c8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.2s ease;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.expandIcon {
+    color: white;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 50%;
+    transform: translateY(50%);
+}
+
+.linkButton {
+    position: relative;
+    left: -0.5rem;
+    padding: 0 0.5rem;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.linkButton:hover {
+    background: transparent;
+    transform: scale(1.1);
+}
+

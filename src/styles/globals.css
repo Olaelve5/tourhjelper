@@ -1,0 +1,69 @@
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 7, 21, 36;
+
+  --yellow-tdf: #ffdd09;
+  --yellow-tdf-hover: #ffdd00da;
+  --yellow-tdf-disabled: #ffdd09a6;
+
+  --header-color: #0072bb;
+
+  --blue-selected: #0072bb;
+  --blue-selected-disabled: #0168a8;
+
+  --light-grey: #1b2b44;
+  --dark-grey: #122134;
+  --highlight-grey: #243b58;
+  --icon-grey: #5e6d7c;
+
+  --height-unit: 11rem;
+
+  --blue-gradient: linear-gradient(45deg, #00B4DB 0%, #0083B0 100%);
+  --red-gradient: linear-gradient(45deg, #ED2939 0%, #B31217 100%);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+}
+
+body.grabbing {
+  cursor: grabbing !important;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-rgb); /* color of the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--yellow-tdf); /* color of the scroll thumb */
+  border-radius: 6px; /* roundness of the scroll thumb */
+}

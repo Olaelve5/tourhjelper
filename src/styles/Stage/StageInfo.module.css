@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: left;
+    height: 85%;
+}
+
+.container > div {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.icon {
+    color: rgb(142, 165, 185);
+}

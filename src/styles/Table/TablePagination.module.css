@@ -1,0 +1,19 @@
+.root {
+    align-self: center;
+    margin: 12px 0;
+}
+
+.control {
+    background: var(--light-grey);
+    color: white;
+    border-color: var(--highlight-grey);
+}
+
+.control:hover {
+    background: var(--highlight-grey);
+}
+
+.control[data-active='true'] {
+    background: var(--header-color);
+    color: white;
+}

@@ -1,0 +1,15 @@
+.transferButton {
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+.transferButton:hover {
+    position: relative;
+    background: var(--light-grey);
+    border: 1px solid var(--highlight-grey);
+}
+
+.drawer {
+    background-color: black;
+}

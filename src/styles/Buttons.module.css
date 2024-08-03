@@ -1,0 +1,97 @@
+.container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    gap: 16px;
+    display: flex;
+    height: 2.5rem;
+}
+
+.reset {
+    transition: background-color 0.3s, color 0.3s;
+    border: none;
+    font-size: 14px;
+    background: var(--light-grey);
+    height: 100%;
+}
+
+.reset:hover {
+    background: var(--red-gradient);
+    color: white;
+}
+
+.stageButtonContainer {
+    background: var(--header-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.6rem;
+    width: 100%;
+    position: relative;
+}
+
+.sideButtonLeft {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    left: 25%;
+    translate: translateX(-50%);
+}
+
+.sideButtonRight {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    right: 25%;
+    translate: translateX(-50%);
+}
+
+.mainStageButton {
+    font-size: 20px;
+    padding: 0 2rem;
+    display: flex;
+    background: transparent;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mainStageButton:hover {
+    background-color: transparent;
+}
+
+.sideButtonLeft:hover {
+    background: var(--highlight-grey);
+}
+
+.sideButtonRight:hover {
+    background: var(--highlight-grey);
+}
+
+.dropDown {
+    background-color: var(--dark-grey);
+    border: 1px solid var(--light-grey);
+    font-size: 12px;
+    max-height: 20rem;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.dropItem {
+    color: white;
+}
+
+.dropItem[data-hovered] {
+    background-color: var(--highlight-grey);
+}
+
+.downIcon {
+    transition: transform 150ms ease;
+    transform: rotate(0deg);
+    [data-expanded] & {
+      transform: rotate(180deg);
+    }
+    margin-left: 4px;
+  }
+

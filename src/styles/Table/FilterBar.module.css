@@ -1,0 +1,35 @@
+.root {
+    background-color: var(--light-grey);
+    box-shadow: var(--mantine-shadow-md);
+    width: 100%;
+    border: 1px solid var(--highlight-grey);
+  }
+
+  .label {
+    color: var(--mantine-color-white);
+  }
+
+  .label:hover {
+    color: var(--yellow-tdf);
+  }
+  
+  .indicator {
+    background: var(--header-color);
+    position: absolute;
+    top: -1px;
+  }
+  
+  .control {
+    &::before {
+      display: none;
+    }
+  }
+  
+  .label {
+    &,
+    &:hover {
+      &[data-active] {
+        color: white;
+      }
+    }
+  }

@@ -1,0 +1,14 @@
+.wrapper {
+    margin-right: 12px;
+    --input-left-section-width: 32px;
+    width: calc(100% - 10px);
+}
+
+.input {
+    background-color: var(--light-grey);
+    border: none;
+    font-size: 14px;
+    color: white;
+    box-shadow: 0 1px 2px 0px rgba(31, 31, 31, 0.493);
+    border: 1px solid var(--highlight-grey);
+}

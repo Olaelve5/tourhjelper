@@ -1,0 +1,63 @@
+.x {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: var(--dark-grey);
+    border-radius: 50%;
+    display: none;
+}
+
+.container {
+    width: 5.5rem;
+    position: relative;
+    text-align: center;
+    justify-content: center;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.container:hover {
+    background: radial-gradient(circle, rgb(48, 48, 48) 0%, rgb(255, 255, 255) 100%);
+    backdrop-filter: blur(5px);
+}
+
+.container:hover .x {
+    display: block;
+}
+
+.infoContainer {
+    width: 100%;
+    position: absolute;
+    top: 65%;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    box-shadow: 0 2px 23px 0px rgb(0, 0, 0, 0.6);
+    color: var(--dark-grey);
+}
+
+.plus {
+    position: absolute;
+    top: 40%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    color: var(--highlight-grey);
+    display: none;
+}
+
+#emptyContainer:hover .plus {
+    display: block;
+}
+
+.name {
+    font-size: 13px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    background-color: white;
+    padding: 0 2px;
+}

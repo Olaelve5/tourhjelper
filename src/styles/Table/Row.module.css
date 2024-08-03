@@ -1,0 +1,94 @@
+.row {
+    cursor: pointer;
+}
+
+.row:hover {
+    background-color: var(--highlight-grey);
+}
+
+.selectedRow {
+    cursor: pointer;
+    background: var(--blue-selected);
+    height: calc(100% / 11);
+}
+
+.disabledRow {
+    cursor: default;
+    color: var(--icon-grey);
+    height: calc(100% / 11);
+}
+
+.disabledRow:hover {
+    background-color: var(--highlight-grey);
+}
+
+.selectedRow:hover {
+    background-color: #007dc0c2;
+}
+
+
+.riderImage {
+    width: 28px;
+    height: 34px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.name {
+    font-weight: 600;
+    font-size: 13px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    max-width: 8rem;
+    text-overflow: ellipsis;
+}
+
+.team {
+    font-weight: 600;
+    font-size: 11px;
+    color: rgb(200, 200, 200);
+    text-wrap: nowrap;
+    position: absolute;
+}
+
+.teamSelected {
+    font-weight: 600;
+    font-size: 11px;
+    color: rgb(255, 255, 255);
+    text-wrap: nowrap;
+    position: absolute;
+}
+
+.teamDisabled {
+    font-weight: 600;
+    font-size: 11px;
+    color: rgb(200, 200, 200);
+    text-wrap: nowrap;
+    position: absolute;
+    color: var(--icon-grey);
+}
+
+.categoryPrice {
+    font-weight: 600;
+    vertical-align: top;
+    font-size: 13px;
+}
+
+.priceDisabled {
+    font-weight: 600;
+    vertical-align: top;
+    font-size: 13px;
+    color: red;
+}
+
+.minus {
+    display: none;
+}
+
+.selectedRow:hover .minus {
+    display: inline;
+}
+
+.selectedRow:hover .check {
+    display: none;
+}

@@ -1,0 +1,57 @@
+.root {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: var(--light-grey);
+    width: 25rem;
+    border-color: var(--highlight-grey);
+    box-sizing: border-box;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal; 
+}
+
+.title {
+    color: white;
+    font-weight: 600;
+}
+
+.description {
+    font-weight: 500;
+}
+
+.closeButton {
+    color: rgb(180, 180, 180);
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    background: var(--highlight-grey);
+}
+
+.checkboxRoot {
+    margin-top: 1rem;
+    z-index: 10000000;
+}
+
+.checkboxIcon {
+    color: var(--dark-grey);
+}
+
+.checkboxLabel {
+    font-weight: 500;
+}
+
+.checkboxInput {
+    background: var(--highlight-grey);
+    border: 1px solid rgb(67, 86, 108);
+    cursor: pointer;
+}
+

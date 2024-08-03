@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.middleButton {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-top: 0;
+    border-bottom: 0;
+    font-size: 19px;
+    margin: 0 15px;
+    background: transparent;
+    color: inherit;
+}
+
+.middleButton:hover {
+    background: transparent;
+    text-decoration: underline;
+}
+
+.sideButtonRight {
+    background-color: transparent;
+    color: inherit;
+    background: transparent;
+    border-radius: 0px 5px 5px 0px;
+    padding: 0 0.8rem;
+    position: relative;
+    left: 1.5rem;
+}
+
+.sideButtonLeft {
+    background-color: transparent;
+    color: inherit;
+    background: transparent;
+    border-radius: 5px 0px 0px 5px;
+    padding: 0 0.8rem;
+}
+
+.sideButtonLeft:hover {
+    background: var(--highlight-grey);
+}
+
+.sideButtonRight:hover {
+    background: var(--highlight-grey);
+}

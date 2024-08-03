@@ -1,0 +1,45 @@
+.header {
+  height: rem(64px);
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  position: relative;
+}
+
+.inner {
+  height: rem(64px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.middleLinksContainer {
+  width: 100%;
+  position: absolute;
+  justify-content: center;
+  z-index: 1;
+}
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: white;
+  font-size: var(--mantine-font-size-m);
+  font-weight: 500;
+
+  [data-mantine-color-scheme] &[data-active] {
+    background-color: var(--yellow-tdf);
+    color: rgb(30, 30, 30);
+  }
+
+  drawer{
+    background-color: black;
+  }
+  drawerBody &{
+    background-color: black !important;
+  }
+}

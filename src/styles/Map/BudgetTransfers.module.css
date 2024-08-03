@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 2.6rem;
+    line-height: 2.6rem;
+    color: white;
+    font-size: 13px;
+    align-items: center;
+    z-index: 100;
+}
+
+.outerContainer {
+    background-color: transparent;
+    height: 2.6rem;
+}
+
+.budgetContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.negative {
+    color: red;
+}
+
+.tooManyTransfers {
+    color: red;
+}
