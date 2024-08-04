@@ -12,7 +12,7 @@ def main():
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
 
     # Initialize the Chrome driver with options
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
     driver.get("https://tourmanager.tv2.no/media-stats/898994")
     time.sleep(5)

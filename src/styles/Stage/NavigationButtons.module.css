@@ -20,28 +20,34 @@
     margin: 0 15px;
     background: transparent;
     color: inherit;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: 100%;
+    padding: 0.5rem;
+    border-radius: 5px;
+    white-space: nowrap;
 }
 
 .middleButton:hover {
-    background: transparent;
-    text-decoration: underline;
+    background: var(--highlight-grey);
 }
 
 .sideButtonRight {
     background-color: transparent;
     color: inherit;
     background: transparent;
-    border-radius: 0px 5px 5px 0px;
+    border-radius: 5px;
     padding: 0 0.8rem;
     position: relative;
-    left: 1.5rem;
+    left: 2rem;
 }
 
 .sideButtonLeft {
     background-color: transparent;
     color: inherit;
     background: transparent;
-    border-radius: 5px 0px 0px 5px;
+    border-radius: 5px;
     padding: 0 0.8rem;
 }
 
@@ -51,4 +57,29 @@
 
 .sideButtonRight:hover {
     background: var(--highlight-grey);
+}
+
+.dropDown {
+    background: var(--light-grey);
+    border: 1px solid var(--highlight-grey);
+    color: white;
+    max-height: 14rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.dropDownItem {
+    color: white;
+}
+
+.dropDownItem[data-hovered] {
+    background: var(--highlight-grey);
+}
+
+.dropDownIcon {
+    transition: transform 150ms ease;
+    transform: rotate(0deg);
+    [data-expanded] & {
+      transform: rotate(180deg);
+    }
 }
