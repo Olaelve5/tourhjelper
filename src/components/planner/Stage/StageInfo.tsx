@@ -1,26 +1,50 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { IconRoad, IconClockExclamation, IconCalendar, IconBike } from "@tabler/icons-react";
 import classes from "@/styles/Stage/StageInfo.module.css";
+import { Stage } from "@/types/Stage";
 
-export function StageInfo() {
+interface StageInfoProps {
+    stageData: Stage | null;
+}
+
+const getType = (type: string | undefined) => {
+    switch(type) {
+        case 'Flat':
+            return 'Flat';
+        case 'Hilly':
+            return 'Kupert';
+        case 'Mountain':
+            return 'Fjell';
+        case 'Individual time-trial':
+            return 'Individuell tempo';
+        case 'Team time-trial':
+            return 'Lagtempo';
+        default:
+            return type;
+    }
+};
+
+export function StageInfo({ stageData }: StageInfoProps) {
+
+
     return (
         <div className={classes.container}>
             <div>
                 <IconCalendar size={20} className={classes.icon}/>
-                <span>01.07.24</span>
+                <span>{stageData?.date}</span>
             </div>
             <div>
                 <IconClockExclamation size={20} className={classes.icon}/>
-                <span>12:30</span>
+                <span>{stageData?.start}</span>
             </div>
             <div>
                 <IconBike size={20} className={classes.icon}/>
-                <span>182.2 km</span>
+                <span>{stageData?.distance}</span>
             </div>
             <div>
                 <IconRoad size={20} className={classes.icon}/>
-                <span>Flat</span>
+                <span>{getType(stageData?.type)}</span>
             </div>
         </div>
     );

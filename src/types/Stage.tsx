@@ -1,12 +1,13 @@
 export type Stage = {
-    id: number;
+    stage: number;
     imageURL: string;
     date: string;
-    time: string;
-    length: number;
+    start: string;
+    distance: number;
     type: string;
-    maxPoints: number;
-    favorites: {
+    lastUpdated?: string;
+    maxPoints?: number;
+    favorites?: {
         first: Array<string>;
         second: Array<string>;
         third: Array<string>;

@@ -5,7 +5,7 @@ import {Button, Tooltip} from '@mantine/core';
 import classes from '@/styles/Drawer/CopyPlanSection.module.css';
 import { usePlanContext } from "@/providers/PlanProvider";
 import { Plan } from "@/types/Plan";
-import { copyPlanInDB } from "@/utils/firebaseUtils";
+import { copyPlanInDB } from "@/utils/firebase/firebasePlanUtils";
 import { useAuth } from "@/providers/AuthProvider";
 
 interface CopyPlanSectionProps {

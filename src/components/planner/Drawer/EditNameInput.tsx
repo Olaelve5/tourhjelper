@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { Button, TextInput, Tooltip } from '@mantine/core';
 import { IconDeviceFloppy } from '@tabler/icons-react';
 import classes from '@/styles/Drawer/EditNameInput.module.css';
-import { changePlanNameInDB } from '@/utils/firebaseUtils';
+import { changePlanNameInDB } from '@/utils/firebase/firebasePlanUtils';
 import { usePlanContext } from '@/providers/PlanProvider';
 import { useAuth } from '@/providers/AuthProvider';
 

@@ -4,7 +4,7 @@ import { generateUniqueId } from '@/utils/idUtils';
 import { getPlansFromSessionStorage, savePlansToSessionStorage } from '@/utils/sessionStorageUtils';
 import { Rider } from '@/types/Rider';
 import { useAuth} from '@/providers/AuthProvider';
-import { updatePlanInDB } from '@/utils/firebaseUtils';
+import { updatePlanInDB } from '@/utils/firebase/firebasePlanUtils';
 import { initializePlans } from '@/utils/planUtils';
 import { useLoading } from './LoadingProvider';
 

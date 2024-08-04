@@ -2,16 +2,21 @@ import React, {useState} from "react";
 
 import { IconBoxMultiple1, IconBoxMultiple3, IconSquareNumber1 } from "@tabler/icons-react"
 import classes from "@/styles/Stage/Switch.module.css";
-import { Button } from "@mantine/core";
 
-export function Switch() {
+interface SwitchProps {
+    setIsSingleView: (isSingleView: boolean) => void;
+}
+
+export function Switch({setIsSingleView}: SwitchProps) {
     const [selected, setSelected] = useState('1');
 
 
     const handleSwitch = () => {
         if (selected === '1') {
+            setIsSingleView(false);
             setSelected('3');
         } else {
+            setIsSingleView(true);
             setSelected('1');
         }
     }

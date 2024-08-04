@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import { getPlansFromDB } from "./firebaseUtils";
+import { getPlansFromDB } from "./firebase/firebasePlanUtils";
 import { generateUniqueId } from "./idUtils";
 
 export const initializePlans = async (user: User | null) => {

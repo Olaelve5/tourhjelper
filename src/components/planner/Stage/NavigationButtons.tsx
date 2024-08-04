@@ -8,33 +8,88 @@ import classes from '@/styles/Stage/NavigationButtons.module.css';
 
 interface NavigationButtonsProps {
     isLinked: boolean;
+    isSingleView: boolean;
+    stage: number;
+    setStage: (stage: number) => void;
 }
 
-export function NavigationButtons({isLinked}: NavigationButtonsProps) {
+const stages = [
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+    11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21
+];
+
+const chunkedStages = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [10, 11, 12],
+    [13, 14, 15],
+    [16, 17, 18],
+    [19, 20, 21]
+]
+
+export function NavigationButtons({isLinked, isSingleView, stage, setStage}: NavigationButtonsProps) {
     const {activeStage, setActiveStage} = useStageContext();
     const [opened, setOpened] = useState(false);
-    const [stage, setStage] = useState(1);
 
-    const items = () => {
-        let items = [];
-        for (let i = 1; i <= 21; i++) {
-            items.push(
-                <Menu.Item 
-                key={i}
-                className={classes.dropDownItem}
-                onClick={() => (
-                    setStage(i),
-                    setOpened(false),
-                    isLinked ? setActiveStage(i) : null
-                )}>
-                    Etappe {i}
-                </Menu.Item>
-            );
+    const handleMenuClick = (stage: number) => {
+        if(isLinked) {
+            setActiveStage(stage);
         }
-        return items;
+        setStage(stage);
     };
 
+    const items = () => {
+        if(isSingleView) {
+            return stages.map((stage, index) => {
+                return (
+                    <Menu.Item 
+                    key={index} 
+                    onClick={() => handleMenuClick(stage)} 
+                    className={classes.dropDownItem}>
+                        Etappe {stage}
+                    </Menu.Item>
+                )
+            });
+        } else {
+            return chunkedStages.map((chunk, index) => {
+                return (
+                    <div key={index}>
+                        <Menu.Item onClick={() => handleMenuClick(chunk[0])} className={classes.dropDownItem}>
+                            Etappe {chunk[0]} - {chunk[2]}
+                        </Menu.Item>
+                    </div>
+                )
+            });
+        }
+    }
+
+    const displayStageName = () => {
+        if(isSingleView) {
+            return `Etappe ${stage}`;
+        } else {
+            const chunk = chunkedStages.find(chunk => chunk.includes(stage));
+            if(chunk) {
+                return `Etappe ${chunk[0]} - ${chunk[2]}`;
+            }
+            return '';
+        }
+    }
+
+
     const handleSideClick = (direction: number) => {
+        if(!isSingleView) {
+            const currentIndex = chunkedStages.findIndex(chunk => chunk.includes(stage));
+            if(currentIndex + direction >= 0 && currentIndex + direction <= chunkedStages.length - 1) {
+                const newChunk = chunkedStages[currentIndex + direction];
+                if(isLinked) {
+                    setActiveStage(newChunk[0]);
+                }
+                setStage(newChunk[0]);
+            }
+            return;
+        }
+
         if (stage + direction > 0 && stage + direction < 22) {
             if(isLinked) {
                 setActiveStage(stage + direction);
@@ -71,7 +126,7 @@ export function NavigationButtons({isLinked}: NavigationButtonsProps) {
             >
                 <Menu.Target>
                     <div className={classes.middleButton}>
-                        <h4 style={{margin: 10}}>Etappe {stage}</h4>
+                        <h4 style={{margin: 10}}>{displayStageName()}</h4>
                         <IconChevronDown size={22} stroke={2} className={classes.dropDownIcon}/>
                     </div>
                 </Menu.Target>

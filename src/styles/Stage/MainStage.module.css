@@ -31,6 +31,28 @@
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 1.5rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.containerMultipleView {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerMultipleView > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerMultipleView > div > p {
+    font-style: italic;
+    font-size: 15px;
 }
 
 .imageContainer {

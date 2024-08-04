@@ -6,7 +6,7 @@ import { IconRestore, IconRotateClockwise2, IconChevronDown, IconChevronUp } fro
 import { useStageContext } from "@/providers/StageProvider"; 
 import { usePlanContext } from "@/providers/PlanProvider";
 import { useAuth } from "@/providers/AuthProvider";
-import { resetPlanFromStageInDB } from "@/utils/firebaseUtils";
+import { resetPlanFromStageInDB } from "@/utils/firebase/firebasePlanUtils";
 
 interface ResetPlanSectionProps {
     close: () => void;

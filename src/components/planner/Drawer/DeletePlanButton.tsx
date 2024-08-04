@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { Button } from '@mantine/core';
 import { IconTrash } from '@tabler/icons-react';
-import { deletePlanFromDB } from "@/utils/firebaseUtils";
+import { deletePlanFromDB } from "@/utils/firebase/firebasePlanUtils";
 import { useAuth } from "@/providers/AuthProvider";
 import { usePlanContext } from "@/providers/PlanProvider";
 import { generateUniqueId } from "@/utils/idUtils";
