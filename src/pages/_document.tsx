@@ -1,6 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document';
 import { ColorSchemeScript } from '@mantine/core';
-import '../styles/globals.css';
 
 export default function Document() {
   return (

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 import { LogInButtons } from './user/LogInButtons';
 
 const links = [
-  { link: '/planner', label: 'Planlegger' },
+  { link: '/', label: 'Planlegger' },
   { link: '/stages', label: 'Etapper' },
 ];
 

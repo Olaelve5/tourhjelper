@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <main style={{marginBottom: 400}}>{children}</main>
+      <main style={{marginBottom: 250}}>{children}</main>
       <CSSTransition
         in={isLoading}
         timeout={1000}
