@@ -1,8 +1,8 @@
-import { Plan } from '../../types/Plan';
+import { Plan } from '@/types/Plan';
 import { doc, setDoc, collection, getDocs, deleteDoc, writeBatch } from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig"; 
-import { Rider } from "../../types/Rider";
-import { PlanStage } from "../../types/PlanStage";
+import { Rider } from "@/types/Rider";
+import { PlanStage } from "@/types/PlanStage";
 
 export const updatePlanInDB = async (userId: string, planId: string, planName: string, riders: Rider[], transfers: number, stage: number) => {
     try {

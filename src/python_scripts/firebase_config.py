@@ -41,16 +41,31 @@ def write_riders(riders):
     batch = db.batch()
     for rider in riders:
         try:
-            doc_ref = db.collection('riders').document()
+            # Create a unique ID using the rider's name and team
+            rider_id = f"{rider['name']}_{rider['team']}"
+            doc_ref = db.collection('riders').document(rider_id)
+            
+            # Add the write operation to the batch
             batch.set(doc_ref, rider)
             logger.info(f"Rider {rider['name']} added to batch.")
         except Exception as e:
             logger.error(f"An error occurred while adding rider {rider['name']} to batch: {e}")
     
     try:
+        # Commit the batch
         batch.commit()
         logger.info("Batch write to Firestore completed successfully.")
     except Exception as e:
         logger.error(f"An error occurred while committing the batch: {e}")
+
+def write_rider_images(rider_images):
+    for rider_image in rider_images:
+        try:
+            doc_ref = db.collection('rider_images').document(f'{rider_image["team"]}')
+            doc_ref.set(rider_image)
+            logger.info(f"Rider image for team {rider_image['team']} written successfully.")
+        except Exception as e:
+            logger.error(f"An error occurred while writing rider image for team {rider_image['team']}: {e}")
+    logger.info("Rider images written to Firestore.")
 
 

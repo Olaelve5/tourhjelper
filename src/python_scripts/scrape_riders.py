@@ -5,7 +5,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import json
-from firebase_config import write_riders
+from firebase_config import write_riders, write_rider_images
 
 def main():
     # Initialize Chrome options
@@ -87,18 +87,10 @@ def main():
                 print("StaleElementReferenceException caught, trying to find the button again.")
                 continue 
     
-    # Navigate up two directories and then into the `public` directory
-    rider_data_path = 'public/rider_data.json'
-    rider_image_links_path = 'public/rider_image_links.json'
-    
-    # After fetching all riders, write them to a JSON file
-    with open(rider_data_path, 'w', encoding='utf-8') as f:
-        json.dump(riders, f, ensure_ascii=False, indent=4)
-    
-    with open(rider_image_links_path, 'w', encoding='utf-8') as f:
-        json.dump(rider_images, f, ensure_ascii=False, indent=4)
+    driver.quit()
     
     write_riders(riders)
+    write_rider_images(rider_images)
         
 
 if __name__ == "__main__":

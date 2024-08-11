@@ -1,5 +1,6 @@
 import {createContext, useEffect, useContext, useState} from 'react';
 import { Rider } from '@/types/Rider';
+import { fetchRiderData, fetchRiderImages } from '@/utils/firebase/firebaseRiderUtils';
 
 interface RiderContextType {
     // Define the types for the context
@@ -28,15 +29,26 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
     const [globalRiders, setGlobalRiders] = useState<Rider[] | undefined>(undefined); 
 
     useEffect(() => {
-        fetch('/rider_image_links.json')
-        .then(response => response.json())
-        .then(data => setRiderImages([{ team: 'Alle lag', image: null }, ...data]))
-        .catch((err) => console.log('Error fetching rider images:', err));
 
-        fetch('/rider_data.json')
-        .then(response => response.json())
-        .then(data => setGlobalRiders(data))
-        .catch((err) => console.log('Error fetching rider data:', err));
+        async function fetchImages() {
+            try {
+                const images = await fetchRiderImages();
+                setRiderImages(images);
+            } catch (e) {
+                console.error("Error fetching rider images: ", e);
+        }}
+
+        async function fetchRiders() {
+            try {
+                const riders = await fetchRiderData();
+                setGlobalRiders(riders);
+            } catch (e) {
+                console.error("Error fetching rider data: ", e);
+        }}
+
+        fetchRiders();
+        fetchImages();
+
     }, []);
 
     return (
