@@ -31,6 +31,7 @@
     width: 100%;
     z-index: 100;
     border-radius: 0px 0px 2px 2px;
+    transition: all 0.4s;
 }
 
 .points {
@@ -38,4 +39,5 @@
     font-size: 14px;
     font-weight: 500;
     position: relative;
+    transition: all 0.4s;
 }

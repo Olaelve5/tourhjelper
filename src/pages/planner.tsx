@@ -5,6 +5,7 @@ import { Container } from '@mantine/core';
 import { StageProvider } from '@/providers/StageProvider';
 import MainPlanner from '@/components/planner/MainPlanner';
 import MainStage from '@/components/planner/Stage/MainStage';
+import { GithubLink } from '@/components/GithubLink';
 
 const PlannerPage: React.FC = () => {
     return (
@@ -14,6 +15,7 @@ const PlannerPage: React.FC = () => {
                     <div style={{margin: '100px 0'}}>
                         <MainPlanner />
                         <MainStage />
+                        <GithubLink />
                     </div>
                 </Container>
             </StageProvider>

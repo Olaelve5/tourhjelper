@@ -1,9 +1,13 @@
 import {useState} from 'react';
 import classes from '@/styles/Stage/ProgressBar.module.css';
+import {Stage} from '@/types/Stage';
+
+interface ProgressBarProps {
+    value: number;
+}
 
 
-export function ProgressBar() {
-    const [value, setValue] = useState(1660);
+export function ProgressBar({value}: ProgressBarProps) {
 
     const calculateHeight = () => {
         const maxValue = 2000;

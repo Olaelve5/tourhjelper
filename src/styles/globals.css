@@ -38,8 +38,14 @@ body {
 }
 
 body {
+  height: 100%;
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  background-color: rgb(var(--background-rgb));
+  background-image: url('/background5.svg');
+  background-size: 100% 100%; /* Scale the image to cover the entire background area */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 body.grabbing {
@@ -60,7 +66,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background-rgb); /* color of the track */
+  background: transparent; /* color of the track */
 }
 
 ::-webkit-scrollbar-thumb {

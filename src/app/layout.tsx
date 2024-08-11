@@ -3,7 +3,7 @@
 // components/layout.tsx
 import React, { ReactNode, useEffect } from 'react';
 import Header from '../components/Header' 
-import { GlobalLoader } from '../components/GlobalLoader'; 
+import { GlobalLoader } from '../components/GlobalLoader';
 import { useLoading } from '../providers/LoadingProvider';
 import { CSSTransition } from 'react-transition-group';
 import classes from '@/styles/GlobalLoader.module.css';
@@ -24,7 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main style={{marginBottom: 400}}>{children}</main>
       <CSSTransition
         in={isLoading}
         timeout={1000}
@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           exitActive: classes['fade-exit-active'],
         }}
         unmountOnExit
-      >
+        >
         <GlobalLoader />
       </CSSTransition>
     </>

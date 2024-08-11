@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.image {
+    height: 40px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.image:hover {
+    transform: scale(1.1);
+}

@@ -16,7 +16,7 @@ export function SingleStage({ stageData }: SingleStageProps) {
             <div className={classes.innerContainer}>
                 <StageImage imageURL={stageData ? stageData.imageURL : ''}/>
                 <StageInfo stageData={stageData}/>
-                <ProgressBar />
+                <ProgressBar value={stageData?.maxPoints ? stageData.maxPoints : 500}/>
                 <Favorites />
             </div>
     );
