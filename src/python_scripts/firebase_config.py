@@ -36,3 +36,21 @@ def write_stages(stages):
         except Exception as e:
             logger.error(f"An error occurred while writing stage {stage['stage']}: {e}")
     logger.info("Stages written to Firestore.")
+
+def write_riders(riders):
+    batch = db.batch()
+    for rider in riders:
+        try:
+            doc_ref = db.collection('riders').document()
+            batch.set(doc_ref, rider)
+            logger.info(f"Rider {rider['name']} added to batch.")
+        except Exception as e:
+            logger.error(f"An error occurred while adding rider {rider['name']} to batch: {e}")
+    
+    try:
+        batch.commit()
+        logger.info("Batch write to Firestore completed successfully.")
+    except Exception as e:
+        logger.error(f"An error occurred while committing the batch: {e}")
+
+

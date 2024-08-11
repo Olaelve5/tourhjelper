@@ -5,6 +5,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 import json
+from firebase_config import write_riders
 
 def main():
     # Initialize Chrome options
@@ -96,6 +97,8 @@ def main():
     
     with open(rider_image_links_path, 'w', encoding='utf-8') as f:
         json.dump(rider_images, f, ensure_ascii=False, indent=4)
+    
+    write_riders(riders)
         
 
 if __name__ == "__main__":
