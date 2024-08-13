@@ -41,7 +41,7 @@ body {
   height: 100%;
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  background-image: url('/background8.svg');
+  background-image: url('/background9.svg');
   background-size: 100% 100%; /* Scale the image to cover the entire background area */
   background-repeat: no-repeat;
   background-position: center center;
