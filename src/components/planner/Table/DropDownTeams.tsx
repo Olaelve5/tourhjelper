@@ -35,7 +35,7 @@ export const DropDownTeams = () => {
 
   const items = sortedTeams().map(({team, image}) => (
     <Menu.Item
-      leftSection={image != null ? <Image src={image} width={25} height={25} /> : <Image src='/neutral-kit.webp' width={25} height={25} />}
+      leftSection={image == null || image == '' ? <Image src='/neutral-kit.webp' width={25} height={25} /> : <Image src={image} width={25} height={25} /> }
       onClick={() => {
         setSelected({label: team, image: image});
         if(team === 'Alle lag') {
@@ -63,7 +63,7 @@ export const DropDownTeams = () => {
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group gap="xs">
-            {selected.image == null ? null : <Image src={selected.image} width={25} height={25} />}
+            {selected.image == null || selected.image == '' ? null : <Image src={selected.image} width={25} height={25} />}
             <span className={classes.label}>{selected.label}</span>
           </Group>
           <IconChevronDown size="1.1rem" className={classes.icon} stroke={1.5} />

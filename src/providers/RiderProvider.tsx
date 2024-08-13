@@ -31,8 +31,10 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
 
         async function fetchImages() {
+            const defaultImage = { team: 'Alle lag', image: '' };
             try {
                 const images = await fetchRiderImages();
+                images.push(defaultImage);
                 setRiderImages(images);
             } catch (e) {
                 console.error("Error fetching rider images: ", e);
