@@ -6,8 +6,16 @@ from selenium.common.exceptions import StaleElementReferenceException, InvalidAr
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 from firebase_config import write_stages
+import shutil
+import os
+
+def clear_cache():
+    cache_dir = os.path.expanduser("~/.wdm")
+    if os.path.exists(cache_dir):
+        shutil.rmtree(cache_dir)
 
 def main():
+    clear_cache()
     # Initialize Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode

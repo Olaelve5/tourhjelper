@@ -6,6 +6,13 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import sys
 import json
+import shutil
+import os
+
+def clear_cache():
+    cache_dir = os.path.expanduser("~/.wdm")
+    if os.path.exists(cache_dir):
+        shutil.rmtree(cache_dir)
 
 
 positions = [
@@ -92,6 +99,8 @@ def findTeam(name, abr):
         return team_abbriviations[abr]
 
 def main():
+    clear_cache()
+
     # Initialize Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
@@ -101,7 +110,7 @@ def main():
 
     id = sys.argv[1]
     driver.get(f'https://tourmanager.tv2.no/dashboard/898994/{id}/10')
-    time.sleep(2)
+    time.sleep(5)
 
     riders = []
     

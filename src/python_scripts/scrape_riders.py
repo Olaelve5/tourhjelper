@@ -4,10 +4,18 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import StaleElementReferenceException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-import json
+import shutil
+import os
 from firebase_config import write_riders, write_rider_images
 
+def clear_cache():
+    cache_dir = os.path.expanduser("~/.wdm")
+    if os.path.exists(cache_dir):
+        shutil.rmtree(cache_dir)
+
 def main():
+    clear_cache()
+
     # Initialize Chrome options
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
