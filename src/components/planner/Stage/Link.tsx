@@ -19,7 +19,7 @@ export function Link({ setIsLinked }: LinkProps) {
 
         } else {
             return (
-            <IconUnlink size={22} color='var(--icon-grey)' stroke={2} className={classes.linkIcon}/>
+            <IconUnlink size={22} color='#a2b3c2' stroke={2} className={classes.linkIcon}/>
             );
         }
     }

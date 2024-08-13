@@ -14,7 +14,7 @@ const MainPlanner = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Container size="lg" style={{padding: '0 7px'}}>
+    <Container size="lg" style={{padding: '0 7.5px'}}>
         <Grid>
             <CombinedProviders>
                 <ImportTeamInput isLoading={isLoading} setIsLoading={setIsLoading}/>
@@ -28,10 +28,10 @@ const MainPlanner = () => {
                         classNames={{ overlay: classes.overlay, root: classes.overlayRoot }}
                     />
                     <PlanIndicator/>
-                    <Grid.Col span={{ base: 12, xs: 7.5 }} className={classes.mapTableColumn}>
+                    <Grid.Col span={{ base: 12, xs: 7.5 }} className={classes.mapColumn}>
                         <RidersMap />
                     </Grid.Col>
-                    <Grid.Col span={{ base: 12, xs: 4.5 }} className={classes.mapTableColumn}>
+                    <Grid.Col span={{ base: 12, xs: 4.5 }} className={classes.tableColumn}>
                         <FilterTable />
                     </Grid.Col>
                 </div>

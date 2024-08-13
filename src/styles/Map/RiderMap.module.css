@@ -5,11 +5,11 @@
     position: relative;
     border-radius: 5px;
     overflow: hidden;
-    margin-right: 15px;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 10px 8px -8px #0000008b;
 }
 
 .innerContainer {
