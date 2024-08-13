@@ -1,6 +1,7 @@
 // Import styles of packages that you've installed.
 // All packages except `@mantine/hooks` require styles imports
 import '@mantine/core/styles.css';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 // Import your global styles
 import '../styles/globals.css';
