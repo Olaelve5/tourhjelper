@@ -51,3 +51,19 @@
 .updateButtonDisabled .leftSection {
     color: #a0a0a0;
 }
+
+
+.statusContainer {
+    position: absolute;
+    top: -5px;
+    right: 6px;
+    z-index: 1000;
+    background-color: #ffffff;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

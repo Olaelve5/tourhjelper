@@ -9,6 +9,7 @@ import { usePlanContext } from '@/providers/PlanProvider';
 import { useStageContext } from '@/providers/StageProvider';
 import { StorageNotification } from './StorageNotification';
 import { getStorageNotification } from '@/utils/localStorageUtils';
+import { UpdateStatus } from './UpdateStatus';
 
 export function UpdateButton() {
   const {activeStage} = useStageContext();
@@ -68,7 +69,10 @@ export function UpdateButton() {
         leftSection={leftSection()}
         disabled={!updatePossible}
         >
-        <h3 style={{fontSize: '18px'}}>Oppdater laget</h3>
+          <h3 style={{fontSize: '18px', position: 'relative', width: '11rem'}}>
+            Oppdater laget
+            {updatePossible && <UpdateStatus />}
+          </h3>
       </Button>
       <div>
           {!hideStorageNotification && <StorageNotification setHideStorageNotification={setHideStorageNotification}/>}
