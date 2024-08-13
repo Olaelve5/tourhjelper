@@ -15,6 +15,7 @@ import { theme } from '@/utils/themeUtils';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider theme={theme}>
+      <SpeedInsights />
       <LoadingProvider>
         <AuthProvider>
           <Component {...pageProps} />
