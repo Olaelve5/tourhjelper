@@ -1,3 +1,4 @@
+import json
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -96,6 +97,17 @@ def main():
                 continue 
     
     driver.quit()
+
+    # Navigate up two directories and then into the `public` directory
+    rider_data_path = 'public/data/rider_data.json'
+    rider_image_links_path = 'public/data/rider_image_links.json'
+
+    # After fetching all riders, write them to a JSON file
+    with open(rider_data_path, 'w', encoding='utf-8') as f:
+        json.dump(riders, f, ensure_ascii=False, indent=4)
+
+    with open(rider_image_links_path, 'w', encoding='utf-8') as f:
+        json.dump(rider_images, f, ensure_ascii=False, indent=4)
     
     write_riders(riders)
     write_rider_images(rider_images)
