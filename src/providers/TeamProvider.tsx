@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useContext, useState, use} from "react";
-import { getAllRiders, validateUpdate } from "@/utils/MapHelpers";
+import { validateUpdate } from "@/utils/MapHelpers";
 import { Rider } from "@/types/Rider";
 import { calculateTransferDifference } from "@/utils/MapHelpers";
 import { useStageContext } from "./StageProvider";
