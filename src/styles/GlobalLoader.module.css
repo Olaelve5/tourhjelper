@@ -21,6 +21,11 @@
     flex-direction: column;
 }
 
+.loader {
+    width: 45px;
+    height: 45px;
+}
+
 .fade-enter {
     opacity: 0;
 }
@@ -35,4 +40,12 @@
 
 .fade-exit-active {
     opacity: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .loader {
+        width: 35px;
+        height: 35px;
+    }
+    
 }

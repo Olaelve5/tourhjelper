@@ -2,7 +2,7 @@
 
 // components/layout.tsx
 import React, { ReactNode, useEffect } from 'react';
-import Header from '../components/Header' 
+import Header from '../components/header/Header' 
 import { GlobalLoader } from '../components/GlobalLoader';
 import { useLoading } from '../providers/LoadingProvider';
 import { CSSTransition } from 'react-transition-group';

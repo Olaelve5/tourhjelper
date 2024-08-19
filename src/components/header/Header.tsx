@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Container, Group, Burger, useMantineTheme, Drawer } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import classes from '../styles/Header.module.css';
+import { Container, Group } from '@mantine/core';
+import classes from '@/styles/Header.module.css';
 import { useRouter } from 'next/router';
-import { LogInButtons } from './user/LogInButtons';
+import { LogInButtons } from '../user/LogInButtons';
+import HeaderDrawer from './HeaderDrawer';
 
 const links = [
   { link: '/', label: 'Planlegger' },
@@ -13,7 +13,6 @@ const links = [
 ];
 
 export function Header() {
-  const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState('/');
   const router = useRouter();
 
@@ -46,32 +45,14 @@ export function Header() {
         <h1 style={{cursor: 'pointer', zIndex: 1000}} onClick={(event) => {
           router.push('/');
         }}>Tourhjelper</h1>
-        <Group gap={15} visibleFrom="xs" className={classes.middleLinksContainer}>
+        <Group gap={15} visibleFrom="sm" className={classes.middleLinksContainer}>
           {items[0]}
           {items[1]}
         </Group>
-        <div style={{zIndex: '1000'}}>
+        <Group style={{zIndex: '1000'}} visibleFrom='sm'>
           <LogInButtons />
-        </div>
-        
-
-        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" color='white'/>
-        
-        <Drawer
-        opened={opened}
-        onClose={toggle}
-        size="100%"
-        padding="md"
-        hiddenFrom="sm"
-        zIndex={1000000}
-        >
-          <h1 style={{cursor: 'pointer'}} onClick={(event) => {
-          router.push('/');
-        }}>Tourhjelper</h1>
-          <Group justify="center" grow pb="xl" px="md">
-            {items}
-          </Group>
-        </Drawer>
+        </Group>
+        <HeaderDrawer active={active}/>
       </Container>
     </header>
   );

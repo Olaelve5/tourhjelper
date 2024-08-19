@@ -33,7 +33,7 @@ export function RegisterUser() {
                 });
                 await addUserIdToDatabase(user.uid);
             }
-            router.push('/planner');
+            router.push('/');
         } catch (error) {
             console.error(error);
         }

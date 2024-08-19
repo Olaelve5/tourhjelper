@@ -41,7 +41,7 @@ export function LogInButtons() {
                     </Menu.Dropdown>
                 </Menu>
             ) : (
-                <div style={{display: 'flex', gap: '1rem'}}>
+                <div style={{display: 'flex', gap: '1rem', width: '100%'}}>
                     <Button className={classes.logInButton} onClick={() => handleClick('login')}>Logg in</Button>
                     <Button className={classes.registerButton} onClick={() => handleClick('register')}>Registrer deg</Button>
                 </div>

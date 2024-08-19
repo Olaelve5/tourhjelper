@@ -16,7 +16,7 @@ export function LogIn() {
         e.preventDefault();
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            router.push('/planner');
+            router.push('/');
         } catch (error) {
             console.error(error);
         }
