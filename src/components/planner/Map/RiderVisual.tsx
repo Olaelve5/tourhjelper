@@ -37,7 +37,7 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
   return (
     <div className={classes.container} onClick={handleClick}>
         <IconXboxXFilled size={16} className={classes.x} />
-        <Image src={imageUrl} alt='EF' width={75} height={75} />
+        <Image src={imageUrl} alt='EF' width='75' height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
                 <h4 className={classes.name}>{getLastName()}</h4>

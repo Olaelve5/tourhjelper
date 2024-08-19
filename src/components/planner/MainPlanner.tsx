@@ -8,13 +8,13 @@ import { ImportTeamInput } from "./ImportTeamInput";
 import { RidersMap } from "./Map/RidersMap";
 import { PlanIndicator } from "./PlanIndicator";
 import { FilterTable } from "./Table/FilterTable";
-import classes from '@/styles/MainGrid.module.css';
+import classes from '@/styles/MainPlanner.module.css';
 
 const MainPlanner = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Container size="lg" style={{padding: '0 7.5px'}}>
+    <Container size='lg' style={{padding: '0 7.5px'}} className={classes.container}>
         <Grid>
             <CombinedProviders>
                 <ImportTeamInput isLoading={isLoading} setIsLoading={setIsLoading}/>

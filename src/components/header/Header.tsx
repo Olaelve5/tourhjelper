@@ -42,7 +42,7 @@ export function Header() {
   return (
     <header className={classes.header}>
       <Container size="xl" className={classes.inner}>
-        <h1 style={{cursor: 'pointer', zIndex: 1000}} onClick={(event) => {
+        <h1 className={classes.logoTitle} onClick={(event) => {
           router.push('/');
         }}>Tourhjelper</h1>
         <Group gap={15} visibleFrom="sm" className={classes.middleLinksContainer}>

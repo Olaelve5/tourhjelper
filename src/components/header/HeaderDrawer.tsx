@@ -1,5 +1,5 @@
-import { Burger, Button, Drawer, Group, Menu, MenuDivider } from "@mantine/core";
-import { IconReplace, IconRoad, IconUserCircle, IconLogin2, IconUserPlus } from "@tabler/icons-react";
+import { Burger, Button, Drawer, Group } from "@mantine/core";
+import { IconReplace, IconRoad, IconUserCircle, IconLogin2, IconUserPlus, IconLogin } from "@tabler/icons-react";
 import classes from '@/styles/Header.module.css';
 import { useDisclosure } from "@mantine/hooks";
 import { useAuth } from "@/providers/AuthProvider";
@@ -42,7 +42,7 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
                 <div className={classes.drawerItems}>
                     <a href='/logout'>
                         <Button
-                        leftSection={<IconLogin2 size={20} />}
+                        leftSection={<IconLogin size={20} />}
                         color="transparent"
                         style={{fontWeight: '400'}}
                         onClick={handleLogOut}
@@ -107,7 +107,9 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
                             <Button
                             leftSection={<IconReplace size={20} />}
                             color="transparent"
+                            style={{fontWeight: '400'}}
                             data-active={active === '/' || undefined}
+                            className={classes.drawerItem}
                             >
                                 Planlegger
                             </Button>
@@ -118,6 +120,7 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
                             color="transparent"
                             style={{fontWeight: '400'}}
                             data-active={active === '/stages' || undefined}
+                            className={classes.drawerItem}
                             >
                                 Etapper
                             </Button>

@@ -77,9 +77,9 @@ export const ImportTeamInput = ({isLoading, setIsLoading}: ImportTeamInputProps)
                 radius="md"
                 size="md"
                 value={value}
-                styles={{ input: { background: theme.colors.blue[2], border: 'none', color: 'white'} }}
+                classNames={{ input: classes.input }}
                 placeholder="Skriv inn ID"
-                error={isValidInput ? null : 'Fant ikke ID'}
+                error={isValidInput ? null : 'Noe gikk galt'}
                 rightSectionWidth={42}
                 leftSection={<IconSearch size={22} stroke={1.5} />}
                 rightSection={
