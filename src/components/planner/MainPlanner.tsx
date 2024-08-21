@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import { LoadingOverlay } from "@mantine/core";
 import { Container, Grid } from '@mantine/core';
 import CombinedProviders from "@/providers/CombinedProviders";
-import { BtmButtonGroup } from "./BtmButtonGroup";
 import { ImportTeamInput } from "./ImportTeamInput";
 import { RidersMap } from "./Map/RidersMap";
 import { PlanIndicator } from "./PlanIndicator";
@@ -14,8 +13,7 @@ const MainPlanner = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <Container size='lg' style={{padding: '0 7.5px'}} className={classes.container}>
-        <Grid>
+    <Container size='lg' className={classes.container}>
             <CombinedProviders>
                 <ImportTeamInput isLoading={isLoading} setIsLoading={setIsLoading}/>
                 <div style={{display: 'flex', background: 'transparent', position: 'relative'}}>
@@ -28,15 +26,12 @@ const MainPlanner = () => {
                         classNames={{ overlay: classes.overlay, root: classes.overlayRoot }}
                     />
                     <PlanIndicator/>
-                    <Grid.Col span={{ base: 12, xs: 7.5 }} className={classes.mapColumn}>
+                    <div className={classes.mapTableContainer}>
                         <RidersMap />
-                    </Grid.Col>
-                    <Grid.Col span={{ base: 12, xs: 4.5 }} className={classes.tableColumn}>
                         <FilterTable />
-                    </Grid.Col>
+                    </div>
                 </div>
             </CombinedProviders>
-      </Grid>
     </Container>
   );
 }

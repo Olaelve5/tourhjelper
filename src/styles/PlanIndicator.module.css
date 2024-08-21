@@ -67,3 +67,21 @@
     color: white;
 }
 
+@media screen and (max-width: 468px) {
+    .contaienr {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        gap: 0px;
+    }
+
+    .floater {
+        padding: 0 1rem;
+        font-size: 12px;
+    }
+
+    .selected {
+        padding: 0 1rem;
+        font-size: 12px;
+    }
+}
+

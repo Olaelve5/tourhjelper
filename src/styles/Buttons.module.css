@@ -95,3 +95,21 @@
     margin-left: 4px;
   }
 
+
+@media screen and (max-width: 468px) {
+    .stageButtonContainer {
+        height: 2.6rem;
+    }
+
+    .mainStageButton {
+        font-size: 16px;
+    }
+
+    .sideButtonLeft {
+        left: 10%;
+    }
+
+    .sideButtonRight {
+        right: 10%;
+    }
+}

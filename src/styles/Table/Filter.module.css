@@ -1,3 +1,12 @@
+.mainContainer {
+  background: var(--dark-grey);
+  border-radius: 5px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 10px 8px -8px #0000008b;
+  width: 100%;
+}
+
 .button {
   background: var(--light-grey);
   font-weight: 500;
@@ -27,4 +36,10 @@
   width: 100%;
   position: relative;
   background: var(--dark-grey);
+}
+
+@media screen and (max-width: 768px) {
+  .mainContainer {
+    display: none;
+  }
 }

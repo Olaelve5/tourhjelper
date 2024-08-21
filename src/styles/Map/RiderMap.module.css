@@ -6,6 +6,7 @@
     border-radius: 5px;
     overflow: hidden;
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -60,4 +61,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+
+    .container {
+        gap: 10px;
+    }
+
+    .innerContainer {
+        gap: 20px;
+    }
+
+    .badge {
+        bottom: -15px;
+        font-size: 8px;
+    }
 }

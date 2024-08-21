@@ -43,7 +43,7 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
                 <h4 className={classes.name}>{getLastName()}</h4>
             </div>
             <div style={{display: 'flex', justifyContent: 'center', background: 'var(--light-grey)'}}>
-              <h4 style={{fontSize: '13px', color: 'white'}}>{rider.price}m</h4>
+              <h4 className={classes.price}>{rider.price}m</h4>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@ export function EmptyRiderVisual({category}: {category: RiderCategory}) {
   return (
     <div className={classes.container} id={classes.emptyContainer} onClick={handleClick}>
         <IconCirclePlusFilled size={24} className={classes.plus} />
-        <Image src='/neutral-kit.webp' alt='Default kit' width={75} height={75} />
+        <Image src='/neutral-kit.webp' alt='Default kit' width={75} height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
                 <h4 className={classes.name}>-</h4>
