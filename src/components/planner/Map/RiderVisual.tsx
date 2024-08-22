@@ -69,7 +69,7 @@ export function EmptyRiderVisual({category}: {category: RiderCategory}) {
                 <h4 className={classes.name}>-</h4>
             </div>
             <div style={{display: 'flex', justifyContent: 'space-evenly', background: 'var(--light-grey)'}}>
-              <h4 style={{fontSize: '12px', color: 'white'}}>-</h4>
+              <h4 className={classes.price}>-</h4>
             </div>
         </div>
     </div>

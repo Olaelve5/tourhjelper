@@ -16,7 +16,7 @@ const MainPlanner = () => {
     <Container size='lg' className={classes.container}>
             <CombinedProviders>
                 <ImportTeamInput isLoading={isLoading} setIsLoading={setIsLoading}/>
-                <div style={{display: 'flex', background: 'transparent', position: 'relative'}}>
+                <div className={classes.loadingPlanContainer}>
                     <LoadingOverlay
                         visible={isLoading} 
                         zIndex={100000}

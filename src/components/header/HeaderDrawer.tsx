@@ -85,9 +85,9 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
             <Drawer
             opened={opened}
             onClose={toggle}
-            size="65%"
             padding="md"
             hiddenFrom="sm"
+            lockScroll={false}
             title={header()}
             zIndex={1000000}
             classNames={{
@@ -107,7 +107,6 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
                             <Button
                             leftSection={<IconReplace size={20} />}
                             color="transparent"
-                            style={{fontWeight: '400'}}
                             data-active={active === '/' || undefined}
                             className={classes.drawerItem}
                             >
@@ -118,7 +117,6 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
                             <Button
                             leftSection={<IconRoad size={20} />}
                             color="transparent"
-                            style={{fontWeight: '400'}}
                             data-active={active === '/stages' || undefined}
                             className={classes.drawerItem}
                             >

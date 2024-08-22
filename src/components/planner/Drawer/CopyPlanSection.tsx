@@ -57,7 +57,7 @@ export function CopyPlanSection({close}: CopyPlanSectionProps) {
                 style={{marginRight: 10}} 
                 color="white"
                 disabled={plansToCopy.length === 0}
-                leftSection={<IconCopy size={20}/>}
+                leftSection={<IconCopy size={22}/>}
                 classNames={classes}
                 onClick={handleCopyPlan}
                 >
@@ -71,7 +71,7 @@ export function CopyPlanSection({close}: CopyPlanSectionProps) {
                     onClick={() => setIndex((index + 1) % plansToCopy.length)}
                     disabled={plansToCopy.length === 0}
                     >
-                        <IconSwitchHorizontal size={20}/>
+                        <IconSwitchHorizontal size={22}/>
                     </Button>
                 </Tooltip>
             </div>

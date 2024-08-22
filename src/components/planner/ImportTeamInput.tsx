@@ -83,11 +83,13 @@ export const ImportTeamInput = ({isLoading, setIsLoading}: ImportTeamInputProps)
                 rightSectionWidth={42}
                 leftSection={<IconSearch size={22} stroke={1.5} />}
                 rightSection={
-                    <ActionIcon size={32}
+                    <ActionIcon 
+                    size={32}
                     radius="md" 
                     variant="filled"
                     color={theme.colors.yellow[6]}
                     onClick={handleClick}
+                    className={classes.bikeIcon}
                     >
                     {isLoading ? 
                     <Loader size="sm" type="dots" color={theme.colors.blue[0]}/> :

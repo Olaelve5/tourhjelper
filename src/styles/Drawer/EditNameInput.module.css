@@ -1,21 +1,27 @@
 .container {
-    width: 70%;
-    display: grid;
-    grid-template-columns: 80% 20%;
-    gap: 10px;
-    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
 }
 
 .root {
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
 }
 
-.wrapper {
-    display: flex;
+.label {
     width: 100%;
+    font-size: 14px;
     position: relative;
+}
+
+.innerContainer {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    gap: 10px;
 }
 
 .input {
@@ -23,17 +29,16 @@
     border: none;
     color: white;
     border: 1px solid var(--highlight-grey);
-    width: 100%;
     position: relative;
+    width: 100%;
 }
 
-.editIcon {
+.saveIcon {
     display: grid;
     place-items: center;
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     border-radius: 5px;
-    background: transparent;
     color: var(--light-grey);
     cursor: pointer;
 }
@@ -52,16 +57,12 @@
 }
 
 .saveButton {
-    width: calc(20% - 10px);
+    width: calc(100% - 0.5rem);
     padding: 0;
     display: flex;
     justify-content: center;
     background: var(--light-grey);
     border: 1px solid var(--highlight-grey);
-    justify-self: baseline;
-    position: absolute;
-    right: 0;
-    bottom: 0;
 }
 
 .saveButton:hover {

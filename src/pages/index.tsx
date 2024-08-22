@@ -6,17 +6,16 @@ import { StageProvider } from '@/providers/StageProvider';
 import MainPlanner from '@/components/planner/MainPlanner';
 import MainStage from '@/components/planner/Stage/MainStage';
 import { GithubLink } from '@/components/GithubLink';
+import classes from '@/styles/MainPlanner.module.css';
 
 const PlannerPage: React.FC = () => {
     return (
         <Layout>
             <StageProvider>
-                <Container size="lg">
-                    <div style={{margin: '100px 0'}}>
-                        <MainPlanner />
-                        <MainStage />
-                        <GithubLink />
-                    </div>
+                <Container size="lg" className={classes.pageContainer}>
+                    <MainPlanner />
+                    <MainStage />
+                    <GithubLink />
                 </Container>
             </StageProvider>
         </Layout>

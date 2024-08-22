@@ -12,8 +12,8 @@ export function EmptyButton() {
 
   return (
     <Tooltip label="Tøm laget">
-          <Button onClick={() => setActiveTeam([])} className={classes.transferButton} size='xs'>
-            <IconTrashXFilled size={20} />
+          <Button onClick={() => setActiveTeam([])} className={classes.transferButton} size='xs' id={classes.emptyButton}>
+            <IconTrashXFilled size={20} className={classes.icon}/>
           </Button>
     </Tooltip>
   );
@@ -24,8 +24,8 @@ export function ResetTransfersButton() {
 
   return (
     <Tooltip label="Tilbakestill endringer">
-          <Button onClick={() => setActiveTeam(savedTeam)} className={classes.transferButton} size='xs'>
-            <IconRestore size={20} />
+          <Button onClick={() => setActiveTeam(savedTeam)} className={classes.transferButton} size='xs' id={classes.resetButton}>
+            <IconRestore size={20} className={classes.icon}/>
           </Button>
     </Tooltip>
   );
@@ -39,7 +39,7 @@ export function SettingsButton() {
       <SettingsDrawer opened={opened} close={close} />
       <Tooltip label="Innstillinger">
         <Button onClick={open} className={classes.transferButton} size='xs'>
-          <IconSettings size={20} />
+          <IconSettings size={20} className={classes.icon}/>
         </Button>
       </Tooltip>
     </>

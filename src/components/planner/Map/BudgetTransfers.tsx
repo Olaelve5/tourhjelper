@@ -17,16 +17,16 @@ export function BudgetTransfers() {
       <StageButton />
       <Group className={classes.container} style={{background: theme.colors.blue[1]}}>
           <div style={{display: 'flex', alignItems: 'center'}}>
-            <IconCoins size={20} style={{marginRight: 10}}/>
+            <IconCoins size={20} className={classes.icon}/>
             <h3 className={budget >= 0 ? "" : classes.negative}>{`${budget}m`}&nbsp;</h3>
             <h3 style={{color: 'var(--icon-grey)'}}>/ 100m</h3>
           </div>
           <div className={classes.budgetContainer}>
-            <IconTransfer size={20} style={{marginRight: 10}} />
+            <IconTransfer size={20} className={classes.icon} />
             <h3 className={transfers > 25 ? classes.tooManyTransfers : ''}>{`${transfers}`}&nbsp;</h3>
             <h3 style={{color: 'var(--icon-grey)'}}>/ 25</h3>
           </div>
-          <div style={{display: 'flex', gap: 5, position: 'relative', left: 10}}>
+          <div className={classes.buttonsContainer}>
             <EmptyButton />
             <ResetTransfersButton />
             <SettingsButton />

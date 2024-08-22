@@ -16,6 +16,7 @@ export function EditNameInput({ close }: EditNameInputProps){
     const { selectedPlanId, plans, setPlans } = usePlanContext();
     const { user } = useAuth();
     const [name, setName] = useState(plans.find(plan => plan.id === selectedPlanId)?.name || 'Plan 1');
+    const [loading, setLoading] = useState(false);
 
     const handleClick = async () => {
         const selectedPlan = plans.find(plan => plan.id === selectedPlanId);
@@ -23,9 +24,15 @@ export function EditNameInput({ close }: EditNameInputProps){
             console.error('Selected plan not found');
             return;
         }
+
+        setLoading(true);
     
         const originalName = selectedPlan.name;
-        if (name === '' || name === originalName) return;
+        if (name === '' || name === originalName) {
+            close();
+            setLoading(false);
+            return;
+        };
     
         if (user && selectedPlanId) {
             try {
@@ -44,6 +51,7 @@ export function EditNameInput({ close }: EditNameInputProps){
     
         setPlans(updatedPlans);
         close();
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -57,18 +65,20 @@ export function EditNameInput({ close }: EditNameInputProps){
 
     return (
         <div className={classes.container}>
-            <TextInput
-                    label="Endre navn" 
-                    placeholder="Skriv inn navn" 
-                    value={name} 
-                    onChange={(event) => setName(event.currentTarget.value)}
-                    classNames={classes}
-            />
-            <Tooltip label='Lagre navn' zIndex={10000}>
-                <Button className={classes.saveButton} onClick={handleClick}>
-                    <IconDeviceFloppy size={20} stroke={2} color='white'/>
-                </Button>
-            </Tooltip>
+            <p className={classes.label}>Kopier annen plan</p>
+            <div className={classes.innerContainer}>
+                <TextInput
+                        placeholder="Skriv inn navn" 
+                        value={name} 
+                        onChange={(event) => setName(event.currentTarget.value)}
+                        classNames={classes}
+                />
+                <Tooltip label='Lagre navn' zIndex={10000}>
+                    <Button className={classes.saveButton} onClick={handleClick} loading={loading}>
+                        <IconDeviceFloppy size={20} stroke={2} color='white' className={classes.saveIcon}/>
+                    </Button>
+                </Tooltip>
+            </div>
         </div>
     );
 }

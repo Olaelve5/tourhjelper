@@ -13,3 +13,18 @@
 .drawer {
     background-color: black;
 }
+
+@media screen and (max-width: 468px) {
+    #resetButton {
+        display: block;
+    }
+
+    #emptyButton {
+        display: none;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+}

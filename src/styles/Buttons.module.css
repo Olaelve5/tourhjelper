@@ -48,7 +48,6 @@
 }
 
 .mainStageButton {
-    font-size: 20px;
     padding: 0 2rem;
     display: flex;
     background: transparent;
@@ -102,7 +101,7 @@
     }
 
     .mainStageButton {
-        font-size: 16px;
+        font-size: 10px;
     }
 
     .sideButtonLeft {

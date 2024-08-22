@@ -5,7 +5,7 @@
 }
 
 .content {
-    background-color: var(--dark-grey);
+    background: linear-gradient(153deg, rgba(7,21,36,1) 47%, rgba(4,49,78,1) 100%);
 }
 
 .header {
@@ -28,9 +28,7 @@
 .body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     gap: 2.5rem;
 }
 
