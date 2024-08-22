@@ -111,4 +111,12 @@
     .sideButtonRight {
         right: 10%;
     }
+
+    .sideButtonLeft:hover {
+        background: transparent;
+    }
+
+    .sideButtonRight:hover {
+        background: transparent;
+    }
 }

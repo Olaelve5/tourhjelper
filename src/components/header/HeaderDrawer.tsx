@@ -5,6 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { useAuth } from "@/providers/AuthProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
+import { useEffect, useRef, useState } from "react";
 
 interface HeaderDrawerProps {
     active: string;
@@ -14,6 +15,9 @@ interface HeaderDrawerProps {
 export default function HeaderDrawer({ active }: HeaderDrawerProps) {
     const { user } = useAuth();
     const [opened, { toggle }] = useDisclosure(false);
+    const drawerRef = useRef<HTMLDivElement>(null);
+    const [touchStartX, setTouchStartX] = useState(0);
+    const [touchStartY, setTouchStartY] = useState(0);
 
     const header = () => {
         return (
@@ -35,6 +39,38 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
             console.error('Failed to log out');
         }
     }
+
+    useEffect(() => {
+        const handleTouchStart = (e: TouchEvent) => {
+            setTouchStartX(e.touches[0].clientX);
+            setTouchStartY(e.touches[0].clientY);
+            console.log('touch start');
+        };
+
+        const handleTouchEnd = (e: TouchEvent) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+
+            if (touchStartX - touchEndX > 40) {
+                if(touchStartY - touchEndY > Math.abs(30)) return;
+                console.log('closing drawer');
+                toggle();
+            }
+        };
+
+        const touchableElement = drawerRef.current;
+        if (touchableElement) {
+            touchableElement.addEventListener('touchstart', handleTouchStart);
+            touchableElement.addEventListener('touchend', handleTouchEnd);
+        }
+
+        return () => {
+            if (touchableElement) {
+                touchableElement.removeEventListener('touchstart', handleTouchStart);
+                touchableElement.removeEventListener('touchend', handleTouchEnd);
+            }
+        };
+    }, [touchStartX, touchStartY, opened, toggle]);
 
     const logInOut = () => {
         if (user) {
@@ -87,7 +123,7 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
             onClose={toggle}
             padding="md"
             hiddenFrom="sm"
-            lockScroll={false}
+            ref = {drawerRef}
             title={header()}
             zIndex={1000000}
             classNames={{

@@ -15,8 +15,9 @@
 }
 
 @media screen and (max-width: 468px) {
-    #resetButton {
-        display: block;
+    .transferButton:hover {
+        background-color: transparent;
+        border: 1px solid transparent;
     }
 
     #emptyButton {
