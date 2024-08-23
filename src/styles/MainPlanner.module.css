@@ -1,6 +1,5 @@
 .pageContainer {
     margin-top: 100px;
-    padding: 0 7.5px;
     min-width: 300px;
 }
 
@@ -47,7 +46,6 @@
 @media screen and (max-width: 768px) {
     .pageContainer {
         margin-top: 4rem;
-        padding: 0 0.5rem;
     }
     
     .container {
@@ -63,5 +61,12 @@
     .mapTableContainer {
         display: flex;
         width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .pageContainer {
+        margin-top: 4rem;
+        padding: 0 0.5rem;
     }
 }

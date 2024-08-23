@@ -7,6 +7,7 @@
     line-height: 1.8rem;
     align-items: center;
     gap: 10px;
+    width: 100%;
 }
 
 .floater {
@@ -19,6 +20,7 @@
     height: 100%;
     font-weight: 500;
     background: var(--light-grey);
+    max-width: 33.3%;
 }
 
 .selected {
@@ -31,6 +33,9 @@
     height: 100%;
     font-weight: 500;
     background-color: var(--header-color);
+    max-width: 33.3%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .selected:hover {
@@ -73,6 +78,14 @@
         line-height: 1.7rem;
         gap: 0.5rem;
         top: calc(-1.7rem - 0.5rem);
+    }
+
+    .plus {
+        left: -0.5rem;
+    }
+
+    .plus:hover {
+        background-color: transparent;
     }
 
     .floater {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import classes from '@/styles/PlanIndicator.module.css';
 import { IconPlus } from '@tabler/icons-react';
@@ -12,6 +12,7 @@ import { CSS } from '@dnd-kit/utilities';
 
 export function PlanIndicator() {
     const { plans, addPlan, setSelectedPlanId, setPlans} = usePlanContext();
+    const [isDraggable, setIsDraggable] = useState<boolean>(false);
 
     const handleDragStart = ({active}: any) => {
         document.body.classList.add('grabbing');
@@ -31,6 +32,21 @@ export function PlanIndicator() {
         setPlans(newPlans);
     }
 
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setIsDraggable(false);
+            } else {
+                setIsDraggable(true);
+            }
+        };
+
+        handleResize(); // Set initial state based on current screen size
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <DndContext
         collisionDetection={closestCorners}
@@ -44,7 +60,7 @@ export function PlanIndicator() {
                 strategy={horizontalListSortingStrategy}
                 >
                     {plans.map((plan, index) => (
-                        <Tab key={plan.id} plan={plan}/>
+                        <Tab key={plan.id} plan={plan} isDraggable={isDraggable}/>
                     ))}
                 </SortableContext>
                 <Button className={classes.plus} onClick={addPlan} display={plans.length < 3 ? 'block' : 'none'}>
@@ -58,12 +74,12 @@ export function PlanIndicator() {
 
 interface TabProps {
     plan: Plan;
+    isDraggable: boolean;
 }
 
-function Tab({plan}: TabProps) { 
-    const theme = useMantineTheme();
+function Tab({plan, isDraggable}: TabProps) {
     const {setSelectedPlanId, selectedPlanId} = usePlanContext();
-    const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id: plan.id});
+    const {attributes, listeners, setNodeRef, transform, transition} = useSortable({id: plan.id, disabled: !isDraggable});
 
     const style = {
         transition,
@@ -75,8 +91,8 @@ function Tab({plan}: TabProps) {
         className={selectedPlanId === plan.id ? classes.selected : classes.floater}
         onClick={() => setSelectedPlanId(plan.id)}
         ref={setNodeRef}
-        {...attributes}
-        {...listeners}
+        {...(isDraggable ? attributes : {})}
+        {...(isDraggable ? listeners : {})}
         style={style}
         size='xs'
         >
