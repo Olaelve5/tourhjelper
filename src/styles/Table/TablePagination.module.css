@@ -17,3 +17,9 @@
     background: var(--header-color);
     color: white;
 }
+
+@media screen and (max-width: 468px) {
+    .control {
+        font-size: 12px;
+    }
+}

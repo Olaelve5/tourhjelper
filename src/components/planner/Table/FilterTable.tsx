@@ -4,10 +4,14 @@ import { MainFilter } from "./MainFilter";
 import { MainTable } from "./MainTable";
 import classes from '@/styles/Table/Filter.module.css';
 
-export function FilterTable() {
+interface FilterTableProps {
+    handleMapVisibility: () => void;
+}
+
+export function FilterTable({handleMapVisibility}: FilterTableProps) {
     return (
         <div className={classes.mainContainer}>
-            <MainFilter />
+            <MainFilter handleMapVisibility={handleMapVisibility}/>
             <MainTable />
         </div>
     );

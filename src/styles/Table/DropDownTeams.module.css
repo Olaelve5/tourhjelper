@@ -41,3 +41,21 @@
       transform: rotate(180deg);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .control {
+        font-size: 12px;
+    }
+
+    .control:hover {
+        background: var(--light-grey);
+    }
+
+    .dropdown {
+        max-height: 20rem;
+    }
+
+    .dropitem {
+        font-size: 12px;
+    }
+}

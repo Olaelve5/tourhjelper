@@ -33,3 +33,9 @@
       }
     }
   }
+
+@media screen and (max-width: 768px) {
+    .label {
+        font-size: 12px;
+    }
+}

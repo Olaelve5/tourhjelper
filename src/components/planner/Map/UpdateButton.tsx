@@ -19,6 +19,7 @@ export function UpdateButton() {
   const [changes, setChanges] = useState<number>(0);
   const [updatePossible, setUpdatePossible] = useState<boolean>(false);
   const [hideStorageNotification, setHideStorageNotification] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const leftSection = () => {
     return (
@@ -30,6 +31,7 @@ export function UpdateButton() {
 
   const handleClick = async () => {
     if(!updatePossible) return;
+    setIsLoading(true);
 
     try {
       if (selectedPlanId) {
@@ -37,6 +39,7 @@ export function UpdateButton() {
       }
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
 
     setSavedTeam(activeTeam);
@@ -48,6 +51,8 @@ export function UpdateButton() {
     } else {
       setHideStorageNotification(true);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -63,11 +68,12 @@ export function UpdateButton() {
     <div className={classes.container}>
       <Button
         justify='space-between'
-        rightSection={<IconArrowRight size={24} />}
+        rightSection={<IconArrowRight size={24} className={classes.rightSection}/>}
         className={updatePossible ? classes.updateButton : classes.updateButtonDisabled}
         onClick={handleClick}
         leftSection={leftSection()}
         disabled={!updatePossible}
+        loading={isLoading}
         >
           <h3 className={classes.buttonTitle}>
             Oppdater plan

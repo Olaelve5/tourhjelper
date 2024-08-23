@@ -2,6 +2,7 @@
     cursor: pointer;
 }
 
+
 .row:hover {
     background-color: var(--highlight-grey);
 }
@@ -39,7 +40,7 @@
     font-size: 13px;
     text-wrap: nowrap;
     overflow: hidden;
-    max-width: 8rem;
+    max-width: 7rem;
     text-overflow: ellipsis;
 }
 
@@ -58,6 +59,7 @@
     text-wrap: nowrap;
     position: absolute;
 }
+
 
 .teamDisabled {
     font-weight: 600;
@@ -91,4 +93,58 @@
 
 .selectedRow:hover .check {
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .row {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .selectedRow:hover .check {
+        display: block;
+    }
+
+    .selectedRow:hover .minus {
+        display: none;
+    }
+
+    .selectedRow:hover {
+        background-color: var(--blue-selected);
+    }
+
+    .row:hover {
+        background-color: transparent;
+    }
+
+    .disabledRow:hover {
+        background-color: transparent;
+    }
+}
+    
+
+@media screen and (max-width: 468px) {
+    .name {
+        font-size: 12px;
+    }
+
+    .team {
+        font-size: 10px;
+    }
+
+    .teamSelected {
+        font-size: 10px;
+    }
+
+    .teamDisabled {
+        font-size: 10px;
+    }
+
+    .categoryPrice {
+        font-size: 12px;
+    }
+
+    .riderImage {
+        width: 26px;
+        height: 30px;
+    }
 }

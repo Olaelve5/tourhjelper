@@ -47,9 +47,9 @@ const MainPlanner = () => {
                     <PlanIndicator/>
                     <div className={classes.mapTableContainer}>
                         {!isSmallDevice && <RidersMap handleMapVisibility={handleMapVisibility}/>}
-                        {!isSmallDevice && <FilterTable />}
+                        {!isSmallDevice && <FilterTable handleMapVisibility={handleMapVisibility}/>}
                         {isSmallDevice && isMapVisible && <RidersMap handleMapVisibility={handleMapVisibility}/>}
-                        {isSmallDevice && !isMapVisible && <FilterTable />}
+                        {isSmallDevice && !isMapVisible && <FilterTable handleMapVisibility={handleMapVisibility}/>}
                     </div>
                 </div>
             </CombinedProviders>

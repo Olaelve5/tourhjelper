@@ -40,3 +40,9 @@
     overflow: hidden;
     user-select: none;
 }
+
+@media screen and (max-width: 468px) {
+    .columnHeaderWrapper {
+        font-size: 12px;
+    }
+}
