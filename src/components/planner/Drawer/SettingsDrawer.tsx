@@ -7,6 +7,7 @@ import { CopyPlanSection } from './CopyPlanSection';
 import { ResetPlanSection } from './ResetPlanSection';
 import { DeletePlanButton } from './DeletePlanButton';
 import { usePlanContext } from '@/providers/PlanProvider';
+import { useSwipe } from '@/utils/swipeUtils';
 
 interface SettingsDrawerProps {
     opened: boolean;
@@ -20,6 +21,12 @@ export function SettingsDrawer({ opened, close }: SettingsDrawerProps) {
     const [touchStartX, setTouchStartX] = useState(0);
     const [touchStartY, setTouchStartY] = useState(0);
 
+    const onSwipe = (direction: 'left' | 'right') => {
+        if (direction === 'left') {
+            close();
+        }
+    };
+
     useEffect(() => {
         if(selectedPlanId) {
             const plan = plans.find(plan => plan.id === selectedPlanId);
@@ -29,36 +36,7 @@ export function SettingsDrawer({ opened, close }: SettingsDrawerProps) {
         }
     }, [selectedPlanId, plans]);
 
-    useEffect(() => {
-        const handleTouchStart = (e: TouchEvent) => {
-            setTouchStartX(e.touches[0].clientX);
-            setTouchStartY(e.touches[0].clientY);
-        };
-
-        const handleTouchEnd = (e: TouchEvent) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-
-            if (touchStartX - touchEndX > 40) {
-                if(touchStartY - touchEndY > Math.abs(30)) return;
-                console.log('closing drawer');
-                close();
-            }
-        };
-
-        const touchableElement = drawerRef.current;
-        if (touchableElement) {
-            touchableElement.addEventListener('touchstart', handleTouchStart);
-            touchableElement.addEventListener('touchend', handleTouchEnd);
-        }
-
-        return () => {
-            if (touchableElement) {
-                touchableElement.removeEventListener('touchstart', handleTouchStart);
-                touchableElement.removeEventListener('touchend', handleTouchEnd);
-            }
-        };
-    }, [touchStartX, touchStartY, opened, close]);
+    useSwipe({ ref: drawerRef, onSwipe, touchStartX, touchStartY, setTouchStartX, setTouchStartY });
 
     return (
         <>

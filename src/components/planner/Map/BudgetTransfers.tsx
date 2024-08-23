@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import { useTeamContext } from "@/providers/TeamProvider";
 import { IconCoins, IconTransfer } from '@tabler/icons-react';
-import { StageButton } from '../StageButton';
+import { StageButton } from './StageButton';
 import classes from '@/styles/Map/BudgetTransfers.module.css';
 import { EmptyButton, ResetTransfersButton, SettingsButton } from './TransfersButtons';
 import { Group } from '@mantine/core';

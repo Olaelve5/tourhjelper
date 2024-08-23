@@ -7,7 +7,7 @@ import classes from '@/styles/UpdateButton.module.css';
 import { useAuth } from '@/providers/AuthProvider';
 import { usePlanContext } from '@/providers/PlanProvider';
 import { useStageContext } from '@/providers/StageProvider';
-import { StorageNotification } from './StorageNotification';
+import { StorageNotification } from '../StorageNotification';
 import { getStorageNotification } from '@/utils/localStorageUtils';
 import { UpdateStatus } from './UpdateStatus';
 
@@ -69,8 +69,8 @@ export function UpdateButton() {
         leftSection={leftSection()}
         disabled={!updatePossible}
         >
-          <h3 style={{fontSize: '18px', position: 'relative', width: '11rem'}}>
-            Oppdater laget
+          <h3 className={classes.buttonTitle}>
+            Oppdater plan
             {updatePossible && <UpdateStatus />}
           </h3>
       </Button>

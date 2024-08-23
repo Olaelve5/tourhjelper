@@ -3,7 +3,7 @@
     justify-content: center;
     width: 100%;
     align-items: center;
-    height: 2.8rem;
+    height: 100%;
     position: relative;
 }
 
@@ -17,22 +17,29 @@
     height: 100%;
     padding: 0 0.5rem;
     transition: all 0.1s ease;
+    border: none;
 }
 
 .updateButtonDisabled {
     border-radius: 0;
-    font-size: 15px;
     background: var(--dark-grey);
-    height: 3rem;
+    height: 100%;
     color: rgba(255, 255, 255, 0.517);
     width: 100%;
     padding: 0 0.5rem;
     border-radius: 0;
     transition: all 0.1s ease;
+    border: none;
 }
 
 .updateButton:hover {
     background: #1980ce;
+}
+
+.buttonTitle {
+    font-size: 18px;
+    position: relative;
+    width: 11rem;
 }
 
 .leftSection {
@@ -65,4 +72,24 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 50%;
+    }
+
+    .updateButton {
+        border-left: 2px solid var(--dark-grey);
+    }
+
+    .buttonTitle {
+        font-size: 14px;
+    }
+
+    .leftSection {
+        display: none;
+    }
+
+    
 }

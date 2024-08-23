@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import { LoadingOverlay } from "@mantine/core";
 import { Container, Grid } from '@mantine/core';
@@ -11,6 +11,25 @@ import classes from '@/styles/MainPlanner.module.css';
 
 const MainPlanner = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isSmallDevice, setIsSmallDevice] = useState(false);
+  const [isMapVisible, setIsMapVisible] = useState(true);
+
+  const handleMapVisibility = () => {
+    setIsMapVisible(!isMapVisible);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setIsSmallDevice(true);
+      } else {
+        setIsSmallDevice(false);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <Container size='lg' className={classes.container}>
@@ -27,8 +46,10 @@ const MainPlanner = () => {
                     />
                     <PlanIndicator/>
                     <div className={classes.mapTableContainer}>
-                        <RidersMap />
-                        <FilterTable />
+                        {!isSmallDevice && <RidersMap handleMapVisibility={handleMapVisibility}/>}
+                        {!isSmallDevice && <FilterTable />}
+                        {isSmallDevice && isMapVisible && <RidersMap handleMapVisibility={handleMapVisibility}/>}
+                        {isSmallDevice && !isMapVisible && <FilterTable />}
                     </div>
                 </div>
             </CombinedProviders>

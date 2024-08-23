@@ -5,7 +5,8 @@ import { useDisclosure } from "@mantine/hooks";
 import { useAuth } from "@/providers/AuthProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
+import { useSwipe } from "@/utils/swipeUtils";
 
 interface HeaderDrawerProps {
     active: string;
@@ -40,37 +41,13 @@ export default function HeaderDrawer({ active }: HeaderDrawerProps) {
         }
     }
 
-    useEffect(() => {
-        const handleTouchStart = (e: TouchEvent) => {
-            setTouchStartX(e.touches[0].clientX);
-            setTouchStartY(e.touches[0].clientY);
-            console.log('touch start');
-        };
-
-        const handleTouchEnd = (e: TouchEvent) => {
-            const touchEndX = e.changedTouches[0].clientX;
-            const touchEndY = e.changedTouches[0].clientY;
-
-            if (touchStartX - touchEndX > 40) {
-                if(touchStartY - touchEndY > Math.abs(30)) return;
-                console.log('closing drawer');
-                toggle();
-            }
-        };
-
-        const touchableElement = drawerRef.current;
-        if (touchableElement) {
-            touchableElement.addEventListener('touchstart', handleTouchStart);
-            touchableElement.addEventListener('touchend', handleTouchEnd);
+    const onSwipe = (direction: 'left' | 'right') => {
+        if (direction === 'left') {
+            toggle();
         }
+    }
 
-        return () => {
-            if (touchableElement) {
-                touchableElement.removeEventListener('touchstart', handleTouchStart);
-                touchableElement.removeEventListener('touchend', handleTouchEnd);
-            }
-        };
-    }, [touchStartX, touchStartY, opened, toggle]);
+    useSwipe({ ref: drawerRef, onSwipe, touchStartX, touchStartY, setTouchStartX, setTouchStartY });
 
     const logInOut = () => {
         if (user) {
