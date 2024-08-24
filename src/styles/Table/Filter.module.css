@@ -16,25 +16,6 @@
   border: 1px solid var(--highlight-grey);
 }
 
-.header {
-  align-self: center;
-  font-size: 20px;
-  height: 2.6rem;
-  line-height: 2.6rem;
-  font-weight: 600;
-  width: 100%;
-  text-align: center;
-  background: var(--header-color);
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.arrowIcon {
-  display: none;
-}
-
 .filterProviderWrapper {
   display: flex;
   flex-direction: column;

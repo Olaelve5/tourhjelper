@@ -8,6 +8,7 @@ import { IconArrowLeft, IconArrowNarrowLeft, IconArrowBackUp } from '@tabler/ico
 import { IconAdjustmentsOff } from '@tabler/icons-react';
 import classes from '@/styles/Table/Filter.module.css';
 import { useFilterContext } from '@/providers/FilterTableProvider';
+import { FilterHeader } from './FilterHeader';
 
 interface MainFilterProps {
   handleMapVisibility: () => void;
@@ -18,10 +19,7 @@ export function MainFilter({handleMapVisibility}: MainFilterProps) {
 
   return (
     <div className={classes.container} style={{marginBottom: '10px'}}>
-      <h2 className={classes.header}>
-        <IconArrowLeft size={28} style={{marginRight: '10px'}} stroke={2} className={classes.arrowIcon} onClick={handleMapVisibility}/>
-        Ryttermarked
-        </h2>
+      <FilterHeader handleMapVisibility={handleMapVisibility}/>
       <div style={{display: 'flex', flexDirection: 'column', gap: '10px', padding: '0 10px'}}>
         <div style={{display: 'grid', width: '100%', gridTemplateColumns: '80% 20%'}}>
           <SearchBar />

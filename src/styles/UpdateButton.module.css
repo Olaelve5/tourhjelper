@@ -90,4 +90,9 @@
     .leftSection {
         display: none;
     }
+
+    .statusContainer {
+        top: -0.5rem;
+        right: 0.2rem;
+    }
 }
