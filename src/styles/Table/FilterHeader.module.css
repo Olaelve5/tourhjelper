@@ -24,7 +24,7 @@
 }
 
 .shelfContainer {
-    display: flex;
+    display: none;
     width: 80%;
     background-color: var(--yellow-tdf);
     border-bottom-left-radius: 5px;
@@ -48,5 +48,9 @@
       display: block;
       position: absolute;
       left: 10px;
+    }
+
+    .shelfContainer {
+        display: flex;
     }
 }

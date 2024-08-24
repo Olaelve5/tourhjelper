@@ -41,35 +41,35 @@ export function RidersMap({ handleMapVisibility }: RidersMapProps) {
         <div className={classes.innerContainer}>
             <div className={classes.rowWrapper}>
                 <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Kaptein')}
+                    {getRiderVisuals(activeTeam, 'Kaptein', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Kaptein</Badge>
                 </div>
                 <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Spurter')}
+                    {getRiderVisuals(activeTeam, 'Spurter', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Spurter</Badge>
                 </div>
             </div>
             <div className={classes.rowWrapper}>
                 <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Klatrer')}
+                    {getRiderVisuals(activeTeam, 'Klatrer', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Klatrer</Badge>
                 </div>
                 <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Ungdomsrytter')}
+                    {getRiderVisuals(activeTeam, 'Ungdomsrytter', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Ungdomsrytter</Badge>
                 </div>
             </div>
             <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Hjelperytter')}
+                    {getRiderVisuals(activeTeam, 'Hjelperytter', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Hjelperytter</Badge>
                 </div>
             <div className={classes.tempoDirektorContainer}>
                 <div className={classes.tempoDirektorWrapper}>
-                    {getRiderVisuals(activeTeam, 'Temporytter')}
+                    {getRiderVisuals(activeTeam, 'Temporytter', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Temporytter</Badge>
                 </div>
                 <div className={classes.tempoDirektorWrapper}>
-                    {getRiderVisuals(activeTeam, 'Sportsdirektør')}
+                    {getRiderVisuals(activeTeam, 'Sportsdirektør', handleMapVisibility)}
                     <Badge className={classes.badge} size='xs'>Sportsdirektør</Badge>
                 </div>
             </div>

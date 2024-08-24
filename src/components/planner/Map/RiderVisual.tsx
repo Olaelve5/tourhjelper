@@ -51,13 +51,19 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
 }
 
 
-export function EmptyRiderVisual({category}: {category: RiderCategory}) {
+
+interface EmptyRiderVisualProps {
+  category: RiderCategory;
+  handleMapVisibility: () => void;
+}
+
+export function EmptyRiderVisual({category, handleMapVisibility}: EmptyRiderVisualProps){
   const {setFocusedCategory, setPage} = useFilterContext();
 
   const handleClick = () => {
-    console.log(category);
     setFocusedCategory(category);
     setPage(1);
+    handleMapVisibility();
   };
 
   return (

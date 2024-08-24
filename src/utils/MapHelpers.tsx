@@ -17,13 +17,13 @@ export const validateUpdate = (riders: Rider[], newRider: Rider) => {
     return riderCount < scheme[riderCategory];
 }
 
-export const getRiderVisuals = (riders: Rider[], category: RiderCategory) => {
+export const getRiderVisuals = (riders: Rider[], category: RiderCategory, handleMapVisibility: () => void) => {
     let categoryRiders = riders.filter(r => r.category === category);
     let visuals = [];
 
     for (let i = 0; i < scheme[category]; i++) {
         if(categoryRiders[i] === undefined) {
-            visuals.push(<EmptyRiderVisual category={category} key={category + '-' + i}/>);
+            visuals.push(<EmptyRiderVisual category={category} handleMapVisibility={handleMapVisibility} key={category + '-' + i}/>);
             continue;
         }
         const rider: Rider = categoryRiders[i];

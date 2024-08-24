@@ -41,12 +41,12 @@ export function FilterProvider({ children }: { children: React.ReactNode }) {
         if (isReset) {
             setIsReset(false);
         }
-        console.log({...filters, [newFilters]: value });
         setFilters({ ...filters, [newFilters]: value });
     };
 
     const resetFilters = () => {
-        setFilters({}); 
+        setFilters({});
+        setFocusedCategory(''); 
         setIsReset(true);
     };
 

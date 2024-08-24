@@ -63,6 +63,10 @@ export const checkIfRiderCanBeAdded = (rider: Rider, riderList: Rider[]) => {
         return false;
     }
 
+    if(riderList.some((r) => r.name === rider.name && r.team === rider.team && r.price === rider.price)) {
+        return false;
+    }
+
     if(riderList.filter((r) => r.category === rider.category).length >= scheme[rider.category]) {
         return false;
     }

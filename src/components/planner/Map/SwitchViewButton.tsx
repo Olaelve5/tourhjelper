@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Group } from '@mantine/core';
 import classes from '@/styles/Map/SwitchViewButton.module.css';
 import { IconShoppingCart } from '@tabler/icons-react';
+import { useFilterContext } from '@/providers/FilterTableProvider';
 
 interface SwitchViewButtonProps {
     handleMapVisibility: () => void;
@@ -10,12 +11,20 @@ interface SwitchViewButtonProps {
 
 
 export function SwitchViewButton({ handleMapVisibility }: SwitchViewButtonProps) {
+    const { resetFilters, setPage } = useFilterContext();
+
+    const handleClick = () => {
+        setPage(1);
+        resetFilters();
+        handleMapVisibility();
+    }
+
     return (
         <div className={classes.container}>
             <Button
             leftSection={<IconShoppingCart size={22} />}
             className={classes.button}
-            onClick={handleMapVisibility}
+            onClick={handleClick}
             >
                 Ryttermarked
             </Button>
