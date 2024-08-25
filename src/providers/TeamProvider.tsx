@@ -45,20 +45,29 @@ export function TeamProvider({ children }: { children?: React.ReactNode }) {
     const [savedTransfers, setSavedTransfers] = useState<number>(0);
     
     const addRider = (rider: Rider) => {
-        if(validateUpdate(activeTeam, rider)) setActiveTeam([...activeTeam, rider]);
+        console.log(activeTeam);
+        if (validateUpdate(activeTeam, rider)) {
+            const riderToRemoveIndex = activeTeam.findIndex(r => r.category === rider.category && r.undefined);
+            if (riderToRemoveIndex !== -1) {
+                const newActiveTeam = [...activeTeam];
+                rider.undefined = false;
+                newActiveTeam[riderToRemoveIndex] = rider;
+                setActiveTeam(newActiveTeam); // Assuming setActiveTeam is the state updater function
+            }
+        }
     };
 
     const removeRider = (rider: Rider) => {
-        setActiveTeam(activeTeam.filter(r => 
-            !(r.name === rider.name &&
-            r.team === rider.team && 
-            r.price === rider.price &&
-            r.category === rider.category)));
+        const riderToUpdate = activeTeam.find(r => r.name === rider.name && r.team === rider.team);
+        if (!riderToUpdate) return;
+        riderToUpdate.undefined = true;
+        setActiveTeam([...activeTeam]);
     };
 
     // Update the budget when the active team changes
     useEffect(() => {
-        const totalRiderPrice = activeTeam.reduce((acc, rider) => acc + rider.price, 0);
+        const activeRiders = activeTeam.filter(r => !r.undefined);
+        const totalRiderPrice = activeRiders.reduce((acc, rider) => acc + rider.price, 0);
         const newBudget = 100 - totalRiderPrice;
         setBudget(Math.round(newBudget * 100) / 100);
     }, [activeTeam]);
@@ -81,8 +90,15 @@ export function TeamProvider({ children }: { children?: React.ReactNode }) {
             for (let i = activeStage; i > 0; i--) {
                 stageData = plans.find(plan => plan.id === selectedPlanId)?.stages.find(s => s.stage === i);
                 if (stageData) break;
-            }
+            } 
             if(stageData) {
+                stageData.team.map(rider => {
+                    if(rider.undefined) {
+                        rider.undefined = false;
+                    }
+                    return rider;
+                });
+                
                 setActiveTeam(stageData.team);
                 setTransfers(stageData.transfers);
                 setSavedTeam(stageData.team);
@@ -94,6 +110,13 @@ export function TeamProvider({ children }: { children?: React.ReactNode }) {
                 setSavedTransfers(0);
             }
         } else {
+            stageData.team.map(rider => {
+                if(rider.undefined) {
+                    rider.undefined = false;
+                }
+                return rider;
+            });
+            
             setActiveTeam(stageData.team);
             setTransfers(stageData.transfers);
             setSavedTeam(stageData.team);

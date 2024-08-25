@@ -57,7 +57,12 @@ export function UpdateButton() {
 
   useEffect(() => {
     setChanges(calculateTransferDifference(savedTeam, activeTeam));
-    if (activeTeam.length < 13 || budget < 0 || transfers > 25 || calculateTransferDifference(savedTeam, activeTeam) === 0 && savedTeam.length != 0) {
+    if (
+      activeTeam.length < 13 ||
+      budget < 0 || 
+      transfers > 25 ||
+      activeTeam.map(rider => rider.undefined).includes(true) ||
+      calculateTransferDifference(savedTeam, activeTeam) === 0 && savedTeam.length != 0) {
       setUpdatePossible(false);
       return;
     }

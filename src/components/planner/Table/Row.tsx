@@ -4,17 +4,18 @@ import { Rider } from '@/types/Rider';
 import { IconSquarePlus, IconSquareCheckFilled, IconSquareMinusFilled } from '@tabler/icons-react';
 import classes from '@/styles/Table/Row.module.css';
 import { useTeamContext } from '@/providers/TeamProvider';
-import { checkIfRiderCanBeAdded } from '@/utils/TableHelpers';
+import { validateUpdate } from '@/utils/MapHelpers';
 import { useRiderContext } from '@/providers/RiderProvider';
 
 export function Row({rider}: {rider: Rider}) {
     const { addRider, removeRider, activeTeam, budget } = useTeamContext();
     const { riderImages } = useRiderContext();
     const [selected, setSelected] = useState(false);
-    const canBeAdded = checkIfRiderCanBeAdded(rider, activeTeam);
+    const canBeAdded = validateUpdate(activeTeam, rider);
 
     useEffect(() => {
-      setSelected(activeTeam.some((r) => r.name === rider.name && r.team === rider.team && r.price === rider.price));
+      const activeRiders = activeTeam.filter(r => !r.undefined);
+      setSelected(activeRiders.some((r) => r.name === rider.name && r.team === rider.team && r.price === rider.price));
     }, [activeTeam]);
 
     const handleClick = () => {

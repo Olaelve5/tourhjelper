@@ -18,7 +18,7 @@ export function FilterHeader({handleMapVisibility}: FilterHeaderProps) {
                 </h2>
                 <div className={classes.shelfContainer}>
                     <p>{budget}m /100m</p>
-                    <p>{activeTeam.length} /13</p>
+                    <p>{activeTeam.filter(r => !r.undefined).length} /13</p>
                 </div>
             </div>
     );

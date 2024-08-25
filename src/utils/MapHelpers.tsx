@@ -12,8 +12,9 @@ const scheme = {
 }
 
 export const validateUpdate = (riders: Rider[], newRider: Rider) => {
+    const activeRiders = riders.filter(r => !r.undefined);
     const riderCategory = newRider.category;
-    const riderCount = riders.filter(r => r.category === riderCategory).length;
+    const riderCount = activeRiders.filter(r => r.category === riderCategory).length;
     return riderCount < scheme[riderCategory];
 }
 
@@ -22,7 +23,7 @@ export const getRiderVisuals = (riders: Rider[], category: RiderCategory, handle
     let visuals = [];
 
     for (let i = 0; i < scheme[category]; i++) {
-        if(categoryRiders[i] === undefined) {
+        if(categoryRiders[i] === undefined || categoryRiders[i].undefined) {
             visuals.push(<EmptyRiderVisual category={category} handleMapVisibility={handleMapVisibility} key={category + '-' + i}/>);
             continue;
         }
@@ -39,13 +40,20 @@ export const getRiderVisuals = (riders: Rider[], category: RiderCategory, handle
 export const calculateTransferDifference = (oldRiders: Rider[], newRiders: Rider[]) => {
     let difference = 0;
     for (let i = 0; i < 13; i++) {
-        if(oldRiders[i] === undefined || newRiders[i] === undefined) {
+        if(oldRiders[i] === undefined || newRiders[i] === undefined) {
             continue;
         }
 
-        if(oldRiders.some(r => r.name === newRiders[i].name && r.team === newRiders[i].team && r.price === newRiders[i].price)) {
+        if(oldRiders.some(r => r.name === newRiders[i].name && r.team === newRiders[i].team && r.price === newRiders[i].price)) {            
             continue;
         }
+
+        newRiders.forEach(rider => {
+            if(rider.undefined) {
+                difference--;
+            }
+        });
+
         difference++;
     }
     return difference;

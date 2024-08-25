@@ -8,4 +8,5 @@ export type Rider = {
     team: string;
     price: number;
     points?: number;
+    undefined?: boolean;
 };

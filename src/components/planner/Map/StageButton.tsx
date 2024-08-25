@@ -10,15 +10,6 @@ export function StageButton() {
     const { activeStage, setActiveStage } = useStageContext();
     const { savedTeam } = useTeamContext();
 
-    const dropItems = () => {
-        let items = [];
-        for (let i = 1; i < 22; i++) {
-            items.push(<Menu.Item key={i} className={classes.dropItem}
-                onClick={() => setActiveStage(i)}>Etappe {i}</Menu.Item>);
-        }
-        return items;
-    }
-
     const handleSideClick = (direction: number) => {
         if (direction === 1) {
             if (activeStage >= 21 || savedTeam.length === 0) return;
