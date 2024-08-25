@@ -14,6 +14,7 @@ const scheme = {
 export const validateUpdate = (riders: Rider[], newRider: Rider) => {
     const activeRiders = riders.filter(r => !r.undefined);
     if(activeRiders.some(r => r.name === newRider.name && r.team === newRider.team && r.price === newRider.price)) return false;
+    if(activeRiders.filter(r => r.team === newRider.team).length >= 3) return false;
     const riderCategory = newRider.category;
     
     const riderCount = activeRiders.filter(r => r.category === riderCategory).length;
