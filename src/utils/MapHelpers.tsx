@@ -48,11 +48,9 @@ export const calculateTransferDifference = (oldRiders: Rider[], newRiders: Rider
             continue;
         }
 
-        newRiders.forEach(rider => {
-            if(rider.undefined) {
-                difference--;
-            }
-        });
+        if(newRiders[i].undefined) {
+            difference--;
+        }
 
         difference++;
     }

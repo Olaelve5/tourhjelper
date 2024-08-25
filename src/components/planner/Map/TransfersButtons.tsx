@@ -20,11 +20,17 @@ export function EmptyButton() {
 }
 
 export function ResetTransfersButton() {
-  const {setActiveTeam, savedTeam} = useTeamContext();
+  const {setActiveTeam, savedTeam, activeTeam} = useTeamContext();
+
+  const handleClick = () => {
+    activeTeam.map(rider => rider.undefined = false);
+    savedTeam.map(rider => rider.undefined = false);
+    setActiveTeam(savedTeam);
+  }
 
   return (
     <Tooltip label="Tilbakestill endringer">
-          <Button onClick={() => setActiveTeam(savedTeam)} className={classes.transferButton} size='xs' id={classes.resetButton}>
+          <Button onClick={handleClick} className={classes.transferButton} size='xs' id={classes.resetButton}>
             <IconRestore size={20} className={classes.icon}/>
           </Button>
     </Tooltip>
