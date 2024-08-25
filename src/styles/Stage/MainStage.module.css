@@ -119,3 +119,13 @@
     transform: scale(1.1);
 }
 
+@media screen and (max-width: 468px) {
+    .container {
+        height: auto;
+    }
+
+    .innerContainer {
+        flex-direction: column;
+    }
+}
+
