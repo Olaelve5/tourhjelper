@@ -21,8 +21,8 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
 
   const handleClick = () => {
     removeRider(rider);
-    setFocusedCategory(rider.category);
-    setPage(1);
+    // setFocusedCategory(rider.category);
+    // setPage(1);
   };
 
   const imageUrl = riderImages.find(img => img.team === rider.team)?.image || '/neutral-kit.webp';

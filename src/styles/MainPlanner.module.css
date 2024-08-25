@@ -19,6 +19,7 @@
     grid-template-columns: 60% 40%;
     justify-content: center;
     box-sizing: border-box;
+    min-height: calc(var(--height-unit) * 4.3);
 }
 
 .loadingPlanContainer {
@@ -71,6 +72,7 @@
     .mapTableContainer {
         display: flex;
         width: 100% !important;
+        min-height: 0;
     }
 }
 

@@ -16,7 +16,7 @@ export function SwitchViewButton({ handleMapVisibility }: SwitchViewButtonProps)
     const handleClick = () => {
         setPage(1);
         resetFilters();
-        handleMapVisibility();
+        setTimeout(() => {handleMapVisibility()}, 30);
     }
 
     return (
