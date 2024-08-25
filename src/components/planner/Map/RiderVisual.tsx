@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import Image from 'next/image';
-import {IconCirclePlusFilled,IconXboxXFilled} from '@tabler/icons-react';
+import {IconCirclePlusFilled, IconXboxXFilled, IconSquareMinusFilled, IconSquareRoundedPlusFilled} from '@tabler/icons-react';
 import classes from '@/styles/Map/RiderVisual.module.css';
 import { useTeamContext } from "@/providers/TeamProvider";
 import { useFilterContext } from '@/providers/FilterTableProvider';
@@ -36,7 +36,7 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
 
   return (
     <div className={classes.container} onClick={handleClick}>
-        <IconXboxXFilled size={16} className={classes.x} />
+        <IconSquareMinusFilled size={16} className={classes.x} />
         <Image src={imageUrl} alt='EF' width='75' height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
@@ -68,7 +68,7 @@ export function EmptyRiderVisual({category, handleMapVisibility}: EmptyRiderVisu
 
   return (
     <div className={classes.container} id={classes.emptyContainer} onClick={handleClick}>
-        <IconCirclePlusFilled size={24} className={classes.plus} />
+        <IconSquareRoundedPlusFilled size={22} className={classes.plus} />
         <Image src='/neutral-kit.webp' alt='Default kit' width={75} height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
