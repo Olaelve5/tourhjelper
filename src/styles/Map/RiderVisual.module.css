@@ -73,6 +73,10 @@
         backdrop-filter: blur(0px);
         -webkit-tap-highlight-color: transparent;
     }
+
+    #emptyContainer:hover .plus {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 468px) {
@@ -87,10 +91,6 @@
 
     .name {
         font-size: 10px;
-    }
-
-    .plus {
-        width: 18px;
     }
 
     .price {

@@ -43,6 +43,16 @@
     left: -0.5rem;
 }
 
+.visible {
+    width: 100%;
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
 @media screen and (max-width: 768px) {
     .pageContainer {
         margin-top: 4rem;

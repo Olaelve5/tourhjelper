@@ -50,7 +50,7 @@ export function MainTable() {
     }
 
     updateData();
-  }, [isReset, globalRiders]);
+  }, [isReset]);
 
   const handleSort = (type: string) => {
     let newIsSortedDesc = isSortedDesc;

@@ -63,7 +63,7 @@ export function EmptyRiderVisual({category, handleMapVisibility}: EmptyRiderVisu
   const handleClick = () => {
     setFocusedCategory(category);
     setPage(1);
-    handleMapVisibility();
+    setTimeout(() => handleMapVisibility(), 30);
   };
 
   return (

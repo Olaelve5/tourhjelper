@@ -48,8 +48,16 @@ const MainPlanner = () => {
                     <div className={classes.mapTableContainer}>
                         {!isSmallDevice && <RidersMap handleMapVisibility={handleMapVisibility}/>}
                         {!isSmallDevice && <FilterTable handleMapVisibility={handleMapVisibility}/>}
-                        {isSmallDevice && isMapVisible && <RidersMap handleMapVisibility={handleMapVisibility}/>}
-                        {isSmallDevice && !isMapVisible && <FilterTable handleMapVisibility={handleMapVisibility}/>}
+                        {isSmallDevice && (
+                          <>
+                            <div className={isMapVisible ? classes.visible : classes.hidden}>
+                              <RidersMap handleMapVisibility={handleMapVisibility}/>
+                            </div>
+                            <div className={!isMapVisible ? classes.visible : classes.hidden}>
+                              <FilterTable handleMapVisibility={handleMapVisibility}/>
+                            </div>
+                          </>
+                        )}
                     </div>
                 </div>
             </CombinedProviders>
