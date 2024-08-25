@@ -69,7 +69,7 @@ export function EmptyRiderVisual({category, handleMapVisibility}: EmptyRiderVisu
   return (
     <div className={classes.container} id={classes.emptyContainer} onClick={handleClick}>
         <IconSquareRoundedPlusFilled size={22} className={classes.plus} />
-        <Image src='/neutral-kit.webp' alt='Default kit' width={75} height={75} className={classes.kit}/>
+        <Image src='/neutral-kit2.webp' alt='Default kit' width={75} height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
                 <h4 className={classes.name}>-</h4>

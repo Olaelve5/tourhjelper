@@ -19,7 +19,7 @@
 }
 
 .container:hover {
-    background: radial-gradient(circle, rgb(190, 234, 255) 0%, rgb(255, 255, 255) 100%);
+    background: radial-gradient(circle, rgb(195, 224, 238) 0%, rgb(255, 255, 255) 100%);
 }
 
 .container:hover .x {

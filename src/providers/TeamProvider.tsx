@@ -45,14 +45,20 @@ export function TeamProvider({ children }: { children?: React.ReactNode }) {
     const [savedTransfers, setSavedTransfers] = useState<number>(0);
     
     const addRider = (rider: Rider) => {
-        console.log(activeTeam);
+        
         if (validateUpdate(activeTeam, rider)) {
             const riderToRemoveIndex = activeTeam.findIndex(r => r.category === rider.category && r.undefined);
+
             if (riderToRemoveIndex !== -1) {
                 const newActiveTeam = [...activeTeam];
                 rider.undefined = false;
                 newActiveTeam[riderToRemoveIndex] = rider;
-                setActiveTeam(newActiveTeam); // Assuming setActiveTeam is the state updater function
+                setActiveTeam(newActiveTeam); 
+            } else {
+                const newActiveTeam = [...activeTeam];
+                rider.undefined = false;
+                newActiveTeam.push(rider);
+                setActiveTeam(newActiveTeam); 
             }
         }
     };
