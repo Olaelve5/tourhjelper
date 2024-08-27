@@ -20,7 +20,7 @@ const MainPlanner = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 801) {
         setIsSmallDevice(true);
       } else {
         setIsSmallDevice(false);

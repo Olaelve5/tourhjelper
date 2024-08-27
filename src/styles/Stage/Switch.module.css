@@ -70,3 +70,9 @@
 .unSelectedIcon {
     color: #a2b3c2;
 }
+
+@media screen and (max-width: 468px) {
+    .switchContainer {
+        display: none;
+    }
+}

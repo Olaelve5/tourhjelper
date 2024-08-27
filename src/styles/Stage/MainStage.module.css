@@ -124,8 +124,17 @@
         height: auto;
     }
 
+    .headerContainer {
+        padding: 0.3rem 0.5rem;
+    }
+
+    .image {
+        width: 100%;
+    }
+
     .innerContainer {
         flex-direction: column;
+        padding: 1rem 0.5rem;
     }
 }
 

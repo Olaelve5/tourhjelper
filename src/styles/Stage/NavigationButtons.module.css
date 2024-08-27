@@ -17,7 +17,7 @@
     border-top: 0;
     border-bottom: 0;
     font-size: 19px;
-    margin: 0 15px;
+    margin: 0;
     background: transparent;
     color: inherit;
     display: flex;
@@ -27,6 +27,10 @@
     padding: 0.5rem;
     border-radius: 5px;
     white-space: nowrap;
+}
+
+.middleButton > h4 {
+    margin: 10px;
 }
 
 .middleButton:hover {
@@ -40,7 +44,7 @@
     border-radius: 5px;
     padding: 0 0.8rem;
     position: relative;
-    left: 2rem;
+    left: 0.2rem;
 }
 
 .sideButtonLeft {
@@ -81,5 +85,35 @@
     transform: rotate(0deg);
     [data-expanded] & {
       transform: rotate(180deg);
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .container {
+        width: 60%;
+    }
+
+    .middleButton {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .middleButton > h4 {
+        margin: 0.3rem;
+    }
+
+    .middleButton:hover {
+        background: transparent;
+    }
+
+    .sideButtonRight:hover {
+        background: transparent;
+    }
+
+    .sideButtonLeft:hover {
+        background: transparent;
+    }
+
+    .dropDownIcon {
+        width: 20px;
     }
 }

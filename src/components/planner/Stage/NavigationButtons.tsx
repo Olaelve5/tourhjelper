@@ -126,7 +126,7 @@ export function NavigationButtons({isLinked, isSingleView, stage, setStage}: Nav
             >
                 <Menu.Target>
                     <div className={classes.middleButton}>
-                        <h4 style={{margin: 10}}>{displayStageName()}</h4>
+                        <h4>{displayStageName()}</h4>
                         <IconChevronDown size={22} stroke={2} className={classes.dropDownIcon}/>
                     </div>
                 </Menu.Target>

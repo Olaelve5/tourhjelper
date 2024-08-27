@@ -14,14 +14,17 @@
     background-color: black;
 }
 
+@media screen and (max-width: 500px) {
+    #emptyButton {
+        display: none;
+    }
+    
+}
+
 @media screen and (max-width: 468px) {
     .transferButton:hover {
         background-color: transparent;
         border: 1px solid transparent;
-    }
-
-    #emptyButton {
-        display: none;
     }
 
     .icon {
