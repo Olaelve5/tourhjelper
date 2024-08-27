@@ -39,8 +39,8 @@ export function Switch({setIsSingleView}: SwitchProps) {
 
     const getDisplayForIcon = (iconNumber: string) => {
         if (!isClient) return 'none';
-        
-        if(window.innerWidth > 468) {
+
+        if(window.innerWidth > 600) {
             return 'block';
         }
         if (selected === iconNumber) {

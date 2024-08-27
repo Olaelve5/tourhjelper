@@ -87,9 +87,16 @@
     }
 }
 
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 1000px) {
+    .container {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
     .container {
         width: 60%;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .middleButton {
@@ -114,5 +121,11 @@
 
     .dropDownIcon {
         width: 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container {
+        width: 70%;
     }
 }

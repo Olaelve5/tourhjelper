@@ -5,6 +5,7 @@
     overflow: hidden;
     gap: 0.8rem;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .selectedSwitchButton {
@@ -68,7 +69,7 @@
     color: #a2b3c2;
 }
 
-@media screen and (max-width: 468px) {
+@media screen and (max-width: 600px) {
     .switchContainer {
         -webkit-tap-highlight-color: transparent;
     }
