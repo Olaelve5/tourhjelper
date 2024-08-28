@@ -8,10 +8,28 @@
 
 .container > div {
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
     align-items: center;
 }
 
 .icon {
     color: rgb(142, 165, 185);
+}
+
+@media (max-width: 468px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        width: 100%;
+    }
+
+    .container > div {
+        gap: 0.3rem;
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 15px;
+        justify-content: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
