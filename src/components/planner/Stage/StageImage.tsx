@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 import { Container, Image, Overlay } from '@mantine/core';
-import classes from '@/styles/Stage/MainStage.module.css';
+import classes from '@/styles/Stage/StageImage.module.css';
 import { IconArrowsDiagonal } from '@tabler/icons-react';
 
 interface StageImageProps {

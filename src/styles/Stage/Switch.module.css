@@ -77,4 +77,8 @@
     .sliderContainer {
         display: none;
     }
+
+    .unSelectedIcon {
+        color: white;
+    }
 }

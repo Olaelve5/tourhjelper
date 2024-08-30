@@ -3,24 +3,27 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: left;
-    height: 85%;
+    height: 100%;
 }
 
 .container > div {
     display: flex;
     gap: 0.5rem;
+    white-space: nowrap;
     align-items: center;
 }
 
 .icon {
     color: rgb(142, 165, 185);
+    min-width: 20px;
 }
 
-@media (max-width: 468px) {
+@media screen and (max-width: 700px) {
     .container {
         display: grid;
-        grid-template-columns: repeat(4, 25%);
+        grid-template-columns: repeat(3, 1fr);
         width: 100%;
+        order: 1;
     }
 
     .container > div {
@@ -30,6 +33,22 @@
         font-size: 15px;
         justify-content: center;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        align-items:normal
+    }
+
+    #roadIconContainer {
+        display: none;
+    }
+}
+
+@media (max-width: 468px) {
+
+    .container > div {
+        gap: 0.3rem;
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 14px;
+        justify-content: center;
+        text-overflow: ellipsis;
     }
 }

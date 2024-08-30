@@ -42,16 +42,32 @@ export default function MainStage() {
 
     const onSwipe = (direction: string) => {
         if (direction === 'left') {
-            if(stage >= 21) return;
-            setStage(stage + 1);
-            if(isLinked) {
-                setActiveStage(stage + 1);
+            if(!isSingleView) {
+                if(stage + 3 > 21) return;
+                setStage(stage + 3);
+                if(isLinked) {
+                    setActiveStage(stage + 3);
+                }
+            } else {
+                if(stage + 1 > 21) return;
+                setStage(stage + 1);
+                if(isLinked) {
+                    setActiveStage(stage + 1);
+                }
             }
         } else {
-            if(stage <= 1) return;
-            setStage(stage - 1);
-            if(isLinked) {
-                setActiveStage(stage - 1);
+            if(!isSingleView) {
+                if(stage - 3 < 1) return;
+                setStage(stage - 3);
+                if(isLinked) {
+                    setActiveStage(stage - 3);
+                }
+            } else {
+                if(stage - 1 < 1) return
+                setStage(stage - 1);
+                if(isLinked) {
+                    setActiveStage(stage - 1);
+                }
             }
         }
     };

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 
 import { StageImage } from './StageImage';
-import classes from '@/styles/Stage/MainStage.module.css';
+import classes from '@/styles/Stage/MultipleStage.module.css';
 import { Stage } from '@/types/Stage';
 
 interface MultipleStageProps {
@@ -14,12 +14,11 @@ export function MultipleStage({ stageChunkData }: MultipleStageProps) {
     }
 
     return (
-        <div className={classes.innerContainer}>
+        <div className={classes.container}>
             {stageChunkData.map((stageData, index) => (
                 <div key={index} className={classes.containerMultipleView}>
                     <div>
                         <h4>Etappe {stageData.stage}</h4>
-                        <p>1000p.</p>
                     </div>
                     <StageImage imageURL={stageData.imageURL} />
                 </div>

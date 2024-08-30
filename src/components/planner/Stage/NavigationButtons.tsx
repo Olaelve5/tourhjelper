@@ -39,6 +39,14 @@ export function NavigationButtons({isLinked, isSingleView, stage, setStage}: Nav
         setStage(stage);
     };
 
+    const getSideButtonDisplay = (direction: number) => {
+        if(isSingleView) {
+            return stage + direction < 1 || stage + direction > 21;
+        } else {
+            return stage + direction * 3 < 1 || stage + direction * 3 > 21;
+        };
+    }
+
     const items = () => {
         if(isSingleView) {
             return stages.map((stage, index) => {
@@ -106,12 +114,12 @@ export function NavigationButtons({isLinked, isSingleView, stage, setStage}: Nav
 
     return (
         <div className={classes.container}>
-            {stage <= 1 ? <div className={classes.ghostButton}/> : 
+            {getSideButtonDisplay(-1) ? <div className={classes.ghostButton}/> : 
                 <Button
                 size='xs'
                 className={classes.sideButtonLeft}
                 onClick={() => handleSideClick(-1)}
-                display={stage <= 1 ? 'none' : 'block'}
+                display={getSideButtonDisplay(-1) ? 'none' : 'block'}
                 >
                     <IconChevronLeft size={26}/>
                 </Button>
@@ -135,11 +143,11 @@ export function NavigationButtons({isLinked, isSingleView, stage, setStage}: Nav
                 </Menu.Dropdown>
             </Menu>
 
-            {stage >= 21 ? <div className={classes.ghostButton}/> : 
+            {getSideButtonDisplay(1) ? <div className={classes.ghostButton}/> : 
                 <Button size='xs'
                 className={classes.sideButtonRight}
                 onClick={() => handleSideClick(1)}
-                display={stage >= 21 ? 'none' : 'block'}
+                display={getSideButtonDisplay(1) ? 'none' : 'block'}
                 >
                     <IconChevronRight size={26}/>
                 </Button>

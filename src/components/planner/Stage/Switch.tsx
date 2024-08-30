@@ -54,7 +54,7 @@ export function Switch({setIsSingleView}: SwitchProps) {
         <div className={classes.switchContainer} onClick={handleSwitch}>
             <IconSquareNumber1 
             size={22} 
-            display={getDisplayForIcon('1')}
+            display={getDisplayForIcon('3')}
             className={selected === '1' ? classes.selectedIcon : classes.unSelectedIcon} 
             stroke={2}
             />
@@ -65,7 +65,7 @@ export function Switch({setIsSingleView}: SwitchProps) {
             </div>
             <IconBoxMultiple3 
             size={22}
-            display={getDisplayForIcon('3')}
+            display={getDisplayForIcon('1')}
             className={selected === '3' ? classes.selectedIcon : classes.unSelectedIcon} 
             stroke={2}
             />

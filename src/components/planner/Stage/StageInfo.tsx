@@ -42,7 +42,7 @@ export function StageInfo({ stageData }: StageInfoProps) {
                 <IconBike size={20} className={classes.icon}/>
                 <span>{stageData?.distance}</span>
             </div>
-            <div>
+            <div id={classes.roadIconContainer}>
                 <IconRoad size={20} className={classes.icon}/>
                 <span>{getType(stageData?.type)}</span>
             </div>

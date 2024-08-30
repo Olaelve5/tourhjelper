@@ -1,5 +1,5 @@
 .container {
-    height: calc(var(--height-unit) * 1.6);
+    height: auto;
     width: 100%;
     border-radius: 5px;
     margin: 5rem 0 10rem 0;
@@ -18,90 +18,6 @@
     justify-content: space-between;
     align-items: center;
     padding: 0.3rem 1.5rem;
-}
-
-.innerContainer {
-    border-radius: 0 0 5px 5px;
-    background: var(--dark-grey);
-    height: 85%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 1.5rem;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.containerMultipleView {
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    align-items: center;
-    justify-content: center;
-}
-
-.containerMultipleView > div {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.containerMultipleView > div > p {
-    font-style: italic;
-    font-size: 15px;
-}
-
-.imageContainer {
-    border-radius: 5px;
-    height: 100%;
-    position: relative;
-    cursor: pointer;
-}
-
-.image {
-    border-radius: 5px;
-    height: 100%;
-    width: auto;
-    transition: transform 0.2s ease;
-}
-
-.expandedImage {
-    position: fixed;
-    width: 70%;
-    margin: auto;
-    z-index: 100;
-    background: #000000c8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    max-width: 50rem;
-}
-
-.imageContainer:hover > .expandIconContainer {
-    opacity: 1;
-}
-
-.expandIconContainer {
-    opacity: 0;
-    height: 2rem;
-    background: #000000c8;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transition: all 0.2s ease;
-    border-radius: 0px 0px 4px 4px;
-}
-
-.expandIcon {
-    color: white;
-    position: absolute;
-    right: 0.5rem;
-    bottom: 50%;
-    transform: translateY(50%);
 }
 
 .linkButton {
@@ -128,12 +44,6 @@
 
     .image {
         width: 100%;
-    }
-
-    .innerContainer {
-        flex-direction: column;
-        padding: 1rem 0.5rem;
-        gap: 0.5rem;
     }
 }
 

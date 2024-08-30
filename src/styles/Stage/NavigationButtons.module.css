@@ -80,6 +80,7 @@
 }
 
 .dropDownIcon {
+    color: rgb(202, 216, 228);
     transition: transform 150ms ease;
     transform: rotate(0deg);
     [data-expanded] & {
@@ -87,7 +88,7 @@
     }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 980px) {
     .container {
         width: 50%;
     }
@@ -104,7 +105,7 @@
     }
 
     .middleButton > h4 {
-        margin: 0.3rem;
+        margin: 0.2rem;
     }
 
     .middleButton:hover {
