@@ -34,8 +34,9 @@
 
 @media screen and (max-width: 700px) {
     .container {
-        padding: 0 0.5rem;
+        padding: 1rem 0.5 0 0.5rem;
         gap: 2rem;
+        border-top: 1px solid var(--highlight-grey);
     }
 
     .container > div {

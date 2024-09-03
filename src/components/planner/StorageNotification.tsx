@@ -24,7 +24,7 @@ export function StorageNotification({ setHideStorageNotification }: StorageNotif
             withBorder
         >
             <div>
-                Du risikerer å miste planene dine når du lukker fanen. 
+                Du risikerer å miste planene dine. 
                 Venligst lag en bruker for å lagre planene dine over tid.
             </div>
             <div>

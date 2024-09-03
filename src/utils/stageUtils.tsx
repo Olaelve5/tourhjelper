@@ -12,6 +12,40 @@ const chunkedStages = [
     [19, 20, 21]
 ]
 
+const getLocalStageData = async () => {
+    const response = await fetch('/data/stage_data.json');
+    const stages = await response.json();
+    return stages as Stage[];
+};
+
+export const fetchAllStages = async () => {
+    const stages = await getLocalStageData();
+    return stages;
+};
+
+export const fetchStageInfo = async (stage: number) => {
+    const stages = await getLocalStageData();
+    const stageData = stages.find(s => s.stage === stage);
+    return stageData as Stage;
+};
+
+export const fetchStageChunk = async (stage: number) => {
+    const chunk = chunkedStages.reduce((acc, curr) => {
+        if (curr.includes(stage)) return curr;
+        return acc;
+    });
+    const stages = [];
+
+    for (let i = chunk[0]; i <= chunk[2]; i++) {
+        const stageData = await fetchStageInfo(i);
+        stages.push(stageData);
+    }
+    return stages;
+};
+
+
+// Functions below are used for fetching stage data from the database, but they are not used in the current implementation
+
 export const fetchSingleStageInfo = async (stage: number) => {
     // Try local storage first
     const cachedStages = localStorage.getItem('stages');
@@ -32,7 +66,6 @@ export const fetchSingleStageInfo = async (stage: number) => {
 export const fetchMultipleStageInfo = async (stage: number) => {
     const chunk = chunkedStages.reduce((acc, curr) => {
         if (curr.includes(stage)) return curr;
-        console.log(acc);
         return acc;
     });
     const stages = [];

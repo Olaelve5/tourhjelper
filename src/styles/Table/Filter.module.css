@@ -3,7 +3,7 @@
   border-radius: 5px;
   overflow: hidden;
   height: 100%;
-  box-shadow: 0 10px 8px -8px #0000008b;
+  box-shadow: 0 10px 12px -8px #0000006b;
   width: 100%;
   min-height: calc(var(--height-unit) * 4.2);
 }

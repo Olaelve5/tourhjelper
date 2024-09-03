@@ -7,7 +7,7 @@ import { NavigationButtons } from './NavigationButtons';
 import { Link } from './Link';
 import { SingleStage } from './SingleStage';
 import { MultipleStage } from './MultipleStage';
-import { fetchMultipleStageInfo, fetchSingleStageInfo } from '@/utils/stageUtils';
+import { fetchStageInfo, fetchStageChunk } from '@/utils/stageUtils';
 import { Stage } from '@/types/Stage';
 import { removeOutdatedStagesFromCache } from '@/utils/stageUtils';
 import { useSwipe} from '@/utils/swipeUtils';
@@ -26,11 +26,11 @@ export default function MainStage() {
 
     useEffect(() => {
         if(isSingleView) {
-            fetchSingleStageInfo(stage).then(data => {
+            fetchStageInfo(stage).then(data => {
                 setStageData(data);
             });
         } else {
-            fetchMultipleStageInfo(stage).then(data => {
+            fetchStageChunk(stage).then(data => {
                 setStageChunkData(data);
             });
         }

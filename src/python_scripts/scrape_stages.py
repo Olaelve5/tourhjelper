@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
@@ -69,6 +70,11 @@ def main():
                 print(e)
     finally:
         driver.quit()
+    
+    stages_data_path = 'public/data/stage_data.json'
+
+    with open(stages_data_path, 'w', encoding='utf-8') as f:
+        json.dump(stages, f, ensure_ascii=False, indent=4)
 
     write_stages(stages)
 

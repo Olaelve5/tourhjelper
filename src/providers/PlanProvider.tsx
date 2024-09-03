@@ -1,7 +1,7 @@
 import {createContext, useEffect, useContext, useState, useCallback} from 'react';
 import { Plan } from '@/types/Plan';
 import { generateUniqueId } from '@/utils/idUtils';
-import { getPlansFromSessionStorage, savePlansToSessionStorage } from '@/utils/sessionStorageUtils';
+import { getPlansFromLocalStorage, savePlansToLocalStorage } from '@/utils/localStorageUtils';
 import { Rider } from '@/types/Rider';
 import { useAuth} from '@/providers/AuthProvider';
 import { updatePlanInDB } from '@/utils/firebase/firebasePlanUtils';
@@ -104,7 +104,7 @@ export function PlanProvider({ children }: { children: React.ReactNode }) {
 
     useEffect(() => {
         try {
-            savePlansToSessionStorage(plans, user?.uid);
+            savePlansToLocalStorage(plans, user?.uid);
         } catch (error) {
             console.error('Could not save plans to session storage', error);
         }
