@@ -3,7 +3,6 @@ import { validateUpdate } from "@/utils/MapHelpers";
 import { Rider } from "@/types/Rider";
 import { calculateTransferDifference } from "@/utils/MapHelpers";
 import { useStageContext } from "./StageProvider";
-import { getStageFromPlanFromStorage } from "@/utils/sessionStorageUtils";
 import { usePlanContext } from "./PlanProvider";
 
 
