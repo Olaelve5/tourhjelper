@@ -1,33 +1,48 @@
+import React, { useState, useEffect } from 'react';
 import { Notification } from '@mantine/core';
 import classes from '@/styles/Map/Notification.module.css';
 import { IconCheck, IconX } from '@tabler/icons-react';
+import { getDisplayName } from 'next/dist/shared/lib/utils';
+import { get } from 'http';
 
-
-export function UpdateNotification() {
-    return (
-        <Notification
-            color="green"
-            title="Planen ble oppdatert"
-            withBorder
-            icon={<IconCheck />}
-            classNames={classes}
-            withCloseButton={false}
-        >
-        </Notification>
-    );
+interface UpdateNotificationProps {
+    showUpdateNotification: boolean;
+    success: boolean;
 }
 
-export function UpdateNotificationFail() {
+
+export function UpdateNotification({ showUpdateNotification, success }: UpdateNotificationProps) {
+    const [display, setDisplay] = useState<boolean>(false);
+    const style = showUpdateNotification ? { opacity: '1' } : { opacity: '0'};
+
+    const getDisplayProperty = () => {
+        if (display) {
+            return 'flex';
+        } else {
+            return 'none';
+        }
+    };
+
+    useEffect(() => {
+        if (showUpdateNotification) {
+            setDisplay(true);
+        } else {
+            setTimeout(() => {
+                setDisplay(false);
+            }, 300);
+        }
+    }, [showUpdateNotification]);
+
     return (
         <Notification
-            color="red"
-            title="Planen ble ikke oppdatert"
+            color={success ? 'green' : 'red'}
+            title={success ? 'Planen ble oppdatert' : 'Planen ble ikke oppdatert'}
             withBorder
+            icon={success ? <IconCheck /> : <IconX />}
             classNames={classes}
-            icon={<IconX />}
             withCloseButton={false}
-        >
-            Noe gikk galt
-        </Notification>
+            style={style}
+            display={getDisplayProperty()}
+        />
     );
 }

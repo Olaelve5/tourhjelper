@@ -3,6 +3,7 @@
     width: 25rem;
     border-color: var(--highlight-grey);
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 .body {
@@ -54,7 +55,8 @@
 
 @media screen and (max-width: 800px) {
     .root {
-        width: 15rem;
+        width: fit-content;
+        max-width: 60%;
     }
 }
 

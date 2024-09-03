@@ -18,6 +18,13 @@
     color: white;
 }
 
+@media screen and (max-width: 800px) {
+    .root {
+        align-self: center;
+        margin: 1rem 0;
+    }
+}
+
 @media screen and (max-width: 468px) {
     .control {
         font-size: 12px;

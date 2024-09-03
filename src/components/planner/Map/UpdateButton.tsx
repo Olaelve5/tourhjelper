@@ -10,7 +10,7 @@ import { useStageContext } from '@/providers/StageProvider';
 import { StorageNotification } from '../StorageNotification';
 import { getStorageNotification } from '@/utils/localStorageUtils';
 import { UpdateStatus } from './UpdateStatus';
-import { UpdateNotification, UpdateNotificationFail } from './UpdateNotification';
+import { UpdateNotification} from './UpdateNotification';
 
 export function UpdateButton() {
   const {activeStage} = useStageContext();
@@ -21,7 +21,7 @@ export function UpdateButton() {
   const [updatePossible, setUpdatePossible] = useState<boolean>(false);
   const [hideStorageNotification, setHideStorageNotification] = useState<boolean>(true);
   const [showUpdateNotification, setShowUpdateNotification] = useState<boolean>(false);
-  const [showUpdateNotificationFail, setShowUpdateNotificationFail] = useState<boolean>(false);
+  const [updateSuccess, setUpdateSuccess] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const leftSection = () => {
@@ -39,9 +39,10 @@ export function UpdateButton() {
     try {
       if (selectedPlanId) {
         updatePlan(activeTeam, activeStage, transfers);
+        setUpdateSuccess(true);
       }
     } catch (error) {
-      setShowUpdateNotificationFail(true);
+      setUpdateSuccess(false);
       console.error(error);
       setIsLoading(false);
     }
@@ -77,11 +78,10 @@ export function UpdateButton() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setShowUpdateNotification(false);
-      setShowUpdateNotificationFail(false);
     }, 4000);
 
     return () => clearTimeout(timeout);
-  }, [showUpdateNotification, showUpdateNotificationFail]);
+  }, [showUpdateNotification]);
 
   return (
     <div className={classes.container}>
@@ -101,7 +101,7 @@ export function UpdateButton() {
       </Button>
       <div className={classes.notificationContainer}>
           {!hideStorageNotification && <StorageNotification setHideStorageNotification={setHideStorageNotification}/>}
-          {showUpdateNotification && <UpdateNotification />}
+          <UpdateNotification showUpdateNotification={showUpdateNotification} success={updateSuccess} />
       </div>
     </div>
   );
