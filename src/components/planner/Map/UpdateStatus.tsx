@@ -3,7 +3,7 @@ import { Tooltip, Overlay } from '@mantine/core';
 import { useState, useEffect } from 'react';
 import { usePlanContext } from '@/providers/PlanProvider';
 import { useStageContext } from '@/providers/StageProvider';
-import classes from '@/styles/UpdateButton.module.css';
+import classes from '@/styles/Map/UpdateButton.module.css';
 
 export function UpdateStatus() {
     const { activeStage } = useStageContext();

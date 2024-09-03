@@ -1,7 +1,4 @@
 .root {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
     background: var(--light-grey);
     width: 25rem;
     border-color: var(--highlight-grey);
@@ -53,5 +50,11 @@
     background: var(--highlight-grey);
     border: 1px solid rgb(67, 86, 108);
     cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .root {
+        width: 15rem;
+    }
 }
 

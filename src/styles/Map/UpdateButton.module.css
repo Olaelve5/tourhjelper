@@ -74,12 +74,26 @@
     text-align: center;
 }
 
+.notificationContainer {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1000000000;
+}
+
 @media screen and (max-width: 800px) {
     .container {
         width: 50%;
     }
 
     .updateButton {
+        border-left: 2px solid var(--dark-grey);
+    }
+
+    .updateButtonDisabled {
         border-left: 2px solid var(--dark-grey);
     }
 

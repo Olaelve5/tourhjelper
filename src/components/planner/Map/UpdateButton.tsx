@@ -1,15 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, use} from 'react';
 import { Button } from '@mantine/core';
 import { IconEdit, IconArrowRight } from '@tabler/icons-react';
 import { calculateTransferDifference } from "@/utils/MapHelpers";
 import { useTeamContext } from "@/providers/TeamProvider";
-import classes from '@/styles/UpdateButton.module.css';
+import classes from '@/styles/Map/UpdateButton.module.css';
 import { useAuth } from '@/providers/AuthProvider';
 import { usePlanContext } from '@/providers/PlanProvider';
 import { useStageContext } from '@/providers/StageProvider';
 import { StorageNotification } from '../StorageNotification';
 import { getStorageNotification } from '@/utils/localStorageUtils';
 import { UpdateStatus } from './UpdateStatus';
+import { UpdateNotification, UpdateNotificationFail } from './UpdateNotification';
 
 export function UpdateButton() {
   const {activeStage} = useStageContext();
@@ -19,6 +20,8 @@ export function UpdateButton() {
   const [changes, setChanges] = useState<number>(0);
   const [updatePossible, setUpdatePossible] = useState<boolean>(false);
   const [hideStorageNotification, setHideStorageNotification] = useState<boolean>(true);
+  const [showUpdateNotification, setShowUpdateNotification] = useState<boolean>(false);
+  const [showUpdateNotificationFail, setShowUpdateNotificationFail] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const leftSection = () => {
@@ -38,6 +41,7 @@ export function UpdateButton() {
         updatePlan(activeTeam, activeStage, transfers);
       }
     } catch (error) {
+      setShowUpdateNotificationFail(true);
       console.error(error);
       setIsLoading(false);
     }
@@ -53,6 +57,7 @@ export function UpdateButton() {
     }
 
     setIsLoading(false);
+    setShowUpdateNotification(true);
   };
 
   useEffect(() => {
@@ -68,6 +73,15 @@ export function UpdateButton() {
     }
     setUpdatePossible(true);
   }, [activeTeam, savedTeam, budget, transfers]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowUpdateNotification(false);
+      setShowUpdateNotificationFail(false);
+    }, 4000);
+
+    return () => clearTimeout(timeout);
+  }, [showUpdateNotification, showUpdateNotificationFail]);
 
   return (
     <div className={classes.container}>
@@ -85,8 +99,9 @@ export function UpdateButton() {
             {updatePossible && <UpdateStatus />}
           </h3>
       </Button>
-      <div>
+      <div className={classes.notificationContainer}>
           {!hideStorageNotification && <StorageNotification setHideStorageNotification={setHideStorageNotification}/>}
+          {showUpdateNotification && <UpdateNotification />}
       </div>
     </div>
   );

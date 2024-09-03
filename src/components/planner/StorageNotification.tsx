@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Checkbox, Notification } from '@mantine/core';
-import classes from '@/styles/StorageNotification.module.css';
+import classes from '@/styles/Map/Notification.module.css';
 import { setStorageNotification } from '@/utils/localStorageUtils';
 
 interface StorageNotificationProps {
