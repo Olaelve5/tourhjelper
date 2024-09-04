@@ -34,7 +34,7 @@
 
 @media screen and (max-width: 800px) {
     .container {
-        padding: 1rem 0.5 0 0.5rem;
+        padding: 1.1rem 0.5 0 0.5rem;
         gap: 2rem;
         border-top: 1px solid var(--highlight-grey);
     }
