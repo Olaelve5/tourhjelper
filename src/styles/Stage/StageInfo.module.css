@@ -18,7 +18,7 @@
     min-width: 20px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .container {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
