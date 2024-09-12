@@ -6,6 +6,7 @@ import Header from '../components/header/Header'
 import { GlobalLoader } from '../components/GlobalLoader';
 import { useLoading } from '../providers/LoadingProvider';
 import { CSSTransition } from 'react-transition-group';
+import { Analytics } from "@vercel/analytics/react"
 import classes from '@/styles/GlobalLoader.module.css';
 
 interface LayoutProps {
@@ -23,6 +24,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
+      <Analytics />
       <Header />
       <main style={{marginBottom: 250}}>{children}</main>
       <CSSTransition
