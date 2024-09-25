@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tourhjelper 🚴 🇫🇷
 
-## Getting Started
+_Still in development_
 
-First, run the development server:
+A planner for [Tv2´s Tourmanager](https://tourmanager.tv2.no/), designed to help users plan their teams and strategies ahead of future stages. 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
+Import team ⬅️
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Stage Planning 📆
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Compare Multiple Plans 📋
 
-## Learn More
+Overview of upcoming stages 🔍
 
-To learn more about Next.js, take a look at the following resources:
+Details and favorites for each stage ⭐
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Fully responsive 📱💻
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Installation ⚙️
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository - `git clone https://github.com/Olaelve5/tourhjelper.git`
+2. Navigate to the tourhjelper folder - `cd tourhjelper`
+3. Install dependencies - `npm install`
+4. Run the project - `npm run dev`
+   
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+## Images  🖼️
+### Desktop 💻
+<img width="1440" alt="Skjermbilde 2024-09-25 kl  10 58 15" src="https://github.com/user-attachments/assets/29f979c6-2945-416b-9da0-c9a73c26fb7a">
+<img width="1433" alt="Skjermbilde 2024-09-25 kl  11 07 16" src="https://github.com/user-attachments/assets/2f5d791e-a710-467d-9a36-6368933c594b">
+
+### Mobile 📱
+<img width="313" alt="Skjermbilde 2024-09-25 kl  11 01 50" src="https://github.com/user-attachments/assets/73d4f09b-c8f6-46f3-9d10-17b579216c46">
+<img width="312" alt="Skjermbilde 2024-09-25 kl  11 03 02" src="https://github.com/user-attachments/assets/4773d1c5-fcd9-4141-a835-b5551e6dab3b">
+<img width="312" alt="Skjermbilde 2024-09-25 kl  11 04 45" src="https://github.com/user-attachments/assets/9e5132d6-bb72-40ad-a597-c7d6032d251d">
