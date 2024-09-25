@@ -39,5 +39,4 @@ Fully responsive 📱💻
 ### Mobile
 <img width="313" alt="Skjermbilde 2024-09-25 kl  11 01 50" src="https://github.com/user-attachments/assets/73d4f09b-c8f6-46f3-9d10-17b579216c46">
 <img width="312" alt="Skjermbilde 2024-09-25 kl  11 03 02" src="https://github.com/user-attachments/assets/4773d1c5-fcd9-4141-a835-b5551e6dab3b">
-<img width="312" alt="Skjermbilde 2024-09-25 kl  11 04 45" src="https://github.com/user-attachments/assets/9e5132d6-bb72-40ad-a597-c7d6032d251d">
 <img width="313" alt="Skjermbilde 2024-09-25 kl  11 35 48" src="https://github.com/user-attachments/assets/6a32311d-2b1f-4493-acc3-aeb023fe5696">
