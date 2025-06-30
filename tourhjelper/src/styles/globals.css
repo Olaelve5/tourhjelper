@@ -21,8 +21,8 @@
 
   --height-unit: 11rem;
 
-  --blue-gradient: linear-gradient(45deg, #00B4DB 0%, #0083B0 100%);
-  --red-gradient: linear-gradient(45deg, #ED2939 0%, #B31217 100%);
+  --blue-gradient: linear-gradient(45deg, #00b4db 0%, #0083b0 100%);
+  --red-gradient: linear-gradient(45deg, #ed2939 0%, #b31217 100%);
 }
 
 * {
@@ -42,7 +42,6 @@ body {
   height: 100%;
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
-  background-image: url('/background9.svg');
   background-size: 100% 100%; /* Scale the image to cover the entire background area */
   background-repeat: no-repeat;
   background-position: center center;

@@ -1,45 +1,41 @@
 .header {
-  height: rem(64px);
-  top: 0;
+  padding-top: 4rem;
+  margin-bottom: 7rem;
   width: 100%;
   z-index: 1000;
   position: relative;
 }
 
 .inner {
-  height: rem(64px);
+  height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
 
-.middleLinksContainer {
-  width: 100%;
-  position: absolute;
-  justify-content: center;
-  z-index: 1;
-}
-
 .logoTitle {
-  cursor: pointer;
-  z-index: 100000;
+  pointer-events: none;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-bottom: 6px solid;
+  border-image: linear-gradient(
+      to right,
+      #002395 33.33%,
+      #ffffff 33.33%,
+      #ffffff 66.66%,
+      #ed2939 66.66%
+    )
+    1;
 }
 
-.link {
-  display: block;
-  line-height: 1;
-  padding: rem(8px) rem(12px);
-  border-radius: var(--mantine-radius-sm);
-  text-decoration: none;
+.logoIcon {
+  width: 3rem;
+  height: 3rem;
   color: white;
-  font-size: var(--mantine-font-size-m);
-  font-weight: 500;
-
-  [data-mantine-color-scheme] &[data-active] {
-    background-color: var(--yellow-tdf);
-    color: rgb(30, 30, 30);
-  }
 }
 
 .drawer {
@@ -72,7 +68,6 @@
 
 .drawerClose {
   color: white;
-  
 }
 
 .drawerClose:active {
@@ -88,8 +83,12 @@
 }
 
 .drawerContent {
-  background: rgb(7,21,36);
-  background: linear-gradient(153deg, rgba(7,21,36,1) 47%, rgba(4,49,78,1) 100%);
+  background: rgb(7, 21, 36);
+  background: linear-gradient(
+    153deg,
+    rgba(7, 21, 36, 1) 47%,
+    rgba(4, 49, 78, 1) 100%
+  );
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -124,9 +123,19 @@
 }
 
 @media screen and (max-width: 768px) {
+  .header {
+    padding-top: 2rem;
+    margin-bottom: 6rem !important;
+  }
 
   .logoTitle {
-    font-size: 24px;
+    font-size: 2rem;
+    border-bottom: 4px solid;
+    gap: 0.5rem;
+  }
+
+  .logoIcon {
+    width: 2.2rem;
+    height: 2.2rem;
   }
 }
-
