@@ -1,6 +1,5 @@
 import {createContext, useEffect, useContext, useState} from 'react';
 import { Rider } from '@/types/Rider';
-import { fetchRiderData, fetchRiderImages } from '@/utils/firebase/firebaseRiderUtils';
 import { getRiders, getRiderImages } from '@/utils/riderUtils';
 
 interface RiderContextType {
