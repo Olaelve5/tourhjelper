@@ -6,7 +6,6 @@ import { useTeamContext } from "@/providers/TeamProvider";
 import classes from "@/styles/Map/UpdateButton.module.css";
 import { usePlanContext } from "@/providers/PlanProvider";
 import { useStageContext } from "@/providers/StageProvider";
-import { StorageNotification } from "../StorageNotification";
 import { UpdateStatus } from "./UpdateStatus";
 import { UpdateNotification } from "./UpdateNotification";
 
