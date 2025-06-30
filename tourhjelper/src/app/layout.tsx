@@ -1,6 +1,4 @@
 "use client";
-
-// components/layout.tsx
 import React, { ReactNode, useEffect } from "react";
 import Header from "../components/header/Header";
 import { useLoading } from "../providers/LoadingProvider";

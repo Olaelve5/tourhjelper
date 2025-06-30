@@ -34,14 +34,6 @@ const MainPlanner = () => {
     <Container size="lg" className={classes.container}>
       <CombinedProviders>
         <div className={classes.loadingPlanContainer}>
-          <LoadingOverlay
-            visible={isLoading}
-            zIndex={100000}
-            overlayProps={{ radius: "sm", blur: 2 }}
-            loaderProps={{ color: "yellow", type: "bars" }}
-            transitionProps={{ transition: "fade", duration: 0 }}
-            classNames={{ overlay: classes.overlay, root: classes.overlayRoot }}
-          />
           <PlanIndicator />
           <div className={classes.mapTableContainer}>
             {!isSmallDevice && (

@@ -1,83 +1,89 @@
+.container,
+.container *,
+.mapTableContainer,
+.mapTableContainer * {
+  box-sizing: border-box;
+}
+
 .pageContainer {
-    min-width: 300px;
+  min-width: 300px;
 }
 
 .container {
-    justify-content: center;
-    display: flex;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    flex-direction: column;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
 }
 
 .mapTableContainer {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 60% 40%;
-    justify-content: center;
-    box-sizing: border-box;
-    min-height: calc(var(--height-unit) * 4.3);
+  display: flex;
+  gap: 10px;
+  justify-content: stretch;
+  min-height: calc(var(--height-unit) * 4.3);
+  grid-template-rows: auto;
+  align-items: stretch;
 }
 
 .loadingPlanContainer {
-    display: flex;
-    background: transparent;
-    position: relative;
-    flex-grow: 1;
-    box-sizing: border-box;
+  display: flex;
+  background: transparent;
+  position: relative;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: stretch;
 }
 
 .overlay {
-    background: #112539ac;
-    position: absolute;
-    border-radius: 5px;
+  background: #112539ac;
+  position: absolute;
+  border-radius: 5px;
 }
 
 .overlayRoot {
-    height: calc(100% + 2.6rem);
-    position: absolute;
-    top: -2.6rem;
-    width: calc(100% + 1rem);
-    left: -0.5rem;
+  height: calc(100% + 2.6rem);
+  position: absolute;
+  top: -2.6rem;
 }
 
 .visible {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
-
 @media screen and (max-width: 800px) {
-    .pageContainer {
-        margin-top: 4rem;
-    }
-    
-    .container {
-        padding: 0;
-    }
+  .pageContainer {
+    margin-top: 4rem;
+  }
 
-    .loadingPlanContainer {
-        width: 100%;
-        min-height: 0;
-        padding: 0;
-    }
+  .container {
+    padding: 0;
+  }
 
-    .mapTableContainer {
-        display: flex;
-        width: 100% !important;
-        min-height: 0;
-    }
+  .loadingPlanContainer {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .mapTableContainer {
+    display: flex;
+    width: 100% !important;
+    min-height: 0;
+  }
 }
 
 @media screen and (max-width: 468px) {
-    .pageContainer {
-        margin-top: 4rem;
-        padding: 0 0.5rem;
-    }
+  .pageContainer {
+    margin-top: 4rem;
+    padding: 0 0.5rem;
+  }
 }

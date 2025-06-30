@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { TextInput, Drawer, Button } from "@mantine/core";
+import { Drawer, Modal } from "@mantine/core";
 import classes from "@/styles/Drawer/SettingsDrawer.module.css";
 import { EditNameInput } from "./EditNameInput";
 import { CopyPlanSection } from "./CopyPlanSection";
@@ -45,11 +45,25 @@ export function SettingsDrawer({ opened, close }: SettingsDrawerProps) {
     setTouchStartY,
   });
 
+  useEffect(() => {
+    if (opened) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Cleanup function to remove class when component unmounts
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [opened]);
+
   return (
     <>
-      <Drawer
+      <Modal
         size="sm"
         opened={opened}
+        lockScroll={false}
         onClose={close}
         title={"Innstillinger for " + name}
         classNames={classes}
@@ -58,7 +72,7 @@ export function SettingsDrawer({ opened, close }: SettingsDrawerProps) {
         <CopyPlanSection close={close} />
         <ResetPlanSection close={close} />
         <DeletePlanButton close={close} />
-      </Drawer>
+      </Modal>
     </>
   );
 }
