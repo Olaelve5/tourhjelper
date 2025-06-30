@@ -5,15 +5,12 @@ import {Button, Tooltip} from '@mantine/core';
 import classes from '@/styles/Drawer/CopyPlanSection.module.css';
 import { usePlanContext } from "@/providers/PlanProvider";
 import { Plan } from "@/types/Plan";
-import { copyPlanInDB } from "@/utils/firebase/firebasePlanUtils";
-import { useAuth } from "@/providers/AuthProvider";
 
 interface CopyPlanSectionProps {
     close: () => void;
 }
 
 export function CopyPlanSection({close}: CopyPlanSectionProps) {
-    const { user } = useAuth();
     const { selectedPlanId, plans, setPlans } = usePlanContext();
     const [plansToCopy, setPlansToCopy] = useState<Plan[]>([]);
     const [index, setIndex] = useState<number>(0);
@@ -32,14 +29,6 @@ export function CopyPlanSection({close}: CopyPlanSectionProps) {
         const planToCopy: Plan = plansToCopy[index];
 
         if(!selectedPlanId || !planToCopy) return;
-
-        if(user) {
-            try {
-                await copyPlanInDB(user.uid, planToCopy.id, selectedPlanId);
-            } catch(e) {
-                console.error("Error copying plan: " + e);
-            }
-        }
 
         const planName = planToCopy.name + " (Kopi)";
         const newPlan: Plan = {id: selectedPlanId, name: planName, stages: planToCopy.stages};

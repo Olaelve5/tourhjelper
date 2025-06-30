@@ -3,17 +3,21 @@ import json
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import StaleElementReferenceException, InvalidArgumentException
+from selenium.common.exceptions import (
+    StaleElementReferenceException,
+    InvalidArgumentException,
+)
 from webdriver_manager.chrome import ChromeDriverManager
 import time
-from firebase_config import write_stages
 import shutil
 import os
+
 
 def clear_cache():
     cache_dir = os.path.expanduser("~/.wdm")
     if os.path.exists(cache_dir):
         shutil.rmtree(cache_dir)
+
 
 def main():
     clear_cache()
@@ -21,46 +25,63 @@ def main():
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run Chrome in headless mode
 
+    # Check if the file exists
+    if not os.path.exists("tourhjelper/public/data/stage_data.json"):
+        print("File 'tourhjelper/public/data' does not exist")
+        return
+
     # Initialize the Chrome driver with options
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
 
     stages = []
 
     try:
         for i in range(1, 22):
             print(f"Processing stage {i}")
-            url = f'https://www.letour.fr/en/stage-{i}'
+            url = f"https://www.letour.fr/en/stage-{i}"
             try:
                 driver.get(url)
                 time.sleep(2)
 
-                stage = {}  
+                stage = {}
 
-                stage['stage'] = i
-                
-                date = driver.execute_script('return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__infos__date").textContent').strip()
-                date_parts = date.split(' ')
-                stage['date'] = date_parts[1].strip()
+                stage["stage"] = i
 
-                stage['start'] = driver.execute_script('return document.querySelector("#itinerary > table > tbody.tbody > tr.itinerary__checkpoint--r > td:nth-child(6)").textContent')
-                
-                distance = driver.execute_script('return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(1) > p").textContent').strip()
-                distance_parts = distance.split('\n')
-                stage['distance'] = distance_parts[1].strip()
+                date = driver.execute_script(
+                    'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__infos__date").textContent'
+                ).strip()
+                date_parts = date.split(" ")
+                stage["date"] = date_parts[1].strip()
 
-                stage_type = driver.execute_script('return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(2) > p").textContent').strip()
-                type_parts = stage_type.split('\n')
-                stage['type'] = type_parts[1].strip()
+                stage["start"] = driver.execute_script(
+                    'return document.querySelector("#itinerary > table > tbody.tbody > tr.itinerary__checkpoint--r > td:nth-child(6)").textContent'
+                )
 
-                image_element = driver.execute_script('return document.querySelector("#profil > img")')
+                distance = driver.execute_script(
+                    'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(1) > p").textContent'
+                ).strip()
+                distance_parts = distance.split("\n")
+                stage["distance"] = distance_parts[1].strip()
+
+                stage_type = driver.execute_script(
+                    'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(2) > p").textContent'
+                ).strip()
+                type_parts = stage_type.split("\n")
+                stage["type"] = type_parts[1].strip()
+
+                image_element = driver.execute_script(
+                    'return document.querySelector("#profil > img")'
+                )
                 image_url = image_element.get_attribute("src")
                 if image_url.startswith("data:"):
-                    image_url = image_element.get_attribute("data-src") or image_element.get_attribute("data-lazy-src")
-                stage['imageURL'] = image_url
+                    image_url = image_element.get_attribute(
+                        "data-src"
+                    ) or image_element.get_attribute("data-lazy-src")
+                stage["imageURL"] = image_url
 
-                stage['lastUpdated'] = datetime.now().isoformat()
+                stage["lastUpdated"] = datetime.now().isoformat()
 
-                stages.append(stage)    
+                stages.append(stage)
 
             except InvalidArgumentException as e:
                 print(f"Invalid URL: {url}")
@@ -70,13 +91,14 @@ def main():
                 print(e)
     finally:
         driver.quit()
-    
-    stages_data_path = 'public/data/stage_data.json'
 
-    with open(stages_data_path, 'w', encoding='utf-8') as f:
+    stages_data_path = "tourhjelper/public/data/stage_data.json"
+
+    with open(stages_data_path, "w", encoding="utf-8") as f:
         json.dump(stages, f, ensure_ascii=False, indent=4)
 
-    write_stages(stages)
+    # write_stages(stages)
+
 
 if __name__ == "__main__":
     main()

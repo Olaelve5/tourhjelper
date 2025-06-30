@@ -1,5 +1,4 @@
 import { Stage } from "@/types/Stage";
-import { getStageFromDB, getStageTimestamps } from "./firebase/firebaseStageUtils";
 
 
 const chunkedStages = [
@@ -55,12 +54,6 @@ export const fetchSingleStageInfo = async (stage: number) => {
         const stageData = stagesArray.find((s: Stage) => s.stage === stage);
         if (stageData) return stageData;
     }
-
-    // Fetch from DB
-    const stageData = await getStageFromDB(stage);
-    stagesArray.push(stageData);
-    localStorage.setItem('stages', JSON.stringify(stagesArray));
-    return stageData;
 };
 
 export const fetchMultipleStageInfo = async (stage: number) => {
@@ -75,29 +68,4 @@ export const fetchMultipleStageInfo = async (stage: number) => {
         stages.push(stageData);
     }
     return stages;
-};
-
-export const removeOutdatedStagesFromCache = async () => {
-    const timestamps = await getStageTimestamps();
-
-    const stagesArray = localStorage.getItem('stages');
-    if (!stagesArray || !timestamps) return;
-
-    const parsedStages = JSON.parse(stagesArray);
-    if (!Array.isArray(parsedStages)) return;
-
-    let updatedCachedStages = [];
-
-    for (let i = 0; i < parsedStages.length; i++) {
-        const cachedStage = parsedStages[i];
-        if (!cachedStage) continue;
-
-        const dbStage = timestamps.find(ts => ts.stage === cachedStage.stage);
-        if (!dbStage) continue;
-        if (dbStage.lastUpdated !== cachedStage.lastUpdated) continue;
-
-        updatedCachedStages.push(cachedStage);
-    }
-
-    localStorage.setItem('stages', JSON.stringify(updatedCachedStages));
 };
