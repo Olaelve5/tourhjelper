@@ -1,33 +1,36 @@
-
 .root {
-    position: relative;
-    z-index: 10000;
+  position: relative;
+  z-index: 10000;
 }
 
 .content {
-    background: var(--dark-grey);
+  background: var(--dark-grey);
 }
 
 .header {
-    background-color: var(--header-color);
+  background-color: var(--header-color);
 }
 
 .title {
-    font-size: large;
-    font-weight: 600;
+  font-size: large;
+  font-weight: 600;
+}
+
+.overlay {
+  backdrop-filter: blur(5px);
 }
 
 .close {
-    color: white;
+  color: white;
 }
 
 .close:hover {
-    background-color: var(--highlight-grey);
+  background-color: var(--highlight-grey);
 }
 
 .body {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1.5rem;
-    gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  gap: 2.5rem;
 }

@@ -1,88 +1,87 @@
 .container {
-    background-image: url("/road2.jpg");
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 10px 12px -8px #0000006b;
+  background-image: url("/road2.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 12px -8px #0000006b;
+  flex: 0 0 60%;
 }
 
 .innerContainer {
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding-bottom: 2.6rem;
-    flex-grow: 1;
-    margin-top: 2.6rem;
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-bottom: 2.6rem;
+  flex-grow: 1;
+  margin-top: 2.6rem;
 }
 
 .badge {
-    position: absolute;
-    color: var(--dark-grey);
-    bottom: -20px;
-    background: rgba(255, 255, 255);
-    box-shadow: 0 2px 10px 0px rgb(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
+  position: absolute;
+  color: var(--dark-grey);
+  bottom: -20px;
+  background: rgba(255, 255, 255);
+  box-shadow: 0 2px 10px 0px rgb(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
 }
 
 .duoWrapper {
-    position: relative;
-    justify-content: center;
-    display: flex;
+  position: relative;
+  justify-content: center;
+  display: flex;
 }
 
 .rowWrapper {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .tempoDirektorWrapper {
-    display: flex;
-    place-content: center;
-    position: relative;
+  display: flex;
+  place-content: center;
+  position: relative;
 }
 
 .tempoDirektorContainer {
-    display: flex;
-    place-content: center;
-    gap: 50px;
+  display: flex;
+  place-content: center;
+  gap: 50px;
 }
 
 .updateContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.8rem;
 }
 
 @media screen and (max-width: 800px) {
-    
+  .rowWrapper {
+    justify-content: space-around;
+  }
 
-    .rowWrapper {
-        justify-content: space-around;
-    }
+  .innerContainer {
+    gap: 25px;
+    padding-top: 0.4rem;
+    padding-bottom: 3rem;
+  }
 
-    .innerContainer {
-        gap: 25px;
-        padding-top: 0.4rem;
-        padding-bottom: 3rem;
-    }
+  .badge {
+    bottom: -18px;
+    font-size: 8px;
+  }
 
-    .badge {
-        bottom: -18px;
-        font-size: 8px;
-    }
-
-    .updateContainer {
-        height: 2.6rem;
-    }
+  .updateContainer {
+    height: 2.6rem;
+  }
 }

@@ -56,7 +56,7 @@ body.grabbing {
   overflow: hidden !important;
   position: fixed !important;
   width: 100% !important;
-  right: 3px !important;
+  right: 6px !important;
 }
 
 a {
@@ -64,15 +64,31 @@ a {
   text-decoration: none;
 }
 
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--yellow-tdf) transparent;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 6px; /* width of the entire scrollbar */
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent; /* color of the track */
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--yellow-tdf); /* color of the scroll thumb */
-  border-radius: 6px; /* roundness of the scroll thumb */
+  background-color: var(--yellow-tdf);
+  border-radius: 6px;
+}
+
+@media screen and (max-width: 768px) {
+  .no-scroll {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    right: 0 !important;
+  }
 }

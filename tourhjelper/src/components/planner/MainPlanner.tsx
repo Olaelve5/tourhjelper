@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
-import { LoadingOverlay } from "@mantine/core";
-import { Container, Grid } from "@mantine/core";
+import { Container } from "@mantine/core";
 import CombinedProviders from "@/providers/CombinedProviders";
 import { RidersMap } from "./Map/RidersMap";
 import { PlanIndicator } from "./PlanIndicator";
@@ -9,7 +7,6 @@ import { FilterTable } from "./Table/FilterTable";
 import classes from "@/styles/MainPlanner.module.css";
 
 const MainPlanner = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [isSmallDevice, setIsSmallDevice] = useState(false);
   const [isMapVisible, setIsMapVisible] = useState(true);
 
