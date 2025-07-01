@@ -1,34 +1,32 @@
 .transferButton {
-    border: 1px solid transparent;
-    background: transparent;
-    cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
 }
 
 .transferButton:hover {
-    position: relative;
-    background: var(--light-grey);
-    border: 1px solid var(--highlight-grey);
+  position: relative;
+  background: var(--light-grey);
+  border: 1px solid var(--highlight-grey);
 }
 
 .drawer {
-    background-color: black;
+  background-color: black;
 }
 
 @media screen and (max-width: 500px) {
-    #emptyButton {
-        display: none;
-    }
-    
+  #emptyButton {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 468px) {
-    .transferButton:hover {
-        background-color: transparent;
-        border: 1px solid transparent;
-    }
+  .transferButton:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
 
-    .icon {
-        width: 20px;
-        height: 20px;
-    }
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
 }

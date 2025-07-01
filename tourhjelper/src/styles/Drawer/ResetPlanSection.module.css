@@ -1,52 +1,60 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 0.1rem;
+  justify-content: center;
 }
 
-.labelTop {
-    width: 70%;
-    font-size: 14px;
-    position: relative;
-    align-items: center;
+.label {
+  width: 100%;
+  font-size: 14px;
+  position: relative;
 }
 
-.button {
-    width: 100%;
-    background: var(--light-grey);
-    border: 1px solid var(--highlight-grey);
+.disabledLabel {
+  width: 100%;
+  font-size: 14px;
+  position: relative;
+  color: #c1c3c6;
 }
 
-.button:hover {
-    background: var(--highlight-grey);
+.select {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.input {
+  background: var(--light-grey);
+  border: 1px solid var(--highlight-grey);
+  color: var(--text-color);
+}
+
+.root:hover {
+  background: var(--highlight-grey);
+}
+
+.input[data-disabled="true"] {
+  background: var(--light-grey);
+  color: var(--disabled-text);
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .innerContainer {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    column-gap: 10px;
-    width: 100%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  column-gap: 10px;
+  width: 100%;
 }
 
-.upDownContainer {
-    height: 2.2rem;
-    width: calc(100% - 8px);
-    border-radius: 4px;
-    border: 1px solid var(--highlight-grey);
-    display: flex;
-    flex-direction: column;
-    background: var(--light-grey);
-    overflow: hidden;
-}
-
-.upDownButton {
-    height: 50%;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: none;
-}
-
-.upDownButton:hover {
-    background: var(--highlight-grey);
+.resetButton {
+  width: calc(100% - 0.5rem);
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  background: var(--light-grey);
+  border: 1px solid var(--highlight-grey);
 }

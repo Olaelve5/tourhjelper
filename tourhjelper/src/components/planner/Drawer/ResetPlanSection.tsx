@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-import { Button } from "@mantine/core";
+import { Button, NativeSelect, Tooltip } from "@mantine/core";
 import classes from "@/styles/Drawer/ResetPlanSection.module.css";
-import {
-  IconRestore,
-  IconRotateClockwise2,
-  IconChevronDown,
-  IconChevronUp,
-} from "@tabler/icons-react";
+import { IconRotateClockwise2 } from "@tabler/icons-react";
 import { useStageContext } from "@/providers/StageProvider";
 import { usePlanContext } from "@/providers/PlanProvider";
 
@@ -24,17 +18,6 @@ export function ResetPlanSection({ close }: ResetPlanSectionProps) {
   useEffect(() => {
     setStage(activeStage);
   }, [activeStage]);
-
-  const handleUpDownClick = (direction: number) => {
-    const newStage = stage + direction;
-    if (newStage < 1) {
-      setStage(1);
-    } else if (newStage > 21) {
-      setStage(21);
-    } else {
-      setStage(newStage);
-    }
-  };
 
   const getHighestStageFromPlan = () => {
     const plan = plans.find((plan) => plan.id === selectedPlanId);
@@ -74,33 +57,40 @@ export function ResetPlanSection({ close }: ResetPlanSectionProps) {
     setLoading(false);
   };
 
+  const isDisabled = loading || stage < 1 || stage > getHighestStageFromPlan();
+
   return (
     <div className={classes.container}>
-      <p className={classes.labelTop}>Tilbakestill</p>
+      <p className={isDisabled ? classes.disabledLabel : classes.label}>
+        Tilbakestill fra etappe
+      </p>
       <div className={classes.innerContainer}>
-        <Button
-          onClick={handleResetClick}
-          loading={loading}
-          disabled={stage >= getHighestStageFromPlan()}
-          leftSection={<IconRotateClockwise2 size={20} />}
-          className={classes.button}
-          justify="left">
-          Fra etappe: {stage}
-        </Button>
-        <div className={classes.upDownContainer}>
+        <NativeSelect
+          value={stage.toString()}
+          onChange={(event) => setStage(Number(event.currentTarget.value))}
+          data={Array.from({ length: 21 }, (_, i) => ({
+            value: (i + 1).toString(),
+            label: `Etappe ${i + 1}`,
+          }))}
+          className={classes.select}
+          classNames={classes}
+        />
+        <Tooltip
+          label={
+            isDisabled ? "Ingen endringer å tilbakestille" : "Tilbakestill"
+          }
+          zIndex={10000}>
           <Button
-            onClick={() => handleUpDownClick(1)}
-            className={classes.upDownButton}
-            radius={0}>
-            <IconChevronUp size={16} />
+            className={classes.resetButton}
+            size="sm"
+            color="white"
+            classNames={classes}
+            onClick={handleResetClick}
+            loading={loading}
+            disabled={isDisabled}>
+            <IconRotateClockwise2 size={24} stroke={2} />
           </Button>
-          <Button
-            onClick={() => handleUpDownClick(-1)}
-            className={classes.upDownButton}
-            radius={0}>
-            <IconChevronDown size={16} />
-          </Button>
-        </div>
+        </Tooltip>
       </div>
     </div>
   );

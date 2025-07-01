@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Button, TextInput, Tooltip } from "@mantine/core";
-import { IconDeviceFloppy } from "@tabler/icons-react";
+import { IconPencilPlus } from "@tabler/icons-react";
 import classes from "@/styles/Drawer/EditNameInput.module.css";
 import { usePlanContext } from "@/providers/PlanProvider";
 
@@ -53,6 +53,13 @@ export function EditNameInput({ close }: EditNameInputProps) {
     }
   }, [selectedPlanId, plans]);
 
+  const isDisabled =
+    loading ||
+    name === "" ||
+    name.length < 3 ||
+    name.length > 25 ||
+    name === plans.find((plan) => plan.id === selectedPlanId)?.name;
+
   return (
     <div className={classes.container}>
       <p className={classes.label}>Endre navn på plan</p>
@@ -63,18 +70,16 @@ export function EditNameInput({ close }: EditNameInputProps) {
           onChange={(event) => setName(event.currentTarget.value)}
           classNames={classes}
         />
-        <Tooltip label="Lagre navn" zIndex={10000}>
+        <Tooltip
+          label={isDisabled ? "Ikke gyldig navn" : "Lagre navn"}
+          zIndex={10000}>
           <Button
             className={classes.saveButton}
             onClick={handleClick}
-            loading={loading}>
-            <IconDeviceFloppy
-              size={20}
-              stroke={2}
-              color="white"
-              className={classes.saveIcon}
-            />
-          </Button>
+            leftSection={<IconPencilPlus size={24} stroke={2} />}
+            variant="filled"
+            disabled={isDisabled}
+            loading={loading}></Button>
         </Tooltip>
       </div>
     </div>

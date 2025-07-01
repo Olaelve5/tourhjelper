@@ -1,42 +1,58 @@
 .container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
 .label {
-    width: 100%;
-    font-size: 14px;
-    position: relative;
+  width: 100%;
+  font-size: 14px;
+  position: relative;
 }
 
 .disabledLabel {
-    width: 100%;
-    font-size: 14px;
-    position: relative;
-    color: #c1c3c6;
+  width: 100%;
+  font-size: 14px;
+  position: relative;
+  color: #c1c3c6;
 }
 
 .root {
-    background: var(--light-grey);
-    border: 1px solid var(--highlight-grey);
-    width: 100%;
+  background: var(--light-grey);
+  border: 1px solid var(--highlight-grey);
+  width: 100%;
+  border-radius: 4px;
+}
+
+.input {
+  background: var(--light-grey);
+  border: none;
+  width: 100%;
+  color: var(--text-color);
+}
+
+.input[data-disabled="true"] {
+  background: var(--light-grey);
+  color: var(--disabled-text);
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .root:hover {
-    background: var(--highlight-grey);
+  background: var(--highlight-grey);
 }
 
 .innerContainer {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    gap: 10px;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  gap: 10px;
 }
 
 .switchButton {
-    width: calc(100% - 0.5rem);
-    padding: 0;
-    display: flex;
-    justify-content: center;
+  width: calc(100% - 0.5rem);
+  height: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
 }
