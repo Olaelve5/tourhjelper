@@ -42,11 +42,7 @@ export function ResetTransfersButton() {
         onClick={handleClick}
         className={classes.transferButton}
         size="xs"
-        id={classes.resetButton}
-        disabled={
-          savedTeam.length === 0 ||
-          savedTeam.every((rider) => rider.undefined === false)
-        }>
+        id={classes.resetButton}>
         <IconRestore size={20} className={classes.icon} />
       </Button>
     </Tooltip>
