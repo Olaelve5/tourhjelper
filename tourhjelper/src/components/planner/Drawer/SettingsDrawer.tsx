@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-
 import { Modal } from "@mantine/core";
 import classes from "@/styles/Drawer/SettingsDrawer.module.css";
 import { EditNameInput } from "./EditNameInput";
@@ -42,7 +41,7 @@ export function SettingsDrawer({ opened, close }: SettingsDrawerProps) {
 
   return (
     <Modal
-      size="sm"
+      size="lg"
       opened={opened}
       lockScroll={false}
       onClose={close}

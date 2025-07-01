@@ -55,7 +55,7 @@ export function EditNameInput({ close }: EditNameInputProps) {
 
   return (
     <div className={classes.container}>
-      <p className={classes.label}>Kopier annen plan</p>
+      <p className={classes.label}>Endre navn på plan</p>
       <div className={classes.innerContainer}>
         <TextInput
           placeholder="Skriv inn navn"

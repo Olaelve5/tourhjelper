@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
 import { Button } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 import { usePlanContext } from "@/providers/PlanProvider";
 import { generateUniqueId } from "@/utils/idUtils";
+import classes from "@/styles/Drawer/SettingsDrawer.module.css";
 
 interface DeletePlanButtonProps {
   close: () => void;
@@ -36,13 +36,8 @@ export function DeletePlanButton({ close }: DeletePlanButtonProps) {
       onClick={handleClick}
       loading={loading}
       color="red"
-      leftSection={<IconTrash size={22} />}
-      style={{
-        position: "absolute",
-        bottom: "2rem",
-        left: "50%",
-        transform: "translateX(-50%)",
-      }}>
+      className={classes.deleteButton}
+      leftSection={<IconTrash size={22} />}>
       Slett plan
     </Button>
   );

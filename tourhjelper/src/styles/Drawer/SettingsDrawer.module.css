@@ -1,6 +1,12 @@
 .root {
-  position: relative;
+  position: absolute;
   z-index: 10000;
+}
+
+.inner {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
 }
 
 .content {
@@ -18,6 +24,7 @@
 
 .overlay {
   backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .close {
@@ -31,6 +38,24 @@
 .body {
   display: flex;
   flex-direction: column;
-  margin-top: 1.5rem;
   gap: 2.5rem;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.deleteButton {
+  margin-top: 2rem;
+  width: 75%;
+}
+
+
+@media screen and (max-width: 768px) {
+  .body {
+    padding: 1.5rem 1rem;
+  }
+
+  .deleteButton {
+    width: 100%;
+  }
 }

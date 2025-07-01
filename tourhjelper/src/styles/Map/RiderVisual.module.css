@@ -39,8 +39,8 @@
 
 .plus {
     position: absolute;
-    top: 40%; /* Center vertically */
-    left: 50%; /* Center horizontally */
+    top: 40%; 
+    left: 50%; 
     transform: translate(-50%, -50%);
     color: var(--highlight-grey);
     display: none;
