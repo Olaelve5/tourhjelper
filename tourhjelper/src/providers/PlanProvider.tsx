@@ -16,7 +16,6 @@ import { initializePlans } from "@/utils/planUtils";
 import { useLoading } from "./LoadingProvider";
 
 interface PlanContextType {
-  // Define the types for the context
   plans: Plan[];
   setPlans: (plans: Plan[]) => void;
   addPlan: () => void;
