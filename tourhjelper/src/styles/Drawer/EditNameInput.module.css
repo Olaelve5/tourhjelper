@@ -68,3 +68,9 @@
 .saveButton:hover {
     background: var(--highlight-grey);
 }
+
+@media screen and (max-width: 800px) {
+  .innerContainer {
+    grid-template-columns: 70% 30%;
+  }
+}

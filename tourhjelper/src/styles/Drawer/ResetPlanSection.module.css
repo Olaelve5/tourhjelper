@@ -58,3 +58,9 @@
   background: var(--light-grey);
   border: 1px solid var(--highlight-grey);
 }
+
+@media screen and (max-width: 800px) {
+  .innerContainer {
+    grid-template-columns: 70% 30%;
+  }
+}
