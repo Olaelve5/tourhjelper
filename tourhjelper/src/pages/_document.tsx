@@ -5,6 +5,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <title>Tourhjelper</title>
         <ColorSchemeScript defaultColorScheme="auto" />
         <link rel="icon" href="/favicon_io/favicon.ico" />
         <link
