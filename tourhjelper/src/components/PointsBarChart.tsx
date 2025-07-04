@@ -56,6 +56,7 @@ const PointsBarChart = () => {
         h={deviceWidth < 600 ? 800 : 400}
         barProps={{ radius: 20 }}
         gridAxis="none"
+        withXAxis={deviceWidth < 600 ? true : true}
         withYAxis={deviceWidth < 600 ? true : false}
         unit={deviceWidth < 600 ? "" : "p."}
         maxBarWidth={deviceWidth < 800 ? 12 : 22}

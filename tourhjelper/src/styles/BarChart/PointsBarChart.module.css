@@ -21,8 +21,30 @@
   padding: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .barChart {
-    padding: 0.1rem 0.5rem 0.5rem 0.5rem;
+    padding: 0;
+    padding-right: 1rem;
+    padding-bottom: 0.75rem;
+  }
+
+  /* Disable tooltips and all hover effects */
+  .barChart :global(.recharts-tooltip-wrapper),
+  .barChart :global(.recharts-tooltip-cursor) {
+    display: none !important;
+  }
+
+  .barChart :global(.recharts-bar-rectangle),
+  .barChart :global(.recharts-bar),
+  .barChart :global(.recharts-layer) {
+    pointer-events: none !important;
+  }
+
+  .barChart :global(*:hover) {
+    opacity: 1 !important;
+    filter: none !important;
+    outline: none !important;
+    transform: none !important;
+    box-shadow: none !important;
   }
 }
