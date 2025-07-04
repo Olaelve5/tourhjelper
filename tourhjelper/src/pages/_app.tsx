@@ -4,11 +4,12 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { theme } from "@/utils/themeUtils";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <MantineProvider theme={theme}>
-      {/* <SpeedInsights /> */}
+      <SpeedInsights />
       <Component {...pageProps} />
     </MantineProvider>
   );
