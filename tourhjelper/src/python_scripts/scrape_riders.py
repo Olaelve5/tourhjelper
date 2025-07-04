@@ -46,7 +46,7 @@ def main():
                 "name",
                 "position",
                 "team",
-                "price",
+                "currentPrice",
                 "totalPoints",
             ]
 
@@ -55,12 +55,15 @@ def main():
                     f'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("div.table > table > tbody > tr:nth-child({i}) > td.{attribute}").textContent'
                 )
 
+                
+
                 if attribute == "position":
                     rider["category"] = value.strip()
+                elif attribute == "currentPrice":
+                    rider["price"] = float(value.strip().replace("M", ""))
                 else:
                     rider[attribute] = value.strip()
 
-            rider["price"] = float(rider["price"].replace("M", ""))
             rider["totalPoints"] = int(rider["totalPoints"].replace(".00", ""))
 
             # Find the image link

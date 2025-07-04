@@ -1,0 +1,128 @@
+[
+  {
+    "stage": 1,
+    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "2_stars": ["Meeus", "Groenewegen", "Girmay"],
+    "1_stars": ["Van Aert", "De Lie", "Ackerman", "Bauhaus"]
+  },
+  {
+    "stage": 2,
+    "3_stars": ["Van der Poel", "Pogacar", "Van Aert"],
+    "2_stars": ["Nys", "Roglic", "Vauquelin", "Ganna"],
+    "1_stars": ["Evenepoel", "Gregoire", "Aranburu", "Alaphillippe"]
+  },
+  {
+    "stage": 3,
+    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "2_stars": ["Groenewegen", "Girmay", "Meeus"],
+    "1_stars": ["Van Aert", "De Lie", "Stewart", "Démare"]
+  },
+  {
+    "stage": 4,
+    "3_stars": ["Van der Poel", "Van Aert"],
+    "2_stars": ["Pogacar", "Roglic", "Nys", "Gregoire"],
+    "1_stars": ["Evenepoel", "Ganna", "Aranburu", "Vauquelin"]
+  },
+  {
+    "stage": 5,
+    "3_stars": ["Evenepoel", "Ganna"],
+    "2_stars": ["Vingegaard", "Roglic", "Van Aert", "Pogacar"],
+    "1_stars": ["Bissegger", "Foss", "Romeo", "Plapp"]
+  },
+  {
+    "stage": 6,
+    "3_stars": ["Van der Poel", "Van Aert", "Nys"],
+    "2_stars": ["Vauquelin", "Aranburu", "Pogacar"],
+    "1_stars": ["Martinez", "Powless", "Alaphillippe", "Narváez"]
+  },
+  {
+    "stage": 7,
+    "3_stars": ["Van der Poel", "Van Aert", "Pogacar"],
+    "2_stars": ["Nys", "Gregoire", "Vauquelin"],
+    "1_stars": ["Roglic", "Narváez", "Cort"]
+  },
+  {
+    "stage": 8,
+    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "2_stars": ["Meeus", "Groenewegen", "Girmay"],
+    "1_stars": ["Van Aert", "De Lie", "Ackerman", "Bauhaus"]
+  },
+  {
+    "stage": 9,
+    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "2_stars": ["Meeus", "Groenewegen", "Girmay"],
+    "1_stars": ["Van Aert", "De Lie", "Ackerman", "Bauhaus"]
+  },
+  {
+    "stage": 10,
+    "3_stars": ["Healy", "Leknessund", "Plapp", "Onley"],
+    "2_stars": ["Hirschi", "Powless", "Simmons", "Castrillo"],
+    "1_stars": ["Alaphillippe", "Van den Broek", "Schmid", "Dunbar"]
+  },
+  {
+    "stage": 11,
+    "3_stars": ["Merlier", "Phillipsen", "Van Aert", "Milan"],
+    "2_stars": ["Groenewegen", "Girmay", "Stewart"],
+    "1_stars": ["De Lie", "Ganna", "Cort", "Romeo", "Asgreen"]
+  },
+  {
+    "stage": 12,
+    "3_stars": ["Healy", "Gall", "Van Eetvelt", "Onley"],
+    "2_stars": ["Pogacar", "Vingegaard", "Powless", "Storer", "Arensmann"],
+    "1_stars": ["Woods", "Armirail", "Roglic", "Castrillo"]
+  },
+  {
+    "stage": 13,
+    "3_stars": ["Pogacar", "Vingegaard", "Evenepoel"],
+    "2_stars": ["Roglic", "S. Yates", "Almeida"],
+    "1_stars": ["Arensmann", "Skjelmose", "Healy"]
+  },
+  {
+    "stage": 14,
+    "3_stars": ["Pogacar", "Vingegaard"],
+    "2_stars": ["Skjelmose", "Arensmann", "Gall"],
+    "1_stars": ["Evenepoel", "Roglic", "Kuss", "A. Yates"]
+  },
+  {
+    "stage": 15,
+    "3_stars": ["Van Aert", "Van der Poel", "Groves"],
+    "2_stars": ["Phillipsen", "Milan", "Girmay"],
+    "1_stars": ["Merlier", "Van Poppel", "Stewart", "Cort", "Stuyven"]
+  },
+  {
+    "stage": 16,
+    "3_stars": ["Healy", "Gall", "Buitrago", "Onley"],
+    "2_stars": ["Woods", "Storer", "Skjelmose", "Martinez"],
+    "1_stars": ["Pogacar", "Vingegaard", "S. Yates", "Almeida", "A. Yates"]
+  },
+  {
+    "stage": 17,
+    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "2_stars": ["Meeus", "Groenewegen", "Girmay"],
+    "1_stars": ["Van Aert", "De Lie", "Ackerman", "Bauhaus"]
+  },
+  {
+    "stage": 18,
+    "3_stars": ["Vingegaard", "Pogacar"],
+    "2_stars": ["Gall", "Arensmann", "Skjelmose", "Martinez"],
+    "1_stars": ["Mas", "A. Yates", "S. Yates", "Vlasov", "O'Connor"]
+  },
+  {
+    "stage": 19,
+    "3_stars": ["Pogacar", "Vingegaard"],
+    "2_stars": ["Evenepoel", "Almeida", "Roglic", "Carlos Rodriguez", "Healy"],
+    "1_stars": ["Gall", "Arensmann", "Kuss", "Storer", "Van Eetvelt"]
+  },
+  {
+    "stage": 20,
+    "3_stars": ["Ganna", "Cort", "Van Aert", "Romeo"],
+    "2_stars": ["Powless", "Van den Broek", "Schackmann"],
+    "1_stars": ["Stuyven", "Simmons", "Aranburu", "Schmid", "Berckmoes"]
+  },
+  {
+    "stage": 21,
+    "3_stars": ["Van der Poel", "Van Aert"],
+    "2_stars": ["Ganna", "De Lie", "Alaphillippe"],
+    "1_stars": ["Cort", "Phillipsen", "Pogacar", "Vauquelin"]
+  }
+]

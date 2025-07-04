@@ -16,10 +16,6 @@
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36232.svg"
     },
     {
-        "team": "EF Education - EasyPost",
-        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36225.svg"
-    },
-    {
         "team": "Intermarché - Wanty",
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36228.svg"
     },
@@ -30,6 +26,10 @@
     {
         "team": "Alpecin - Deceuninck",
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36450.svg"
+    },
+    {
+        "team": "Arkéa - B&B Hotels",
+        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36220.svg"
     },
     {
         "team": "Lotto",
@@ -60,6 +60,10 @@
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36218.svg"
     },
     {
+        "team": "EF Education - EasyPost",
+        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36225.svg"
+    },
+    {
         "team": "Uno-X Mobility",
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36241.svg"
     },
@@ -68,12 +72,16 @@
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36451.svg"
     },
     {
-        "team": "Tudor Pro Cycling Team",
-        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/38622.svg"
+        "team": "Team TotalEnergies",
+        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36239.svg"
     },
     {
         "team": "Team Picnic PostNL",
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36233.svg"
+    },
+    {
+        "team": "Tudor Pro Cycling Team",
+        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/38622.svg"
     },
     {
         "team": "Groupama - FDJ",
@@ -82,13 +90,5 @@
     {
         "team": "XDS Astana Team",
         "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36221.svg"
-    },
-    {
-        "team": "Arkéa - B&B Hotels",
-        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36220.svg"
-    },
-    {
-        "team": "Team TotalEnergies",
-        "image": "https://fantasy.assets.scoutgg.net/uploads/assets/36239.svg"
     }
 ]

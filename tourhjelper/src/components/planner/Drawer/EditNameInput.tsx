@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Button, TextInput, Tooltip } from "@mantine/core";
 import { IconPencilPlus } from "@tabler/icons-react";
 import classes from "@/styles/Drawer/EditNameInput.module.css";
