@@ -3,7 +3,7 @@ import { ColorSchemeScript } from '@mantine/core';
 
 export default function Document() {
   return (
-    <Html className='no-scroll'>
+    <Html>
       <Head>
         <ColorSchemeScript defaultColorScheme="auto" />
       </Head>

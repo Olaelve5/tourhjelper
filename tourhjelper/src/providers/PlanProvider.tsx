@@ -8,12 +8,10 @@ import {
 import { Plan } from "@/types/Plan";
 import { generateUniqueId } from "@/utils/idUtils";
 import {
-  getPlansFromLocalStorage,
   savePlansToLocalStorage,
 } from "@/utils/localStorageUtils";
 import { Rider } from "@/types/Rider";
 import { initializePlans } from "@/utils/planUtils";
-import { useLoading } from "./LoadingProvider";
 
 interface PlanContextType {
   plans: Plan[];
@@ -39,7 +37,6 @@ export const usePlanContext = () => {
 
 // Create the provider
 export function PlanProvider({ children }: { children: React.ReactNode }) {
-  const { isLoading, setLoading } = useLoading();
   const [plans, setPlans] = useState<Plan[]>([]);
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
 
@@ -86,7 +83,6 @@ export function PlanProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const fetchInitPlans = async () => {
-      setLoading(true);
       try {
         const initValues = await initializePlans();
         if (initValues) {
@@ -98,7 +94,6 @@ export function PlanProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error("Error fetching initial plans", error);
       } finally {
-        setLoading(false);
       }
     };
     fetchInitPlans();
