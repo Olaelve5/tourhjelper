@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classes from "@/styles/Stage/Favorites.module.css";
 import { IconStarFilled } from "@tabler/icons-react";
-import { useStageContext } from "@/providers/StageProvider";
+import { Stage } from "@/types/Stage";
 
 interface StageFavorites {
   stage: number;
@@ -10,8 +10,7 @@ interface StageFavorites {
   "1_stars": string[];
 }
 
-export function Favorites() {
-  const { activeStage } = useStageContext();
+export function Favorites(stageNumber: { stageNumber: number }) {
   const [favorites, setFavorites] = useState<StageFavorites | null>(null);
 
   useEffect(() => {
@@ -20,19 +19,18 @@ export function Favorites() {
         const response = await fetch("/data/stage_favorites.json");
         const data = await response.json();
 
-        if (activeStage) {
-          const stage = data.find(
-            (stageData: StageFavorites) => stageData.stage === activeStage
-          );
-          setFavorites(stage || null);
-        }
+        const foundStage = data.find(
+          (stageFavorites: StageFavorites) =>
+            stageFavorites.stage === stageNumber.stageNumber
+        );
+        setFavorites(foundStage || null);
       } catch (error) {
         console.error("Error fetching stage favorites:", error);
       }
     };
 
     getStageFavorites();
-  }, [activeStage]);
+  }, [stageNumber]);
 
   if (!favorites) {
     return <div>Loading favorites...</div>;

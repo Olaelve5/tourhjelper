@@ -9,7 +9,7 @@ interface LinkProps {
 }
 
 export function Link({ setIsLinked }: LinkProps) {
-    const [linked, toggle] = useToggle([true, false]);
+    const [linked, toggle] = useToggle([false, true]);
 
     const getIcon = () => {
         if (linked) {

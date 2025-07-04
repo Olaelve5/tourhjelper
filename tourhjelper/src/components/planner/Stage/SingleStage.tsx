@@ -17,7 +17,7 @@ export function SingleStage({ stageData }: SingleStageProps) {
         <StageImage imageURL={stageData ? stageData.imageURL : ""} />
         <StageInfo stageData={stageData} />
       </div>
-      <Favorites />
+      <Favorites stageNumber={stageData?.stage ?? 0} />
     </div>
   );
 }
