@@ -26,7 +26,7 @@ const PointsBarChart = () => {
   return (
     <div className={styles.barChartContainer}>
       <div className={styles.header}>
-        <h4>Tilgjengelige poeng per etappe</h4>
+        <h4>Basis poeng per etappe</h4>
       </div>
       <BarChart
         data={data}

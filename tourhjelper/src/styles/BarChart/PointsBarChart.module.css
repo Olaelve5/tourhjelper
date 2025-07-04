@@ -1,6 +1,7 @@
 .barChartContainer {
   background-color: var(--dark-grey);
   border-radius: 0.5rem;
+  box-shadow: 0 10px 12px -8px #0000006b;
 }
 
 .header {
