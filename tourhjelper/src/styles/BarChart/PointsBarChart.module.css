@@ -1,0 +1,21 @@
+.barChartContainer {
+  background-color: var(--dark-grey);
+  border-radius: 0.5rem;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  background: var(--header-color);
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+.barChart {
+    padding: 1rem;
+}

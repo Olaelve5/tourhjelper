@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "@/styles/Stage/Favorites.module.css";
 import { IconStarFilled } from "@tabler/icons-react";
-import { Stage } from "@/types/Stage";
 
 interface StageFavorites {
   stage: number;

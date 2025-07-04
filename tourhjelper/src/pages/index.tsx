@@ -4,6 +4,7 @@ import { Container } from "@mantine/core";
 import { StageProvider } from "@/providers/StageProvider";
 import MainPlanner from "@/components/planner/MainPlanner";
 import MainStage from "@/components/planner/Stage/MainStage";
+import PointsBarChart from "@/components/PointsBarChart";
 import classes from "@/styles/MainPlanner.module.css";
 
 const PlannerPage: React.FC = () => {
@@ -13,6 +14,7 @@ const PlannerPage: React.FC = () => {
         <Container size="lg" className={classes.pageContainer}>
           <MainPlanner />
           <MainStage />
+          <PointsBarChart />
         </Container>
       </StageProvider>
     </Layout>
