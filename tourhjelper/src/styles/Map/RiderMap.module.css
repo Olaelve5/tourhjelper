@@ -1,7 +1,4 @@
 .container {
-  background-image: url("/road2.jpg");
-  background-size: cover;
-  background-position: center;
   position: relative;
   border-radius: 5px;
   overflow: hidden;

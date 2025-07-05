@@ -1,83 +1,115 @@
-import {useEffect, useRef, useState} from 'react';
-
-import { Badge } from '@mantine/core';
-import { BudgetTransfers } from './BudgetTransfers';
-import {getRiderVisuals } from '@/utils/MapHelpers';
-import classes from '@/styles/Map/RiderMap.module.css';
-import { useTeamContext } from '@/providers/TeamProvider';
-import { UpdateButton } from './UpdateButton';
-import { SwitchViewButton } from './SwitchViewButton';
-import { useStageContext } from '@/providers/StageProvider';
-import { useSwipe } from '@/utils/swipeUtils';
+import { useEffect, useRef, useState } from "react";
+import { Badge } from "@mantine/core";
+import { BudgetTransfers } from "./BudgetTransfers";
+import { getRiderVisuals } from "@/utils/MapHelpers";
+import classes from "@/styles/Map/RiderMap.module.css";
+import { useTeamContext } from "@/providers/TeamProvider";
+import { UpdateButton } from "./UpdateButton";
+import { SwitchViewButton } from "./SwitchViewButton";
+import { useStageContext } from "@/providers/StageProvider";
+import { useSwipe } from "@/utils/swipeUtils";
+import Image from "next/image";
 
 interface RidersMapProps {
-    handleMapVisibility: () => void;
+  handleMapVisibility: () => void;
 }
 
-
 export function RidersMap({ handleMapVisibility }: RidersMapProps) {
-    const { activeTeam } = useTeamContext();
-    const { activeStage, setActiveStage } = useStageContext();
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [touchStartX, setTouchStartX] = useState(0);
-    const [touchStartY, setTouchStartY] = useState(0);
+  const { activeTeam } = useTeamContext();
+  const { activeStage, setActiveStage } = useStageContext();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchStartY, setTouchStartY] = useState(0);
 
-    const onSwipe = (direction: 'left' | 'right') => {
-        if (direction === 'left') {
-            if(activeStage >= 21) return;
-            setActiveStage(activeStage + 1);
-        } else {
-            if(activeStage <= 1) return;
-            setActiveStage(activeStage - 1);
-        }
+  const onSwipe = (direction: "left" | "right") => {
+    if (direction === "left") {
+      if (activeStage >= 21) return;
+      setActiveStage(activeStage + 1);
+    } else {
+      if (activeStage <= 1) return;
+      setActiveStage(activeStage - 1);
     }
+  };
 
-    useSwipe({ ref: containerRef, onSwipe, touchStartX, touchStartY, setTouchStartX, setTouchStartY });
-
+  useSwipe({
+    ref: containerRef,
+    onSwipe,
+    touchStartX,
+    touchStartY,
+    setTouchStartX,
+    setTouchStartY,
+  });
 
   return (
     <div className={classes.container} ref={containerRef}>
-        <BudgetTransfers />
-        <div className={classes.innerContainer}>
-            <div className={classes.rowWrapper}>
-                <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Kaptein', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Kaptein</Badge>
-                </div>
-                <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Spurter', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Spurter</Badge>
-                </div>
-            </div>
-            <div className={classes.rowWrapper}>
-                <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Klatrer', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Klatrer</Badge>
-                </div>
-                <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Ungdomsrytter', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Ungdomsrytter</Badge>
-                </div>
-            </div>
-            <div className={classes.duoWrapper}>
-                    {getRiderVisuals(activeTeam, 'Hjelperytter', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Hjelperytter</Badge>
-                </div>
-            <div className={classes.tempoDirektorContainer}>
-                <div className={classes.tempoDirektorWrapper}>
-                    {getRiderVisuals(activeTeam, 'Temporytter', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Temporytter</Badge>
-                </div>
-                <div className={classes.tempoDirektorWrapper}>
-                    {getRiderVisuals(activeTeam, 'Sportsdirektør', handleMapVisibility)}
-                    <Badge className={classes.badge} size='xs'>Sportsdirektør</Badge>
-                </div>
-            </div>
+      <Image
+        src="/road2.jpg"
+        alt="Tour de France road background"
+        fill
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          zIndex: -1,
+        }}
+        priority
+        quality={85}
+        sizes="(max-width: 800px) 100vw, 60vw"
+      />
+      <BudgetTransfers />
+      <div className={classes.innerContainer}>
+        <div className={classes.rowWrapper}>
+          <div className={classes.duoWrapper}>
+            {getRiderVisuals(activeTeam, "Kaptein", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Kaptein
+            </Badge>
+          </div>
+          <div className={classes.duoWrapper}>
+            {getRiderVisuals(activeTeam, "Spurter", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Spurter
+            </Badge>
+          </div>
         </div>
-        <div className={classes.updateContainer}>
-            <SwitchViewButton handleMapVisibility={handleMapVisibility}/>
-            <UpdateButton />
+        <div className={classes.rowWrapper}>
+          <div className={classes.duoWrapper}>
+            {getRiderVisuals(activeTeam, "Klatrer", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Klatrer
+            </Badge>
+          </div>
+          <div className={classes.duoWrapper}>
+            {getRiderVisuals(activeTeam, "Ungdomsrytter", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Ungdomsrytter
+            </Badge>
+          </div>
         </div>
+        <div className={classes.duoWrapper}>
+          {getRiderVisuals(activeTeam, "Hjelperytter", handleMapVisibility)}
+          <Badge className={classes.badge} size="xs">
+            Hjelperytter
+          </Badge>
+        </div>
+        <div className={classes.tempoDirektorContainer}>
+          <div className={classes.tempoDirektorWrapper}>
+            {getRiderVisuals(activeTeam, "Temporytter", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Temporytter
+            </Badge>
+          </div>
+          <div className={classes.tempoDirektorWrapper}>
+            {getRiderVisuals(activeTeam, "Sportsdirektør", handleMapVisibility)}
+            <Badge className={classes.badge} size="xs">
+              Sportsdirektør
+            </Badge>
+          </div>
+        </div>
+      </div>
+      <div className={classes.updateContainer}>
+        <SwitchViewButton handleMapVisibility={handleMapVisibility} />
+        <UpdateButton />
+      </div>
     </div>
   );
 }
