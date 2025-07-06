@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-
 import { Container } from "@mantine/core";
 import classes from "@/styles/Stage/MainStage.module.css";
 import { Switch } from "./Switch";
@@ -11,6 +10,7 @@ import { fetchStageInfo, fetchStageChunk } from "@/utils/stageUtils";
 import { Stage } from "@/types/Stage";
 import { useSwipe } from "@/utils/swipeUtils";
 import { useStageContext } from "@/providers/StageProvider";
+import { track } from "@vercel/analytics";
 
 export default function MainStage() {
   const { activeStage, setActiveStage } = useStageContext();
@@ -65,6 +65,13 @@ export default function MainStage() {
         }
       }
     }
+
+    track("Stage Changed", {
+      method: "swipe",
+      viewType: isSingleView ? "single" : "multiple",
+      isLinked: isLinked,
+      stage: stage,
+    });
   };
 
   useSwipe({

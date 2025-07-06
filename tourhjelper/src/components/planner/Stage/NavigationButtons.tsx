@@ -9,6 +9,7 @@ import { Button } from "@mantine/core";
 import { Menu } from "@mantine/core";
 import { useStageContext } from "@/providers/StageProvider";
 import classes from "@/styles/Stage/NavigationButtons.module.css";
+import { track } from "@vercel/analytics";
 
 interface NavigationButtonsProps {
   isLinked: boolean;
@@ -118,6 +119,13 @@ export function NavigationButtons({
       }
       setStage(stage + direction);
     }
+
+    track("Stage Changed", {
+      method: "button",
+      viewType: isSingleView ? "single" : "multiple",
+      isLinked: isLinked,
+      stage: stage + direction,
+    });
   };
 
   useEffect(() => {

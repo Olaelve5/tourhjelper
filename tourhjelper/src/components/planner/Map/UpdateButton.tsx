@@ -8,6 +8,7 @@ import { usePlanContext } from "@/providers/PlanProvider";
 import { useStageContext } from "@/providers/StageProvider";
 import { UpdateStatus } from "./UpdateStatus";
 import { UpdateNotification } from "./UpdateNotification";
+import { track } from "@vercel/analytics";
 
 export function UpdateButton() {
   const { activeStage } = useStageContext();
@@ -34,6 +35,10 @@ export function UpdateButton() {
   };
 
   const handleClick = async () => {
+    track("Update Plan Button Clicked", {
+      stage: activeStage,
+    });
+
     if (!updatePossible) return;
     setIsLoading(true);
 
