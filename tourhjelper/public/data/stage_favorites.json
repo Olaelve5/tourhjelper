@@ -32,14 +32,14 @@
   {
     "stage": 6,
     "3_stars": ["Van der Poel", "Pogacar"],
-    "2_stars": ["Vauquelin", "Aranburu", "Vingegaard", "Nys"],
-    "1_stars": ["Martinez", "Powless", "Alaphillippe", "Narváez", "Van Aert"]
+    "2_stars": ["Vauquelin", "Nys", "Gregoire", "Van Aert"],
+    "1_stars": ["Martinez", "Powless", "Alaphillippe", "Narváez"]
   },
   {
     "stage": 7,
     "3_stars": ["Van der Poel", "Pogacar"],
-    "2_stars": ["Nys", "Gregoire", "Vauquelin", "Van Aert"],
-    "1_stars": ["Roglic", "Narváez", "Cort"]
+    "2_stars": ["Nys", "Gregoire", "Vauquelin", "Vingegaard"],
+    "1_stars": ["Roglic", "Narváez", "Cort", "Van Aert"]
   },
   {
     "stage": 8,
