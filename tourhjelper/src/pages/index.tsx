@@ -3,7 +3,7 @@ import Layout from "../app/layout";
 import { Container } from "@mantine/core";
 import { StageProvider } from "@/providers/StageProvider";
 import MainPlanner from "@/components/planner/MainPlanner";
-import MainStage from "@/components/planner/Stage/MainStage";
+import MainStage from "@/components/stage/MainStage";
 import PointsBarChart from "@/components/PointsBarChart";
 import classes from "@/styles/MainPlanner.module.css";
 
