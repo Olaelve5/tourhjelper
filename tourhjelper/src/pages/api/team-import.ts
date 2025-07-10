@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getCurrentStageServer } from "@/utils/getCurrentStageUtils";
-import { Rider, RiderCategory } from "@/types/Rider";
+import { Rider } from "@/types/Rider";
 import { getRiderByNameServer } from "@/utils/riderUtilsServer";
-import { translateRiderCategory } from "@/utils/riderUtils";
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,7 +21,7 @@ export default async function handler(
   const baseUrl = "https://tourmanager-game.api.scoutgg.net/fantasy_teams";
 
   try {
-    await fetch(`${baseUrl}/${id}?round=${currentStage}`, {
+    const response = await fetch(`${baseUrl}/${id}?round=${currentStage}`, {
       credentials: "include",
       headers: {
         "User-Agent":
@@ -39,18 +38,24 @@ export default async function handler(
       referrer: "https://tourmanager.no/",
       method: "GET",
       mode: "cors",
-    }).then(async (response) => {
-      if (!response.ok) {
-        throw new Error(`Failed to fetch team data: ${response.statusText}`);
-      }
-      const data = await response.json();
-      console.log("Total transfers used:", data.transferTotal);
+    });
 
-      console.log("Team:", data.realPlayers);
-      console.log(
-        "Full team: ",
-        assembleTeam(data.realPlayers, data.fantasyPlayers)
-      );
+    if (!response.ok) {
+      throw new Error(`Failed to fetch team data: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const assembledTeam = assembleTeam(data.realPlayers, data.playerChoices);
+
+    const formattedTeam = {
+      team: assembledTeam,
+      transfersUsed: data.transferTotal || 0,
+    };
+
+    console.log("Formatted team:", formattedTeam);
+
+    return res.status(200).json({
+      team: JSON.stringify(formattedTeam),
     });
   } catch (error) {
     console.error("Error fetching team data:", error);
@@ -58,42 +63,40 @@ export default async function handler(
   }
 }
 
-function assembleTeam(realPlayers: any[], fantasyPlayers: any[]): Rider[] {
-  const riders: Rider[] = [];
+function assembleTeam(
+  realPlayers: any[],
+  playerChoices: any[]
+): (Rider | undefined)[] {
+  const riders: (Rider | undefined)[] = [];
 
-  for (const player of realPlayers) {
-    const fullName =
-      player.firstName != null
-        ? player.firstName.trim() + " " + player.lastName.trim()
-        : player.lastName.trim();
+  for (const playerChoice of playerChoices) {
+    let fullName = "";
 
-    console.log("Full name:", fullName);
+    const realPlayer = realPlayers.find(
+      (p) => p.id === playerChoice?.realPlayerId
+    );
+
+    if (realPlayer.firstName && realPlayer.lastName) {
+      fullName = `${realPlayer.firstName.trim()} ${realPlayer.lastName.trim()}`;
+    } else if (realPlayer.lastName) {
+      fullName = realPlayer.lastName.trim();
+    } else {
+      console.warn("Player has no name:", realPlayer);
+      riders.push(undefined);
+      continue;
+    }
+
+    // Remove extra whitespace
+    fullName = fullName.replace(/\s+/g, " ").trim();
 
     const rider = getRiderByNameServer(fullName);
 
     if (!rider) {
-      console.warn(`Rider not found: ${player.name}`);
-      const fantasyPlayerObject = fantasyPlayers.find(
-        (fantasyPlayer) => fantasyPlayer.realPlayerId === player.id
-      );
-      const riderCategory = translateRiderCategory(
-        fantasyPlayerObject?.position || "unknown"
-      );
-
-      // Create fallback rider with all required properties
-      const fallbackRider: Rider = {
-        name: player.name,
-        team: player.team,
-        category: riderCategory as RiderCategory,
-        price: 0,
-        points: 0,
-        undefined: false,
-      };
-
-      riders.push(fallbackRider);
-    } else {
-      riders.push(rider);
+      console.warn(`Rider not found: ${fullName}, continued with next`);
+      continue;
     }
+
+    riders.push(rider);
   }
 
   return riders;
