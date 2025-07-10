@@ -26,7 +26,18 @@ export function getRiderByNameServer(name: string): Rider | undefined {
   }
 
   const riders = getRidersServer();
-  return riders.find(
-    (rider) => rider.name.toLowerCase() === name.toLowerCase()
-  );
+
+  // Remove all spaces and convert to lowercase for comparison
+  const normalizedSearchName = name.replace(/\s+/g, "").toLowerCase();
+
+  return riders.find((rider) => {
+    if (!rider?.name || typeof rider.name !== "string") {
+      return false;
+    }
+
+    // Remove all spaces and convert to lowercase for comparison
+    const normalizedRiderName = rider.name.replace(/\s+/g, "").toLowerCase();
+
+    return normalizedRiderName === normalizedSearchName;
+  });
 }
