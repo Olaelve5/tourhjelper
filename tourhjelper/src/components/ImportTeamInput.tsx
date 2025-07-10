@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTeamContext } from "@/providers/TeamProvider";
 import { TextInput, ActionIcon, Loader } from "@mantine/core";
 import { useInputState } from "@mantine/hooks";
@@ -6,6 +6,7 @@ import { IconSearch, IconBike } from "@tabler/icons-react";
 import classes from "@/styles/ImportTeamInput.module.css";
 import { useRiderContext } from "@/providers/RiderProvider";
 import { useMantineTheme } from "@mantine/core";
+import { filterTeamURL } from "@/utils/filterTeamURL";
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
@@ -66,6 +67,20 @@ const ImportTeamInput = () => {
       setIsValidInput(false);
     }
   };
+
+  useEffect(() => {
+    if (value) {
+      const filteredValue = filterTeamURL(value);
+      if (filteredValue) {
+        setValue(filteredValue);
+        setIsValidInput(true);
+      } else {
+        setIsValidInput(false);
+      }
+    } else {
+      setIsValidInput(true);
+    }
+  }, [value]);
 
   return (
     <div className={classes.container}>
