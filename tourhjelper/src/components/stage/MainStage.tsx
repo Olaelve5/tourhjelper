@@ -11,9 +11,10 @@ import { Stage } from "@/types/Stage";
 import { useSwipe } from "@/utils/swipeUtils";
 import { useStageContext } from "@/providers/StageProvider";
 import { track } from "@vercel/analytics";
+import { getCurrentStage } from "@/utils/stageUtils";
 
 export default function MainStage() {
-  const { activeStage, setActiveStage } = useStageContext();
+  const { setActiveStage, activeStage } = useStageContext();
   const [isLinked, setIsLinked] = useState(false);
   const [isSingleView, setIsSingleView] = useState(true);
   const [stage, setStage] = useState<number>(1);
@@ -22,6 +23,13 @@ export default function MainStage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
+
+  // Initialize stage to the active stage
+  useEffect(() => {
+    getCurrentStage().then((currentStage) => {
+      setStage(currentStage);
+    });
+  }, []);
 
   useEffect(() => {
     if (isSingleView) {

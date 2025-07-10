@@ -4,7 +4,6 @@ import { TextInput, ActionIcon, Loader } from "@mantine/core";
 import { useInputState } from "@mantine/hooks";
 import { IconSearch, IconBike } from "@tabler/icons-react";
 import classes from "@/styles/ImportTeamInput.module.css";
-import { useRiderContext } from "@/providers/RiderProvider";
 import { useMantineTheme } from "@mantine/core";
 import { filterTeamURL } from "@/utils/filterTeamURL";
 import { usePlanContext } from "@/providers/PlanProvider";
@@ -16,7 +15,7 @@ import {
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
-  const { setActiveTeam, setSavedTransfers, setSavedTeam } = useTeamContext();
+  const { setActiveTeam, setSavedTeam } = useTeamContext();
   const { updatePlan } = usePlanContext();
   const { setActiveStage } = useStageContext();
   const [value, setValue] = useInputState<string>("");
@@ -37,8 +36,8 @@ const ImportTeamInput = () => {
     for (let i = stage; i > 0; i--) {
       updatePlan(importedRiders, i, parseInt(transfers_used, 10));
     }
-    setActiveTeam(importedRiders);
-    setSavedTeam(importedRiders);
+    // setActiveTeam(importedRiders);
+    // setSavedTeam(importedRiders);
     setActiveStage(stage);
     setIsValidInput(true);
   };

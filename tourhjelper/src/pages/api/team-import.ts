@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getCurrentStageServer } from "@/utils/getCurrentStageUtils";
+import { getCurrentStageServer } from "@/utils/server/getCurrentStageUtilsServer";
 import { Rider } from "@/types/Rider";
-import { getRiderByNameServer } from "@/utils/riderUtilsServer";
+import { getRiderByNameServer } from "@/utils/server/riderUtilsServer";
 
 export default async function handler(
   req: NextApiRequest,

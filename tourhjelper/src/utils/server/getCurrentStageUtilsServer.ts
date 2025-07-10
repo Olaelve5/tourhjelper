@@ -18,7 +18,7 @@ export async function getCurrentStage(): Promise<number> {
     if (!response.ok) {
       throw new Error("Failed to fetch stage data");
     }
-    const stages: StageData[] = await response.json();
+    const stages = await response.json();
     return getCurrentStageSync(stages);
   } catch (error) {
     console.error("Error determining current stage:", error);
