@@ -44,7 +44,6 @@ export function TeamProvider({ children }: { children?: React.ReactNode }) {
     const [savedTransfers, setSavedTransfers] = useState<number>(0);
     
     const addRider = (rider: Rider) => {
-        
         if (validateUpdate(activeTeam, rider)) {
             const riderToRemoveIndex = activeTeam.findIndex(r => r.category === rider.category && r.undefined);
 

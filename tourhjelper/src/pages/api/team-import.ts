@@ -49,7 +49,8 @@ export default async function handler(
 
     const formattedTeam = {
       team: assembledTeam,
-      transfersUsed: data.transferTotal || 0,
+      transfers_used: data.transferTotal || 0,
+      current_stage: currentStage,
     };
 
     console.log("Formatted team:", formattedTeam);
@@ -85,9 +86,6 @@ function assembleTeam(
       riders.push(undefined);
       continue;
     }
-
-    // Remove extra whitespace
-    fullName = fullName.replace(/\s+/g, " ").trim();
 
     const rider = getRiderByNameServer(fullName);
 

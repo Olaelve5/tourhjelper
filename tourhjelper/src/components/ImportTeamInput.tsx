@@ -7,32 +7,40 @@ import classes from "@/styles/ImportTeamInput.module.css";
 import { useRiderContext } from "@/providers/RiderProvider";
 import { useMantineTheme } from "@mantine/core";
 import { filterTeamURL } from "@/utils/filterTeamURL";
+import { usePlanContext } from "@/providers/PlanProvider";
+import { useStageContext } from "@/providers/StageProvider";
+import {
+  saveIdToLocalStorage,
+  getIdFromLocalStorage,
+} from "@/utils/localStorageUtils";
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
   const { setActiveTeam, setSavedTransfers, setSavedTeam } = useTeamContext();
-  const { globalRiders } = useRiderContext();
+  const { updatePlan } = usePlanContext();
+  const { setActiveStage } = useStageContext();
   const [value, setValue] = useInputState<string>("");
   const [isValidInput, setIsValidInput] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const setRidersToImported = (importedRiders: any, transfers_used: string) => {
-    setSavedTransfers(parseInt(transfers_used.split(" ")[0]));
-    let riders = [];
-
-    for (let i = 0; i < importedRiders.length; i++) {
-      const rider = globalRiders?.find(
-        (r) =>
-          r.name.includes(importedRiders[i].name) &&
-          r.team === importedRiders[i].team
-      );
-      if (rider) {
-        riders.push(rider);
-      } else {
-        console.log("rider not found: ", importedRiders[i]);
-      }
+  const updatePlanToImported = (
+    importedRiders: any,
+    transfers_used: string,
+    stage: number
+  ) => {
+    if (!importedRiders || importedRiders.length < 12) {
+      console.error("Imported team is invalid or incomplete");
+      setIsValidInput(false);
+      return;
     }
-    setActiveTeam(riders);
+
+    for (let i = stage; i > 0; i--) {
+      updatePlan(importedRiders, i, parseInt(transfers_used, 10));
+    }
+    setActiveTeam(importedRiders);
+    setSavedTeam(importedRiders);
+    setActiveStage(stage);
+    setIsValidInput(true);
   };
 
   const handleClick = async () => {
@@ -48,14 +56,12 @@ const ImportTeamInput = () => {
       const data = await res.json();
 
       if (res.ok) {
-        setValue("");
+        saveIdToLocalStorage(value);
         const parsedTeam = JSON.parse(data.team);
-        const { team: riders, transfers_used } = parsedTeam;
+        const { team: riders, transfers_used, current_stage } = parsedTeam;
 
-        // should be transfers_used below, this is a temporary fix
-        setRidersToImported(riders, "5");
+        updatePlanToImported(riders, transfers_used, current_stage);
         setIsLoading(false);
-        setIsValidInput(true);
       } else {
         console.error("Failed to import team");
         setIsValidInput(false);
@@ -81,6 +87,13 @@ const ImportTeamInput = () => {
       setIsValidInput(true);
     }
   }, [value]);
+
+  useEffect(() => {
+    const id = getIdFromLocalStorage();
+    if (id) {
+      setValue(id);
+    }
+  }, []);
 
   return (
     <div className={classes.container}>
