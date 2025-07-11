@@ -6,7 +6,7 @@ import MainPlanner from "@/components/planner/MainPlanner";
 import MainStage from "@/components/stage/MainStage";
 import PointsBarChart from "@/components/PointsBarChart";
 import classes from "@/styles/MainPlanner.module.css";
-import ImportTeamInput from "@/components/ImportTeamInput";
+import ImportTeamInput from "@/components/import/ImportTeamInput";
 import CombinedProviders from "@/providers/CombinedProviders";
 
 const PlannerPage: React.FC = () => {

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useTeamContext } from "@/providers/TeamProvider";
-import { TextInput, ActionIcon, Loader } from "@mantine/core";
+import { TextInput, Button, Loader } from "@mantine/core";
 import { useInputState } from "@mantine/hooks";
-import { IconSearch, IconBike } from "@tabler/icons-react";
-import classes from "@/styles/ImportTeamInput.module.css";
+import { IconSearch, IconTransferIn } from "@tabler/icons-react";
+import classes from "@/styles/Import/ImportTeamInput.module.css";
 import { useMantineTheme } from "@mantine/core";
 import { filterTeamURL } from "@/utils/filterTeamURL";
 import { usePlanContext } from "@/providers/PlanProvider";
@@ -12,8 +11,9 @@ import {
   saveIdToLocalStorage,
   getIdFromLocalStorage,
 } from "@/utils/localStorageUtils";
-import { UpdateNotification } from "./planner/Map/UpdateNotification";
+import { UpdateNotification } from "../planner/Map/UpdateNotification";
 import { getCurrentStage } from "@/utils/stageUtils";
+import InforButton from "./InfoButton";
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
@@ -101,7 +101,10 @@ const ImportTeamInput = () => {
 
   return (
     <div className={classes.container}>
-      <h1>Importer lag</h1>
+      <div className={classes.titleContainer}>
+        <h2>Importer lag</h2>
+        <InforButton />
+      </div>
       <TextInput
         radius="md"
         size="md"
@@ -111,25 +114,22 @@ const ImportTeamInput = () => {
         error={isValidInput ? null : "Noe gikk galt"}
         rightSectionWidth={42}
         leftSection={<IconSearch size={22} stroke={1.5} />}
-        rightSection={
-          <ActionIcon
-            size={32}
-            radius="md"
-            variant="filled"
-            color={theme.colors.yellow[6]}
-            onClick={handleClick}
-            className={classes.bikeIcon}>
-            {isLoading ? (
-              <Loader size="sm" type="dots" color={theme.colors.blue[0]} />
-            ) : (
-              <IconBike size={22} stroke={1.5} color={theme.colors.blue[0]} />
-            )}
-          </ActionIcon>
-        }
         onChange={(v) => {
           setValue(v), setIsValidInput(true);
         }}
       />
+      <Button
+        size="md"
+        radius="md"
+        color={theme.colors.yellow[6]}
+        onClick={handleClick}
+        loading={isLoading}
+        rightSection={
+          <IconTransferIn size={22} stroke={2}  />
+        }
+        className={classes.importButton}>
+        Importer
+      </Button>
       <UpdateNotification showUpdateNotification={success} success={true} />
     </div>
   );
