@@ -50,7 +50,6 @@ export default async function handler(
     const formattedTeam = {
       team: assembledTeam,
       transfers_used: data.transferTotal || 0,
-      current_stage: currentStage,
     };
 
     console.log("Formatted team:", formattedTeam);

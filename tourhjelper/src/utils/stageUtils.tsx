@@ -68,17 +68,6 @@ export const fetchMultipleStageInfo = async (stage: number) => {
   return stages;
 };
 
-// utils/getCurrentStageUtils.client.ts
-interface StageData {
-  stage: number;
-  date: string;
-  start: string;
-  distance: string;
-  type: string;
-  imageURL: string;
-  lastUpdated: string;
-}
-
 export async function getCurrentStage(): Promise<number> {
   try {
     const response = await fetch("/data/stage_data.json");
@@ -89,7 +78,6 @@ export async function getCurrentStage(): Promise<number> {
     const stages = await response.json();
     const now = new Date();
     const currentYear = now.getFullYear();
-    let currentStage = 1;
 
     for (const stage of stages) {
       const [month, day] = stage.date.split("/").map(Number);
@@ -104,14 +92,14 @@ export async function getCurrentStage(): Promise<number> {
       );
 
       // If stage has started (current time is after stage start time)
-      if (now >= stageDateTime) {
-        currentStage = stage.stage;
-      } else {
-        break;
+      if (now < stageDateTime) {
+        return stage.stage;
       }
     }
 
-    return currentStage;
+    // If all stages have started, return the last stage
+    const maxStage = Math.max(...stages.map((s: any) => s.stage));
+    return maxStage;
   } catch (error) {
     console.error("Error determining current stage:", error);
     return 1; // Default to stage 1 in case of error

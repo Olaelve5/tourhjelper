@@ -13,6 +13,7 @@ import {
   getIdFromLocalStorage,
 } from "@/utils/localStorageUtils";
 import { UpdateNotification } from "./planner/Map/UpdateNotification";
+import { getCurrentStage } from "@/utils/stageUtils";
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
@@ -23,10 +24,9 @@ const ImportTeamInput = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const updatePlanToImported = (
+  const updatePlanToImported = async (
     importedRiders: any,
-    transfers_used: string,
-    stage: number
+    transfers_used: string
   ) => {
     if (!importedRiders || importedRiders.length < 12) {
       console.error("Imported team is invalid or incomplete");
@@ -34,11 +34,18 @@ const ImportTeamInput = () => {
       return;
     }
 
+    const stage = await getCurrentStage();
+
     for (let i = stage; i > 0; i--) {
       updatePlan(importedRiders, i, parseInt(transfers_used, 10));
     }
     setActiveStage(stage);
     setIsValidInput(true);
+    setSuccess(true);
+    setTimeout(() => {
+      setSuccess(false);
+    }, 3000);
+    setIsLoading(false);
   };
 
   const handleClick = async () => {
@@ -58,8 +65,7 @@ const ImportTeamInput = () => {
         const parsedTeam = JSON.parse(data.team);
         const { team: riders, transfers_used, current_stage } = parsedTeam;
 
-        updatePlanToImported(riders, transfers_used, current_stage);
-        setIsLoading(false);
+        updatePlanToImported(riders, transfers_used);
       } else {
         console.error("Failed to import team");
         setIsValidInput(false);
@@ -101,7 +107,7 @@ const ImportTeamInput = () => {
         size="md"
         value={value}
         classNames={{ input: classes.input }}
-        placeholder="Skriv inn ID"
+        placeholder="Tourmanager link eller ID"
         error={isValidInput ? null : "Noe gikk galt"}
         rightSectionWidth={42}
         leftSection={<IconSearch size={22} stroke={1.5} />}
