@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Notification } from '@mantine/core';
 import classes from '@/styles/Map/Notification.module.css';
 import { IconCheck, IconX } from '@tabler/icons-react';
-import { getDisplayName } from 'next/dist/shared/lib/utils';
-import { get } from 'http';
 
 interface UpdateNotificationProps {
     showUpdateNotification: boolean;

@@ -12,15 +12,16 @@ import {
   saveIdToLocalStorage,
   getIdFromLocalStorage,
 } from "@/utils/localStorageUtils";
+import { UpdateNotification } from "./planner/Map/UpdateNotification";
 
 const ImportTeamInput = () => {
   const theme = useMantineTheme();
-  const { setActiveTeam, setSavedTeam } = useTeamContext();
   const { updatePlan } = usePlanContext();
   const { setActiveStage } = useStageContext();
   const [value, setValue] = useInputState<string>("");
   const [isValidInput, setIsValidInput] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const updatePlanToImported = (
     importedRiders: any,
@@ -36,8 +37,6 @@ const ImportTeamInput = () => {
     for (let i = stage; i > 0; i--) {
       updatePlan(importedRiders, i, parseInt(transfers_used, 10));
     }
-    // setActiveTeam(importedRiders);
-    // setSavedTeam(importedRiders);
     setActiveStage(stage);
     setIsValidInput(true);
   };
@@ -125,6 +124,7 @@ const ImportTeamInput = () => {
           setValue(v), setIsValidInput(true);
         }}
       />
+      <UpdateNotification showUpdateNotification={success} success={true} />
     </div>
   );
 };

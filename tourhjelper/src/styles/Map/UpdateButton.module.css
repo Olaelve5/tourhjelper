@@ -74,18 +74,6 @@
     text-align: center;
 }
 
-.notificationContainer {
-    width: 100%;
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    z-index: 1000000000;
-    align-items: flex-end;
-}
-
 @media screen and (max-width: 800px) {
     .container {
         width: 50%;

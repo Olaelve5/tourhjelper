@@ -1,19 +1,24 @@
 .root {
     background: var(--light-grey);
-    width: 25rem;
+    width: 100%;
     border-color: var(--highlight-grey);
     box-sizing: border-box;
     transition: all 0.3s ease;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000000000;
 }
 
 .body {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 100%;
+    width: 25rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
     white-space: normal; 
+    
 }
 
 .title {
