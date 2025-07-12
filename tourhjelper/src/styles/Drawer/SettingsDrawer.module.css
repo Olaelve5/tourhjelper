@@ -4,9 +4,9 @@
 }
 
 .inner {
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
@@ -48,7 +48,6 @@
   margin-top: 2rem;
   width: 75%;
 }
-
 
 @media screen and (max-width: 768px) {
   .body {
