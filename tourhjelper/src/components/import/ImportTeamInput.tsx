@@ -7,6 +7,7 @@ import { useMantineTheme } from "@mantine/core";
 import { filterTeamURL } from "@/utils/filterTeamURL";
 import { usePlanContext } from "@/providers/PlanProvider";
 import { useStageContext } from "@/providers/StageProvider";
+import { useTeamContext } from "@/providers/TeamProvider";
 import {
   saveIdToLocalStorage,
   getIdFromLocalStorage,
@@ -19,6 +20,7 @@ const ImportTeamInput = () => {
   const theme = useMantineTheme();
   const { updatePlan } = usePlanContext();
   const { setActiveStage } = useStageContext();
+  const { setActiveTeam } = useTeamContext();
   const [value, setValue] = useInputState<string>("");
   const [isValidInput, setIsValidInput] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,13 +30,16 @@ const ImportTeamInput = () => {
     importedRiders: any,
     transfers_used: string
   ) => {
-    if (!importedRiders || importedRiders.length < 12) {
+    const stage = await getCurrentStage();
+
+    if (!importedRiders || importedRiders.length < 13) {
       console.error("Imported team is invalid or incomplete");
+      console.log(importedRiders);
+      setActiveStage(stage);
+      setActiveTeam(importedRiders);
       setIsValidInput(false);
       return;
     }
-
-    const stage = await getCurrentStage();
 
     for (let i = stage; i > 0; i--) {
       updatePlan(importedRiders, i, parseInt(transfers_used, 10));
@@ -124,10 +129,12 @@ const ImportTeamInput = () => {
         color={theme.colors.yellow[6]}
         onClick={handleClick}
         loading={isLoading}
-        rightSection={
-          <IconTransferIn size={22} stroke={2}  />
-        }
-        className={classes.importButton}>
+        rightSection={<IconTransferIn size={22} stroke={2} />}
+        className={classes.importButton}
+        loaderProps={{ type: "dots", color: theme.colors.gray[8] }}
+        classNames={{
+          loader: classes.loader,
+        }}>
         Importer
       </Button>
       <UpdateNotification showUpdateNotification={success} success={true} />
