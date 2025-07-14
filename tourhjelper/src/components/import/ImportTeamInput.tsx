@@ -126,7 +126,6 @@ const ImportTeamInput = () => {
       <Button
         size="md"
         radius="md"
-        color={theme.colors.yellow[6]}
         onClick={handleClick}
         loading={isLoading}
         rightSection={<IconTransferIn size={22} stroke={2} />}
