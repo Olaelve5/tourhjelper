@@ -62,8 +62,15 @@
   },
   {
     "stage": 10,
-    "3_stars": ["Healy", "Simmons", "Onley", "Pogacar", "Vingegaard"],
-    "2_stars": ["Hirschi", "Powless", "Gregoire", "Castrillo", "Martinez"],
+    "3_stars": ["Healy", "Onley", "Pogacar", "Vingegaard"],
+    "2_stars": [
+      "Simmons",
+      "Powless",
+      "Gregoire",
+      "Castrillo",
+      "Martinez",
+      "Storer"
+    ],
     "1_stars": [
       "Alaphillippe",
       "Van den Broek",

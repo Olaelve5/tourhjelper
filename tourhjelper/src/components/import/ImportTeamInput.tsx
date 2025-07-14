@@ -124,7 +124,7 @@ const ImportTeamInput = () => {
         }}
       />
       <Button
-        size="md"
+        size="sm"
         radius="md"
         onClick={handleClick}
         loading={isLoading}
