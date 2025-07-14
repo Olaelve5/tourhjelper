@@ -75,8 +75,8 @@
   },
   {
     "stage": 11,
-    "3_stars": ["Merlier", "Milan"],
-    "2_stars": ["Groenewegen", "Girmay", "Van Aert", "Meeus", "Groves"],
+    "3_stars": ["Van Aert", "Merlier", "Milan", "Groves"],
+    "2_stars": ["Groenewegen", "Girmay", "Van der Poel", "Meeus"],
     "1_stars": ["De Lie", "Asgreen", "Ackerman", "Bauhaus", "Van Poppel"]
   },
   {
