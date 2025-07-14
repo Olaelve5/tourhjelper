@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "@mantine/core";
-import CombinedProviders from "@/providers/CombinedProviders";
 import { RidersMap } from "./Map/RidersMap";
 import { PlanIndicator } from "./PlanIndicator";
 import { FilterTable } from "./Table/FilterTable";
@@ -29,31 +28,27 @@ const MainPlanner = () => {
 
   return (
     <Container size="lg" className={classes.container}>
-      <CombinedProviders>
-        <div className={classes.loadingPlanContainer}>
-          <PlanIndicator />
-          <div className={classes.mapTableContainer}>
-            {!isSmallDevice && (
-              <RidersMap handleMapVisibility={handleMapVisibility} />
-            )}
-            {!isSmallDevice && (
-              <FilterTable handleMapVisibility={handleMapVisibility} />
-            )}
-            {isSmallDevice && (
-              <>
-                <div
-                  className={isMapVisible ? classes.visible : classes.hidden}>
-                  <RidersMap handleMapVisibility={handleMapVisibility} />
-                </div>
-                <div
-                  className={!isMapVisible ? classes.visible : classes.hidden}>
-                  <FilterTable handleMapVisibility={handleMapVisibility} />
-                </div>
-              </>
-            )}
-          </div>
+      <div className={classes.loadingPlanContainer}>
+        <PlanIndicator />
+        <div className={classes.mapTableContainer}>
+          {!isSmallDevice && (
+            <RidersMap handleMapVisibility={handleMapVisibility} />
+          )}
+          {!isSmallDevice && (
+            <FilterTable handleMapVisibility={handleMapVisibility} />
+          )}
+          {isSmallDevice && (
+            <>
+              <div className={isMapVisible ? classes.visible : classes.hidden}>
+                <RidersMap handleMapVisibility={handleMapVisibility} />
+              </div>
+              <div className={!isMapVisible ? classes.visible : classes.hidden}>
+                <FilterTable handleMapVisibility={handleMapVisibility} />
+              </div>
+            </>
+          )}
         </div>
-      </CombinedProviders>
+      </div>
     </Container>
   );
 };

@@ -44,3 +44,21 @@ export const getStageFromPlanFromStorage = async (
 
   return stageData;
 };
+
+export const saveIdToLocalStorage = (id: string) => {
+  try {
+    localStorage.setItem("importTeamId", id);
+  } catch (error) {
+    console.error("Failed to save imported team ID to localStorage:", error);
+  }
+};
+
+export const getIdFromLocalStorage = () => {
+  try {
+    const id = localStorage.getItem("importTeamId");
+    return id ? id : "";
+  } catch (error) {
+    console.error("Failed to get imported team ID from localStorage:", error);
+    return "";
+  }
+};

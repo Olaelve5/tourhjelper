@@ -1,8 +1,7 @@
 .header {
   padding-top: 4rem;
-  margin-bottom: 7rem;
+  margin-bottom: 5rem;
   width: 100%;
-  z-index: 1000;
   position: relative;
 }
 
@@ -125,7 +124,7 @@
 @media screen and (max-width: 768px) {
   .header {
     padding-top: 2rem;
-    margin-bottom: 6rem !important;
+    margin-bottom: 4rem !important;
   }
 
   .logoTitle {

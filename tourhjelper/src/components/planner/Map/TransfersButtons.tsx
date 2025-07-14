@@ -9,7 +9,7 @@ import {
 } from "@tabler/icons-react";
 import classes from "@/styles/Map/TransferButtons.module.css";
 import { useTeamContext } from "@/providers/TeamProvider";
-import { SettingsDrawer } from "../Drawer/SettingsDrawer";
+import { SettingsDrawer } from "../SettingsPopup/SettingsPopup";
 
 export function EmptyButton() {
   const { setActiveTeam } = useTeamContext();

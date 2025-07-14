@@ -103,12 +103,10 @@ export function UpdateButton() {
           {updatePossible && <UpdateStatus />}
         </h3>
       </Button>
-      <div className={classes.notificationContainer}>
-        <UpdateNotification
-          showUpdateNotification={showUpdateNotification}
-          success={updateSuccess}
-        />
-      </div>
+      <UpdateNotification
+        showUpdateNotification={showUpdateNotification}
+        success={updateSuccess}
+      />
     </div>
   );
 }

@@ -1,9 +1,13 @@
 .root {
     background: var(--light-grey);
-    width: 25rem;
+    width: 20rem;
     border-color: var(--highlight-grey);
     box-sizing: border-box;
     transition: all 0.3s ease;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000000000;
 }
 
 .body {
