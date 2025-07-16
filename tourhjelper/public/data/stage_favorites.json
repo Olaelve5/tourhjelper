@@ -96,12 +96,12 @@
     "stage": 13,
     "3_stars": ["Pogacar", "Vingegaard", "Evenepoel"],
     "2_stars": ["Lipowitz", "S. Yates", "Vauquelin", "Healy"],
-    "1_stars": ["Arensmann", "Skjelmose", "Roglic"]
+    "1_stars": ["Arensman", "Skjelmose", "Roglic"]
   },
   {
     "stage": 14,
     "3_stars": ["Pogacar", "Vingegaard"],
-    "2_stars": ["Skjelmose", "Arensmann", "Gall"],
+    "2_stars": ["Skjelmose", "Arensman", "Gall"],
     "1_stars": ["Evenepoel", "Roglic", "Kuss", "A. Yates"]
   },
   {
@@ -112,7 +112,7 @@
   },
   {
     "stage": 16,
-    "3_stars": ["Healy", "Gall", "Buitrago", "Onley"],
+    "3_stars": ["Healy", "Gall", "Buitrago", "Onley", "Arensman"],
     "2_stars": ["Woods", "Storer", "Skjelmose", "Martinez"],
     "1_stars": ["Pogacar", "Vingegaard", "S. Yates", "A. Yates"]
   },
