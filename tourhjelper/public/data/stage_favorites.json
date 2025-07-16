@@ -107,7 +107,7 @@
   {
     "stage": 15,
     "3_stars": ["Van Aert", "Van der Poel", "Groves"],
-    "2_stars": ["Phillipsen", "Milan", "Girmay"],
+    "2_stars": ["Laurance", "Milan", "Girmay"],
     "1_stars": ["Merlier", "Van Poppel", "Stewart", "Cort", "Stuyven"]
   },
   {
@@ -118,7 +118,7 @@
   },
   {
     "stage": 17,
-    "3_stars": ["Merlier", "Milan", "Phillipsen"],
+    "3_stars": ["Merlier", "Milan"],
     "2_stars": ["Meeus", "Groenewegen", "Girmay"],
     "1_stars": ["Van Aert", "De Lie", "Ackerman", "Bauhaus"]
   },
@@ -144,6 +144,6 @@
     "stage": 21,
     "3_stars": ["Van der Poel", "Van Aert"],
     "2_stars": ["Ganna", "De Lie", "Alaphillippe"],
-    "1_stars": ["Cort", "Phillipsen", "Pogacar", "Vauquelin"]
+    "1_stars": ["Cort", "Pogacar", "Vauquelin"]
   }
 ]
