@@ -108,14 +108,15 @@
   {
     "stage": 14,
     "3_stars": ["Pogacar", "Vingegaard"],
-    "2_stars": ["Skjelmose", "Arensman", "Gall", "Lipowitz"],
+    "2_stars": ["Skjelmose", "Arensman", "S. Yates", "Lipowitz"],
     "1_stars": [
-      "Evenepoel",
       "Roglic",
       "Kuss",
       "A. Yates",
       "Onley",
-      "T. Halland Johannesen"
+      "T. Halland Johannesen", 
+      "Storer", 
+      "Jorgenson" 
     ]
   },
   {
