@@ -127,9 +127,9 @@
   },
   {
     "stage": 16,
-    "3_stars": ["Healy", "Gall", "Arensman"],
-    "2_stars": ["Woods", "Storer", "Skjelmose", "Martinez"],
-    "1_stars": ["Pogacar", "Vingegaard", "S. Yates", "A. Yates"]
+    "3_stars": ["Pogacar", "Vingegaard"],
+    "2_stars": ["Lipowitz", "Kuss", "Arensmann", "Martinez"],
+    "1_stars": ["Woods", "Gall", "S. Yates", "Storer", "Onley" ]
   },
   {
     "stage": 17,
