@@ -146,13 +146,13 @@
   {
     "stage": 19,
     "3_stars": ["Pogacar", "Vingegaard"],
-    "2_stars": ["Evenepoel", "Roglic", "Carlos Rodriguez", "Healy"],
-    "1_stars": ["Gall", "Arensmann", "Kuss", "Storer"]
+    "2_stars": ["Lipowitz", "Roglic", "Carlos Rodriguez", "Arensman"],
+    "1_stars": ["Gall", "Woods", "Kuss", "Storer"]
   },
   {
     "stage": 20,
     "3_stars": ["Van Aert", "Romeo", "Simmons"],
-    "2_stars": ["Powless", "Van den Broek", "Schacmann"],
+    "2_stars": ["Powless", "Van den Broek", "Schachmann"],
     "1_stars": ["Stuyven", "Aranburu", "Schmid", "Berckmoes"]
   },
   {
