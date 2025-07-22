@@ -151,14 +151,14 @@
   },
   {
     "stage": 20,
-    "3_stars": ["Cort", "Van Aert", "Romeo", "Simmons", "Van der Poel"],
-    "2_stars": ["Powless", "Van den Broek", "Schackmann"],
+    "3_stars": ["Van Aert", "Romeo", "Simmons"],
+    "2_stars": ["Powless", "Van den Broek", "Schacmann"],
     "1_stars": ["Stuyven", "Aranburu", "Schmid", "Berckmoes"]
   },
   {
     "stage": 21,
-    "3_stars": ["Van der Poel", "Van Aert"],
-    "2_stars": ["Ganna", "De Lie", "Alaphillippe"],
-    "1_stars": ["Cort", "Pogacar", "Vauquelin"]
+    "3_stars": ["Milan", "Van Aert"],
+    "2_stars": ["Groves", "De Lie", "Alaphillippe"],
+    "1_stars": ["Girmay", "Pogacar", "Laurance"]
   }
 ]
