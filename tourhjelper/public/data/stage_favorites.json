@@ -157,8 +157,8 @@
   },
   {
     "stage": 21,
-    "3_stars": ["Van Aert", "De Lie"],
-    "2_stars": ["Groves", "Stuyven", "Alaphillippe"],
-    "1_stars": ["Girmay", "Pogacar", "Laurance"]
+    "3_stars": ["Van Aert", "Pogacar"],
+    "2_stars": ["Groves", "Milan", "Simmons", "Merlier", "Meeus"],
+    "1_stars": ["Girmay", "De Lie", "Laurance", "Abrahamsen", "Alaphillippe"]
   }
 ]
