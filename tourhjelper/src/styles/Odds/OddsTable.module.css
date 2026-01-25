@@ -1,0 +1,14 @@
+.tableContainer {
+  width: 100%;
+  background: transparent;
+  font-weight: bold;
+}
+
+.updateInfo {
+  font-size: 0.9rem;
+  color: #ffffff8e;
+  margin: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+  font-weight: normal;
+}
