@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: center;
   height: 3rem;
+  background: var(--dark-grey);
+  border-radius: 5px 5px 0 0;
 }
 
 .button {
@@ -14,10 +16,18 @@
   border-radius: 5px 5px 0 0;
 }
 
+.button:hover {
+  background: var(--light-grey);
+}
+
 .buttonActive {
   width: 50%;
   height: 100%;
   background: var(--header-color);
   color: #ffffff;
   border-radius: 5px 5px 0 0;
+}
+
+.buttonActive:hover {
+  background: var(--header-color);
 }

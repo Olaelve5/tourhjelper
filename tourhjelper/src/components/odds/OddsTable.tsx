@@ -1,6 +1,6 @@
 import classes from "@/styles/Odds/OddsTable.module.css";
 import { Table } from "@mantine/core";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { IconStarFilled } from "@tabler/icons-react";
 
 const mock_data = [
@@ -27,23 +27,36 @@ const mock_data = [
 ];
 
 const OddsTable = () => {
+  const [currentStage, setCurrentStage] = useState(13);
+  const data = mock_data;
+
   const sortedData = useMemo(() => {
-    return [...mock_data].sort((a, b) => a.odds - b.odds);
+    return [...data].sort((a, b) => a.odds - b.odds);
   }, []);
 
-  const rows = sortedData.map(({ name, odds, role, won }, index) => (
-    <Table.Tr key={name}>
-      <Table.Td className={classes.subtleInfo}>{index + 1}</Table.Td>
-      <Table.Td>{name}</Table.Td>
-      <Table.Td className={classes.subtleInfo}>{role}</Table.Td>
-      <Table.Td align="center">
-        <div className={won ? classes.won : classes.odds}>
-          {odds.toFixed(2)}{" "}
-          {won && <IconStarFilled size={14} className={classes.star} />}
-        </div>
-      </Table.Td>
-    </Table.Tr>
-  ));
+  const rows =
+    sortedData.length === 0
+      ? [
+          <Table.Tr key="empty">
+            <Table.Td colSpan={4} className={classes.emptyState}>
+              Ingen odds tilgjengelig for etappe {currentStage} ennå. Prøv å
+              velge en annen etappe eller oppdater/importer data.
+            </Table.Td>
+          </Table.Tr>,
+        ]
+      : sortedData.map(({ name, odds, role, won }, index) => (
+          <Table.Tr key={name}>
+            <Table.Td className={classes.subtleInfo}>{index + 1}</Table.Td>
+            <Table.Td>{name}</Table.Td>
+            <Table.Td className={classes.subtleInfo}>{role}</Table.Td>
+            <Table.Td align="center">
+              <div className={won ? classes.won : classes.odds}>
+                {odds.toFixed(2)}{" "}
+                {won && <IconStarFilled size={14} className={classes.star} />}
+              </div>
+            </Table.Td>
+          </Table.Tr>
+        ));
 
   return (
     <div className={classes.tableContainer}>
@@ -57,7 +70,7 @@ const OddsTable = () => {
         <Table.Thead>
           <Table.Tr>
             <Table.Th colSpan={4} className={classes.headerTitle}>
-              Etappe 13
+              Gul Trøye Vinnerodds
             </Table.Th>
           </Table.Tr>
           <Table.Tr className={classes.columnHeaderRow}>

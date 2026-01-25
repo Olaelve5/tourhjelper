@@ -8,7 +8,7 @@
   padding: 0;
   align-items: center;
   box-shadow: 0 10px 12px -8px #0000006b;
-  background-color: var(--dark-grey);
+  background-color: white;
 }
 
 .headerContainer {
@@ -28,7 +28,7 @@
 
 .updateInfo {
   font-size: 0.9rem;
-  color: #ffffff8e;
+  color: var(--dark-grey);
   margin: 0.5rem 0;
   width: 100%;
   text-align: center;
