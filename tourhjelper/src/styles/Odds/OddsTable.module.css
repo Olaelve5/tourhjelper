@@ -41,6 +41,12 @@
   color: #ffffff8e;
 }
 
+.roleBelowName {
+  font-size: 0.75rem;
+  font-weight: normal;
+  color: #ffffff8e;
+}
+
 .odds {
   min-width: 4rem;
   max-width: 4rem;
