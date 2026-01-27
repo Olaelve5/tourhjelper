@@ -5,4 +5,5 @@
 .input {
   background-color: var(--highlight-grey);
   border: none;
+  color: white;
 }
