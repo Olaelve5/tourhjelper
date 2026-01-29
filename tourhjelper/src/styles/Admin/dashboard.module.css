@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid var(--yellow-tdf);
+  margin-bottom: 2rem;
+  width: 80%;
+  text-align: center;
+}
