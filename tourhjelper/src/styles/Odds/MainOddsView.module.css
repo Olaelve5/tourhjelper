@@ -1,0 +1,36 @@
+.container {
+  height: auto;
+  width: 100%;
+  border-radius: 5px;
+  margin: 5rem 0 5rem 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
+  box-shadow: 0 10px 12px -8px #0000006b;
+  background-color: white;
+}
+
+.headerContainer {
+  position: relative;
+  width: 100%;
+  background: var(--header-color);
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.5rem;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.updateInfo {
+  font-size: 0.9rem;
+  color: var(--dark-grey);
+  margin: 0.5rem 0;
+  width: 100%;
+  text-align: center;
+  font-weight: normal;
+}

@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--highlight-grey);
+  padding-bottom: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.riderRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}
+
+.removeButton {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  cursor: pointer;
+
+  /* iOS/Chrome tap highlight */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove the "blue ring" for mouse clicks */
+.removeButton:focus {
+  outline: none;
+}
+
+/* Keep keyboard accessibility (recommended) */
+.removeButton:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--header-color) 80%, white 20%);
+  outline-offset: 2px;
+  border-radius: 6px;
+}

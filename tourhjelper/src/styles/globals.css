@@ -3,7 +3,7 @@
   --border-radius: 12px;
 
   --foreground-rgb: 255, 255, 255;
-  --background-rgb: 7, 21, 36;
+  --background-rgb: 0, 0, 0;
 
   --yellow-tdf: #ffdd09;
   --yellow-tdf-hover: #ffdd00da;
@@ -41,7 +41,7 @@ body {
   min-height: 100dvh;
   height: 100%;
   color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
+  background-color: #0c131c;
   background-size: 100% 100%; /* Scale the image to cover the entire background area */
   background-repeat: no-repeat;
   background-position: center center;
