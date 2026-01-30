@@ -25,3 +25,10 @@
   padding-top: 1rem;
   padding-bottom: 0.5rem;
 }
+
+.updateButton[data-disabled] {
+  opacity: 0.5;
+  background-color: var(--highlight-grey) !important;
+  cursor: not-allowed;
+  border: 1px solid #ffffff54 !important;
+}

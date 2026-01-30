@@ -3,6 +3,7 @@ import { IconPencilCheck, IconRefresh } from "@tabler/icons-react";
 import { useMantineTheme, Button, Notification } from "@mantine/core";
 import { StageFavorites } from "./types/StageFavorites";
 import { supabase } from "@/utils/supabase";
+import classes from "@/styles/Admin/modal.module.css";
 
 interface UpdateButtonsProps {
   setLocalStageFavorites: React.Dispatch<
@@ -24,6 +25,10 @@ const UpdateButtons = ({
   const theme = useMantineTheme();
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+
+  const isUnchanged =
+    JSON.stringify(favorites) === JSON.stringify(localFavorites);
+  const isDisabled = loading || isUnchanged;
 
   const handleReset = () => {
     // Revert local changes back to the original fetched data
@@ -70,10 +75,8 @@ const UpdateButtons = ({
         radius={"md"}
         leftSection={<IconRefresh />}
         onClick={handleReset}
-        disabled={
-          loading ||
-          JSON.stringify(favorites) === JSON.stringify(localFavorites)
-        }>
+        disabled={isDisabled}
+        className={classes.updateButton}>
         Reset
       </Button>
       <Button
@@ -82,10 +85,8 @@ const UpdateButtons = ({
         leftSection={<IconPencilCheck />}
         onClick={handleSave}
         loading={loading}
-        disabled={
-          loading ||
-          JSON.stringify(favorites) === JSON.stringify(localFavorites)
-        }>
+        disabled={isDisabled}
+        className={classes.updateButton}>
         Lagre
       </Button>
       {showSuccess && (
@@ -93,7 +94,13 @@ const UpdateButtons = ({
           title="Suksess"
           color="teal"
           icon={<IconPencilCheck />}
-          style={{ position: "absolute", top: 20, right: 20 }}>
+          style={{
+            position: "absolute",
+            bottom: 20,
+            right: 20,
+            backgroundColor: "var(--dark-grey)",
+            color: "#fff",
+          }}>
           Endringer lagret!
         </Notification>
       )}

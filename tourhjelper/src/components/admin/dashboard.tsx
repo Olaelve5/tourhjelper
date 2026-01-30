@@ -15,16 +15,8 @@ const AdminDashboard = () => {
   );
   const [loading, setLoading] = useState(false);
 
-  // Simple caching
-  const [cache, setCache] = useState<Record<number, StageFavorites>>({});
-
   useEffect(() => {
     const fetchStageData = async () => {
-      if (cache[selectedStage]) {
-        setFavorites(cache[selectedStage]);
-        return;
-      }
-
       setLoading(true);
       const { data, error } = await supabase
         .from("stage_favorites")
@@ -35,7 +27,6 @@ const AdminDashboard = () => {
       if (!error && data) {
         setFavorites(data);
         setLocalFavorites(data);
-        setCache((prev) => ({ ...prev, [selectedStage]: data }));
       }
       setLoading(false);
     };
