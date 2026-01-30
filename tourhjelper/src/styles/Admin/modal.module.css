@@ -26,6 +26,13 @@
   padding-bottom: 0.5rem;
 }
 
+
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+}
+
 .updateButton[data-disabled] {
   opacity: 0.5;
   background-color: var(--highlight-grey) !important;

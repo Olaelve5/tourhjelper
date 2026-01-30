@@ -25,6 +25,7 @@ const UpdateButtons = ({
   const theme = useMantineTheme();
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const isUnchanged =
     JSON.stringify(favorites) === JSON.stringify(localFavorites);
@@ -53,12 +54,14 @@ const UpdateButtons = ({
         .select();
 
       if (error) {
+        setShowError(true);
+        setTimeout(() => setShowError(false), 4000);
         throw error;
       }
 
       // Show success for 2 seconds
       setShowSuccess(true);
-      setTimeout(() => setShowSuccess(false), 2000);
+      setTimeout(() => setShowSuccess(false), 4000);
       setFavorites(localFavorites);
     } catch (error) {
       console.error("Error saving favorites:", error);
@@ -69,40 +72,45 @@ const UpdateButtons = ({
   };
 
   return (
-    <div style={{ display: "flex", gap: "2rem", marginTop: "3rem" }}>
-      <Button
-        bg={theme.colors.red[7]}
-        radius={"md"}
-        leftSection={<IconRefresh />}
-        onClick={handleReset}
-        disabled={isDisabled}
-        className={classes.updateButton}>
-        Reset
-      </Button>
-      <Button
-        bg={theme.colors.teal[7]}
-        radius={"md"}
-        leftSection={<IconPencilCheck />}
-        onClick={handleSave}
-        loading={loading}
-        disabled={isDisabled}
-        className={classes.updateButton}>
-        Lagre
-      </Button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "3rem",
+      }}>
+      <div className={classes.buttonGroup}>
+        <Button
+          bg={theme.colors.red[7]}
+          radius={"md"}
+          leftSection={<IconRefresh />}
+          onClick={handleReset}
+          disabled={isDisabled}
+          className={classes.updateButton}>
+          Reset
+        </Button>
+        <Button
+          bg={theme.colors.teal[7]}
+          radius={"md"}
+          leftSection={<IconPencilCheck />}
+          onClick={handleSave}
+          loading={loading}
+          disabled={isDisabled}
+          className={classes.updateButton}>
+          Lagre
+        </Button>
+      </div>
       {showSuccess && (
-        <Notification
-          title="Suksess"
-          color="teal"
-          icon={<IconPencilCheck />}
-          style={{
-            position: "absolute",
-            bottom: 20,
-            right: 20,
-            backgroundColor: "var(--dark-grey)",
-            color: "#fff",
-          }}>
+        <p style={{ color: theme.colors.teal[7], marginTop: "1rem" }}>
           Endringer lagret!
-        </Notification>
+        </p>
+      )}
+      {showError && (
+        <p style={{ color: theme.colors.red[7], marginTop: "1rem" }}>
+          Feil ved lagring av endringer.
+        </p>
       )}
     </div>
   );
