@@ -1,0 +1,27 @@
+.content {
+  background-color: #61696c76;
+  min-height: 100%;
+  backdrop-filter: blur(5px);
+  position: relative;
+  padding: 0 1rem;
+  overflow: hidden;
+}
+
+.overlay {
+  background-color: #272b2f8e;
+  backdrop-filter: blur(10px);
+}
+
+.body {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 150px);
+  max-height: 100%;
+}
+
+.searchInput {
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+}

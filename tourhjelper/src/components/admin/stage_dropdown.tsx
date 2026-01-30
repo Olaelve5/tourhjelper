@@ -15,14 +15,24 @@ const StageDropdown = ({
       onChange={(e) => setSelectedStage(Number(e.currentTarget.value))}
       data={Array.from({ length: 21 }, (_, i) => String(i + 1))}
       radius={"md"}
-      label="Selected Stage"
-      size="md"
-      w={300}
+      label="Valgt Etappe"
+      size="sm"
       styles={{
         input: {
           backgroundColor: "var(--light-grey)",
           color: "#ffffff",
           borderColor: "var(--highlight-grey)",
+          width: "100%",
+          fontWeight: "bold",
+        },
+        root: {
+          width: "100%",
+          maxWidth: "400px",
+        },
+        label: {
+          color: "#ffffff",
+          marginBottom: "4px",
+          fontWeight: "400",
         },
       }}
     />

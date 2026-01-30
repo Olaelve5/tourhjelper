@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid var(--highlight-grey);
+  padding-bottom: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.riderRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+}

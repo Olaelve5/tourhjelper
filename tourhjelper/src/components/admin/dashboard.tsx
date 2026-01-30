@@ -2,19 +2,17 @@ import { useState, useEffect } from "react";
 import StageDropdown from "./stage_dropdown";
 import { supabase } from "@/utils/supabase";
 import classes from "@/styles/Admin/dashboard.module.css";
-
-interface StageFavorites {
-  id: number;
-  stage_number: number;
-  stars_3: string[];
-  stars_2: string[];
-  stars_1: string[];
-  comment: string;
-}
+import PickedFavorites from "./picked_favorites";
+import RiderModal from "./rider_selector_modal";
+import UpdateButtons from "./update_buttons";
+import { StageFavorites } from "./types/StageFavorites";
 
 const AdminDashboard = () => {
   const [selectedStage, setSelectedStage] = useState<number>(1);
   const [favorites, setFavorites] = useState<StageFavorites | null>(null);
+  const [localFavorites, setLocalFavorites] = useState<StageFavorites | null>(
+    null,
+  );
   const [loading, setLoading] = useState(false);
 
   // Simple caching
@@ -36,6 +34,7 @@ const AdminDashboard = () => {
 
       if (!error && data) {
         setFavorites(data);
+        setLocalFavorites(data);
         setCache((prev) => ({ ...prev, [selectedStage]: data }));
       }
       setLoading(false);
@@ -47,20 +46,37 @@ const AdminDashboard = () => {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>Admin Dashboard</h1>
-      <StageDropdown
-        selectedStage={selectedStage}
-        setSelectedStage={setSelectedStage}
-      />
-
-      <div style={{ marginTop: "20px" }}>
+      <div className={classes.controls}>
+        <StageDropdown
+          selectedStage={selectedStage}
+          setSelectedStage={setSelectedStage}
+        />
+        <RiderModal
+          setLocalStageFavorites={setLocalFavorites}
+          localFavorites={localFavorites}
+        />
+      </div>
+      <div className={classes.favoritesSection}>
         {loading ? (
           <p>Laster data...</p>
         ) : favorites ? (
-          <pre>{JSON.stringify(favorites, null, 2)}</pre>
+          <PickedFavorites
+            stars_3={localFavorites?.stars_3 || []}
+            stars_2={localFavorites?.stars_2 || []}
+            stars_1={localFavorites?.stars_1 || []}
+            setLocalFavorites={setLocalFavorites}
+          />
         ) : (
           <p>Ingen data funnet for etappe {selectedStage}</p>
         )}
       </div>
+      <UpdateButtons
+        setLocalStageFavorites={setLocalFavorites}
+        favorites={favorites}
+        localFavorites={localFavorites}
+        selectedStage={selectedStage}
+        setFavorites={setFavorites}
+      />
     </div>
   );
 };
