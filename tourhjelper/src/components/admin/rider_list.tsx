@@ -1,11 +1,20 @@
 import { StageFavorites } from "./types/StageFavorites";
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
-import { Button } from "@mantine/core";
+import { Button, Divider, Text } from "@mantine/core";
 import classes from "@/styles/Admin/rider_list.module.css";
 import { IconStarFilled } from "@tabler/icons-react";
 import { supabase } from "@/utils/supabase";
 
-// Define the shape of the data coming from Supabase
+// --- CONFIGURATION: EDIT THIS LIST TO CHANGE ORDER ---
+const CATEGORY_ORDER = [
+  "Kaptein",
+  "Spurter",
+  "Klatrer",
+  "Temporytter",
+  "Hjelperytter",
+  "Ungdomsrytter",
+];
+
 interface RiderData {
   id: number;
   name: string;
@@ -40,22 +49,21 @@ const RiderRow = ({
       if (!prev) return null;
 
       const riderId = rider.name;
-      const targetKey = `stars_${starCount}` as keyof Pick<
-        StageFavorites,
-        "stars_1" | "stars_2" | "stars_3"
-      >;
-      const currentList = prev[targetKey] || [];
+      const targetKey = `stars_${starCount}` as
+        | "stars_1"
+        | "stars_2"
+        | "stars_3";
+
+      const currentList = prev[targetKey] ?? [];
       const isTogglingOff = currentList.includes(riderId);
 
-      // Remove from ALL lists first (Clean State)
       const cleanState = {
         ...prev,
-        stars_1: (prev.stars_1 || []).filter((id) => id !== riderId),
-        stars_2: (prev.stars_2 || []).filter((id) => id !== riderId),
-        stars_3: (prev.stars_3 || []).filter((id) => id !== riderId),
+        stars_1: (prev.stars_1 ?? []).filter((id) => id !== riderId),
+        stars_2: (prev.stars_2 ?? []).filter((id) => id !== riderId),
+        stars_3: (prev.stars_3 ?? []).filter((id) => id !== riderId),
       };
 
-      // If we are NOT toggling off, add to the target
       if (!isTogglingOff) {
         cleanState[targetKey] = [...cleanState[targetKey], riderId];
       }
@@ -116,13 +124,12 @@ const RiderList = ({
   const [allRiders, setAllRiders] = useState<RiderData[]>([]);
   const [displayRiders, setDisplayRiders] = useState<RiderData[]>([]);
 
-  // 1. Fetch Riders from Supabase
   useEffect(() => {
     const fetchRiders = async () => {
       const { data, error } = await supabase
         .from("riders")
         .select("*")
-        .neq("category", "Sportsdirektør") // Filter out directors
+        .neq("category", "Sportsdirektør")
         .order("price", { ascending: false });
 
       if (error) {
@@ -136,7 +143,6 @@ const RiderList = ({
     fetchRiders();
   }, []);
 
-  // 2. Handle Search Filtering
   useEffect(() => {
     if (searchTerm && searchTerm.trim() !== "") {
       const lowerTerm = searchTerm.toLowerCase();
@@ -151,24 +157,59 @@ const RiderList = ({
     }
   }, [searchTerm, allRiders]);
 
+  const categories = Array.from(
+    new Set(displayRiders.map((r) => r.category)),
+  ).sort((a, b) => {
+    const indexA = CATEGORY_ORDER.indexOf(a);
+    const indexB = CATEGORY_ORDER.indexOf(b);
+
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+
+    return a.localeCompare(b);
+  });
+
   return (
     <div className={classes.container}>
-      {displayRiders.map((item) => {
-        const isFav3 = stageFavorites?.stars_3?.includes(item.name);
-        const isFav2 = stageFavorites?.stars_2?.includes(item.name);
-        const isFav1 = stageFavorites?.stars_1?.includes(item.name);
-
-        return (
-          <RiderRow
-            key={item.id}
-            rider={item}
-            favorite_3={isFav3}
-            favorite_2={isFav2}
-            favorite_1={isFav1}
-            setStageFavorites={setStageFavorites}
+      {categories.map((category) => (
+        <div key={category}>
+          <Divider
+            my="sm"
+            labelPosition="center"
+            label={
+              <Text c="dimmed" size="xs" fw={700} tt="uppercase">
+                {category}
+              </Text>
+            }
           />
-        );
-      })}
+
+          {displayRiders
+            .filter((rider) => rider.category === category)
+            .map((item) => {
+              const isFav3 = stageFavorites?.stars_3?.includes(item.name);
+              const isFav2 = stageFavorites?.stars_2?.includes(item.name);
+              const isFav1 = stageFavorites?.stars_1?.includes(item.name);
+
+              return (
+                <RiderRow
+                  key={item.id}
+                  rider={item}
+                  favorite_3={isFav3}
+                  favorite_2={isFav2}
+                  favorite_1={isFav1}
+                  setStageFavorites={setStageFavorites}
+                />
+              );
+            })}
+        </div>
+      ))}
+
+      {displayRiders.length === 0 && (
+        <Text c="dimmed" size="sm" ta="center" mt="xl">
+          Ingen ryttere funnet
+        </Text>
+      )}
     </div>
   );
 };
