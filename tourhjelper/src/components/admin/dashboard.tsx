@@ -5,6 +5,7 @@ import classes from "@/styles/Admin/dashboard.module.css";
 import PickedFavorites from "./picked_favorites";
 import RiderModal from "./rider_selector_modal";
 import UpdateButtons from "./update_buttons";
+import NavigationButton from "./navigation_button";
 import { StageFavorites } from "./types/StageFavorites";
 
 const AdminDashboard = () => {
@@ -37,6 +38,7 @@ const AdminDashboard = () => {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>Admin Dashboard</h1>
+      <NavigationButton url_to_admin={false} label="Gå til hovedside" />
       <div className={classes.controls}>
         <StageDropdown
           selectedStage={selectedStage}

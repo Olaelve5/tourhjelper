@@ -19,7 +19,7 @@ const PlannerPage: React.FC = () => {
             <ImportTeamInput />
             <MainPlanner />
             <MainStage />
-            <OddsView />
+            {/* <OddsView /> */}
           </Container>
         </CombinedProviders>
       </StageProvider>
