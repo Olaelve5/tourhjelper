@@ -1,7 +1,7 @@
 import { IconStarFilled, IconSquareMinusFilled } from "@tabler/icons-react";
 import type { Dispatch, SetStateAction } from "react";
 import classes from "@/styles/Admin/picked_favorites.module.css";
-import { StageFavorites } from "./types/StageFavorites";
+import { StageFavorites } from "../../types/StageFavorites";
 import { useMantineTheme } from "@mantine/core";
 
 interface FavoritesSectionProps {
@@ -57,7 +57,6 @@ const FavoritesSection = ({
               onClick={() => handleMinusClick(rider)}
               style={{
                 cursor: "pointer",
-
               }}
               className={classes.removeButton}
             />

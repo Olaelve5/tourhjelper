@@ -6,7 +6,7 @@ import PickedFavorites from "./picked_favorites";
 import RiderModal from "./rider_selector_modal";
 import UpdateButtons from "./update_buttons";
 import NavigationButton from "./navigation_button";
-import { StageFavorites } from "./types/StageFavorites";
+import { StageFavorites } from "../../types/StageFavorites";
 
 const AdminDashboard = () => {
   const [selectedStage, setSelectedStage] = useState<number>(1);

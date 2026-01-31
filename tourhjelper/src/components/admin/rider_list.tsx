@@ -1,4 +1,4 @@
-import { StageFavorites } from "./types/StageFavorites";
+import { StageFavorites } from "../../types/StageFavorites";
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import { Button, Divider, Text } from "@mantine/core";
 import classes from "@/styles/Admin/rider_list.module.css";

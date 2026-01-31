@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IconPencilCheck, IconRefresh } from "@tabler/icons-react";
 import { useMantineTheme, Button, Notification } from "@mantine/core";
-import { StageFavorites } from "./types/StageFavorites";
+import { StageFavorites } from "../../types/StageFavorites";
 import { supabase } from "@/utils/supabase";
 import classes from "@/styles/Admin/modal.module.css";
 

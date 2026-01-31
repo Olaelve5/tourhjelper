@@ -2,7 +2,7 @@ import { Modal, Button, Input, useMantineTheme } from "@mantine/core";
 import { Dispatch, SetStateAction, useState } from "react";
 import classes from "@/styles/Admin/modal.module.css";
 import RiderList from "./rider_list";
-import { StageFavorites } from "./types/StageFavorites";
+import { StageFavorites } from "../../types/StageFavorites";
 
 interface RiderSelectorModalProps {
   setLocalStageFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
