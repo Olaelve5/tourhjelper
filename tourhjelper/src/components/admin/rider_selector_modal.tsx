@@ -1,4 +1,4 @@
-import { Modal, Button, Input } from "@mantine/core";
+import { Modal, Button, Input, useMantineTheme } from "@mantine/core";
 import { Dispatch, SetStateAction, useState } from "react";
 import classes from "@/styles/Admin/modal.module.css";
 import RiderList from "./rider_list";
@@ -15,6 +15,7 @@ const RiderSelectorModal = ({
 }: RiderSelectorModalProps) => {
   const [opened, setOpened] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const theme = useMantineTheme();
 
   return (
     <div>
@@ -41,7 +42,7 @@ const RiderSelectorModal = ({
         size="sm"
         onClick={() => setOpened(true)}
         radius={"md"}
-        bg={"var(--header-color)"}>
+        bg={theme.colors.blue[8]}>
         Finn Ryttere
       </Button>
     </div>

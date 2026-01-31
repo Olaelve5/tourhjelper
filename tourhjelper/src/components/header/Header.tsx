@@ -2,8 +2,30 @@
 import { Container } from "@mantine/core";
 import classes from "@/styles/Header.module.css";
 import { IconBike } from "@tabler/icons-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/utils/supabase";
+import NavigationButton from "../admin/navigation_button";
 
 export function Header() {
+  const [session, setSession] = useState<any>(null);
+
+  useEffect(() => {
+    // Check active session immediately when page loads
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    // Set up a listener for changes (Log in / Log out)
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    // Cleanup listener when component is removed
+    return () => subscription.unsubscribe();
+  }, []);
+
   return (
     <header className={classes.header}>
       <Container className={classes.inner}>
@@ -11,6 +33,9 @@ export function Header() {
           Tourhjelper
           <IconBike className={classes.logoIcon} />
         </h1>
+        {session && (
+          <NavigationButton url_to_admin={true} label="Admin Dashboard" />
+        )}
       </Container>
     </header>
   );

@@ -1,6 +1,5 @@
 .header {
   padding-top: 4rem;
-  margin-bottom: 5rem;
   width: 100%;
   position: relative;
 }
@@ -8,9 +7,12 @@
 .inner {
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 1rem;
+  margin-bottom: 4rem;
 }
 
 .logoTitle {

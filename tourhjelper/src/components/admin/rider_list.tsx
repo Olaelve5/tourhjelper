@@ -86,7 +86,8 @@ const RiderRow = ({
           p={"0 10px"}
           variant={"filled"}
           onClick={() => handleClick(3)}
-          color={favorite_3 ? "var(--header-color)" : "var(--highlight-grey)"}>
+          color={favorite_3 ? "var(--header-color)" : "var(--highlight-grey)"}
+          style={{ border: favorite_3 ? "none" : "1px solid #374b61" }}>
           3
           <IconStarFilled size={12} style={{ marginLeft: 4 }} />
         </Button>
@@ -96,7 +97,8 @@ const RiderRow = ({
           p={"0 10px"}
           variant={"filled"}
           onClick={() => handleClick(2)}
-          color={favorite_2 ? "var(--header-color)" : "var(--highlight-grey)"}>
+          color={favorite_2 ? "var(--header-color)" : "var(--highlight-grey)"}
+          style={{ border: favorite_2 ? "none" : "1px solid #374b61" }}>
           2
           <IconStarFilled size={12} style={{ marginLeft: 4 }} />
         </Button>
@@ -106,7 +108,7 @@ const RiderRow = ({
           p={"0 10px"}
           variant={"filled"}
           onClick={() => handleClick(1)}
-          color={"black"}
+          style={{ border: favorite_1 ? "none" : "1px solid #374b61" }}
           bg={favorite_1 ? "var(--header-color)" : "var(--highlight-grey)"}>
           1
           <IconStarFilled size={12} style={{ marginLeft: 4 }} />

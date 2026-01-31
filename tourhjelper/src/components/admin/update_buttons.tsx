@@ -83,7 +83,7 @@ const UpdateButtons = ({
       }}>
       <div className={classes.buttonGroup}>
         <Button
-          bg={theme.colors.red[7]}
+          bg={theme.colors.pink[8]}
           radius={"md"}
           leftSection={<IconRefresh />}
           onClick={handleReset}
@@ -92,7 +92,7 @@ const UpdateButtons = ({
           Reset
         </Button>
         <Button
-          bg={theme.colors.teal[7]}
+          bg={theme.colors.teal[8]}
           radius={"md"}
           leftSection={<IconPencilCheck />}
           onClick={handleSave}
@@ -103,12 +103,12 @@ const UpdateButtons = ({
         </Button>
       </div>
       {showSuccess && (
-        <p style={{ color: theme.colors.teal[7], marginTop: "1rem" }}>
+        <p style={{ color: theme.colors.teal[8], marginTop: "1rem" }}>
           Endringer lagret!
         </p>
       )}
       {showError && (
-        <p style={{ color: theme.colors.red[7], marginTop: "1rem" }}>
+        <p style={{ color: theme.colors.pink[8], marginTop: "1rem" }}>
           Feil ved lagring av endringer.
         </p>
       )}
