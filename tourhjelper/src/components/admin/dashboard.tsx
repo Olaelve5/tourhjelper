@@ -37,8 +37,10 @@ const AdminDashboard = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Admin Dashboard</h1>
-      <NavigationButton url_to_admin={false} label="Gå til hovedside" />
+      <div className={classes.header}>
+        <h1 className={classes.title}>Admin Dashboard</h1>
+        <NavigationButton url_to_admin={false} label="Gå til hovedside" />
+      </div>
       <div className={classes.controls}>
         <StageDropdown
           selectedStage={selectedStage}

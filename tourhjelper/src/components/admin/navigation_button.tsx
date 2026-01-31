@@ -1,4 +1,5 @@
 import { Button, useMantineTheme } from "@mantine/core";
+import { IconLockFilled, IconFileNeutral } from "@tabler/icons-react";
 
 interface NavigationButtonProps {
   url_to_admin: boolean;
@@ -20,9 +21,16 @@ const NavigationButton = ({ url_to_admin, label }: NavigationButtonProps) => {
     <Button
       variant="filled"
       radius="md"
-      bg={theme.colors.pink[8]}
+      bg={theme.colors.teal[8]}
       onClick={handleClick}
-      m={"10px 0 2rem 0"}>
+      leftSection={
+        url_to_admin ? (
+          <IconLockFilled size={18} />
+        ) : (
+          <IconFileNeutral size={18} />
+        )
+      }
+      m={"10px 0 0rem 0"}>
       {label}
     </Button>
   );

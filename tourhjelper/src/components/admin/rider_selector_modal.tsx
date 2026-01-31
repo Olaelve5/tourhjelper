@@ -42,7 +42,7 @@ const RiderSelectorModal = ({
         size="sm"
         onClick={() => setOpened(true)}
         radius={"md"}
-        bg={theme.colors.teal[8]}>
+        bg={theme.colors.blue[8]}>
         Finn Ryttere
       </Button>
     </div>

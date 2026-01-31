@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../app/layout";
 import { Container } from "@mantine/core";
 import { StageProvider } from "@/providers/StageProvider";
