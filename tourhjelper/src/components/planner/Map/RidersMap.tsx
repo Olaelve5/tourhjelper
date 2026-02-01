@@ -7,7 +7,7 @@ import { useTeamContext } from "@/providers/TeamProvider";
 import { UpdateButton } from "./UpdateButton";
 import { SwitchViewButton } from "./SwitchViewButton";
 import { useStageContext } from "@/providers/StageProvider";
-import { useSwipe } from "@/utils/swipeUtils";
+import { useSwipe } from "@/hooks/useSwipe";
 import Image from "next/image";
 
 interface RidersMapProps {

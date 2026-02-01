@@ -8,7 +8,7 @@ import { SingleStage } from "./SingleStage";
 import { MultipleStage } from "./MultipleStage";
 import { fetchStageInfo, fetchStageChunk } from "@/utils/stageUtils";
 import { Stage } from "@/types/Stage";
-import { useSwipe } from "@/utils/swipeUtils";
+import { useSwipe } from "@/hooks/useSwipe";
 import { useStageContext } from "@/providers/StageProvider";
 import { track } from "@vercel/analytics";
 import { getCurrentStage } from "@/utils/stageUtils";

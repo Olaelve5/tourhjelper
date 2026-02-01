@@ -7,7 +7,7 @@ import RiderModal from "./rider_selector_modal";
 import UpdateButtons from "./update_buttons";
 import NavigationButton from "./navigation_button";
 import { StageFavorites } from "../../types/StageFavorites";
-import { useSwipe } from "@/utils/swipeUtils";
+import { useSwipe } from "@/hooks/useSwipe";
 
 const AdminDashboard = () => {
   const [selectedStage, setSelectedStage] = useState<number>(1);
