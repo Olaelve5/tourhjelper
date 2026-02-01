@@ -16,19 +16,26 @@ export function Favorites({ stageNumber }: { stageNumber: number }) {
         .from("stage_favorites")
         .select("*")
         .eq("stage_number", stageNumber)
-        .single();
+        .maybeSingle();
 
       if (!error && data) {
         setFavorites(data);
+      } else {
+        setFavorites(null);
       }
+
       setLoading(false);
     };
 
     fetchStageData();
   }, [stageNumber]);
 
-  if (!favorites) {
+  if (loading) {
     return <Loader />;
+  }
+
+  if (!favorites) {
+    return <p>Ingen favoritter valgt for denne etappen.</p>;
   }
 
   return (
