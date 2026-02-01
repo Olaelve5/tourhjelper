@@ -146,7 +146,7 @@ const RiderRow = ({ rider }: { rider: Rider | null }) => {
           <p style={{ fontSize: "0.7em", opacity: 0.5 }}>{rider.team}</p>
         </div>
       </div>
-      <div>
+      <div style={{textAlign: "right"}}>
         <p style={{ fontSize: "0.9em", fontWeight: "bold" }}>{rider.price}m</p>
         <p style={{ fontSize: "0.7em", opacity: 0.5 }}>{rider.category}</p>
       </div>
