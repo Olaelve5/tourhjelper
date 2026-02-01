@@ -23,11 +23,14 @@ const AdminDashboard = () => {
         .from("stage_favorites")
         .select("*")
         .eq("stage_number", selectedStage)
-        .single();
+        .maybeSingle();
 
       if (!error && data) {
         setFavorites(data);
         setLocalFavorites(data);
+      } else {
+        setFavorites(null);
+        setLocalFavorites(null);
       }
       setLoading(false);
     };
@@ -54,15 +57,13 @@ const AdminDashboard = () => {
       <div className={classes.favoritesSection}>
         {loading ? (
           <p>Laster data...</p>
-        ) : favorites ? (
+        ) : (
           <PickedFavorites
             stars_3={localFavorites?.stars_3 || []}
             stars_2={localFavorites?.stars_2 || []}
             stars_1={localFavorites?.stars_1 || []}
             setLocalFavorites={setLocalFavorites}
           />
-        ) : (
-          <p>Ingen data funnet for etappe {selectedStage}</p>
         )}
       </div>
       <UpdateButtons

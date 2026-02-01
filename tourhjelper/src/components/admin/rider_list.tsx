@@ -46,29 +46,39 @@ const RiderRow = ({
 }: RiderRowProps) => {
   const handleClick = (starCount: number) => {
     setStageFavorites((prev) => {
-      if (!prev) return null;
+      // If nothing has been loaded yet, start from an empty state
+      const base: StageFavorites =
+        prev ??
+        ({
+          id: 0,
+          stage_number: 0,
+          comment: "",
+          stars_1: [] as number[],
+          stars_2: [] as number[],
+          stars_3: [] as number[],
+        } satisfies StageFavorites);
 
-      const riderId = rider.name;
+      const riderId = rider.id;
       const targetKey = `stars_${starCount}` as
         | "stars_1"
         | "stars_2"
         | "stars_3";
 
-      const currentList = prev[targetKey] ?? [];
+      const currentList = base[targetKey] ?? [];
       const isTogglingOff = currentList.includes(riderId);
 
-      const cleanState = {
-        ...prev,
-        stars_1: (prev.stars_1 ?? []).filter((id) => id !== riderId),
-        stars_2: (prev.stars_2 ?? []).filter((id) => id !== riderId),
-        stars_3: (prev.stars_3 ?? []).filter((id) => id !== riderId),
+      const next: StageFavorites = {
+        ...base,
+        stars_1: (base.stars_1 ?? []).filter((id) => id !== riderId),
+        stars_2: (base.stars_2 ?? []).filter((id) => id !== riderId),
+        stars_3: (base.stars_3 ?? []).filter((id) => id !== riderId),
       };
 
       if (!isTogglingOff) {
-        cleanState[targetKey] = [...cleanState[targetKey], riderId];
+        (next[targetKey] as number[]) = [...(next[targetKey] ?? []), riderId];
       }
 
-      return cleanState;
+      return next;
     });
   };
 
@@ -76,7 +86,7 @@ const RiderRow = ({
     <div className={classes.riderRow}>
       <div>
         <p>{rider.name}</p>
-        <p style={{ fontSize: "12px", opacity: 0.5 }}>{rider.team}</p>
+        <p className={classes.team}>{rider.team}</p>
       </div>
 
       <div className={classes.buttons}>
@@ -189,9 +199,9 @@ const RiderList = ({
           {displayRiders
             .filter((rider) => rider.category === category)
             .map((item) => {
-              const isFav3 = stageFavorites?.stars_3?.includes(item.name);
-              const isFav2 = stageFavorites?.stars_2?.includes(item.name);
-              const isFav1 = stageFavorites?.stars_1?.includes(item.name);
+              const isFav3 = stageFavorites?.stars_3?.includes(item.id);
+              const isFav2 = stageFavorites?.stars_2?.includes(item.id);
+              const isFav1 = stageFavorites?.stars_1?.includes(item.id);
 
               return (
                 <RiderRow

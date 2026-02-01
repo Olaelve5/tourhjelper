@@ -4,6 +4,7 @@ import Login from "@/components/admin/login";
 import Dashboard from "@/components/admin/dashboard";
 import { supabase } from "@/utils/supabase";
 import { Loader } from "@mantine/core";
+import { RiderProvider } from "@/providers/RiderProvider";
 
 const Admin = () => {
   const [session, setSession] = useState<any>(null);
@@ -53,7 +54,9 @@ const Admin = () => {
   // If session exists (logged in) -> Show Dashboard
   return (
     <div className={classes.container}>
-      <Dashboard />
+      <RiderProvider>
+        <Dashboard />
+      </RiderProvider>
     </div>
   );
 };

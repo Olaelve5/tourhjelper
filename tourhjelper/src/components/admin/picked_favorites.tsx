@@ -3,10 +3,11 @@ import type { Dispatch, SetStateAction } from "react";
 import classes from "@/styles/Admin/picked_favorites.module.css";
 import { StageFavorites } from "../../types/StageFavorites";
 import { useMantineTheme } from "@mantine/core";
+import { useRiderContext } from "@/providers/RiderProvider";
 
 interface FavoritesSectionProps {
   numberOfFavorites: number;
-  favorites: string[];
+  favorites: number[];
   setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
 }
 
@@ -16,8 +17,9 @@ const FavoritesSection = ({
   setLocalFavorites,
 }: FavoritesSectionProps) => {
   const theme = useMantineTheme();
+  const { getRiderById } = useRiderContext();
 
-  const handleMinusClick = (riderToRemove: string) => {
+  const handleMinusClick = (riderToRemove: number) => {
     const updatedFavorites = favorites.filter(
       (rider) => rider !== riderToRemove,
     );
@@ -35,6 +37,8 @@ const FavoritesSection = ({
     });
   };
 
+  const riderObjects = favorites.map((riderId) => getRiderById(riderId));
+
   return (
     <div>
       <h3 className={classes.stars}>
@@ -50,11 +54,16 @@ const FavoritesSection = ({
       <ul>
         {favorites.map((rider, index) => (
           <li key={index} className={classes.riderRow}>
-            <p>{rider}</p>
+            <div>
+              <p>{riderObjects[index]?.name}</p>
+              <p style={{ opacity: 0.5, fontSize: "0.8em" }}>
+                {riderObjects[index]?.team}
+              </p>
+            </div>
             <IconSquareMinusFilled
               size={24}
               color={theme.colors.red[7]}
-              onClick={() => handleMinusClick(rider)}
+              onClick={() => handleMinusClick(favorites[index])}
               style={{
                 cursor: "pointer",
               }}
@@ -68,9 +77,9 @@ const FavoritesSection = ({
 };
 
 interface PickedFavoritesProps {
-  stars_3: string[];
-  stars_2: string[];
-  stars_1: string[];
+  stars_3: number[];
+  stars_2: number[];
+  stars_1: number[];
   setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
 }
 

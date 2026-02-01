@@ -80,6 +80,7 @@ const UpdateButtons = ({
         justifyContent: "center",
         alignItems: "center",
         marginTop: "3rem",
+        marginBottom: "4rem",
       }}>
       <div className={classes.buttonGroup}>
         <Button
