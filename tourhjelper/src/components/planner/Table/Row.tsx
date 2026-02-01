@@ -10,6 +10,7 @@ import classes from "@/styles/Table/Row.module.css";
 import { useTeamContext } from "@/providers/TeamProvider";
 import { validateUpdate } from "@/utils/MapHelpers";
 import { useRiderContext } from "@/providers/RiderProvider";
+import { getShortenedName } from "@/utils/riderUtils";
 
 export function Row({ rider }: { rider: Rider }) {
   const { addRider, removeRider, activeTeam, budget } = useTeamContext();
@@ -49,16 +50,6 @@ export function Row({ rider }: { rider: Rider }) {
     return category;
   };
 
-  const getShortenedName = () => {
-    if (rider.category === "Sportsdirektør") return rider.name;
-    const rider_names = rider.name.split(" ");
-    if (rider_names.length > 1) {
-      return rider_names[0].charAt(0) + ". " + rider_names.slice(1).join(" ");
-    }
-
-    return rider.name;
-  };
-
   const imageUrl =
     riderImages.find((img) => img.team === rider.team)?.image ||
     "neutral-kit.webp";
@@ -96,7 +87,7 @@ export function Row({ rider }: { rider: Rider }) {
         <div style={{ display: "flex", alignContent: "center" }}>
           <img src={imageUrl} alt="rider" className={classes.riderImage} />
           <div style={{ lineHeight: 1.4 }}>
-            <div className={classes.name}>{getShortenedName()}</div>
+            <div className={classes.name}>{getShortenedName(rider)}</div>
             <div
               className={
                 canBeAdded

@@ -28,6 +28,16 @@ export async function getRiderByName(name: string): Promise<Rider | undefined> {
   );
 }
 
+export const getShortenedName = (rider: Rider) => {
+    if (rider.category === "Sportsdirektør") return rider.name;
+    const rider_names = rider.name.split(" ");
+    if (rider_names.length > 1) {
+      return rider_names[0].charAt(0) + ". " + rider_names.slice(1).join(" ");
+    }
+
+    return rider.name;
+  };
+
 const RiderCategoriesTranslation = {
   captain: "Kaptein",
   sprinter: "Spurter",

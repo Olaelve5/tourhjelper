@@ -15,7 +15,7 @@ export function SingleStage({ stageData }: SingleStageProps) {
     <div className={classes.container}>
       <div className={classes.imageInfoContainer}>
         <StageImage imageURL={stageData ? stageData.imageURL : ""} />
-        <StageInfo stageData={stageData} />
+        {/* <StageInfo stageData={stageData} /> */}
       </div>
       <Favorites stageNumber={stageData?.stage ?? 0} />
     </div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IconPencilCheck, IconRefresh } from "@tabler/icons-react";
-import { useMantineTheme, Button, Notification } from "@mantine/core";
+import { useMantineTheme, Button } from "@mantine/core";
 import { StageFavorites } from "../../types/StageFavorites";
 import { supabase } from "@/utils/supabase";
 import classes from "@/styles/Admin/modal.module.css";
@@ -9,8 +9,8 @@ interface UpdateButtonsProps {
   setLocalStageFavorites: React.Dispatch<
     React.SetStateAction<StageFavorites | null>
   >;
-  favorites: StageFavorites | null; // The original server state
-  localFavorites: StageFavorites | null; // The modified local state
+  favorites: StageFavorites | null;
+  localFavorites: StageFavorites | null;
   selectedStage: number;
   setFavorites: React.Dispatch<React.SetStateAction<StageFavorites | null>>;
 }
@@ -32,7 +32,6 @@ const UpdateButtons = ({
   const isDisabled = loading || isUnchanged;
 
   const handleReset = () => {
-    // Revert local changes back to the original fetched data
     setLocalStageFavorites(favorites || null);
   };
 
@@ -41,16 +40,24 @@ const UpdateButtons = ({
 
     setLoading(true);
 
+    // 1. Create a base payload from your local changes
+    const payload: Partial<StageFavorites> = {
+      ...localFavorites,
+      stage_number: selectedStage,
+    };
+
+    // payload.id should match the stage number being edited
+    if (favorites && favorites.id) {
+      payload.id = favorites.id;
+    } else {
+      // Delete the ID to prevent overwriting a different stage's row
+      delete payload.id;
+    }
+
     try {
-      // We use 'upsert' to handle both creating new rows or updating existing ones.
-      // Ensure your Supabase table name is correct (assumed 'stage_favorites' based on context)
       const { data, error } = await supabase
         .from("stage_favorites")
-        .upsert({
-          ...localFavorites,
-          // Ensure stage_number is set if this is a new record
-          stage_number: selectedStage,
-        })
+        .upsert(payload)
         .select();
 
       if (error) {
@@ -59,10 +66,12 @@ const UpdateButtons = ({
         throw error;
       }
 
-      // Show success for 2 seconds
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 4000);
-      setFavorites(localFavorites);
+
+      if (data && data.length > 0) {
+        setFavorites(data[0]);
+      }
     } catch (error) {
       console.error("Error saving favorites:", error);
       alert("Failed to save changes.");
