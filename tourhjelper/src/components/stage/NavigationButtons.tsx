@@ -120,8 +120,8 @@ export function NavigationButtons({
           />
         }
         leftSection={<div />}
-        leftSectionWidth={10}
-        rightSectionWidth={28}
+        leftSectionWidth={14}
+        rightSectionWidth={34}
         variant="unstyled"
       />
 

@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { IconPencilCheck, IconRefresh } from "@tabler/icons-react";
 import { useMantineTheme, Button } from "@mantine/core";
-import { StageFavorites } from "../../types/StageFavorites";
+import { Stage } from "../../types/Stage";
 import { supabase } from "@/utils/supabase";
 import classes from "@/styles/Admin/modal.module.css";
 
 interface UpdateButtonsProps {
-  setLocalStageFavorites: React.Dispatch<
-    React.SetStateAction<StageFavorites | null>
-  >;
-  favorites: StageFavorites | null;
-  localFavorites: StageFavorites | null;
+  setLocalStageFavorites: React.Dispatch<React.SetStateAction<Stage | null>>;
+  favorites: Stage | null;
+  localFavorites: Stage | null;
   selectedStage: number;
-  setFavorites: React.Dispatch<React.SetStateAction<StageFavorites | null>>;
+  setFavorites: React.Dispatch<React.SetStateAction<Stage | null>>;
 }
 
 const UpdateButtons = ({
@@ -40,25 +38,25 @@ const UpdateButtons = ({
 
     setLoading(true);
 
-    // 1. Create a base payload from your local changes
-    const payload: Partial<StageFavorites> = {
-      ...localFavorites,
-      stage_number: selectedStage,
+    // 1. Prepare the payload
+    // We only send the fields we actually want to update in the DB.
+    // This prevents accidental overwrites of static data if localFavorites is incomplete.
+    const updates = {
+      stars_3: localFavorites.stars_3,
+      stars_2: localFavorites.stars_2,
+      stars_1: localFavorites.stars_1,
+      comment: localFavorites.comment,
+      updated_at: new Date().toISOString(),
     };
 
-    // payload.id should match the stage number being edited
-    if (favorites && favorites.id) {
-      payload.id = favorites.id;
-    } else {
-      // Delete the ID to prevent overwriting a different stage's row
-      delete payload.id;
-    }
-
     try {
+      // 2. Update the 'stages' table
       const { data, error } = await supabase
-        .from("stage_favorites")
-        .upsert(payload)
-        .select();
+        .from("stages")
+        .update(updates)
+        .eq("stage_number", selectedStage)
+        .select()
+        .single();
 
       if (error) {
         setShowError(true);
@@ -69,8 +67,11 @@ const UpdateButtons = ({
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 4000);
 
-      if (data && data.length > 0) {
-        setFavorites(data[0]);
+      // 3. Update local state with the returned (confirmed) data
+      if (data) {
+        setFavorites(data as Stage);
+        // Also update localFavorites to match the new "clean" state
+        setLocalStageFavorites(data as Stage);
       }
     } catch (error) {
       console.error("Error saving favorites:", error);

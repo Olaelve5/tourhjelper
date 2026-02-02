@@ -6,15 +6,16 @@ import PickedFavorites from "./picked_favorites";
 import RiderModal from "./rider_selector_modal";
 import UpdateButtons from "./update_buttons";
 import NavigationButton from "./navigation_button";
-import { StageFavorites } from "../../types/StageFavorites";
+import { Stage } from "@/types/Stage"; // UPDATED IMPORT
 import { useSwipe } from "@/hooks/useSwipe";
 
 const AdminDashboard = () => {
   const [selectedStage, setSelectedStage] = useState<number>(1);
-  const [favorites, setFavorites] = useState<StageFavorites | null>(null);
-  const [localFavorites, setLocalFavorites] = useState<StageFavorites | null>(
-    null,
-  );
+
+  // UPDATED: State now holds the full Stage object
+  const [favorites, setFavorites] = useState<Stage | null>(null);
+  const [localFavorites, setLocalFavorites] = useState<Stage | null>(null);
+
   const [loading, setLoading] = useState(false);
 
   // Swipe handling
@@ -46,8 +47,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchStageData = async () => {
       setLoading(true);
+      // UPDATED: Fetch from 'stages' table instead of 'stage_favorites'
       const { data, error } = await supabase
-        .from("stage_favorites")
+        .from("stages")
         .select("*")
         .eq("stage_number", selectedStage)
         .maybeSingle();
@@ -76,6 +78,8 @@ const AdminDashboard = () => {
           selectedStage={selectedStage}
           setSelectedStage={setSelectedStage}
         />
+
+        {/* Make sure RiderModal is updated to accept Stage type too if needed */}
         <RiderModal
           setLocalStageFavorites={setLocalFavorites}
           localFavorites={localFavorites}
@@ -83,6 +87,7 @@ const AdminDashboard = () => {
       </div>
       <div className={classes.favoritesSection}>
         <PickedFavorites
+          // We can access stars directly from the stage object now
           stars_3={localFavorites?.stars_3 || []}
           stars_2={localFavorites?.stars_2 || []}
           stars_1={localFavorites?.stars_1 || []}

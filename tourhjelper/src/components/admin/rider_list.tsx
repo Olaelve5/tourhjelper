@@ -1,9 +1,9 @@
-import { StageFavorites } from "../../types/StageFavorites";
 import { useState, useEffect, type Dispatch, type SetStateAction } from "react";
 import { Button, Divider, Text } from "@mantine/core";
 import classes from "@/styles/Admin/rider_list.module.css";
 import { IconStarFilled } from "@tabler/icons-react";
 import { supabase } from "@/utils/supabase";
+import { Stage } from "@/types/Stage"; // 1. Change Import
 
 // --- CONFIGURATION: EDIT THIS LIST TO CHANGE ORDER ---
 const CATEGORY_ORDER = [
@@ -24,14 +24,16 @@ interface RiderData {
 }
 
 interface RiderListProps {
-  stageFavorites?: StageFavorites | null;
-  setStageFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  // 2. Update Type
+  stageFavorites?: Stage | null;
+  setStageFavorites: Dispatch<SetStateAction<Stage | null>>;
   searchTerm?: string;
 }
 
 interface RiderRowProps {
   rider: RiderData;
-  setStageFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  // 3. Update Type
+  setStageFavorites: Dispatch<SetStateAction<Stage | null>>;
   favorite_3?: boolean;
   favorite_2?: boolean;
   favorite_1?: boolean;
@@ -46,17 +48,8 @@ const RiderRow = ({
 }: RiderRowProps) => {
   const handleClick = (starCount: number) => {
     setStageFavorites((prev) => {
-      // If nothing has been loaded yet, start from an empty state
-      const base: StageFavorites =
-        prev ??
-        ({
-          id: 0,
-          stage_number: 0,
-          comment: "",
-          stars_1: [] as number[],
-          stars_2: [] as number[],
-          stars_3: [] as number[],
-        } satisfies StageFavorites);
+      // Safety Check: If data hasn't loaded yet, don't try to edit.
+      if (!prev) return prev;
 
       const riderId = rider.id;
       const targetKey = `stars_${starCount}` as
@@ -64,18 +57,22 @@ const RiderRow = ({
         | "stars_2"
         | "stars_3";
 
-      const currentList = base[targetKey] ?? [];
+      // Check if we are toggling off (clicking 3 stars when it is already 3 stars)
+      const currentList = prev[targetKey] ?? [];
       const isTogglingOff = currentList.includes(riderId);
 
-      const next: StageFavorites = {
-        ...base,
-        stars_1: (base.stars_1 ?? []).filter((id) => id !== riderId),
-        stars_2: (base.stars_2 ?? []).filter((id) => id !== riderId),
-        stars_3: (base.stars_3 ?? []).filter((id) => id !== riderId),
+      // Create the new state by cleaning the rider from ALL lists first
+      // (This ensures a rider can't be both 2-star and 3-star)
+      const next: Stage = {
+        ...prev,
+        stars_1: (prev.stars_1 ?? []).filter((id) => id !== riderId),
+        stars_2: (prev.stars_2 ?? []).filter((id) => id !== riderId),
+        stars_3: (prev.stars_3 ?? []).filter((id) => id !== riderId),
       };
 
+      // If we are NOT toggling off, add the rider to the target list
       if (!isTogglingOff) {
-        (next[targetKey] as number[]) = [...(next[targetKey] ?? []), riderId];
+        next[targetKey] = [...(next[targetKey] ?? []), riderId];
       }
 
       return next;
@@ -199,6 +196,7 @@ const RiderList = ({
           {displayRiders
             .filter((rider) => rider.category === category)
             .map((item) => {
+              // 4. Update Optional Chaining: Ensure we handle undefined arrays safely
               const isFav3 = stageFavorites?.stars_3?.includes(item.id);
               const isFav2 = stageFavorites?.stars_2?.includes(item.id);
               const isFav1 = stageFavorites?.stars_1?.includes(item.id);

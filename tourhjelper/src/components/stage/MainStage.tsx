@@ -85,7 +85,7 @@ export default function MainStage() {
     <Container size="lg" className={classes.container} ref={containerRef}>
       <div
         className={classes.headerContainer}
-        style={{ backgroundColor: theme.colors.red[8] }}>
+        style={{ backgroundColor: "var(--header-color)" }}>
         {/* <Link setIsLinked={setIsLinked} /> */}
         <NavigationButtons
           isLinked={isLinked}

@@ -1,14 +1,14 @@
 import { IconStarFilled, IconSquareMinusFilled } from "@tabler/icons-react";
 import type { Dispatch, SetStateAction } from "react";
 import classes from "@/styles/Admin/picked_favorites.module.css";
-import { StageFavorites } from "../../types/StageFavorites";
+import { Stage } from "@/types/Stage";
 import { useMantineTheme } from "@mantine/core";
 import { useRiderContext } from "@/providers/RiderProvider";
 
 interface FavoritesSectionProps {
   numberOfFavorites: number;
   favorites: number[];
-  setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  setLocalFavorites: Dispatch<SetStateAction<Stage | null>>;
 }
 
 const FavoritesSection = ({
@@ -24,9 +24,10 @@ const FavoritesSection = ({
       (rider) => rider !== riderToRemove,
     );
 
-    setLocalFavorites((prev: StageFavorites | null) => {
+    setLocalFavorites((prev: Stage | null) => {
       if (!prev) return prev;
 
+      // Logic remains the same since 'Stage' has these properties at the root level
       if (numberOfFavorites === 3) {
         return { ...prev, stars_3: updatedFavorites };
       } else if (numberOfFavorites === 2) {
@@ -80,7 +81,7 @@ interface PickedFavoritesProps {
   stars_3: number[];
   stars_2: number[];
   stars_1: number[];
-  setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  setLocalFavorites: Dispatch<SetStateAction<Stage | null>>;
 }
 
 const PickedFavorites = ({
