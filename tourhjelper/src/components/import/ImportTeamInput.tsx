@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextInput, Button, Loader } from "@mantine/core";
+import { TextInput, Button } from "@mantine/core";
 import { useInputState } from "@mantine/hooks";
 import { IconSearch, IconTransferIn } from "@tabler/icons-react";
 import classes from "@/styles/Import/ImportTeamInput.module.css";
@@ -13,7 +13,8 @@ import {
   getIdFromLocalStorage,
 } from "@/utils/localStorageUtils";
 import { UpdateNotification } from "../planner/Map/UpdateNotification";
-import { getCurrentStage } from "@/utils/stageUtils";
+import { calculateCurrentStage } from "@/utils/stageUtils";
+import { useStages } from "@/hooks/useStages";
 import InforButton from "./InfoButton";
 
 const ImportTeamInput = () => {
@@ -21,6 +22,10 @@ const ImportTeamInput = () => {
   const { updatePlan } = usePlanContext();
   const { setActiveStage } = useStageContext();
   const { setActiveTeam } = useTeamContext();
+
+  // 2. Access the cached stage data
+  const { data: allStages } = useStages();
+
   const [value, setValue] = useInputState<string>("");
   const [isValidInput, setIsValidInput] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,23 +33,22 @@ const ImportTeamInput = () => {
 
   const updatePlanToImported = async (
     importedRiders: any,
-    transfers_used: string
+    transfers_used: string,
+    targetStage: number,
   ) => {
-    const stage = await getCurrentStage();
-
     if (!importedRiders || importedRiders.length < 13) {
       console.error("Imported team is invalid or incomplete");
-      console.log(importedRiders);
-      setActiveStage(stage);
+      setActiveStage(targetStage);
       setActiveTeam(importedRiders);
       setIsValidInput(false);
       return;
     }
 
-    for (let i = stage; i > 0; i--) {
+    for (let i = targetStage; i > 0; i--) {
       updatePlan(importedRiders, i, parseInt(transfers_used, 10));
     }
-    setActiveStage(stage);
+
+    setActiveStage(targetStage);
     setIsValidInput(true);
     setSuccess(true);
     setTimeout(() => {
@@ -68,9 +72,17 @@ const ImportTeamInput = () => {
       if (res.ok) {
         saveIdToLocalStorage(value);
         const parsedTeam = JSON.parse(data.team);
-        const { team: riders, transfers_used, current_stage } = parsedTeam;
+        const { team: riders, transfers_used } = parsedTeam;
 
-        updatePlanToImported(riders, transfers_used);
+        // 6. Calculate the ACTUAL current stage right now
+        // If data isn't loaded yet for some reason, default to 1
+        const realCurrentStage = allStages
+          ? calculateCurrentStage(allStages)
+          : 1;
+
+        console.log("Importing team for stage:", realCurrentStage);
+
+        updatePlanToImported(riders, transfers_used, realCurrentStage);
       } else {
         console.error("Failed to import team");
         setIsValidInput(false);
@@ -120,7 +132,7 @@ const ImportTeamInput = () => {
         rightSectionWidth={42}
         leftSection={<IconSearch size={22} stroke={1.5} />}
         onChange={(v) => {
-          setValue(v), setIsValidInput(true);
+          (setValue(v), setIsValidInput(true));
         }}
       />
       <Button

@@ -1,107 +1,34 @@
 import { Stage } from "@/types/Stage";
 
-const chunkedStages = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-  [10, 11, 12],
-  [13, 14, 15],
-  [16, 17, 18],
-  [19, 20, 21],
-];
+/**
+ * Determines the active stage based on the current date and time.
+ * Expects the full array of stages from the database.
+ */
+export function calculateCurrentStage(stages: Stage[]): number {
+  if (!stages || stages.length === 0) return 1;
 
-const getLocalStageData = async () => {
-  const response = await fetch("/data/stage_data.json");
-  const stages = await response.json();
-  return stages as Stage[];
-};
+  const now = new Date();
+  const currentYear = now.getFullYear();
 
-export const fetchAllStages = async () => {
-  const stages = await getLocalStageData();
-  return stages;
-};
+  for (const stage of stages) {
+    const [month, day] = stage.date.split("/").map(Number);
+    const [hours, minutes] = stage.start_time.split(":").map(Number);
 
-export const fetchStageInfo = async (stage: number) => {
-  const stages = await getLocalStageData();
-  const stageData = stages.find((s) => s.stage === stage);
-  return stageData as Stage;
-};
+    const stageDateTime = new Date(
+      currentYear,
+      month - 1, // Month is 0-indexed in JS
+      day,
+      hours,
+      minutes,
+    );
 
-export const fetchStageChunk = async (stage: number) => {
-  const chunk = chunkedStages.reduce((acc, curr) => {
-    if (curr.includes(stage)) return curr;
-    return acc;
-  });
-  const stages = [];
-
-  for (let i = chunk[0]; i <= chunk[1]; i++) {
-    const stageData = await fetchStageInfo(i);
-    stages.push(stageData);
-  }
-  return stages;
-};
-
-// Functions below are used for fetching stage data from the database, but they are not used in the current implementation
-
-export const fetchSingleStageInfo = async (stage: number) => {
-  // Try local storage first
-  const cachedStages = localStorage.getItem("stages");
-  let stagesArray = [];
-  if (cachedStages) {
-    stagesArray = JSON.parse(cachedStages);
-    const stageData = stagesArray.find((s: Stage) => s.stage === stage);
-    if (stageData) return stageData;
-  }
-};
-
-export const fetchMultipleStageInfo = async (stage: number) => {
-  const chunk = chunkedStages.reduce((acc, curr) => {
-    if (curr.includes(stage)) return curr;
-    return acc;
-  });
-  const stages = [];
-
-  for (let i = chunk[0]; i <= chunk[2]; i++) {
-    const stageData = await fetchSingleStageInfo(i);
-    stages.push(stageData);
-  }
-  return stages;
-};
-
-export async function getCurrentStage(): Promise<number> {
-  try {
-    const response = await fetch("/data/stage_data.json");
-    if (!response.ok) {
-      throw new Error("Failed to fetch stage data");
+    // If the current time is BEFORE this stage's start time,
+    // then this is the active/upcoming stage.
+    if (now < stageDateTime) {
+      return stage.stage_number;
     }
-
-    const stages = await response.json();
-    const now = new Date();
-    const currentYear = now.getFullYear();
-
-    for (const stage of stages) {
-      const [month, day] = stage.date.split("/").map(Number);
-      const [hours, minutes] = stage.start.split(":").map(Number);
-
-      const stageDateTime = new Date(
-        currentYear,
-        month - 1,
-        day,
-        hours,
-        minutes
-      );
-
-      // If stage has started (current time is after stage start time)
-      if (now < stageDateTime) {
-        return stage.stage;
-      }
-    }
-
-    // If all stages have started, return the last stage
-    const maxStage = Math.max(...stages.map((s: any) => s.stage));
-    return maxStage;
-  } catch (error) {
-    console.error("Error determining current stage:", error);
-    return 1; // Default to stage 1 in case of error
   }
+
+  // If all stages have passed, return the last stage (21)
+  return 21;
 }

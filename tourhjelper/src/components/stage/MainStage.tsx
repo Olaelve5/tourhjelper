@@ -8,31 +8,33 @@ import { SingleStage } from "./SingleStage";
 import { useSwipe } from "@/hooks/useSwipe";
 import { useStageContext } from "@/providers/StageProvider";
 import { track } from "@vercel/analytics";
-import { getCurrentStage } from "@/utils/stageUtils";
 import { useStages } from "@/hooks/useStages";
 
 export default function MainStage() {
-  const { setActiveStage } = useStageContext();
-  const { width } = useViewportSize();
+  // The active stage is managed globally via Context
+  // - it's automatically set on todays stage on app load
+  const { activeStage, setActiveStage } = useStageContext();
   const { data: allStages } = useStages();
-  
+
+  const { width } = useViewportSize();
   const [isLinked, setIsLinked] = useState(false);
+
+  // Local state for navigation (so we can swipe without changing the global context immediately unless linked)
   const [stage, setStage] = useState<number>(1);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
 
-  // Determine view mode based on width
   const isWideScreen = width >= 900;
 
-  // Initialize stage to the current active stage (e.g. today's stage)
+  // 3. Sync local state with Global Context on mount
+  // When the Provider finishes calculating "Today is Stage 5", we update our local view.
   useEffect(() => {
-    getCurrentStage().then((currentStage) => {
-      setStage(currentStage);
-    });
-  }, []);
+    setStage(activeStage);
+  }, [activeStage]);
 
-  // Sync context when stage changes if linked
+  // Sync context when stage changes IF linked
   useEffect(() => {
     if (isLinked) {
       setActiveStage(stage);
@@ -40,15 +42,12 @@ export default function MainStage() {
   }, [stage, isLinked, setActiveStage]);
 
   const onSwipe = (direction: string) => {
-    // If wide screen, we "turn the page" (move by 2). If mobile, move by 1.
     const increment = isWideScreen ? 2 : 1;
 
     if (direction === "left") {
-      // Swipe Left -> Next Stage
       if (stage + increment > 21) return;
       setStage((prev) => prev + increment);
     } else {
-      // Swipe Right -> Previous Stage
       if (stage - increment < 1) return;
       setStage((prev) => prev - increment);
     }
@@ -78,7 +77,6 @@ export default function MainStage() {
     );
   }
 
-  // Find the data for the current stages
   const currentStageData = allStages.find((s) => s.stage_number === stage);
   const nextStageData = allStages.find((s) => s.stage_number === stage + 1);
 
@@ -96,19 +94,16 @@ export default function MainStage() {
 
       {isWideScreen ? (
         <div style={{ display: "flex", width: "100%", gap: "1rem" }}>
-          {/* Left Stage */}
           <div style={{ flex: 1 }}>
             {currentStageData && <SingleStage stageData={currentStageData} />}
           </div>
-          
-          {/* Right Stage (Only render if it exists - e.g. won't show on Stage 21) */}
           <div style={{ flex: 1 }}>
             {nextStageData && <SingleStage stageData={nextStageData} />}
           </div>
         </div>
       ) : (
         <div style={{ width: "100%" }}>
-           {currentStageData && <SingleStage stageData={currentStageData} />}
+          {currentStageData && <SingleStage stageData={currentStageData} />}
         </div>
       )}
     </Container>
