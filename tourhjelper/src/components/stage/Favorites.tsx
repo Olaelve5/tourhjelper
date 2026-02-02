@@ -45,7 +45,7 @@ export function Favorites({ stageData }: { stageData: Stage }) {
         count={3}
         riders={riders3}
         rightContent={
-          <p style={{ fontSize: "0.8em", opacity: 0.5, margin: 0 }}>
+          <p style={{ fontSize: "0.8em", color: "#a4b6c7", margin: 0 }}>
             Oppdatert: {formatUpdatedAt(stageData.updated_at)}
           </p>
         }
@@ -107,12 +107,12 @@ const RiderRow = ({ rider }: { rider: Rider | null }) => {
           <p style={{ fontSize: "0.9em", fontWeight: "bold" }}>
             {getShortenedName(rider)}
           </p>
-          <p style={{ fontSize: "0.7em", opacity: 0.5 }}>{rider.team}</p>
+          <p style={{ fontSize: "0.7em", color: "#a4b6c7" }}>{rider.team}</p>
         </div>
       </div>
       <div style={{ textAlign: "right" }}>
         <p style={{ fontSize: "0.9em", fontWeight: "bold" }}>{rider.price}m</p>
-        <p style={{ fontSize: "0.7em", opacity: 0.5 }}>{rider.category}</p>
+        <p style={{ fontSize: "0.7em", color: "#a4b6c7" }}>{rider.category}</p>
       </div>
     </div>
   );
