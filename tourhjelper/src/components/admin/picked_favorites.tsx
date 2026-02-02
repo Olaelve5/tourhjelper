@@ -1,13 +1,14 @@
 import { IconStarFilled, IconSquareMinusFilled } from "@tabler/icons-react";
 import type { Dispatch, SetStateAction } from "react";
 import classes from "@/styles/Admin/picked_favorites.module.css";
-import { StageFavorites } from "./types/StageFavorites";
+import { Stage } from "@/types/Stage";
 import { useMantineTheme } from "@mantine/core";
+import { useRiderContext } from "@/providers/RiderProvider";
 
 interface FavoritesSectionProps {
   numberOfFavorites: number;
-  favorites: string[];
-  setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  favorites: number[];
+  setLocalFavorites: Dispatch<SetStateAction<Stage | null>>;
 }
 
 const FavoritesSection = ({
@@ -16,15 +17,17 @@ const FavoritesSection = ({
   setLocalFavorites,
 }: FavoritesSectionProps) => {
   const theme = useMantineTheme();
+  const { getRiderById } = useRiderContext();
 
-  const handleMinusClick = (riderToRemove: string) => {
+  const handleMinusClick = (riderToRemove: number) => {
     const updatedFavorites = favorites.filter(
       (rider) => rider !== riderToRemove,
     );
 
-    setLocalFavorites((prev: StageFavorites | null) => {
+    setLocalFavorites((prev: Stage | null) => {
       if (!prev) return prev;
 
+      // Logic remains the same since 'Stage' has these properties at the root level
       if (numberOfFavorites === 3) {
         return { ...prev, stars_3: updatedFavorites };
       } else if (numberOfFavorites === 2) {
@@ -34,6 +37,8 @@ const FavoritesSection = ({
       }
     });
   };
+
+  const riderObjects = favorites.map((riderId) => getRiderById(riderId));
 
   return (
     <div>
@@ -50,14 +55,18 @@ const FavoritesSection = ({
       <ul>
         {favorites.map((rider, index) => (
           <li key={index} className={classes.riderRow}>
-            <p>{rider}</p>
+            <div>
+              <p>{riderObjects[index]?.name}</p>
+              <p style={{ opacity: 0.5, fontSize: "0.8em" }}>
+                {riderObjects[index]?.team}
+              </p>
+            </div>
             <IconSquareMinusFilled
               size={24}
               color={theme.colors.red[7]}
-              onClick={() => handleMinusClick(rider)}
+              onClick={() => handleMinusClick(favorites[index])}
               style={{
                 cursor: "pointer",
-
               }}
               className={classes.removeButton}
             />
@@ -69,10 +78,10 @@ const FavoritesSection = ({
 };
 
 interface PickedFavoritesProps {
-  stars_3: string[];
-  stars_2: string[];
-  stars_1: string[];
-  setLocalFavorites: Dispatch<SetStateAction<StageFavorites | null>>;
+  stars_3: number[];
+  stars_2: number[];
+  stars_1: number[];
+  setLocalFavorites: Dispatch<SetStateAction<Stage | null>>;
 }
 
 const PickedFavorites = ({

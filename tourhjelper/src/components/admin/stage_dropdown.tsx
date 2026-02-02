@@ -16,6 +16,7 @@ const StageDropdown = ({
       data={Array.from({ length: 21 }, (_, i) => String(i + 1))}
       radius={"md"}
       label="Valgt Etappe"
+      mt={"20px"}
       size="sm"
       styles={{
         input: {

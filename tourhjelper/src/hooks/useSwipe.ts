@@ -10,6 +10,10 @@ interface SwipeProps {
     setTouchStartY: (y: number) => void;
 }
 
+// This hook adds swipe detection to a given ref element.
+// It calls onSwipe with 'left' or 'right' when a swipe is detected
+// It ignores vertical swipes and swipes that occur during vertical scrolling.
+
 export function useSwipe({
     ref,
     onSwipe,

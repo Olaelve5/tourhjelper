@@ -1,18 +1,16 @@
 import { useState } from "react";
 import { IconPencilCheck, IconRefresh } from "@tabler/icons-react";
-import { useMantineTheme, Button, Notification } from "@mantine/core";
-import { StageFavorites } from "./types/StageFavorites";
+import { useMantineTheme, Button } from "@mantine/core";
+import { Stage } from "../../types/Stage";
 import { supabase } from "@/utils/supabase";
 import classes from "@/styles/Admin/modal.module.css";
 
 interface UpdateButtonsProps {
-  setLocalStageFavorites: React.Dispatch<
-    React.SetStateAction<StageFavorites | null>
-  >;
-  favorites: StageFavorites | null; // The original server state
-  localFavorites: StageFavorites | null; // The modified local state
+  setLocalStageFavorites: React.Dispatch<React.SetStateAction<Stage | null>>;
+  favorites: Stage | null;
+  localFavorites: Stage | null;
   selectedStage: number;
-  setFavorites: React.Dispatch<React.SetStateAction<StageFavorites | null>>;
+  setFavorites: React.Dispatch<React.SetStateAction<Stage | null>>;
 }
 
 const UpdateButtons = ({
@@ -32,7 +30,6 @@ const UpdateButtons = ({
   const isDisabled = loading || isUnchanged;
 
   const handleReset = () => {
-    // Revert local changes back to the original fetched data
     setLocalStageFavorites(favorites || null);
   };
 
@@ -41,17 +38,25 @@ const UpdateButtons = ({
 
     setLoading(true);
 
+    // 1. Prepare the payload
+    // We only send the fields we actually want to update in the DB.
+    // This prevents accidental overwrites of static data if localFavorites is incomplete.
+    const updates = {
+      stars_3: localFavorites.stars_3,
+      stars_2: localFavorites.stars_2,
+      stars_1: localFavorites.stars_1,
+      comment: localFavorites.comment,
+      updated_at: new Date().toISOString(),
+    };
+
     try {
-      // We use 'upsert' to handle both creating new rows or updating existing ones.
-      // Ensure your Supabase table name is correct (assumed 'stage_favorites' based on context)
+      // 2. Update the 'stages' table
       const { data, error } = await supabase
-        .from("stage_favorites")
-        .upsert({
-          ...localFavorites,
-          // Ensure stage_number is set if this is a new record
-          stage_number: selectedStage,
-        })
-        .select();
+        .from("stages")
+        .update(updates)
+        .eq("stage_number", selectedStage)
+        .select()
+        .single();
 
       if (error) {
         setShowError(true);
@@ -59,10 +64,15 @@ const UpdateButtons = ({
         throw error;
       }
 
-      // Show success for 2 seconds
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 4000);
-      setFavorites(localFavorites);
+
+      // 3. Update local state with the returned (confirmed) data
+      if (data) {
+        setFavorites(data as Stage);
+        // Also update localFavorites to match the new "clean" state
+        setLocalStageFavorites(data as Stage);
+      }
     } catch (error) {
       console.error("Error saving favorites:", error);
       alert("Failed to save changes.");
@@ -80,6 +90,7 @@ const UpdateButtons = ({
         justifyContent: "center",
         alignItems: "center",
         marginTop: "3rem",
+        marginBottom: "4rem",
       }}>
       <div className={classes.buttonGroup}>
         <Button

@@ -1,132 +1,79 @@
 .container {
-    display: flex;
-    color: rgb(255, 255, 255);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 30%;
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+  width: 40%;
 }
 
-.middleButton {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    border-top: 0;
-    border-bottom: 0;
-    font-size: 20px;
-    margin: 0;
-    background: transparent;
-    color: inherit;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    white-space: nowrap;
+.select {
+  font-weight: bold;
+  color: white;
+  font-size: 1.1rem;
 }
 
-.middleButton > h4 {
-    margin: 10px;
+.select:hover {
+  background: #00000068;
 }
 
-.middleButton:hover {
-    background: var(--highlight-grey);
+.sidebutton {
+  background-color: transparent;
+  color: inherit;
+  background: transparent;
+  border-radius: 5px;
+  padding: 0 0rem;
+  min-width: 3rem;
 }
 
-.sideButtonRight {
-    background-color: transparent;
-    color: inherit;
-    background: transparent;
-    border-radius: 5px;
-    padding: 0 0.8rem;
-    position: relative;
+.sidebutton:hover {
+  background: #00000068;
 }
 
-.sideButtonLeft {
-    background-color: transparent;
-    color: inherit;
-    background: transparent;
-    border-radius: 5px;
-    padding: 0 0.8rem;
-}
-
-.sideButtonLeft:hover {
-    background: var(--highlight-grey);
-}
-
-.sideButtonRight:hover {
-    background: var(--highlight-grey);
-}
-
-.dropDown {
-    background: var(--light-grey);
-    border: 1px solid var(--highlight-grey);
-    color: white;
-    max-height: 14rem;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.dropDownItem {
-    color: white;
-}
-
-.dropDownItem[data-hovered] {
-    background: var(--highlight-grey);
-}
-
-.dropDownIcon {
-    color: rgb(202, 216, 228);
-    transition: transform 150ms ease;
-    transform: rotate(0deg);
-    [data-expanded] & {
-      transform: rotate(180deg);
-    }
+.ghostButton {
+  background-color: transparent;
+  color: inherit;
+  background: transparent;
+  padding: 0 0.8rem;
+  min-width: 3rem;
 }
 
 @media screen and (max-width: 980px) {
-    .container {
-        width: 50%;
-    }
+  .container {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .container {
-        width: 60%;
-        -webkit-tap-highlight-color: transparent;
-    }
+  .container {
+    width: 70%;
+    -webkit-tap-highlight-color: transparent;
+  }
 
-    .middleButton {
-        -webkit-tap-highlight-color: transparent;
-    }
+  .select {
+    -webkit-tap-highlight-color: transparent;
+  }
 
-    .middleButton > h4 {
-        margin: 0.2rem;
-    }
+  .select:hover {
+    background: transparent;
+  }
 
-    .middleButton:hover {
-        background: transparent;
-    }
-
-    .sideButtonRight:hover {
-        background: transparent;
-    }
-
-    .sideButtonLeft:hover {
-        background: transparent;
-    }
-
-    .dropDownIcon {
-        width: 20px;
-    }
+  .sidebutton:hover {
+    background: transparent;
+  }
 }
 
 @media screen and (max-width: 400px) {
-    .container {
-        width: 70%;
-    }
+  .container {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .container {
+    width: 90%;
+  }
 }

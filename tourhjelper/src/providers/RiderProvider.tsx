@@ -6,6 +6,7 @@ interface RiderContextType {
     // Define the types for the context
     globalRiders: Rider[] | undefined;
     riderImages: Array<{ team: string; image: string }>;
+    getRiderById: (id: number) => Rider | undefined;
 };
 
 
@@ -27,6 +28,10 @@ export const useRiderContext = () => {
 export function RiderProvider({ children }: { children: React.ReactNode }) {
     const [riderImages, setRiderImages] = useState<Array<{ team: string; image: string }>>([]); 
     const [globalRiders, setGlobalRiders] = useState<Rider[] | undefined>(undefined); 
+
+    const getRiderById = (id: number): Rider | undefined => {
+        return globalRiders?.find((rider) => rider.id === id);
+    }
 
     useEffect(() => {
         async function fetchImages() {
@@ -53,7 +58,7 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <RiderContext.Provider value={{ globalRiders, riderImages }}>
+        <RiderContext.Provider value={{ globalRiders, riderImages, getRiderById }}>
             {children}
         </RiderContext.Provider>
     );

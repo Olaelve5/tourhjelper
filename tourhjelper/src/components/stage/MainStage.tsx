@@ -1,82 +1,61 @@
 import { useState, useEffect, useRef } from "react";
-import { Container } from "@mantine/core";
+import { Container, Loader, useMantineTheme } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import classes from "@/styles/Stage/MainStage.module.css";
-import { Switch } from "./Switch";
 import { NavigationButtons } from "./NavigationButtons";
 import { Link } from "./Link";
 import { SingleStage } from "./SingleStage";
-import { MultipleStage } from "./MultipleStage";
-import { fetchStageInfo, fetchStageChunk } from "@/utils/stageUtils";
-import { Stage } from "@/types/Stage";
-import { useSwipe } from "@/utils/swipeUtils";
+import { useSwipe } from "@/hooks/useSwipe";
 import { useStageContext } from "@/providers/StageProvider";
 import { track } from "@vercel/analytics";
-import { getCurrentStage } from "@/utils/stageUtils";
+import { useStages } from "@/hooks/useStages";
 
 export default function MainStage() {
-  const { setActiveStage, activeStage } = useStageContext();
+  // The active stage is managed globally via Context
+  // - it's automatically set on todays stage on app load
+  const { activeStage, setActiveStage } = useStageContext();
+  const { data: allStages } = useStages();
+  const theme = useMantineTheme();
+
+  const { width } = useViewportSize();
   const [isLinked, setIsLinked] = useState(false);
-  const [isSingleView, setIsSingleView] = useState(true);
+
+  // Local state for navigation (so we can swipe without changing the global context immediately unless linked)
   const [stage, setStage] = useState<number>(1);
-  const [stageData, setStageData] = useState<Stage | null>(null);
-  const [stageChunkData, setStageChunkData] = useState<Stage[] | null>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
 
-  // Initialize stage to the active stage
-  useEffect(() => {
-    getCurrentStage().then((currentStage) => {
-      setStage(currentStage);
-    });
-  }, []);
+  const isWideScreen = width >= 900;
 
+  // 3. Sync local state with Global Context on mount
+  // When the Provider finishes calculating "Today is Stage 5", we update our local view.
   useEffect(() => {
-    if (isSingleView) {
-      fetchStageInfo(stage).then((data) => {
-        setStageData(data);
-      });
-    } else {
-      fetchStageChunk(stage).then((data) => {
-        setStageChunkData(data);
-      });
+    setStage(activeStage);
+  }, [activeStage]);
+
+  // Sync context when stage changes IF linked
+  useEffect(() => {
+    if (isLinked) {
+      setActiveStage(stage);
     }
-  }, [stage, isSingleView]);
+  }, [stage, isLinked, setActiveStage]);
 
   const onSwipe = (direction: string) => {
+    const increment = isWideScreen ? 2 : 1;
+
     if (direction === "left") {
-      if (!isSingleView) {
-        if (stage + 3 > 21) return;
-        setStage(stage + 3);
-        if (isLinked) {
-          setActiveStage(stage + 3);
-        }
-      } else {
-        if (stage + 1 > 21) return;
-        setStage(stage + 1);
-        if (isLinked) {
-          setActiveStage(stage + 1);
-        }
-      }
+      if (stage + increment > 21) return;
+      setStage((prev) => prev + increment);
     } else {
-      if (!isSingleView) {
-        if (stage - 3 < 1) return;
-        setStage(stage - 3);
-        if (isLinked) {
-          setActiveStage(stage - 3);
-        }
-      } else {
-        if (stage - 1 < 1) return;
-        setStage(stage - 1);
-        if (isLinked) {
-          setActiveStage(stage - 1);
-        }
-      }
+      if (stage - increment < 1) return;
+      setStage((prev) => prev - increment);
     }
 
     track("Stage Changed", {
       method: "swipe",
-      viewType: isSingleView ? "single" : "multiple",
+      viewType: isWideScreen ? "multiple" : "single",
       isLinked: isLinked,
       stage: stage,
     });
@@ -91,22 +70,44 @@ export default function MainStage() {
     setTouchStartY,
   });
 
+  if (!allStages) {
+    return (
+      <Container size="lg" className={classes.container}>
+        <Loader />
+      </Container>
+    );
+  }
+
+  const currentStageData = allStages.find((s) => s.stage_number === stage);
+  const nextStageData = allStages.find((s) => s.stage_number === stage + 1);
+
   return (
     <Container size="lg" className={classes.container} ref={containerRef}>
-      <div className={classes.headerContainer}>
-        <Link setIsLinked={setIsLinked} />
+      <div
+        className={classes.headerContainer}
+        style={{ backgroundColor: "var(--header-color)" }}>
+        {/* <Link setIsLinked={setIsLinked} /> */}
         <NavigationButtons
           isLinked={isLinked}
-          isSingleView={isSingleView}
+          isSingleView={!isWideScreen}
           stage={stage}
           setStage={setStage}
         />
-        <Switch setIsSingleView={setIsSingleView} />
       </div>
-      {isSingleView ? (
-        <SingleStage stageData={stageData} />
+
+      {isWideScreen ? (
+        <div className={classes.stagesContainer}>
+          <div>
+            {currentStageData && <SingleStage stageData={currentStageData} />}
+          </div>
+          <div>
+            {nextStageData && <SingleStage stageData={nextStageData} />}
+          </div>
+        </div>
       ) : (
-        <MultipleStage stageChunkData={stageChunkData} />
+        <div style={{ width: "100%" }}>
+          {currentStageData && <SingleStage stageData={currentStageData} />}
+        </div>
       )}
     </Container>
   );

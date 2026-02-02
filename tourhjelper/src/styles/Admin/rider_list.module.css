@@ -24,7 +24,21 @@
   align-items: center;
 }
 
+.team {
+  font-size: 12px;
+  opacity: 0.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .buttons {
   display: flex;
   gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .team {
+    max-width: 150px;
+    white-space: nowrap;
+  }
 }
