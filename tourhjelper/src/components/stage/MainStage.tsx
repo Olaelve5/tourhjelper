@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Container, Loader } from "@mantine/core";
+import { Container, Loader, useMantineTheme } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import classes from "@/styles/Stage/MainStage.module.css";
 import { NavigationButtons } from "./NavigationButtons";
@@ -15,6 +15,7 @@ export default function MainStage() {
   // - it's automatically set on todays stage on app load
   const { activeStage, setActiveStage } = useStageContext();
   const { data: allStages } = useStages();
+  const theme = useMantineTheme();
 
   const { width } = useViewportSize();
   const [isLinked, setIsLinked] = useState(false);
@@ -82,8 +83,10 @@ export default function MainStage() {
 
   return (
     <Container size="lg" className={classes.container} ref={containerRef}>
-      <div className={classes.headerContainer}>
-        <Link setIsLinked={setIsLinked} />
+      <div
+        className={classes.headerContainer}
+        style={{ backgroundColor: theme.colors.red[8] }}>
+        {/* <Link setIsLinked={setIsLinked} /> */}
         <NavigationButtons
           isLinked={isLinked}
           isSingleView={!isWideScreen}
@@ -93,11 +96,11 @@ export default function MainStage() {
       </div>
 
       {isWideScreen ? (
-        <div style={{ display: "flex", width: "100%", gap: "1rem" }}>
-          <div style={{ flex: 1 }}>
+        <div className={classes.stagesContainer}>
+          <div>
             {currentStageData && <SingleStage stageData={currentStageData} />}
           </div>
-          <div style={{ flex: 1 }}>
+          <div>
             {nextStageData && <SingleStage stageData={nextStageData} />}
           </div>
         </div>

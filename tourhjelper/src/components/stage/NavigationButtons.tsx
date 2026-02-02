@@ -100,35 +100,30 @@ export function NavigationButtons({
       ) : (
         <Button
           size="xs"
-          className={classes.sideButtonLeft}
+          className={classes.sidebutton}
           onClick={() => handleSideClick(-1)}>
           <IconChevronLeft size={26} />
         </Button>
       )}
 
-      <div className={classes.middleButton}>
-        <NativeSelect
-          value={stage}
-          onChange={handleSelectChange}
-          data={selectData}
-          rightSection={<IconSelector size={20} color="white" />}
-          rightSectionWidth={30}
-          variant="unstyled"
-          styles={{
-            root: {
-              width: "100%",
-            },
-            input: {
-              fontWeight: 700,
-              fontSize: "1.1rem",
-              color: "white",
-              textAlign: "center",
-              textAlignLast: "center",
-              cursor: "pointer",
-            },
-          }}
-        />
-      </div>
+      <NativeSelect
+        value={stage}
+        onChange={handleSelectChange}
+        size="md"
+        data={selectData}
+        classNames={{ input: classes.select }}
+        rightSection={
+          <IconSelector
+            size={20}
+            color="white"
+            className={classes.selectorIcon}
+          />
+        }
+        leftSection={<div />}
+        leftSectionWidth={10}
+        rightSectionWidth={28}
+        variant="unstyled"
+      />
 
       {/* RIGHT BUTTON */}
       {isRightHidden ? (
@@ -136,7 +131,7 @@ export function NavigationButtons({
       ) : (
         <Button
           size="xs"
-          className={classes.sideButtonRight}
+          className={classes.sidebutton}
           onClick={() => handleSideClick(1)}>
           <IconChevronRight size={26} />
         </Button>
