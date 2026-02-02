@@ -1,82 +1,61 @@
 import { useState, useEffect, useRef } from "react";
-import { Container } from "@mantine/core";
+import { Container, Loader } from "@mantine/core";
+import { useViewportSize } from "@mantine/hooks";
 import classes from "@/styles/Stage/MainStage.module.css";
-import { Switch } from "./Switch";
 import { NavigationButtons } from "./NavigationButtons";
 import { Link } from "./Link";
 import { SingleStage } from "./SingleStage";
-import { MultipleStage } from "./MultipleStage";
-import { fetchStageInfo, fetchStageChunk } from "@/utils/stageUtils";
-import { Stage } from "@/types/Stage";
 import { useSwipe } from "@/hooks/useSwipe";
 import { useStageContext } from "@/providers/StageProvider";
 import { track } from "@vercel/analytics";
 import { getCurrentStage } from "@/utils/stageUtils";
+import { useStages } from "@/hooks/useStages";
 
 export default function MainStage() {
-  const { setActiveStage, activeStage } = useStageContext();
+  const { setActiveStage } = useStageContext();
+  const { width } = useViewportSize();
+  const { data: allStages } = useStages();
+  
   const [isLinked, setIsLinked] = useState(false);
-  const [isSingleView, setIsSingleView] = useState(true);
   const [stage, setStage] = useState<number>(1);
-  const [stageData, setStageData] = useState<Stage | null>(null);
-  const [stageChunkData, setStageChunkData] = useState<Stage[] | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [touchStartX, setTouchStartX] = useState(0);
   const [touchStartY, setTouchStartY] = useState(0);
 
-  // Initialize stage to the active stage
+  // Determine view mode based on width
+  const isWideScreen = width >= 900;
+
+  // Initialize stage to the current active stage (e.g. today's stage)
   useEffect(() => {
     getCurrentStage().then((currentStage) => {
       setStage(currentStage);
     });
   }, []);
 
+  // Sync context when stage changes if linked
   useEffect(() => {
-    if (isSingleView) {
-      fetchStageInfo(stage).then((data) => {
-        setStageData(data);
-      });
-    } else {
-      fetchStageChunk(stage).then((data) => {
-        setStageChunkData(data);
-      });
+    if (isLinked) {
+      setActiveStage(stage);
     }
-  }, [stage, isSingleView]);
+  }, [stage, isLinked, setActiveStage]);
 
   const onSwipe = (direction: string) => {
+    // If wide screen, we "turn the page" (move by 2). If mobile, move by 1.
+    const increment = isWideScreen ? 2 : 1;
+
     if (direction === "left") {
-      if (!isSingleView) {
-        if (stage + 3 > 21) return;
-        setStage(stage + 3);
-        if (isLinked) {
-          setActiveStage(stage + 3);
-        }
-      } else {
-        if (stage + 1 > 21) return;
-        setStage(stage + 1);
-        if (isLinked) {
-          setActiveStage(stage + 1);
-        }
-      }
+      // Swipe Left -> Next Stage
+      if (stage + increment > 21) return;
+      setStage((prev) => prev + increment);
     } else {
-      if (!isSingleView) {
-        if (stage - 3 < 1) return;
-        setStage(stage - 3);
-        if (isLinked) {
-          setActiveStage(stage - 3);
-        }
-      } else {
-        if (stage - 1 < 1) return;
-        setStage(stage - 1);
-        if (isLinked) {
-          setActiveStage(stage - 1);
-        }
-      }
+      // Swipe Right -> Previous Stage
+      if (stage - increment < 1) return;
+      setStage((prev) => prev - increment);
     }
 
     track("Stage Changed", {
       method: "swipe",
-      viewType: isSingleView ? "single" : "multiple",
+      viewType: isWideScreen ? "multiple" : "single",
       isLinked: isLinked,
       stage: stage,
     });
@@ -91,22 +70,46 @@ export default function MainStage() {
     setTouchStartY,
   });
 
+  if (!allStages) {
+    return (
+      <Container size="lg" className={classes.container}>
+        <Loader />
+      </Container>
+    );
+  }
+
+  // Find the data for the current stages
+  const currentStageData = allStages.find((s) => s.stage_number === stage);
+  const nextStageData = allStages.find((s) => s.stage_number === stage + 1);
+
   return (
     <Container size="lg" className={classes.container} ref={containerRef}>
       <div className={classes.headerContainer}>
         <Link setIsLinked={setIsLinked} />
         <NavigationButtons
           isLinked={isLinked}
-          isSingleView={isSingleView}
+          isSingleView={!isWideScreen}
           stage={stage}
           setStage={setStage}
         />
-        <Switch setIsSingleView={setIsSingleView} />
       </div>
-      {isSingleView ? (
-        <SingleStage stageData={stageData} />
+
+      {isWideScreen ? (
+        <div style={{ display: "flex", width: "100%", gap: "1rem" }}>
+          {/* Left Stage */}
+          <div style={{ flex: 1 }}>
+            {currentStageData && <SingleStage stageData={currentStageData} />}
+          </div>
+          
+          {/* Right Stage (Only render if it exists - e.g. won't show on Stage 21) */}
+          <div style={{ flex: 1 }}>
+            {nextStageData && <SingleStage stageData={nextStageData} />}
+          </div>
+        </div>
       ) : (
-        <MultipleStage stageChunkData={stageChunkData} />
+        <div style={{ width: "100%" }}>
+           {currentStageData && <SingleStage stageData={currentStageData} />}
+        </div>
       )}
     </Container>
   );

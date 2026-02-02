@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-
+import { useEffect } from "react";
 import {
   IconChevronLeft,
   IconChevronRight,
-  IconChevronDown,
+  IconSelector,
 } from "@tabler/icons-react";
-import { Button } from "@mantine/core";
-import { Menu } from "@mantine/core";
+import { Button, NativeSelect } from "@mantine/core";
 import { useStageContext } from "@/providers/StageProvider";
 import classes from "@/styles/Stage/NavigationButtons.module.css";
 import { track } from "@vercel/analytics";
@@ -18,19 +16,8 @@ interface NavigationButtonsProps {
   setStage: (stage: number) => void;
 }
 
-const stages = [
-  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-];
-
-const chunkedStages = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-  [10, 11, 12],
-  [13, 14, 15],
-  [16, 17, 18],
-  [19, 20, 21],
-];
+// Generate array [1, 2, ... 21]
+const stages = Array.from({ length: 21 }, (_, i) => i + 1);
 
 export function NavigationButtons({
   isLinked,
@@ -39,142 +26,118 @@ export function NavigationButtons({
   setStage,
 }: NavigationButtonsProps) {
   const { activeStage, setActiveStage } = useStageContext();
-  const [opened, setOpened] = useState(false);
 
-  const handleMenuClick = (stage: number) => {
+  // How many stages do we move when clicking next/prev?
+  const increment = isSingleView ? 1 : 2;
+
+  // Sync with context if Linked Mode is on
+  useEffect(() => {
     if (isLinked) {
-      setActiveStage(stage);
+      setStage(activeStage);
     }
-    setStage(stage);
-  };
+  }, [activeStage, isLinked, setStage]);
 
-  const getSideButtonDisplay = (direction: number) => {
-    if (isSingleView) {
-      return stage + direction < 1 || stage + direction > 21;
-    } else {
-      return stage + direction * 3 < 1 || stage + direction * 3 > 21;
-    }
-  };
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedStage = parseInt(event.currentTarget.value, 10);
 
-  const items = () => {
-    if (isSingleView) {
-      return stages.map((stage, index) => {
-        return (
-          <Menu.Item
-            key={index}
-            onClick={() => handleMenuClick(stage)}
-            className={classes.dropDownItem}>
-            Etappe {stage}
-          </Menu.Item>
-        );
-      });
-    } else {
-      return chunkedStages.map((chunk, index) => {
-        return (
-          <div key={index}>
-            <Menu.Item
-              onClick={() => handleMenuClick(chunk[0])}
-              className={classes.dropDownItem}>
-              Etappe {chunk[0]} - {chunk[2]}
-            </Menu.Item>
-          </div>
-        );
-      });
+    if (isLinked) {
+      setActiveStage(selectedStage);
     }
-  };
+    setStage(selectedStage);
 
-  const displayStageName = () => {
-    if (isSingleView) {
-      return `Etappe ${stage}`;
-    } else {
-      const chunk = chunkedStages.find((chunk) => chunk.includes(stage));
-      if (chunk) {
-        return `Etappe ${chunk[0]} - ${chunk[2]}`;
-      }
-      return "";
-    }
+    track("Stage Changed", {
+      method: "select",
+      viewType: isSingleView ? "single" : "multiple",
+      isLinked: isLinked,
+      stage: selectedStage,
+    });
   };
 
   const handleSideClick = (direction: number) => {
-    if (!isSingleView) {
-      const currentIndex = chunkedStages.findIndex((chunk) =>
-        chunk.includes(stage)
-      );
-      if (
-        currentIndex + direction >= 0 &&
-        currentIndex + direction <= chunkedStages.length - 1
-      ) {
-        const newChunk = chunkedStages[currentIndex + direction];
-        if (isLinked) {
-          setActiveStage(newChunk[0]);
-        }
-        setStage(newChunk[0]);
-      }
-      return;
-    }
+    const step = direction * increment;
+    const nextStage = stage + step;
 
-    if (stage + direction > 0 && stage + direction < 22) {
-      if (isLinked) {
-        setActiveStage(stage + direction);
-      }
-      setStage(stage + direction);
+    // Safety checks
+    if (nextStage < 1 || nextStage > 21) return;
+
+    if (isLinked) {
+      setActiveStage(nextStage);
     }
+    setStage(nextStage);
 
     track("Stage Changed", {
       method: "button",
       viewType: isSingleView ? "single" : "multiple",
       isLinked: isLinked,
-      stage: stage + direction,
+      stage: nextStage,
     });
   };
 
-  useEffect(() => {
-    if (isLinked) {
-      setStage(activeStage);
+  // Logic to hide/show buttons
+  const isLeftHidden = stage === 1;
+  const isRightHidden = stage + increment > 21;
+
+  // Generate the labels dynamically based on View Mode
+  const selectData = stages.map((s) => {
+    let label = `Etappe ${s}`;
+
+    // If Desktop view (and not the very last stage), show "Etappe X & Y"
+    if (!isSingleView && s < 21) {
+      label = `Etappe ${s} & ${s + 1}`;
     }
-  }, [activeStage, isLinked]);
+
+    return {
+      value: s.toString(),
+      label: label,
+    };
+  });
 
   return (
     <div className={classes.container}>
-      {getSideButtonDisplay(-1) ? (
+      {/* LEFT BUTTON */}
+      {isLeftHidden ? (
         <div className={classes.ghostButton} />
       ) : (
         <Button
           size="xs"
           className={classes.sideButtonLeft}
-          onClick={() => handleSideClick(-1)}
-          display={getSideButtonDisplay(-1) ? "none" : "block"}>
+          onClick={() => handleSideClick(-1)}>
           <IconChevronLeft size={26} />
         </Button>
       )}
-      <Menu
-        onOpen={() => setOpened(true)}
-        onClose={() => setOpened(false)}
-        radius="md"
-        shadow="md"
-        width={200}
-        transitionProps={{ duration: 200, transition: "fade" }}>
-        <Menu.Target>
-          <div className={classes.middleButton}>
-            <h4>{displayStageName()}</h4>
-            <IconChevronDown
-              size={22}
-              stroke={2}
-              className={classes.dropDownIcon}
-            />
-          </div>
-        </Menu.Target>
-        <Menu.Dropdown className={classes.dropDown}>{items()}</Menu.Dropdown>
-      </Menu>
 
-      {getSideButtonDisplay(1) ? (
+      <div className={classes.middleButton}>
+        <NativeSelect
+          value={stage}
+          onChange={handleSelectChange}
+          data={selectData}
+          rightSection={<IconSelector size={20} color="white" />}
+          rightSectionWidth={30}
+          variant="unstyled"
+          styles={{
+            root: {
+              width: "100%",
+            },
+            input: {
+              fontWeight: 700,
+              fontSize: "1.1rem",
+              color: "white",
+              textAlign: "center",
+              textAlignLast: "center",
+              cursor: "pointer",
+            },
+          }}
+        />
+      </div>
+
+      {/* RIGHT BUTTON */}
+      {isRightHidden ? (
         <div className={classes.ghostButton} />
       ) : (
         <Button
           size="xs"
           className={classes.sideButtonRight}
-          onClick={() => handleSideClick(1)}
-          display={getSideButtonDisplay(1) ? "none" : "block"}>
+          onClick={() => handleSideClick(1)}>
           <IconChevronRight size={26} />
         </Button>
       )}

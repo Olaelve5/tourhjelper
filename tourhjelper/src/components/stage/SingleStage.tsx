@@ -1,23 +1,26 @@
 import React from "react";
-
-import { StageInfo } from "./StageInfo";
 import { StageImage } from "./StageImage";
 import { Favorites } from "./Favorites";
 import classes from "@/styles/Stage/SingleStage.module.css";
 import { Stage } from "@/types/Stage";
 
 interface SingleStageProps {
-  stageData: Stage | null;
+  stageData: Stage | null | undefined; 
 }
 
 export function SingleStage({ stageData }: SingleStageProps) {
+  if (!stageData) return null; // Or return a Skeleton/Loader
+
   return (
     <div className={classes.container}>
       <div className={classes.imageInfoContainer}>
-        <StageImage imageURL={stageData ? stageData.imageURL : ""} />
-        {/* <StageInfo stageData={stageData} /> */}
+        <StageImage imageURL={stageData.image_url ?? ""} />
+        
+        {/* Optional: Update StageInfo if you ever uncomment it
+           <StageInfo stageData={stageData} /> 
+        */}
       </div>
-      <Favorites stageNumber={stageData?.stage ?? 0} />
+      <Favorites stageData={stageData} />
     </div>
   );
 }

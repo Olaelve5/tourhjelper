@@ -8,14 +8,14 @@
   padding: 1.5rem;
   position: relative;
   box-sizing: border-box;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
   overflow: hidden;
 }
 
 .imageInfoContainer {
   height: 100%;
-  gap: 4rem;
+  gap: 2rem;
   align-items: center;
 }
 

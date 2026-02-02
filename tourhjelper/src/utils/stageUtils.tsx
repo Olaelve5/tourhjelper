@@ -34,7 +34,7 @@ export const fetchStageChunk = async (stage: number) => {
   });
   const stages = [];
 
-  for (let i = chunk[0]; i <= chunk[2]; i++) {
+  for (let i = chunk[0]; i <= chunk[1]; i++) {
     const stageData = await fetchStageInfo(i);
     stages.push(stageData);
   }
