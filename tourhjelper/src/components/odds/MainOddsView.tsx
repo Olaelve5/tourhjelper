@@ -12,12 +12,12 @@ const MainOddsView = () => {
       {/* <div className={classes.headerContainer}>
         <h3>Siste resultater & odds</h3>
       </div> */}
-      <ResultOddsToggle
+      {/* <ResultOddsToggle
         showResults={showResults}
         onToggle={(showResults) => setShowResults(showResults)}
-      />
+      /> */}
       <OddsTable />
-      <div className={classes.updateInfo}>Sist oppdatert 25.01 kl 22.20</div>
+      
     </Container>
   );
 };

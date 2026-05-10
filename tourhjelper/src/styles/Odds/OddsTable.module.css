@@ -1,23 +1,12 @@
 .tableContainer {
   width: 100%;
   background: transparent;
-  max-height: 80vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: transparent;
   font-weight: bold;
   background-color: var(--dark-grey);
 }
 
 .tableContainer :global(thead th) {
   z-index: 2;
-}
-
-/* Title header (first row) */
-.tableContainer :global(thead tr:first-child th) {
-  background-color: white;
-  color: black;
-  font-size: 1rem;
 }
 
 /* Column header (second row) */
@@ -71,4 +60,11 @@
   text-align: center;
   color: #ffffff8e;
   font-weight: normal;
+}
+
+.riderImage {
+  width: 28px;
+  height: 34px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

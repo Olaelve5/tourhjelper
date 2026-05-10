@@ -1,5 +1,5 @@
 import classes from "@/styles/Odds/OddsTable.module.css";
-import { Table, Loader } from "@mantine/core";
+import { Table, Loader, Button } from "@mantine/core"; // Added Button here
 import { useMemo, useState, useEffect } from "react";
 import { IconStarFilled } from "@tabler/icons-react";
 import { supabase } from "@/utils/supabase";
@@ -34,6 +34,9 @@ const OddsTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // NEW: State to track how many rows are visible
+  const [visibleCount, setVisibleCount] = useState(15);
+
   useEffect(() => {
     fetchOdds();
   }, []);
@@ -51,11 +54,11 @@ const OddsTable = () => {
         }
       });
 
-      // 1. Fetch GC odds from Supabase, sorted by newest first
+      // 1. Fetch STAGE_WINNER odds from Supabase, sorted by newest first
       const { data: dbData, error } = await supabase
         .from("cycling_odds")
         .select("*")
-        .eq("market_type", "GC_WINNER")
+        .eq("market_type", "STAGE_WINNER")
         .order("scraped_at", { ascending: false });
 
       if (error) throw error;
@@ -65,7 +68,6 @@ const OddsTable = () => {
 
       if (dbData) {
         dbData.forEach((row) => {
-          // If we haven't seen this rider yet, add them (this will be the most recent entry)
           if (!uniqueRiders.has(row.rider_name)) {
             const localMatch = localRiderMap.get(normalizeName(row.rider_name));
             uniqueRiders.set(row.rider_name, {
@@ -103,8 +105,11 @@ const OddsTable = () => {
     );
   }
 
+  // NEW: Slice the sorted data based on the visible count
+  const visibleData = sortedData.slice(0, visibleCount);
+
   const rows =
-    sortedData.length === 0
+    visibleData.length === 0
       ? [
           <Table.Tr key="empty">
             <Table.Td colSpan={4} className={classes.emptyState}>
@@ -112,16 +117,24 @@ const OddsTable = () => {
             </Table.Td>
           </Table.Tr>,
         ]
-      : sortedData.map(({ name, odds, role, won, price }, index) => (
+      : visibleData.map(({ name, odds, role, won, price }, index) => (
           <Table.Tr key={name}>
-            <Table.Td className={classes.subtleInfo}>{index + 1}</Table.Td>
-            <Table.Td>
-              <div>{name}</div>
-              <div className={classes.roleBelowName}>{role}</div>
+            <Table.Td style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={
+                  "https://fantasy.assets.scoutgg.net/uploads/assets/36230.svg"
+                }
+                alt="rider"
+                className={classes.riderImage}
+              />
+              <div>
+                <div>{name}</div>
+                <div className={classes.roleBelowName}>Uno-X Mobility</div>
+              </div>
             </Table.Td>
-            {/* Price Column - Showing placeholder or formatted number */}
             <Table.Td align="center">
-              {price > 0 ? price.toFixed(1) : "-"}
+              <div>{price > 0 ? price.toFixed(1) : "-"}m</div>
+              <div className={classes.roleBelowName}>{role}</div>
             </Table.Td>
             <Table.Td align="center">
               <div className={won ? classes.won : classes.odds}>
@@ -140,22 +153,42 @@ const OddsTable = () => {
         borderColor="var(--highlight-grey)"
         striped
         stripedColor="var(--light-grey)"
-        stickyHeader>
+        // Removed stickyHeader since we are expanding downwards instead of scrolling inside a container
+      >
         <Table.Thead>
           <Table.Tr>
             <Table.Th colSpan={4} className={classes.headerTitle}>
-              Gul Trøye Vinnerodds
+              Stage Vinnerodds
             </Table.Th>
           </Table.Tr>
           <Table.Tr className={classes.columnHeaderRow}>
-            <Table.Th>#</Table.Th>
             <Table.Th>Rytter</Table.Th>
-            <Table.Th className={classes.oddsTitle}>Pris</Table.Th>
+            <Table.Th className={classes.oddsTitle}>Info</Table.Th>
             <Table.Th className={classes.oddsTitle}>Odds</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
+
+      {/* NEW: Load More Button */}
+      {visibleCount < sortedData.length && (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+          }}>
+          <Button
+            variant="light"
+            color="gray"
+            fullWidth
+            style={{ maxWidth: "200px" }}
+            onClick={() => setVisibleCount((prev) => prev + 15)}>
+            Vis 15 flere rader
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
