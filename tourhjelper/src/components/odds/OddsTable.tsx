@@ -3,6 +3,7 @@ import { Table, Loader, Button } from "@mantine/core";
 import { useMemo, useState } from "react";
 import { IconStarFilled, IconTextPlus } from "@tabler/icons-react";
 import { RiderData } from "@/hooks/useOddsData";
+import { useRiderContext } from "@/providers/RiderProvider";
 
 // Define the expected props
 interface OddsTableProps {
@@ -13,6 +14,7 @@ interface OddsTableProps {
 
 const OddsTable = ({ data, loading, error }: OddsTableProps) => {
   const [visibleCount, setVisibleCount] = useState(15);
+  const { riderImages } = useRiderContext();
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => a.odds - b.odds);
@@ -40,19 +42,20 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
             </Table.Td>
           </Table.Tr>,
         ]
-      : visibleData.map(({ name, odds, role, won, price }) => (
+      : visibleData.map(({ name, odds, role, won, price, team }) => (
           <Table.Tr key={name}>
             <Table.Td style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={
-                  "https://fantasy.assets.scoutgg.net/uploads/assets/36230.svg"
+                  riderImages.find((img) => img.team === team)?.image ||
+                  "neutral-kit.webp"
                 }
                 alt="rider"
                 className={classes.riderImage}
               />
               <div>
                 <div>{name}</div>
-                <div className={classes.roleBelowName}>Uno-X Mobility</div>
+                <div className={classes.roleBelowName}>{team}</div>
               </div>
             </Table.Td>
             <Table.Td align="center">

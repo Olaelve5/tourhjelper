@@ -7,12 +7,14 @@ export interface RiderData {
   role: string;
   won: boolean;
   price: number;
+  team: string;
 }
 
 export type LocalRiderData = {
   name: string;
   category?: string;
   price?: number;
+  team?: string;
 };
 
 const normalizeName = (value: string) =>
@@ -115,6 +117,7 @@ export const useOddsData = () => {
                 role: localMatch?.category ?? "-",
                 won: false,
                 price: localMatch?.price ?? 0,
+                team: localMatch?.team ?? "-",
               });
             }
           });
