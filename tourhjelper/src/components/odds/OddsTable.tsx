@@ -1,94 +1,18 @@
 import classes from "@/styles/Odds/OddsTable.module.css";
-import { Table, Loader, Button } from "@mantine/core"; // Added Button here
-import { useMemo, useState, useEffect } from "react";
-import { IconStarFilled } from "@tabler/icons-react";
-import { supabase } from "@/utils/supabase";
+import { Table, Loader, Button } from "@mantine/core";
+import { useMemo, useState } from "react";
+import { IconStarFilled, IconTextPlus } from "@tabler/icons-react";
+import { RiderData } from "@/hooks/useOddsData";
 
-// Define what our "Row" looks like for the UI
-interface RiderData {
-  name: string;
-  odds: number;
-  role: string;
-  won: boolean;
-  price: number;
+// Define the expected props
+interface OddsTableProps {
+  data: RiderData[];
+  loading: boolean;
+  error: string | null;
 }
 
-type LocalRiderData = {
-  name: string;
-  category?: string;
-  price?: number;
-};
-
-const normalizeName = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’'`\"]+/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const OddsTable = () => {
-  const [currentStage] = useState(13); // Example stage
-  const [data, setData] = useState<RiderData[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  // NEW: State to track how many rows are visible
+const OddsTable = ({ data, loading, error }: OddsTableProps) => {
   const [visibleCount, setVisibleCount] = useState(15);
-
-  useEffect(() => {
-    fetchOdds();
-  }, []);
-
-  const fetchOdds = async () => {
-    try {
-      setLoading(true);
-
-      const localRidersRes = await fetch("/data/rider_data.json");
-      const localRidersJson = (await localRidersRes.json()) as LocalRiderData[];
-      const localRiderMap = new Map<string, LocalRiderData>();
-      localRidersJson.forEach((rider) => {
-        if (rider?.name) {
-          localRiderMap.set(normalizeName(rider.name), rider);
-        }
-      });
-
-      // 1. Fetch STAGE_WINNER odds from Supabase, sorted by newest first
-      const { data: dbData, error } = await supabase
-        .from("cycling_odds")
-        .select("*")
-        .eq("market_type", "STAGE_WINNER")
-        .order("scraped_at", { ascending: false });
-
-      if (error) throw error;
-
-      // 2. Process data: Deduplicate to keep only the latest entry per rider
-      const uniqueRiders = new Map<string, RiderData>();
-
-      if (dbData) {
-        dbData.forEach((row) => {
-          if (!uniqueRiders.has(row.rider_name)) {
-            const localMatch = localRiderMap.get(normalizeName(row.rider_name));
-            uniqueRiders.set(row.rider_name, {
-              name: row.rider_name,
-              odds: row.odds,
-              role: localMatch?.category ?? "-",
-              won: false, // Placeholder
-              price: localMatch?.price ?? 0,
-            });
-          }
-        });
-      }
-
-      setData(Array.from(uniqueRiders.values()));
-    } catch (err) {
-      console.error("Error fetching odds:", err);
-      setError("Kunne ikke laste odds.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => a.odds - b.odds);
@@ -105,7 +29,6 @@ const OddsTable = () => {
     );
   }
 
-  // NEW: Slice the sorted data based on the visible count
   const visibleData = sortedData.slice(0, visibleCount);
 
   const rows =
@@ -117,7 +40,7 @@ const OddsTable = () => {
             </Table.Td>
           </Table.Tr>,
         ]
-      : visibleData.map(({ name, odds, role, won, price }, index) => (
+      : visibleData.map(({ name, odds, role, won, price }) => (
           <Table.Tr key={name}>
             <Table.Td style={{ display: "flex", alignItems: "center" }}>
               <img
@@ -138,7 +61,7 @@ const OddsTable = () => {
             </Table.Td>
             <Table.Td align="center">
               <div className={won ? classes.won : classes.odds}>
-                {odds.toFixed(2)}{" "}
+                {odds.toFixed(1)}{" "}
                 {won && <IconStarFilled size={14} className={classes.star} />}
               </div>
             </Table.Td>
@@ -151,16 +74,9 @@ const OddsTable = () => {
         verticalSpacing={"xs"}
         withRowBorders={false}
         borderColor="var(--highlight-grey)"
-        striped
-        stripedColor="var(--light-grey)"
-        // Removed stickyHeader since we are expanding downwards instead of scrolling inside a container
-      >
+        striped={false}
+        stripedColor="var(--light-grey)">
         <Table.Thead>
-          <Table.Tr>
-            <Table.Th colSpan={4} className={classes.headerTitle}>
-              Stage Vinnerodds
-            </Table.Th>
-          </Table.Tr>
           <Table.Tr className={classes.columnHeaderRow}>
             <Table.Th>Rytter</Table.Th>
             <Table.Th className={classes.oddsTitle}>Info</Table.Th>
@@ -170,7 +86,6 @@ const OddsTable = () => {
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
 
-      {/* NEW: Load More Button */}
       {visibleCount < sortedData.length && (
         <div
           style={{
@@ -180,12 +95,13 @@ const OddsTable = () => {
             marginBottom: "1rem",
           }}>
           <Button
-            variant="light"
-            color="gray"
+            color="yellow"
+            className={classes.loadMoreButton}
             fullWidth
             style={{ maxWidth: "200px" }}
             onClick={() => setVisibleCount((prev) => prev + 15)}>
-            Vis 15 flere rader
+            Vis flere rader
+            <IconTextPlus size={20} style={{ marginLeft: "0.5rem" }} />
           </Button>
         </div>
       )}
