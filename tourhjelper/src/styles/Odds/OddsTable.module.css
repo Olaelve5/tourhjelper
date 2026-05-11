@@ -1,10 +1,6 @@
 .tableContainer {
   width: 100%;
   background: transparent;
-  max-height: 80vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: transparent;
   font-weight: bold;
   background-color: var(--dark-grey);
 }
@@ -13,16 +9,9 @@
   z-index: 2;
 }
 
-/* Title header (first row) */
-.tableContainer :global(thead tr:first-child th) {
-  background-color: white;
-  color: black;
-  font-size: 1rem;
-}
-
 /* Column header (second row) */
 .columnHeaderRow :global(th) {
-  background-color: var(--light-grey);
+  background-color: var(--dark-grey);
   box-shadow: inset 0 -1px 0 #ffffff87;
   color: #ffffff8e;
   font-size: 0.85rem;
@@ -53,13 +42,12 @@
 }
 
 .won {
-  background-color: var(--yellow-tdf);
+  background-color: var(--header-color);
   border-radius: 10px;
   padding: 0 8px;
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: var(--dark-grey);
 }
 
 .star {
@@ -71,4 +59,49 @@
   text-align: center;
   color: #ffffff8e;
   font-weight: normal;
+}
+
+.riderImage {
+  width: 28px;
+  height: 34px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.loadMoreButton {
+  color: var(--dark-grey);
+  background-color: var(--yellow-tdf);
+}
+
+.root {
+  align-self: center;
+  margin: 1rem 0 0 0;
+}
+
+.control {
+  background: var(--light-grey);
+  color: white;
+  border-color: var(--highlight-grey);
+}
+
+.control:hover {
+  background: var(--highlight-grey);
+}
+
+.control[data-active="true"] {
+  background: var(--header-color);
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .root {
+    align-self: center;
+    margin: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .control {
+    font-size: 12px;
+  }
 }

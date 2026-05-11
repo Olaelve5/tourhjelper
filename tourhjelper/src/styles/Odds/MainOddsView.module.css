@@ -1,14 +1,13 @@
 .container {
-  height: auto;
+  height: 100%;
   width: 100%;
   border-radius: 5px;
-  margin: 5rem 0 5rem 0;
   display: flex;
   flex-direction: column;
   padding: 0;
   align-items: center;
   box-shadow: 0 10px 12px -8px #0000006b;
-  background-color: white;
+  background-color: var(--dark-grey);
 }
 
 .headerContainer {
@@ -33,4 +32,23 @@
   width: 100%;
   text-align: center;
   font-weight: normal;
+}
+
+.updateContainer {
+  width: 80%;
+  background-color: var(--yellow-tdf);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  justify-content: space-around;
+  padding: 0.15rem 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-grey);
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    margin-top: 3rem;
+  }
 }
