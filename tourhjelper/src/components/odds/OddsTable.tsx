@@ -1,23 +1,39 @@
 import classes from "@/styles/Odds/OddsTable.module.css";
-import { Table, Loader, Button } from "@mantine/core";
-import { useMemo, useState } from "react";
+import { Table, Loader, Button, Pagination } from "@mantine/core";
+import { useMediaQuery } from "@mantine/hooks"; // Lytter til skjermbredde
+import { useMemo, useState, useEffect } from "react";
 import { IconStarFilled, IconTextPlus } from "@tabler/icons-react";
 import { RiderData } from "@/hooks/useOddsData";
 import { useRiderContext } from "@/providers/RiderProvider";
 
-// Define the expected props
 interface OddsTableProps {
   data: RiderData[];
   loading: boolean;
   error: string | null;
 }
 
+const ITEMS_PER_PAGE = 14;
+
 const OddsTable = ({ data, loading, error }: OddsTableProps) => {
-  const [visibleCount, setVisibleCount] = useState(15);
+  // State for mobil (load more)
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  // State for desktop (pagination)
+  const [page, setPage] = useState(1);
+
+  // Sjekker om skjermen er over 900px bred (returnerer true/false)
+  const isDesktop = useMediaQuery("(min-width: 900px)");
+
   const { riderImages } = useRiderContext();
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => a.odds - b.odds);
+  }, [data]);
+
+  // Nullstill sidenummer/antall hvis dataene endres (f.eks. bytter etappe)
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+    setPage(1);
   }, [data]);
 
   // Loading State
@@ -31,7 +47,12 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
     );
   }
 
-  const visibleData = sortedData.slice(0, visibleCount);
+  // LOGIKKEN: Beregn hvilke data som skal vises basert på skjermbredde
+  const visibleData = isDesktop
+    ? sortedData.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE) // Paginerings-logikk
+    : sortedData.slice(0, visibleCount); // Load-more logikk
+
+  const totalPages = Math.ceil(sortedData.length / ITEMS_PER_PAGE);
 
   const rows =
     visibleData.length === 0
@@ -89,25 +110,42 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
 
-      {visibleCount < sortedData.length && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "1rem",
-            marginBottom: "1rem",
-          }}>
-          <Button
-            color="yellow"
-            className={classes.loadMoreButton}
-            fullWidth
-            style={{ maxWidth: "200px" }}
-            onClick={() => setVisibleCount((prev) => prev + 15)}>
-            Vis flere rader
-            <IconTextPlus size={20} style={{ marginLeft: "0.5rem" }} />
-          </Button>
-        </div>
-      )}
+      {/* --- KONTROLLER FOR BUNNEN AV TABELLEN --- */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "1rem",
+          marginTop: "auto",
+        }}>
+        {isDesktop
+          ? // DESKTOP: Vis Mantine Pagination
+            totalPages > 1 && (
+              <Pagination
+                total={totalPages}
+                value={page}
+                onChange={setPage}
+                classNames={classes}
+                size="sm"
+                withControls
+                siblings={1}
+              />
+            )
+          : // MOBIL: Vis "Load More" knappen
+            visibleCount < sortedData.length && (
+              <Button
+                color="yellow"
+                className={classes.loadMoreButton}
+                fullWidth
+                style={{ maxWidth: "200px" }}
+                onClick={() =>
+                  setVisibleCount((prev) => prev + ITEMS_PER_PAGE)
+                }>
+                Vis flere rader
+                <IconTextPlus size={20} style={{ marginLeft: "0.5rem" }} />
+              </Button>
+            )}
+      </div>
     </div>
   );
 };

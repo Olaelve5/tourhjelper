@@ -72,3 +72,36 @@
   color: var(--dark-grey);
   background-color: var(--yellow-tdf);
 }
+
+.root {
+  align-self: center;
+  margin: 1rem 0 0 0;
+}
+
+.control {
+  background: var(--light-grey);
+  color: white;
+  border-color: var(--highlight-grey);
+}
+
+.control:hover {
+  background: var(--highlight-grey);
+}
+
+.control[data-active="true"] {
+  background: var(--header-color);
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .root {
+    align-self: center;
+    margin: 1rem 0;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .control {
+    font-size: 12px;
+  }
+}

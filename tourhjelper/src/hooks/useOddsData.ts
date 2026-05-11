@@ -135,14 +135,5 @@ export const useOddsData = () => {
     fetchOdds();
   }, []);
 
-  // Return the new lastUpdated variable alongside everything else
-  console.log("Last Updated Timestamp:", lastUpdated);
-  console.log("Data being returned from useOddsData:", {
-    data,
-    loading,
-    error,
-    actualStage,
-    lastUpdated,
-  });
   return { data, loading, error, actualStage, lastUpdated };
 };

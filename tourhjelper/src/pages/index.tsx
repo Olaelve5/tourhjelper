@@ -9,8 +9,11 @@ import OddsView from "@/components/odds/MainOddsView";
 import classes from "@/styles/MainPlanner.module.css";
 import ImportTeamInput from "@/components/import/ImportTeamInput";
 import CombinedProviders from "@/providers/CombinedProviders";
+import { useViewportSize } from "@mantine/hooks";
 
 const PlannerPage: React.FC = () => {
+  const { width } = useViewportSize();
+  const isWideScreen = width >= 900;
   return (
     <Layout>
       <StageProvider>
@@ -18,8 +21,25 @@ const PlannerPage: React.FC = () => {
           <Container size="lg" className={classes.pageContainer}>
             <ImportTeamInput />
             <MainPlanner />
-            <MainStage />
-            <OddsView />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: isWideScreen ? "row" : "column",
+                gap: "0.8rem",
+                marginTop: "4rem",
+                justifyContent: "center",
+                marginBottom: "2rem",
+                alignItems: "stretch",
+              }}>
+              <div
+                style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                <MainStage />
+              </div>
+              <div
+                style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+                <OddsView />
+              </div>
+            </div>
           </Container>
         </CombinedProviders>
       </StageProvider>
