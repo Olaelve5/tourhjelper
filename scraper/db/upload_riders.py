@@ -9,9 +9,8 @@ DB_URI = os.getenv("DB_URI")
 
 def upload_riders():
     # 1. Load the JSON file
-    json_path = "../tourhjelper/public/data/rider_data.json"
-    if not os.path.exists(json_path):
-        json_path = "rider_data.json"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(script_dir, "..", "data", "rider_data.json")
 
     with open(json_path, "r", encoding="utf-8") as f:
         riders = json.load(f)

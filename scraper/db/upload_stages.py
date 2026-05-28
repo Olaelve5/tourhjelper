@@ -5,14 +5,13 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-DB_URI = os.getenv("DB_URI")
+DB_URI = os.getenv("DB_URI_IPV4")
 
 def upload_stages():
     # 1. Load the JSON file
     # Ensure this filename matches your actual JSON file
-    filename = "../tourhjelper/public/data/stage_data.json"
-    if not os.path.exists(filename):
-        filename = "stage_data.json" 
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    filename = os.path.join(script_dir, "..", "data", "stage_data.json")
     
     if not os.path.exists(filename):
         print(f"Error: File '{filename}' not found.")

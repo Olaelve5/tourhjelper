@@ -22,16 +22,12 @@ def main():
     chrome_options = Options()
     chrome_options.add_argument("--headless")
 
-    # Prioritize Next.js path from within scraper directory
-    stages_data_path = "../tourhjelper/public/data/stage_data.json"
-    if not os.path.exists("../tourhjelper/public/data"):
-        # Fallback if run from the planner root directory
-        stages_data_path = "tourhjelper/public/data/stage_data.json"
+    # Determine the save directory: always scraper/data relative to this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    data_dir = os.path.join(script_dir, "data")
+    os.makedirs(data_dir, exist_ok=True)
 
-    # Check if target directory exists
-    if not os.path.exists(os.path.dirname(stages_data_path)):
-        print(f"Error: Target directory for '{stages_data_path}' does not exist")
-        return
+    stages_data_path = os.path.join(data_dir, "stage_data.json")
 
     # Initialize the Chrome driver with options
     driver = webdriver.Chrome(options=chrome_options)
