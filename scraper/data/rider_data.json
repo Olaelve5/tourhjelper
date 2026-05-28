@@ -1,0 +1,1451 @@
+[
+  {
+    "name": "Tadej Pogacar",
+    "category": "Kaptein",
+    "team": "UAE Team Emirates - XRG",
+    "price": 12.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jonas Vingegaard",
+    "category": "Kaptein",
+    "team": "Team Visma | Lease a Bike",
+    "price": 11.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "UAE Team Emirates - XRG",
+    "category": "Sportsdirektør",
+    "team": "UAE Team Emirates - XRG",
+    "price": 11.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jonathan Milan",
+    "category": "Spurter",
+    "team": "Lidl - Trek",
+    "price": 11.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Wout van Aert",
+    "category": "Spurter",
+    "team": "Team Visma | Lease a Bike",
+    "price": 10.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tim Merlier",
+    "category": "Spurter",
+    "team": "Soudal Quick-Step",
+    "price": 10.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Remco Evenepoel",
+    "category": "Kaptein",
+    "team": "Soudal Quick-Step",
+    "price": 10.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Team Visma | Lease a Bike",
+    "category": "Sportsdirektør",
+    "team": "Team Visma | Lease a Bike",
+    "price": 10.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Biniam Girmay",
+    "category": "Spurter",
+    "team": "Intermarché - Wanty",
+    "price": 9.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Primoz Roglic",
+    "category": "Kaptein",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 9.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Soudal Quick-Step",
+    "category": "Sportsdirektør",
+    "team": "Soudal Quick-Step",
+    "price": 9.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alpecin - Deceuninck",
+    "category": "Sportsdirektør",
+    "team": "Alpecin - Deceuninck",
+    "price": 9.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Arnaud  Demare",
+    "category": "Spurter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 9.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Arnaud De Lie",
+    "category": "Spurter",
+    "team": "Lotto",
+    "price": 9.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Enric Mas",
+    "category": "Kaptein",
+    "team": "Movistar Team",
+    "price": 8.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jordi Meeus",
+    "category": "Spurter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 8.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Pascal Ackermann",
+    "category": "Spurter",
+    "team": "Israel - Premier Tech",
+    "price": 8.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ben O`Connor",
+    "category": "Kaptein",
+    "team": "Team Jayco AlUla",
+    "price": 8.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Dylan Groenewegen",
+    "category": "Spurter",
+    "team": "Team Jayco AlUla",
+    "price": 8.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jasper Philipsen",
+    "category": "Spurter",
+    "team": "Alpecin - Deceuninck",
+    "price": 11.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mathieu Van der Poel",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 8.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Red Bull - BORA - hansgrohe",
+    "category": "Sportsdirektør",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 8.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Phil Bauhaus",
+    "category": "Spurter",
+    "team": "Bahrain - Victorious",
+    "price": 8.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Geraint Thomas",
+    "category": "Klatrer",
+    "team": "INEOS Grenadiers",
+    "price": 8.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Joao Almeida",
+    "category": "Klatrer",
+    "team": "UAE Team Emirates - XRG",
+    "price": 8.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "INEOS Grenadiers",
+    "category": "Sportsdirektør",
+    "team": "INEOS Grenadiers",
+    "price": 8.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Florian Lipowitz",
+    "category": "Ungdomsrytter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 8.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Lidl - Trek",
+    "category": "Sportsdirektør",
+    "team": "Lidl - Trek",
+    "price": 8.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Santiago Buitrago",
+    "category": "Kaptein",
+    "team": "Bahrain - Victorious",
+    "price": 8.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Felix Gall",
+    "category": "Kaptein",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 8.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Adam Yates",
+    "category": "Klatrer",
+    "team": "UAE Team Emirates - XRG",
+    "price": 7.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mattias Skjelmose",
+    "category": "Kaptein",
+    "team": "Lidl - Trek",
+    "price": 7.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "EF Education - EasyPost",
+    "category": "Sportsdirektør",
+    "team": "EF Education - EasyPost",
+    "price": 7.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Carlos Rodriguez",
+    "category": "Ungdomsrytter",
+    "team": "INEOS Grenadiers",
+    "price": 7.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tobias Halland Johannessen",
+    "category": "Kaptein",
+    "team": "Uno-X Mobility",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Matteo Jorgenson",
+    "category": "Klatrer",
+    "team": "Team Visma | Lease a Bike",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Emanuel Buchmann",
+    "category": "Kaptein",
+    "team": "Cofidis",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Simon Yates",
+    "category": "Klatrer",
+    "team": "Team Visma | Lease a Bike",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Søren Wærenskjold",
+    "category": "Spurter",
+    "team": "Uno-X Mobility",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Filippo Ganna",
+    "category": "Temporytter",
+    "team": "INEOS Grenadiers",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Lenny Martinez",
+    "category": "Ungdomsrytter",
+    "team": "Bahrain - Victorious",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alexis Renard",
+    "category": "Spurter",
+    "team": "Cofidis",
+    "price": 7.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Sepp Kuss",
+    "category": "Hjelperytter",
+    "team": "Team Visma | Lease a Bike",
+    "price": 7.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Bryan Coquard",
+    "category": "Spurter",
+    "team": "Cofidis",
+    "price": 7.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Emilien Jeanniere",
+    "category": "Spurter",
+    "team": "Team TotalEnergies",
+    "price": 7.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Neilson Powless",
+    "category": "Klatrer",
+    "team": "EF Education - EasyPost",
+    "price": 7.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ben Healy",
+    "category": "Ungdomsrytter",
+    "team": "EF Education - EasyPost",
+    "price": 7.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Pavel Bittner",
+    "category": "Spurter",
+    "team": "Team Picnic PostNL",
+    "price": 7.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Danny Van Poppel",
+    "category": "Spurter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Julian Alaphilippe",
+    "category": "Kaptein",
+    "team": "Tudor Pro Cycling Team",
+    "price": 7.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Aleksandr Vlasov",
+    "category": "Klatrer",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Thymen Arensman",
+    "category": "Klatrer",
+    "team": "INEOS Grenadiers",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Matej Mohoric",
+    "category": "Hjelperytter",
+    "team": "Bahrain - Victorious",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tobias Lund Andersen",
+    "category": "Spurter",
+    "team": "Team Picnic PostNL",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Marijn Van Den Berg",
+    "category": "Spurter",
+    "team": "EF Education - EasyPost",
+    "price": 7.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Guillaume Martin",
+    "category": "Klatrer",
+    "team": "Groupama - FDJ",
+    "price": 6.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Romain Gregoire",
+    "category": "Ungdomsrytter",
+    "team": "Groupama - FDJ",
+    "price": 6.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Cees  Bol",
+    "category": "Spurter",
+    "team": "XDS Astana Team",
+    "price": 6.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jasper Stuyven",
+    "category": "Hjelperytter",
+    "team": "Lidl - Trek",
+    "price": 6.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Kevin Vauquelin",
+    "category": "Ungdomsrytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 6.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Steff Cras",
+    "category": "Kaptein",
+    "team": "Team TotalEnergies",
+    "price": 6.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alberto Dainese",
+    "category": "Spurter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 6.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Lennert Van Eetvelt",
+    "category": "Ungdomsrytter",
+    "team": "Lotto",
+    "price": 6.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Bahrain - Victorious",
+    "category": "Sportsdirektør",
+    "team": "Bahrain - Victorious",
+    "price": 6.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Michael Storer",
+    "category": "Klatrer",
+    "team": "Tudor Pro Cycling Team",
+    "price": 6.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Eduardo Sepulveda",
+    "category": "Kaptein",
+    "team": "Lotto",
+    "price": 6.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Sergio Higuita",
+    "category": "Klatrer",
+    "team": "XDS Astana Team",
+    "price": 6.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Valentin Madouas",
+    "category": "Hjelperytter",
+    "team": "Groupama - FDJ",
+    "price": 6.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Oscar Onley",
+    "category": "Ungdomsrytter",
+    "team": "Team Picnic PostNL",
+    "price": 6.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alexey Lutsenko",
+    "category": "Klatrer",
+    "team": "Israel - Premier Tech",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Michael Woods",
+    "category": "Klatrer",
+    "team": "Israel - Premier Tech",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mauro Schmid",
+    "category": "Klatrer",
+    "team": "Team Jayco AlUla",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Marc Soler",
+    "category": "Klatrer",
+    "team": "UAE Team Emirates - XRG",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Intermarché - Wanty",
+    "category": "Sportsdirektør",
+    "team": "Intermarché - Wanty",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Decathlon AG2R La Mondiale Team",
+    "category": "Sportsdirektør",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 6.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Clement Champoussin",
+    "category": "Klatrer",
+    "team": "XDS Astana Team",
+    "price": 6.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Pavel Sivakov",
+    "category": "Hjelperytter",
+    "team": "UAE Team Emirates - XRG",
+    "price": 6.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Thibau Nys",
+    "category": "Ungdomsrytter",
+    "team": "Lidl - Trek",
+    "price": 6.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Israel - Premier Tech",
+    "category": "Sportsdirektør",
+    "team": "Israel - Premier Tech",
+    "price": 6.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Team Jayco AlUla",
+    "category": "Sportsdirektør",
+    "team": "Team Jayco AlUla",
+    "price": 6.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Kaden Groves",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 6.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Eddie Dunbar",
+    "category": "Klatrer",
+    "team": "Team Jayco AlUla",
+    "price": 6.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Movistar Team",
+    "category": "Sportsdirektør",
+    "team": "Movistar Team",
+    "price": 6.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Warren Barguil",
+    "category": "Klatrer",
+    "team": "Team Picnic PostNL",
+    "price": 6.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Axel Laurance",
+    "category": "Ungdomsrytter",
+    "team": "INEOS Grenadiers",
+    "price": 6.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Valentin Paret-Peintre",
+    "category": "Ungdomsrytter",
+    "team": "Soudal Quick-Step",
+    "price": 6.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Stefan Bisseger",
+    "category": "Temporytter",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 6.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Maximilian Schachmann",
+    "category": "Klatrer",
+    "team": "Soudal Quick-Step",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Magnus Cort",
+    "category": "Hjelperytter",
+    "team": "Uno-X Mobility",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Team Picnic PostNL",
+    "category": "Sportsdirektør",
+    "team": "Team Picnic PostNL",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Groupama - FDJ",
+    "category": "Sportsdirektør",
+    "team": "Groupama - FDJ",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Lotto",
+    "category": "Sportsdirektør",
+    "team": "Lotto",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "XDS Astana Team",
+    "category": "Sportsdirektør",
+    "team": "XDS Astana Team",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Dylan  Teuns",
+    "category": "Klatrer",
+    "team": "Cofidis",
+    "price": 6.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tiesj Benoot",
+    "category": "Hjelperytter",
+    "team": "Team Visma | Lease a Bike",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Simeone Velasco",
+    "category": "Hjelperytter",
+    "team": "XDS Astana Team",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Pablo Castrillo",
+    "category": "Ungdomsrytter",
+    "team": "Movistar Team",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ilan Van Wilder",
+    "category": "Ungdomsrytter",
+    "team": "Soudal Quick-Step",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Cristian  Rodriguez",
+    "category": "Klatrer",
+    "team": "Arkéa - B&B Hotels",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Marc Hirschi",
+    "category": "Hjelperytter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 6.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Harold Tejada",
+    "category": "Hjelperytter",
+    "team": "XDS Astana Team",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alex Aranburu",
+    "category": "Hjelperytter",
+    "team": "Cofidis",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Aurelien Paret-Peintre",
+    "category": "Klatrer",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Toms Skujins",
+    "category": "Hjelperytter",
+    "team": "Lidl - Trek",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Matteo Trentin",
+    "category": "Hjelperytter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Samuel  Watson",
+    "category": "Ungdomsrytter",
+    "team": "INEOS Grenadiers",
+    "price": 5.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ion Izagirre",
+    "category": "Klatrer",
+    "team": "Cofidis",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Louis Barre",
+    "category": "Ungdomsrytter",
+    "team": "Intermarché - Wanty",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jack Haig",
+    "category": "Klatrer",
+    "team": "Bahrain - Victorious",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Fred Wright",
+    "category": "Hjelperytter",
+    "team": "Bahrain - Victorious",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Clement Berthet",
+    "category": "Klatrer",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Luke  Plapp",
+    "category": "Ungdomsrytter",
+    "team": "Team Jayco AlUla",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Kasper  Asgreen",
+    "category": "Temporytter",
+    "team": "EF Education - EasyPost",
+    "price": 5.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Georg Zimmermann",
+    "category": "Hjelperytter",
+    "team": "Intermarché - Wanty",
+    "price": 5.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Simone Consonni",
+    "category": "Hjelperytter",
+    "team": "Lidl - Trek",
+    "price": 5.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Edoardo Affini",
+    "category": "Temporytter",
+    "team": "Team Visma | Lease a Bike",
+    "price": 5.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Uno-X Mobility",
+    "category": "Sportsdirektør",
+    "team": "Uno-X Mobility",
+    "price": 5.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Bruno Armirail",
+    "category": "Temporytter",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 5.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Einer Rubio",
+    "category": "Klatrer",
+    "team": "Movistar Team",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tim Wellens",
+    "category": "Hjelperytter",
+    "team": "UAE Team Emirates - XRG",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Victor Campenaerts",
+    "category": "Temporytter",
+    "team": "Team Visma | Lease a Bike",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tobias Foss",
+    "category": "Temporytter",
+    "team": "INEOS Grenadiers",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mattia Cattaneo",
+    "category": "Temporytter",
+    "team": "Soudal Quick-Step",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Anders Halland Johannessen",
+    "category": "Hjelperytter",
+    "team": "Uno-X Mobility",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Joseph Blackmore",
+    "category": "Ungdomsrytter",
+    "team": "Israel - Premier Tech",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tudor Pro Cycling Team",
+    "category": "Sportsdirektør",
+    "team": "Tudor Pro Cycling Team",
+    "price": 5.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jonas Abrahamsen",
+    "category": "Hjelperytter",
+    "team": "Uno-X Mobility",
+    "price": 5.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Frank Van den Broek",
+    "category": "Ungdomsrytter",
+    "team": "Team Picnic PostNL",
+    "price": 5.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Cofidis",
+    "category": "Sportsdirektør",
+    "team": "Cofidis",
+    "price": 5.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ivan  Garcia Cortina",
+    "category": "Hjelperytter",
+    "team": "Movistar Team",
+    "price": 5.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Luka Mezgec",
+    "category": "Hjelperytter",
+    "team": "Team Jayco AlUla",
+    "price": 5.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Benjamin Thomas",
+    "category": "Hjelperytter",
+    "team": "Cofidis",
+    "price": 5.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jordan Jegat",
+    "category": "Klatrer",
+    "team": "Team TotalEnergies",
+    "price": 5.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Vincenzo  Albanese",
+    "category": "Hjelperytter",
+    "team": "EF Education - EasyPost",
+    "price": 5.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Quentin Pacher",
+    "category": "Hjelperytter",
+    "team": "Groupama - FDJ",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jake Stewart",
+    "category": "Hjelperytter",
+    "team": "Israel - Premier Tech",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Arkéa - B&B Hotels",
+    "category": "Sportsdirektør",
+    "team": "Arkéa - B&B Hotels",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Clement  Venturini",
+    "category": "Hjelperytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Will Barta",
+    "category": "Temporytter",
+    "team": "Movistar Team",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Andreas Leknessund",
+    "category": "Hjelperytter",
+    "team": "Uno-X Mobility",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Laurence Pithie",
+    "category": "Ungdomsrytter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 5.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Anthony Turgis",
+    "category": "Hjelperytter",
+    "team": "Team TotalEnergies",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Davide Ballerini",
+    "category": "Hjelperytter",
+    "team": "XDS Astana Team",
+    "price": 5.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Edward Theuns",
+    "category": "Hjelperytter",
+    "team": "Lidl - Trek",
+    "price": 5.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Amaury Capiot",
+    "category": "Hjelperytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 5.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Nelson Oliveira",
+    "category": "Temporytter",
+    "team": "Movistar Team",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ivan Romeo",
+    "category": "Ungdomsrytter",
+    "team": "Movistar Team",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Team TotalEnergies",
+    "category": "Sportsdirektør",
+    "team": "Team TotalEnergies",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Raul  Garcia Pierna",
+    "category": "Temporytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Quinn Simmons",
+    "category": "Ungdomsrytter",
+    "team": "Lidl - Trek",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Gregor Mühlberger",
+    "category": "Hjelperytter",
+    "team": "Movistar Team",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Gianni  Vermeersch",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mike Teunissen",
+    "category": "Hjelperytter",
+    "team": "XDS Astana Team",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alex Baudin",
+    "category": "Ungdomsrytter",
+    "team": "EF Education - EasyPost",
+    "price": 5.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jhonatan Narvaez",
+    "category": "Hjelperytter",
+    "team": "UAE Team Emirates - XRG",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Hugo Page",
+    "category": "Ungdomsrytter",
+    "team": "Intermarché - Wanty",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Oliver Naesen",
+    "category": "Hjelperytter",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Lewis  Askey",
+    "category": "Ungdomsrytter",
+    "team": "Groupama - FDJ",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Luke Durbridge",
+    "category": "Temporytter",
+    "team": "Team Jayco AlUla",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Xandro  Meurisse",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 4.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Gianni Moscon",
+    "category": "Hjelperytter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 4.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Krists Neilands",
+    "category": "Hjelperytter",
+    "team": "Israel - Premier Tech",
+    "price": 4.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mick Van Dijke",
+    "category": "Ungdomsrytter",
+    "team": "Red Bull - BORA - hansgrohe",
+    "price": 4.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Kamil Gradek",
+    "category": "Temporytter",
+    "team": "Bahrain - Victorious",
+    "price": 4.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Paul Penhoet",
+    "category": "Ungdomsrytter",
+    "team": "Groupama - FDJ",
+    "price": 4.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Yevgeniy Fedorov",
+    "category": "Ungdomsrytter",
+    "team": "XDS Astana Team",
+    "price": 4.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Michael Valgren",
+    "category": "Hjelperytter",
+    "team": "EF Education - EasyPost",
+    "price": 4.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jenno Berckmoes",
+    "category": "Ungdomsrytter",
+    "team": "Lotto",
+    "price": 4.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Emiel  Verstrynge",
+    "category": "Ungdomsrytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 4.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Connor Swift",
+    "category": "Hjelperytter",
+    "team": "INEOS Grenadiers",
+    "price": 4.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Laurenz Rex",
+    "category": "Hjelperytter",
+    "team": "Intermarché - Wanty",
+    "price": 4.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Ewen Costiou",
+    "category": "Ungdomsrytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 4.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Marius Mayrhofer",
+    "category": "Ungdomsrytter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 4.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Brent Van Moer",
+    "category": "Hjelperytter",
+    "team": "Lotto",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jasper De Buyst",
+    "category": "Hjelperytter",
+    "team": "Lotto",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mathieu Burgaudeau",
+    "category": "Hjelperytter",
+    "team": "Team TotalEnergies",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Harry Sweeny",
+    "category": "Temporytter",
+    "team": "EF Education - EasyPost",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Bastien  Tronchon",
+    "category": "Ungdomsrytter",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Sean Flynn",
+    "category": "Ungdomsrytter",
+    "team": "Team Picnic PostNL",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Matteo Vercher",
+    "category": "Ungdomsrytter",
+    "team": "Team TotalEnergies",
+    "price": 4.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Matis Louvel",
+    "category": "Hjelperytter",
+    "team": "Israel - Premier Tech",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jonas Rutsch",
+    "category": "Hjelperytter",
+    "team": "Intermarché - Wanty",
+    "price": 4.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Vito Braet",
+    "category": "Ungdomsrytter",
+    "team": "Intermarché - Wanty",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Roel Van Sintmaartensgijk",
+    "category": "Ungdomsrytter",
+    "team": "Intermarché - Wanty",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Nils Politt",
+    "category": "Hjelperytter",
+    "team": "UAE Team Emirates - XRG",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Robert Stannard",
+    "category": "Hjelperytter",
+    "team": "Bahrain - Victorious",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Alexandre Delettre",
+    "category": "Hjelperytter",
+    "team": "Team TotalEnergies",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Thomas  Gachignard",
+    "category": "Ungdomsrytter",
+    "team": "Team TotalEnergies",
+    "price": 4.3,
+    "totalPoints": 0
+  },
+  {
+    "name": "Guillaume Boivin",
+    "category": "Hjelperytter",
+    "team": "Israel - Premier Tech",
+    "price": 3.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Stian Fredheim",
+    "category": "Ungdomsrytter",
+    "team": "Uno-X Mobility",
+    "price": 4.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Mathis Le Berre",
+    "category": "Ungdomsrytter",
+    "team": "Arkéa - B&B Hotels",
+    "price": 4.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Clement  Russo",
+    "category": "Hjelperytter",
+    "team": "Groupama - FDJ",
+    "price": 4.2,
+    "totalPoints": 0
+  },
+  {
+    "name": "Elmar Reinders",
+    "category": "Hjelperytter",
+    "team": "Team Jayco AlUla",
+    "price": 4.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Callum Scotson",
+    "category": "Hjelperytter",
+    "team": "Decathlon AG2R La Mondiale Team",
+    "price": 4.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Cyril Barthe",
+    "category": "Hjelperytter",
+    "team": "Groupama - FDJ",
+    "price": 4.1,
+    "totalPoints": 0
+  },
+  {
+    "name": "Bert Van Lerberghe",
+    "category": "Hjelperytter",
+    "team": "Soudal Quick-Step",
+    "price": 4.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Pascal Eenkhoorn",
+    "category": "Hjelperytter",
+    "team": "Soudal Quick-Step",
+    "price": 4.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jarrad Drizners",
+    "category": "Hjelperytter",
+    "team": "Lotto",
+    "price": 4.0,
+    "totalPoints": 0
+  },
+  {
+    "name": "Damien Touze",
+    "category": "Hjelperytter",
+    "team": "Cofidis",
+    "price": 3.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Fabian Lienhard",
+    "category": "Hjelperytter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 3.9,
+    "totalPoints": 0
+  },
+  {
+    "name": "Marco Haller",
+    "category": "Hjelperytter",
+    "team": "Tudor Pro Cycling Team",
+    "price": 3.8,
+    "totalPoints": 0
+  },
+  {
+    "name": "Jonas Rickaert",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 3.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Sebastien Grignard",
+    "category": "Hjelperytter",
+    "team": "Lotto",
+    "price": 3.7,
+    "totalPoints": 0
+  },
+  {
+    "name": "Silvan Dillier",
+    "category": "Hjelperytter",
+    "team": "Alpecin - Deceuninck",
+    "price": 3.6,
+    "totalPoints": 0
+  },
+  {
+    "name": "Markus Hoelgaard",
+    "category": "Hjelperytter",
+    "team": "Uno-X Mobility",
+    "price": 3.5,
+    "totalPoints": 0
+  },
+  {
+    "name": "Niklas  Markl",
+    "category": "Hjelperytter",
+    "team": "Team Picnic PostNL",
+    "price": 3.4,
+    "totalPoints": 0
+  },
+  {
+    "name": "Tim Naberman",
+    "category": "Hjelperytter",
+    "team": "Team Picnic PostNL",
+    "price": 3.2,
+    "totalPoints": 0
+  }
+]

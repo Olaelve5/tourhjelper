@@ -111,9 +111,14 @@ def main():
 
     driver.quit()
 
-    # Navigate up two directories and then into the `public` directory
-    rider_data_path = "public/data/rider_data.json"
-    rider_image_links_path = "public/data/rider_image_links.json"
+    # Prioritize writing directly to tourhjelper/public/data if running from within scraper
+    rider_data_path = "../tourhjelper/public/data/rider_data.json"
+    rider_image_links_path = "../tourhjelper/public/data/rider_image_links.json"
+
+    if not os.path.exists("../tourhjelper/public/data"):
+        # Fallback to local public/data folder if run from tourhjelper root
+        rider_data_path = "public/data/rider_data.json"
+        rider_image_links_path = "public/data/rider_image_links.json"
 
     # After fetching all riders, write them to a JSON file
     with open(rider_data_path, "w", encoding="utf-8") as f:

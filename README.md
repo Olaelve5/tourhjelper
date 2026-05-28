@@ -30,17 +30,32 @@ Tourhjelper is a planning tool for the fantasy game [Tourmanager](https://tourma
 * **Data Scraping**: Python (Selenium, BeautifulSoup)
 * **Deployment**: Vercel
 
+## Monorepo Structure 📂
+
+This project is organized as a monorepo:
+* **`tourhjelper/`**: The Next.js web application frontend and backend.
+* **`scraper/`**: Python scripts for data scraping and database synchronization.
+
+---
+
 ## Getting Started 🛠️
 
-1.  **Clone the repository**
-    ```sh
-    git clone [https://github.com/Olaelve5/tourhjelper.git](https://github.com/Olaelve5/tourhjelper.git)
-    ```
-2.  **Install dependencies**
-    ```sh
-    npm install
-    ```
-3.  **Run the development server**
-    ```sh
-    npm run dev
-    ```
+### 1. Web Application (`tourhjelper/`)
+Navigate to the web app directory to run the Next.js frontend:
+```sh
+cd tourhjelper
+npm install
+npm run dev
+```
+
+### 2. Scraping and Database Pipelines (`scraper/`)
+The Python scraping scripts are located in `scraper/`. They dynamically read from the Next.js `public/data/` directory as the single source of truth for local data.
+```sh
+cd scraper
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python scrape.py         # Scraping odds
+python upload_riders.py  # Uploading/upserting riders
+python upload_stages.py  # Uploading/upserting stages
+```

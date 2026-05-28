@@ -1,13 +1,10 @@
 from datetime import datetime
 import json
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import (
-    StaleElementReferenceException,
     InvalidArgumentException,
 )
-from webdriver_manager.chrome import ChromeDriverManager
 import time
 import shutil
 import os
@@ -23,11 +20,17 @@ def main():
     clear_cache()
     # Initialize Chrome options
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+    chrome_options.add_argument("--headless")
 
-    # Check if the file exists
-    if not os.path.exists("tourhjelper/public/data/stage_data.json"):
-        print("File 'tourhjelper/public/data' does not exist")
+    # Prioritize Next.js path from within scraper directory
+    stages_data_path = "../tourhjelper/public/data/stage_data.json"
+    if not os.path.exists("../tourhjelper/public/data"):
+        # Fallback if run from the planner root directory
+        stages_data_path = "tourhjelper/public/data/stage_data.json"
+
+    # Check if target directory exists
+    if not os.path.exists(os.path.dirname(stages_data_path)):
+        print(f"Error: Target directory for '{stages_data_path}' does not exist")
         return
 
     # Initialize the Chrome driver with options
@@ -46,28 +49,37 @@ def main():
                 stage = {}
 
                 stage["stage"] = i
+                print(f"Stage: {stage['stage']}")
 
                 date = driver.execute_script(
                     'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__infos__date").textContent'
                 ).strip()
                 date_parts = date.split(" ")
                 stage["date"] = date_parts[1].strip()
+                print(f"Date: {stage['date']}")
 
-                stage["start"] = driver.execute_script(
-                    'return document.querySelector("#itinerary > table > tbody.tbody > tr.itinerary__checkpoint--r > td:nth-child(6)").textContent'
-                )
-
+                try:
+                    stage["start"] = driver.execute_script(
+                        'return document.querySelector("#itinerary > table > tbody.tbody > tr.itinerary__checkpoint--r > td:nth-child(6)").textContent'
+                    )
+                    print(f"Start: {stage['start']}")
+                except Exception as e:
+                    print(f"Could not extract start time for stage {i}")
+                    stage["start"] = ""
+                
                 distance = driver.execute_script(
                     'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(1) > p").textContent'
                 ).strip()
                 distance_parts = distance.split("\n")
                 stage["distance"] = distance_parts[1].strip()
+                print(f"Distance: {stage['distance']}")
 
                 stage_type = driver.execute_script(
                     'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(2) > p").textContent'
                 ).strip()
                 type_parts = stage_type.split("\n")
                 stage["type"] = type_parts[1].strip()
+                print(f"Type: {stage['type']}")
 
                 image_element = driver.execute_script(
                     'return document.querySelector("#profil > img")'
@@ -78,6 +90,7 @@ def main():
                         "data-src"
                     ) or image_element.get_attribute("data-lazy-src")
                 stage["imageURL"] = image_url
+                print(f"Image URL: {stage['imageURL']}")
 
                 stage["lastUpdated"] = datetime.now().isoformat()
 
@@ -91,8 +104,6 @@ def main():
                 print(e)
     finally:
         driver.quit()
-
-    stages_data_path = "tourhjelper/public/data/stage_data.json"
 
     with open(stages_data_path, "w", encoding="utf-8") as f:
         json.dump(stages, f, ensure_ascii=False, indent=4)
