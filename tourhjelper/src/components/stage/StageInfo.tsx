@@ -22,8 +22,8 @@ const getType = (type: string | undefined) => {
     case "Mountain":
       return "Fjell";
     case "Individual time-trial":
-      return "Individuell tempo";
-    case "Team time-trial":
+      return "Tempo";
+    case "Team Time-Trial":
       return "Lagtempo";
     default:
       return type;

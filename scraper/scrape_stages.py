@@ -61,7 +61,7 @@ def main():
                     print(f"Start: {stage['start']}")
                 except Exception as e:
                     print(f"Could not extract start time for stage {i}")
-                    stage["start"] = ""
+                    stage["start"] = "00:00"
                 
                 distance = driver.execute_script(
                     'return document.querySelector("body > div.grid-container > main > div.content-header > div > div > div.stageHeader__stage.stageHeader__stage--main > div > div > div.stageHeader__bottom > div:nth-child(1) > p").textContent'
