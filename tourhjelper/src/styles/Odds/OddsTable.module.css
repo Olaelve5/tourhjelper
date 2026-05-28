@@ -105,3 +105,45 @@
     font-size: 12px;
   }
 }
+
+.skeletonCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-right: 12px;
+}
+
+.skeletonLine {
+  height: 14px;
+  border-radius: 10px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonLineShort {
+  height: 10px;
+  border-radius: 10px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonBlock {
+  height: 24px;
+  border-radius: 10px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}

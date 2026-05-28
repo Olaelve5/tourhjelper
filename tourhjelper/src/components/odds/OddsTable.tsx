@@ -38,11 +38,45 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
 
   // Loading State
   if (loading) {
+    const skeletonRows = Array.from({ length: 15 }).map((_, index) => (
+      <Table.Tr key={`skeleton-${index}`}>
+        <Table.Td style={{ display: "flex", alignItems: "center" }}>
+          <div className={classes.skeletonCircle} />
+          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+            <div className={classes.skeletonLine} style={{ width: "70%" }} />
+            <div className={classes.skeletonLineShort} style={{ width: "40%" }} />
+          </div>
+        </Table.Td>
+        <Table.Td>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+            <div className={classes.skeletonLine} style={{ width: "40%" }} />
+            <div className={classes.skeletonLineShort} style={{ width: "65%" }} />
+          </div>
+        </Table.Td>
+        <Table.Td>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className={classes.skeletonBlock} style={{ width: "50%" }} />
+          </div>
+        </Table.Td>
+      </Table.Tr>
+    ));
+
     return (
-      <div
-        className={classes.tableContainer}
-        style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
-        <Loader color="yellow" />
+      <div className={classes.tableContainer}>
+        <Table
+          verticalSpacing={"xs"}
+          withRowBorders={false}
+          borderColor="var(--highlight-grey)"
+          striped={false}>
+          <Table.Thead>
+            <Table.Tr className={classes.columnHeaderRow}>
+              <Table.Th>Rytter</Table.Th>
+              <Table.Th className={classes.oddsTitle}>Info</Table.Th>
+              <Table.Th className={classes.oddsTitle}>Odds</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{skeletonRows}</Table.Tbody>
+        </Table>
       </div>
     );
   }

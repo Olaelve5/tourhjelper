@@ -10,7 +10,7 @@ interface SingleStageProps {
 }
 
 export function SingleStage({ stageData }: SingleStageProps) {
-  if (!stageData) return null; // Or return a Skeleton/Loader
+  if (!stageData) return null;
 
   return (
     <div className={classes.container}>

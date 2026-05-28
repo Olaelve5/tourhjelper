@@ -35,3 +35,125 @@
     gap: 0.8rem;
   }
 }
+
+/* Skeletons */
+.skeletonImage {
+  width: 580px;
+  height: 200px;
+  border-radius: 5px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonInfoContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.skeletonInfoItem {
+  height: 20px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonFavoritesContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skeletonStarSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.skeletonStarHeader {
+  height: 18px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid var(--highlight-grey);
+}
+
+.skeletonRiderRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.skeletonRiderLeft {
+  display: flex;
+  align-items: center;
+}
+
+.skeletonRiderImage {
+  width: 28px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-right: 10px;
+}
+
+.skeletonRiderName {
+  height: 14px;
+  width: 80px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+.skeletonRiderTeam {
+  height: 10px;
+  width: 50px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeletonRiderRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.skeletonRiderPrice {
+  height: 14px;
+  width: 30px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+  margin-bottom: 6px;
+}
+
+.skeletonRiderCat {
+  height: 10px;
+  width: 40px;
+  border-radius: 4px;
+  background-color: var(--highlight-grey);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.35;
+  }
+}
