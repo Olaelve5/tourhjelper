@@ -5,12 +5,10 @@
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-color: #111111;
+  background-color: #0c131c;
   color: white;
   text-align: center;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .loaderWrapper {
@@ -33,7 +31,7 @@
 
 .bike {
   overflow: visible;
-  filter: drop-shadow(0 0 15px rgba(255, 225, 0, 0.5));
+  filter: drop-shadow(0 0 15px rgba(255, 221, 9, 0.5));
 }
 
 .road {
@@ -43,7 +41,7 @@
   overflow: hidden;
   position: relative;
   border-radius: 2px;
-  background-color: #222222;
+  background-color: #1b2b44;
 }
 
 .roadInner {
@@ -66,7 +64,7 @@
 .roadDash {
   width: 30px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(101, 133, 178, 0.4);
 }
 
 .loadingText {
@@ -91,7 +89,7 @@
 .wind {
   position: absolute;
   height: 2px;
-  background-color: #e5e7eb;
+  background-color: #5e6d7c;
   border-radius: 9999px;
   z-index: 0;
   overflow: hidden;

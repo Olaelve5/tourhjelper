@@ -23,9 +23,9 @@ function TdfLoader() {
           animate={{ y: [0, -3, 0] }}
           transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}>
           {/* --- Bike Frame --- */}
-          {/* TdF Yellow color: #FFE100 */}
+          {/* TdF Yellow color: #ffdd09 */}
           <g
-            stroke="#FFE100"
+            stroke="#ffdd09"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -69,7 +69,7 @@ function TdfLoader() {
               cy="45"
               r="14.5"
               fill="none"
-              stroke="#374151"
+              stroke="#0c131c"
               strokeWidth="3"
             />
             {/* Inner Rim */}
@@ -78,7 +78,7 @@ function TdfLoader() {
               cy="45"
               r="13"
               fill="none"
-              stroke="#6b7280"
+              stroke="#5e6d7c"
               strokeWidth="1"
             />
             {/* Spokes */}
@@ -89,13 +89,13 @@ function TdfLoader() {
                 y1="31"
                 x2="20"
                 y2="59"
-                stroke="#6b7280"
+                stroke="#5e6d7c"
                 strokeWidth="0.5"
                 transform={`rotate(${i * 30} 20 45)`}
               />
             ))}
             {/* Hub */}
-            <circle cx="20" cy="45" r="2" fill="#FFE100" />
+            <circle cx="20" cy="45" r="2" fill="#ffdd09" />
           </motion.g>
 
           {/* Front Wheel */}
@@ -117,7 +117,7 @@ function TdfLoader() {
               cy="45"
               r="14.5"
               fill="none"
-              stroke="#374151"
+              stroke="#0c131c"
               strokeWidth="3"
             />
             <circle
@@ -125,7 +125,7 @@ function TdfLoader() {
               cy="45"
               r="13"
               fill="none"
-              stroke="#6b7280"
+              stroke="#5e6d7c"
               strokeWidth="1"
             />
             {Array.from({ length: 6 }).map((_, i) => (
@@ -135,12 +135,12 @@ function TdfLoader() {
                 y1="31"
                 x2="80"
                 y2="59"
-                stroke="#6b7280"
+                stroke="#5e6d7c"
                 strokeWidth="0.5"
                 transform={`rotate(${i * 30} 80 45)`}
               />
             ))}
-            <circle cx="80" cy="45" r="2" fill="#FFE100" />
+            <circle cx="80" cy="45" r="2" fill="#ffdd09" />
           </motion.g>
 
           {/* --- Crankset & Pedals --- */}
@@ -154,7 +154,7 @@ function TdfLoader() {
               y1="37"
               x2="45"
               y2="53"
-              stroke="#9ca3af"
+              stroke="#5e6d7c"
               strokeWidth="2.5"
               strokeLinecap="round"
             />
@@ -169,9 +169,9 @@ function TdfLoader() {
               strokeDasharray="2 1"
             />
             {/* Pedals */}
-            <rect x="42" y="35" width="6" height="3" rx="1.5" fill="#FFE100" />
-            <rect x="42" y="52" width="6" height="3" rx="1.5" fill="#FFE100" />
-            <circle cx="45" cy="45" r="2" fill="#111111" />
+            <rect x="42" y="35" width="6" height="3" rx="1.5" fill="#ffdd09" />
+            <rect x="42" y="52" width="6" height="3" rx="1.5" fill="#ffdd09" />
+            <circle cx="45" cy="45" r="2" fill="#0c131c" />
           </motion.g>
         </motion.svg>
 
