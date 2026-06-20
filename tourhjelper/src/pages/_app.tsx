@@ -3,8 +3,8 @@ import "@mantine/charts/styles.css";
 import "../styles/globals.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
-import { MantineProvider } from "@mantine/core";
-import { theme } from "@/utils/themeUtils";
+import { ThemedMantineProvider } from "@/utils/themeUtils";
+import { ThemeProvider } from "@/providers/ThemeProvider";
 import UpdatingPage from "../components/updating";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -12,7 +12,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const isUpdating = process.env.NEXT_PUBLIC_UPDATING === "true";
 
   return (
-    <MantineProvider theme={theme}>
+    <ThemeProvider>
+      <ThemedMantineProvider>
       <SpeedInsights />
       <Head>
         {/* Standard SEO */}
@@ -57,6 +58,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
       </Head>
       {isUpdating ? <UpdatingPage /> : <Component {...pageProps} />}
-    </MantineProvider>
+      </ThemedMantineProvider>
+    </ThemeProvider>
   );
 }

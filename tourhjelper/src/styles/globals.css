@@ -5,24 +5,86 @@
   --foreground-rgb: 255, 255, 255;
   --background-rgb: 0, 0, 0;
 
-  --yellow-tdf: #ffdd09;
-  --yellow-tdf-hover: #ffdd00da;
-  --yellow-tdf-disabled: #ffdd09a6;
+  /* Theme tokens — defaults match the "yellow" (Tour de France) theme.
+     Overridden under [data-theme="..."] selectors below. */
+  --accent: #ffdd09;
+  --accent-hover: #ffdd00da;
+  --accent-disabled: #ffdd09a6;
+  --accent-glow: rgba(255, 221, 9, 0.5);
+  --accent-contrast: #0c131c;
 
+  --body-bg: #0c131c;
   --header-color: #0072bb;
-
   --blue-selected: #0072bb;
   --blue-selected-disabled: #0168a8;
-
   --light-grey: #1b2b44;
   --dark-grey: #122134;
   --highlight-grey: #243b58;
   --icon-grey: #5e6d7c;
 
+  /* Legacy aliases — kept so existing components continue to work. */
+  --yellow-tdf: var(--accent);
+  --yellow-tdf-hover: var(--accent-hover);
+  --yellow-tdf-disabled: var(--accent-disabled);
+
   --height-unit: 11rem;
 
   --blue-gradient: linear-gradient(45deg, #00b4db 0%, #0083b0 100%);
   --red-gradient: linear-gradient(45deg, #ed2939 0%, #b31217 100%);
+}
+
+/* Green jersey — points classification. Lush forest palette. */
+[data-theme="green"] {
+  --accent: #00a651;
+  --accent-hover: #00b85ada;
+  --accent-disabled: #00a651a6;
+  --accent-glow: rgba(0, 166, 81, 0.5);
+  --accent-contrast: #ffffff;
+
+  --body-bg: #0a1a12;
+  --header-color: #00853f;
+  --blue-selected: #00a651;
+  --blue-selected-disabled: #008f45;
+  --light-grey: #1b3a2a;
+  --dark-grey: #122a1e;
+  --highlight-grey: #2a4d3c;
+  --icon-grey: #5e7c6d;
+}
+
+/* Polka dot jersey — King of the Mountains. Bold red palette. */
+[data-theme="polka"] {
+  --accent: #e2231a;
+  --accent-hover: #ff2e23da;
+  --accent-disabled: #e2231aa6;
+  --accent-glow: rgba(226, 35, 26, 0.55);
+  --accent-contrast: #ffffff;
+
+  --body-bg: #1a0c10;
+  --header-color: #b31217;
+  --blue-selected: #e2231a;
+  --blue-selected-disabled: #b31217;
+  --light-grey: #3a1b22;
+  --dark-grey: #2a1218;
+  --highlight-grey: #4d2a32;
+  --icon-grey: #7c5e65;
+}
+
+/* White jersey — Young rider classification. Cool silver palette. */
+[data-theme="white"] {
+  --accent: #e6e6e6;
+  --accent-hover: #ffffffda;
+  --accent-disabled: #e6e6e6a6;
+  --accent-glow: rgba(255, 255, 255, 0.45);
+  --accent-contrast: #1c2128;
+
+  --body-bg: #1c2128;
+  --header-color: #9ca3af;
+  --blue-selected: #9ca3af;
+  --blue-selected-disabled: #6b7280;
+  --light-grey: #2d343f;
+  --dark-grey: #1f2530;
+  --highlight-grey: #3a4252;
+  --icon-grey: #8b94a3;
 }
 
 * {
@@ -41,11 +103,12 @@ body {
   min-height: 100dvh;
   height: 100%;
   color: rgb(var(--foreground-rgb));
-  background-color: #0c131c;
+  background-color: var(--body-bg);
   background-size: 100% 100%; /* Scale the image to cover the entire background area */
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  transition: background-color 0.3s ease;
 }
 
 body.grabbing {
