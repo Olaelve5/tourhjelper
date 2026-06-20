@@ -3,35 +3,101 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 100vh;
-  background-color: #282c34;
+  background-color: var(--body-bg);
   color: white;
   text-align: center;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
+  position: relative;
 }
 
-.title {
-  font-size: 2.5rem;
-  margin-top: 20px;
-  font-weight: 300;
+.loaderSlot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 2s linear infinite;
+.loaderWrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 20rem;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.loaderContent {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bike {
+  overflow: visible;
+}
+
+.road {
+  margin-top: -2px;
+  width: 300px;
+  height: 4px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 2px;
+  background-color: #1b2b44;
+}
+
+.roadInner {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  display: flex;
+}
+
+.roadHalf {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.roadDash {
+  width: 30px;
+  height: 100%;
+  background-color: rgba(101, 133, 178, 0.4);
+}
+
+.loadingText {
+  margin-top: 1.25rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.dots {
+  display: flex;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  min-width: 20px;
+}
+
+.wind {
+  position: absolute;
+  height: 2px;
+  background-color: #5e6d7c;
+  border-radius: 9999px;
+  z-index: 0;
+  overflow: hidden;
 }

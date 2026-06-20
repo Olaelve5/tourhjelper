@@ -2,29 +2,31 @@
 
 import { motion } from "motion/react";
 import React from "react";
+import classes from "@/styles/Updating.module.css";
+import { ThemeDef, useTheme } from "@/providers/ThemeProvider";
 
-function TdfLoader() {
+function TdfLoader({ theme }: { theme: ThemeDef }) {
   return (
-    <div className="relative flex flex-col items-center justify-center w-[300px] h-80">
+    <div className={classes.loaderWrapper}>
       {/* Wind lines for speed effect */}
       <Wind speed={0.7} top="30%" delay={0} opacity={0.3} width="80px" />
       <Wind speed={0.5} top="45%" delay={0.2} opacity={0.5} width="60px" />
       <Wind speed={0.9} top="65%" delay={0.4} opacity={0.2} width="100px" />
       <Wind speed={1.2} top="15%" delay={0.5} opacity={0.4} width="40px" />
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className={classes.loaderContent}>
         {/* Animated Bike SVG */}
         <motion.svg
           width="160"
           height="100"
           viewBox="0 0 100 60"
-          className="overflow-visible drop-shadow-[0_0_15px_rgba(255,225,0,0.5)]"
+          className={classes.bike}
+          style={{ filter: `drop-shadow(0 0 15px ${theme.glow})` }}
           animate={{ y: [0, -3, 0] }}
           transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}>
           {/* --- Bike Frame --- */}
-          {/* TdF Yellow color: #FFE100 */}
           <g
-            stroke="#FFE100"
+            stroke={theme.bikeColor}
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -47,6 +49,21 @@ function TdfLoader() {
             />
           </g>
 
+          {/* Polka dots on the frame — only for the polka theme */}
+          {theme.id === "polka" && (
+            <g fill="#e2231a">
+              <circle cx="27" cy="30" r="1.4" />
+              <circle cx="33" cy="20" r="1.2" />
+              <circle cx="40" cy="32" r="1.4" />
+              <circle cx="48" cy="20" r="1.2" />
+              <circle cx="55" cy="32" r="1.4" />
+              <circle cx="62" cy="18" r="1.2" />
+              <circle cx="62" cy="38" r="1.4" />
+              <circle cx="74" cy="22" r="1.2" />
+              <circle cx="78" cy="34" r="1.4" />
+            </g>
+          )}
+
           {/* --- Wheels --- */}
           {/* Back Wheel */}
           <motion.g
@@ -68,7 +85,7 @@ function TdfLoader() {
               cy="45"
               r="14.5"
               fill="none"
-              stroke="#374151"
+              stroke="#0c131c"
               strokeWidth="3"
             />
             {/* Inner Rim */}
@@ -77,7 +94,7 @@ function TdfLoader() {
               cy="45"
               r="13"
               fill="none"
-              stroke="#6b7280"
+              stroke="#5e6d7c"
               strokeWidth="1"
             />
             {/* Spokes */}
@@ -88,13 +105,13 @@ function TdfLoader() {
                 y1="31"
                 x2="20"
                 y2="59"
-                stroke="#6b7280"
+                stroke="#5e6d7c"
                 strokeWidth="0.5"
                 transform={`rotate(${i * 30} 20 45)`}
               />
             ))}
             {/* Hub */}
-            <circle cx="20" cy="45" r="2" fill="#FFE100" />
+            <circle cx="20" cy="45" r="2" fill={theme.bikeColor} />
           </motion.g>
 
           {/* Front Wheel */}
@@ -116,7 +133,7 @@ function TdfLoader() {
               cy="45"
               r="14.5"
               fill="none"
-              stroke="#374151"
+              stroke="#0c131c"
               strokeWidth="3"
             />
             <circle
@@ -124,7 +141,7 @@ function TdfLoader() {
               cy="45"
               r="13"
               fill="none"
-              stroke="#6b7280"
+              stroke="#5e6d7c"
               strokeWidth="1"
             />
             {Array.from({ length: 6 }).map((_, i) => (
@@ -134,12 +151,12 @@ function TdfLoader() {
                 y1="31"
                 x2="80"
                 y2="59"
-                stroke="#6b7280"
+                stroke="#5e6d7c"
                 strokeWidth="0.5"
                 transform={`rotate(${i * 30} 80 45)`}
               />
             ))}
-            <circle cx="80" cy="45" r="2" fill="#FFE100" />
+            <circle cx="80" cy="45" r="2" fill={theme.bikeColor} />
           </motion.g>
 
           {/* --- Crankset & Pedals --- */}
@@ -153,7 +170,7 @@ function TdfLoader() {
               y1="37"
               x2="45"
               y2="53"
-              stroke="#9ca3af"
+              stroke="#5e6d7c"
               strokeWidth="2.5"
               strokeLinecap="round"
             />
@@ -168,42 +185,42 @@ function TdfLoader() {
               strokeDasharray="2 1"
             />
             {/* Pedals */}
-            <rect x="42" y="35" width="6" height="3" rx="1.5" fill="#FFE100" />
-            <rect x="42" y="52" width="6" height="3" rx="1.5" fill="#FFE100" />
-            <circle cx="45" cy="45" r="2" fill="#111111" />
+            <rect x="42" y="35" width="6" height="3" rx="1.5" fill={theme.bikeColor} />
+            <rect x="42" y="52" width="6" height="3" rx="1.5" fill={theme.bikeColor} />
+            <circle cx="45" cy="45" r="2" fill="#0c131c" />
           </motion.g>
         </motion.svg>
 
         {/* Road under the bike */}
-        <div className="mt-[-2px] w-[300px] h-[4px] overflow-hidden relative opacity-100 rounded-[2px] bg-[#222222]">
+        <div className={classes.road}>
           <motion.div
-            className="absolute w-[200%] h-full flex"
+            className={classes.roadInner}
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}>
             {/* Half 1 */}
-            <div className="w-1/2 h-full flex items-center justify-around px-4">
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
+            <div className={classes.roadHalf}>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
             </div>
             {/* Half 2 */}
-            <div className="w-1/2 h-full flex items-center justify-around px-4">
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
+            <div className={classes.roadHalf}>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
             </div>
           </motion.div>
         </div>
 
         {/* Loading Text */}
         <motion.div
-          className="mt-5 text-[10px] uppercase font-semibold tracking-[3px] text-white/40 flex gap-1 items-center"
+          className={classes.loadingText}
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}>
           <span>Tourhjelper oppdateres</span>
-          <div className="flex px-1 min-w-[20px]">
+          <div className={classes.dots}>
             <motion.span
               animate={{ opacity: [0, 1, 1, 0] }}
               transition={{
@@ -253,7 +270,7 @@ function Wind({
 }) {
   return (
     <motion.div
-      className="absolute h-[2px] bg-[#e5e7eb] rounded-full z-0 overflow-hidden"
+      className={classes.wind}
       style={{ top, right: "-20%", width, opacity }}
       animate={{ x: ["50vh", "-50vh"] }}
       transition={{ repeat: Infinity, duration: speed, delay, ease: "linear" }}
@@ -262,9 +279,13 @@ function Wind({
 }
 
 export default function UpdatingPage() {
+  const { theme } = useTheme();
+
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center bg-[#111111] font-sans text-white">
-      <TdfLoader />
+    <div className={classes.container}>
+      <div className={classes.loaderSlot}>
+        <TdfLoader theme={theme} />
+      </div>
     </div>
   );
 }

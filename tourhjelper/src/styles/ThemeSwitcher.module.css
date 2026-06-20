@@ -1,0 +1,38 @@
+.switcher {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.12);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.swatch:focus-visible {
+  outline: none;
+  border-color: #ffffff;
+}
+
+.swatchActive {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--body-bg), 0 0 0 4px var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+  .swatch {
+    width: 16px;
+    height: 16px;
+  }
+}

@@ -5,9 +5,12 @@ import { IconBike } from "@tabler/icons-react";
 import { useState, useEffect } from "react";
 import { supabase } from "@/utils/supabase";
 import NavigationButton from "../admin/navigation_button";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 export function Header() {
   const [session, setSession] = useState<any>(null);
+  const themeSwitcherEnabled =
+    process.env.NEXT_PUBLIC_THEME_SWITCHER === "true";
 
   useEffect(() => {
     // Check active session immediately when page loads
@@ -33,6 +36,7 @@ export function Header() {
           Tourhjelper
           <IconBike className={classes.logoIcon} />
         </h1>
+        {themeSwitcherEnabled && <ThemeSwitcher />}
         {session && (
           <NavigationButton url_to_admin={true} label="Admin Dashboard" />
         )}
