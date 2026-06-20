@@ -24,6 +24,7 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.0.12",
     "dotenv": "^16.4.5",
+    "motion": "^12.40.0",
     "next": "^15.5.9",
     "react": "^18",
     "react-dom": "^18",
