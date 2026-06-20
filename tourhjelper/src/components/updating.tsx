@@ -1,10 +1,54 @@
 "use client";
 
 import { motion } from "motion/react";
-import React from "react";
+import React, { useState } from "react";
 import classes from "@/styles/Updating.module.css";
 
-function TdfLoader() {
+type Theme = {
+  id: string;
+  label: string;
+  accent: string;
+  glow: string;
+  swatchStyle: React.CSSProperties;
+};
+
+const THEMES: Theme[] = [
+  {
+    id: "yellow",
+    label: "Gul trøye",
+    accent: "#ffdd09",
+    glow: "rgba(255, 221, 9, 0.5)",
+    swatchStyle: { backgroundColor: "#ffdd09" },
+  },
+  {
+    id: "green",
+    label: "Grønn trøye",
+    accent: "#00a651",
+    glow: "rgba(0, 166, 81, 0.5)",
+    swatchStyle: { backgroundColor: "#00a651" },
+  },
+  {
+    id: "polka",
+    label: "Prikkete trøye",
+    accent: "#ffffff",
+    glow: "rgba(226, 35, 26, 0.55)",
+    swatchStyle: {
+      backgroundColor: "#ffffff",
+      backgroundImage:
+        "radial-gradient(circle, #e2231a 1.5px, transparent 2px)",
+      backgroundSize: "6px 6px",
+    },
+  },
+  {
+    id: "white",
+    label: "Hvit trøye",
+    accent: "#ffffff",
+    glow: "rgba(255, 255, 255, 0.45)",
+    swatchStyle: { backgroundColor: "#ffffff" },
+  },
+];
+
+function TdfLoader({ theme }: { theme: Theme }) {
   return (
     <div className={classes.loaderWrapper}>
       {/* Wind lines for speed effect */}
@@ -20,12 +64,12 @@ function TdfLoader() {
           height="100"
           viewBox="0 0 100 60"
           className={classes.bike}
+          style={{ filter: `drop-shadow(0 0 15px ${theme.glow})` }}
           animate={{ y: [0, -3, 0] }}
           transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}>
           {/* --- Bike Frame --- */}
-          {/* TdF Yellow color: #ffdd09 */}
           <g
-            stroke="#ffdd09"
+            stroke={theme.accent}
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -95,7 +139,7 @@ function TdfLoader() {
               />
             ))}
             {/* Hub */}
-            <circle cx="20" cy="45" r="2" fill="#ffdd09" />
+            <circle cx="20" cy="45" r="2" fill={theme.accent} />
           </motion.g>
 
           {/* Front Wheel */}
@@ -140,7 +184,7 @@ function TdfLoader() {
                 transform={`rotate(${i * 30} 80 45)`}
               />
             ))}
-            <circle cx="80" cy="45" r="2" fill="#ffdd09" />
+            <circle cx="80" cy="45" r="2" fill={theme.accent} />
           </motion.g>
 
           {/* --- Crankset & Pedals --- */}
@@ -169,8 +213,8 @@ function TdfLoader() {
               strokeDasharray="2 1"
             />
             {/* Pedals */}
-            <rect x="42" y="35" width="6" height="3" rx="1.5" fill="#ffdd09" />
-            <rect x="42" y="52" width="6" height="3" rx="1.5" fill="#ffdd09" />
+            <rect x="42" y="35" width="6" height="3" rx="1.5" fill={theme.accent} />
+            <rect x="42" y="52" width="6" height="3" rx="1.5" fill={theme.accent} />
             <circle cx="45" cy="45" r="2" fill="#0c131c" />
           </motion.g>
         </motion.svg>
@@ -263,9 +307,35 @@ function Wind({
 }
 
 export default function UpdatingPage() {
+  const [themeId, setThemeId] = useState<string>(THEMES[0].id);
+  const theme = THEMES.find((t) => t.id === themeId) ?? THEMES[0];
+
   return (
     <div className={classes.container}>
-      <TdfLoader />
+      <div className={classes.loaderSlot}>
+        <TdfLoader theme={theme} />
+      </div>
+      <div
+        className={classes.themePicker}
+        role="radiogroup"
+        aria-label="Velg tema">
+        {THEMES.map((t) => {
+          const isActive = t.id === theme.id;
+          return (
+            <button
+              key={t.id}
+              type="button"
+              role="radio"
+              aria-checked={isActive}
+              aria-label={t.label}
+              title={t.label}
+              onClick={() => setThemeId(t.id)}
+              className={`${classes.swatch} ${isActive ? classes.swatchActive : ""}`}
+              style={t.swatchStyle}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

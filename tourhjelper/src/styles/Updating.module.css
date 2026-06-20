@@ -9,6 +9,46 @@
   color: white;
   text-align: center;
   font-family: "Open Sans", sans-serif;
+  position: relative;
+}
+
+.loaderSlot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.themePicker {
+  display: flex;
+  gap: 0.75rem;
+  padding-bottom: 2rem;
+}
+
+.swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.swatch:focus-visible {
+  outline: none;
+  border-color: #ffffff;
+}
+
+.swatchActive {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #0c131c, 0 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
 .loaderWrapper {
@@ -31,7 +71,6 @@
 
 .bike {
   overflow: visible;
-  filter: drop-shadow(0 0 15px rgba(255, 221, 9, 0.5));
 }
 
 .road {
