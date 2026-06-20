@@ -2,23 +2,24 @@
 
 import { motion } from "motion/react";
 import React from "react";
+import classes from "@/styles/Updating.module.css";
 
 function TdfLoader() {
   return (
-    <div className="relative flex flex-col items-center justify-center w-[300px] h-80">
+    <div className={classes.loaderWrapper}>
       {/* Wind lines for speed effect */}
       <Wind speed={0.7} top="30%" delay={0} opacity={0.3} width="80px" />
       <Wind speed={0.5} top="45%" delay={0.2} opacity={0.5} width="60px" />
       <Wind speed={0.9} top="65%" delay={0.4} opacity={0.2} width="100px" />
       <Wind speed={1.2} top="15%" delay={0.5} opacity={0.4} width="40px" />
 
-      <div className="relative z-10 flex flex-col items-center">
+      <div className={classes.loaderContent}>
         {/* Animated Bike SVG */}
         <motion.svg
           width="160"
           height="100"
           viewBox="0 0 100 60"
-          className="overflow-visible drop-shadow-[0_0_15px_rgba(255,225,0,0.5)]"
+          className={classes.bike}
           animate={{ y: [0, -3, 0] }}
           transition={{ repeat: Infinity, duration: 0.4, ease: "easeInOut" }}>
           {/* --- Bike Frame --- */}
@@ -175,35 +176,35 @@ function TdfLoader() {
         </motion.svg>
 
         {/* Road under the bike */}
-        <div className="mt-[-2px] w-[300px] h-[4px] overflow-hidden relative opacity-100 rounded-[2px] bg-[#222222]">
+        <div className={classes.road}>
           <motion.div
-            className="absolute w-[200%] h-full flex"
+            className={classes.roadInner}
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}>
             {/* Half 1 */}
-            <div className="w-1/2 h-full flex items-center justify-around px-4">
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
+            <div className={classes.roadHalf}>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
             </div>
             {/* Half 2 */}
-            <div className="w-1/2 h-full flex items-center justify-around px-4">
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
-              <div className="w-[30px] h-full bg-white/20"></div>
+            <div className={classes.roadHalf}>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
+              <div className={classes.roadDash}></div>
             </div>
           </motion.div>
         </div>
 
         {/* Loading Text */}
         <motion.div
-          className="mt-5 text-[10px] uppercase font-semibold tracking-[3px] text-white/40 flex gap-1 items-center"
+          className={classes.loadingText}
           animate={{ opacity: [0.6, 1, 0.6] }}
           transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}>
           <span>Tourhjelper oppdateres</span>
-          <div className="flex px-1 min-w-[20px]">
+          <div className={classes.dots}>
             <motion.span
               animate={{ opacity: [0, 1, 1, 0] }}
               transition={{
@@ -253,7 +254,7 @@ function Wind({
 }) {
   return (
     <motion.div
-      className="absolute h-[2px] bg-[#e5e7eb] rounded-full z-0 overflow-hidden"
+      className={classes.wind}
       style={{ top, right: "-20%", width, opacity }}
       animate={{ x: ["50vh", "-50vh"] }}
       transition={{ repeat: Infinity, duration: speed, delay, ease: "linear" }}
@@ -263,7 +264,7 @@ function Wind({
 
 export default function UpdatingPage() {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center bg-[#111111] font-sans text-white">
+    <div className={classes.container}>
       <TdfLoader />
     </div>
   );
