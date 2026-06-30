@@ -10,7 +10,7 @@ DB_URI = os.getenv("DB_URI_IPV4")
 
 
 def get_next_stage_info():
-    """Henter dynamisk ID og etappenummer for neste Giro-etappe"""
+    """Henter dynamisk ID og etappenummer for neste Tour de France-etappe"""
     list_url = "https://eu1.offering-api.kambicdn.com/offering/v2018/ubdk/listView/cycling.json?lang=da_DK&market=DK"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -28,13 +28,13 @@ def get_next_stage_info():
             event_data = item.get("event", {})
             name = event_data.get("englishName", "")
 
-            # Ser etter events som inneholder både "Giro" og "Stage"
-            if "Giro d'Italia" in name and "Stage" in name:
+            # Ser etter events som inneholder både "Tour de France" og "Stage"
+            if "Tour de France" in name and "Stage" in name:
                 # Sjekk at etappen ikke allerede er i gang/ferdig
                 if event_data.get("state") == "NOT_STARTED":
                     event_id = event_data.get("id")
 
-                    # Bruk regex for å trekke ut tallet fra f.eks. "Stage 4 (Giro d'Italia 2026)"
+                    # Bruk regex for å trekke ut tallet fra f.eks. "Stage 1 (Tour de France 2026)"
                     match = re.search(r"Stage (\d+)", name)
                     stage_number = int(match.group(1)) if match else None
 
@@ -54,7 +54,7 @@ def run_scraper():
 
     if not event_id:
         print(
-            "Fant ingen kommende Giro-etapper. Kanskje rittet er ferdig eller oddsen ikke er lagt ut?"
+            "Fant ingen kommende Tour de France-etapper. Kanskje rittet er ferdig eller oddsen ikke er lagt ut?"
         )
         return
 
@@ -100,17 +100,29 @@ def run_scraper():
                         (
                             race_name,
                             "STAGE_WINNER",
-                            stage_number,  # Bruker nå det dynamiske etappenummeret!
+                            stage_number,
                             rider_name,
                             real_odds,
                             datetime.now(),
                         )
                     )
 
-        # 3. Lagre til Supabase (koden din forblir lik herfra)
+        # 3. Lagre til Supabase
         if rows_to_insert:
             conn = psycopg2.connect(DB_URI)
             cur = conn.cursor()
+
+            cur.execute("""
+        CREATE TABLE IF NOT EXISTS cycling_odds (
+            id            BIGSERIAL PRIMARY KEY,
+            race_name     TEXT        NOT NULL,
+            market_type   TEXT        NOT NULL,
+            stage_number  INTEGER,
+            rider_name    TEXT        NOT NULL,
+            odds          NUMERIC(10, 3) NOT NULL,
+            scraped_at    TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        );
+    """)
 
             args_str = ",".join(
                 cur.mogrify("(%s,%s,%s,%s,%s,%s)", x).decode("utf-8")
