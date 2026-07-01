@@ -11,7 +11,7 @@ const dataExpanded: {[key: string]: string } = {
     'Alle': '',
     'Dir': 'Sportsdirektør',
     'Kap': 'Kaptein',
-    'Tem': 'Temporytter',
+    'Tem': 'Tempo',
     'Ung': 'Ungdomsrytter',
     'Kla': 'Klatrer',
     'Spu': 'Spurter',

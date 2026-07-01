@@ -44,8 +44,6 @@ export function Row({ rider }: { rider: Rider }) {
         return "Direktør";
       case "Ungdomsrytter":
         return "Ungdom";
-      case "Temporytter":
-        return "Tempo";
     }
     return category;
   };

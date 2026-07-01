@@ -7,7 +7,7 @@ const scheme = {
     Klatrer: 2,
     Ungdomsrytter: 2,
     Hjelperytter: 3,
-    Temporytter: 1,
+    Tempo: 1,
     Sportsdirektør: 1
 }
 

@@ -93,7 +93,7 @@ export function RidersMap({ handleMapVisibility }: RidersMapProps) {
         </div>
         <div className={classes.tempoDirektorContainer}>
           <div className={classes.tempoDirektorWrapper}>
-            {getRiderVisuals(activeTeam, "Temporytter", handleMapVisibility)}
+            {getRiderVisuals(activeTeam, "Tempo", handleMapVisibility)}
             <Badge className={classes.badge} size="xs">
               Temporytter
             </Badge>

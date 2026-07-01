@@ -5,7 +5,7 @@ export type RiderCategory =
   | "Klatrer"
   | "Ungdomsrytter"
   | "Hjelperytter"
-  | "Temporytter"
+  | "Tempo"
   | "Sportsdirektør";
 
 // Define a type for the rider objects
