@@ -25,7 +25,7 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
     // setPage(1);
   };
 
-  const imageUrl = riderImages.find(img => img.team === rider.team)?.image || '/neutral-kit.webp';
+  const imageUrl = rider.image_url || '/neutral-kit.webp';
 
   const getLastName = () => {
     if(rider.category === 'Sportsdirektør') return rider.name;
@@ -37,7 +37,7 @@ export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
   return (
     <div className={classes.container} onClick={handleClick}>
         <IconSquareMinusFilled size={16} className={classes.x} />
-        <Image src={imageUrl} alt='EF' width='75' height={75} className={classes.kit}/>
+        <Image src={imageUrl} alt='EF' width='80' height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
                 <h4 className={classes.name}>{getLastName()}</h4>
@@ -69,7 +69,7 @@ export function EmptyRiderVisual({category, handleMapVisibility}: EmptyRiderVisu
   return (
     <div className={classes.container} id={classes.emptyContainer} onClick={handleClick}>
         <IconSquareRoundedPlusFilled size={22} className={classes.plus} />
-        <Image src='/neutral-kit2.webp' alt='Default kit' width={75} height={75} className={classes.kit}/>
+        <Image src='/neutral-kit2.webp' alt='Default kit' width={65} height={75} className={classes.kit}/>
         <div className={classes.infoContainer}>
             <div>
                 <h4 className={classes.name}>-</h4>

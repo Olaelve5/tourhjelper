@@ -1,10 +1,18 @@
 import json
+import re
 import psycopg2
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 DB_URI = os.getenv("DB_URI")
+
+def parse_price(raw):
+    if raw is None:
+        return None
+    s = str(raw).strip().upper().replace(",", ".")
+    m = re.match(r"^\s*([\d.]+)\s*M?\s*$", s)
+    return float(m.group(1)) if m else None
 
 
 def upload_riders():
@@ -24,21 +32,22 @@ def upload_riders():
         # 2. SQL Query for "Upsert" (Insert on Conflict Update)
         # This says: Try to insert. If 'name' exists, update the price and points instead.
         upsert_query = """
-            INSERT INTO riders (name, category, team, price, total_points, updated_at)
-            VALUES (%s, %s, %s, %s, %s, NOW())
+            INSERT INTO riders (name, category, team, price, total_points, image_url, updated_at)
+            VALUES (%s, %s, %s, %s, %s, %s, NOW())
             ON CONFLICT (name) 
             DO UPDATE SET 
                 price = EXCLUDED.price,
                 total_points = EXCLUDED.total_points,
                 team = EXCLUDED.team,
                 category = EXCLUDED.category,
+                image_url = EXCLUDED.image_url,
                 updated_at = NOW();
         """
 
         for r in riders:
             cur.execute(
                 upsert_query,
-                (r["name"], r["category"], r["team"], r["price"], r["totalPoints"]),
+                (r["name"], r["category"], r["team"], parse_price(r["price"]), r["totalPoints"], r["image_url"]),
             )
 
         conn.commit()

@@ -16,5 +16,6 @@ export type Rider = {
   team: string;
   price: number;
   total_points?: number;
+  image_url?: string;
   undefined?: boolean;
 };

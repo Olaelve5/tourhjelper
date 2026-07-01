@@ -50,9 +50,7 @@ export function Row({ rider }: { rider: Rider }) {
     return category;
   };
 
-  const imageUrl =
-    riderImages.find((img) => img.team === rider.team)?.image ||
-    "neutral-kit.webp";
+  const imageUrl = rider.image_url || "neutral-kit.webp";
 
   return (
     <Table.Tr

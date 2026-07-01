@@ -25,83 +25,56 @@ def main():
     # Initialize the Chrome driver with options
     driver = webdriver.Chrome(options=chrome_options)
 
-    driver.get("https://tourmanager.no/media-stats/998580")
-    time.sleep(5)
+    driver.get("https://www.tourmanager.no/create-squad/tourmanager26")
+    time.sleep(2)
 
     riders = []
     rider_images = []
 
     def fetch_riders():
-        i = 1
-        while True:
-            base_rider = driver.execute_script(
-                f'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("div.table > table > tbody > tr:nth-child({i})")'
-            )
+        new_riders = driver.execute_script("""
+        const rows = document.querySelectorAll(
+            "#mcs-players-anchor > div.mcs-player-list.svelte-2yxrkk > div"
+        );
+        return Array.from(rows).map(row => {
+            const q = (sel) => {
+                const el = row.querySelector(sel);
+                return el ? el.textContent.trim() : null;
+            };
+            const img = row.querySelector("img");
+            return {
+                name:         q("span.mcs-player-name"),
+                team:         q("span.mcs-team-name"),
+                category:     q("span.mcs-pos-tag"),
+                price: q("span.mcs-player-price"),
+                totalPoints:  0,
+                image_url:     img ? img.src : null
+            };
+        });
+    """)
 
-            if base_rider is None:
-                break
-
-            rider = {}
-            attributesList = [
-                "name",
-                "position",
-                "team",
-                "currentPrice",
-                "totalPoints",
-            ]
-
-            for attribute in attributesList:
-                value = driver.execute_script(
-                    f'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("div.table > table > tbody > tr:nth-child({i}) > td.{attribute}").textContent'
-                )
-
-                
-
-                if attribute == "position":
-                    rider["category"] = value.strip()
-                elif attribute == "currentPrice":
-                    rider["price"] = float(value.strip().replace("M", ""))
-                else:
-                    rider[attribute] = value.strip()
-
-            rider["totalPoints"] = int(rider["totalPoints"].replace(".00", ""))
-
-            # Find the image link
-            rider_image_link = driver.execute_script(
-                f'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("div.table > table > tbody > tr:nth-child({i}) > td.name > ft-link > img").src'
-            )
-            if not any(d.get("image") == rider_image_link for d in rider_images):
-                rider_images.append({"team": rider["team"], "image": rider_image_link})
-
-            print(rider)
-            riders.append(rider)
-
-            i += 1
-            base_rider = driver.execute_script(
-                f'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("div.table > table > tbody > tr:nth-child({i})")'
-            )
+        print(f"Fant {len(new_riders)} ryttere")
+        for r in new_riders:
+            print(r)
+            if r not in riders:
+                riders.append(r)
+                if r["image_url"] and r["image_url"] not in rider_images:
+                    rider_images.append(r["image_url"])
 
     while True:
         try:
             button = driver.execute_script(
-                'return document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("ft-pagination").shadowRoot.querySelector("ul > li:nth-child(4) > ft-button").shadowRoot.querySelector("button")'
-            )
-
-            button_container = driver.execute_script(
-                """
-                        var button = document.querySelector("body > div.view-container > sgg-media-stats-page").shadowRoot.querySelector("div > ft-media-stats").shadowRoot.querySelector("ft-pagination").shadowRoot.querySelector("ul > li:nth-child(4)");
-                        return button ? button.className : null;
-                        """
+                'return document.querySelector("body > div:nth-child(1) > div.page-container.svelte-1ayedbt > div.main-content.svelte-1ayedbt.mc-cyc > aside > div.player-list.svelte-1ayedbt > div.pagination.svelte-1ayedbt > button")'
             )
 
             fetch_riders()
 
-            if button_container.strip() != "pager":
+            if not button or button.disabled:
                 print("No more pages to load.")
                 break
 
             driver.execute_script("arguments[0].click()", button)
-            time.sleep(2)
+            time.sleep(1)
 
         except StaleElementReferenceException:
             print(
