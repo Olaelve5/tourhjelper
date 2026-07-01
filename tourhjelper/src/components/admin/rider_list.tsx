@@ -10,9 +10,10 @@ const CATEGORY_ORDER = [
   "Kaptein",
   "Spurter",
   "Klatrer",
-  "Temporytter",
+  "Tempo",
   "Hjelperytter",
   "Ungdomsrytter",
+  "Sportsdirektør",
 ];
 
 interface RiderData {
@@ -138,7 +139,6 @@ const RiderList = ({
       const { data, error } = await supabase
         .from("riders")
         .select("*")
-        .neq("category", "Sportsdirektør")
         .order("price", { ascending: false });
 
       if (error) {
