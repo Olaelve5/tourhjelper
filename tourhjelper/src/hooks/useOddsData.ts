@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/utils/supabase";
+import { useRiderContext } from "@/providers/RiderProvider";
+import { Rider } from "@/types/Rider";
 
 export interface RiderData {
   name: string;
@@ -10,23 +12,24 @@ export interface RiderData {
   team: string;
 }
 
-export type LocalRiderData = {
-  name: string;
-  category?: string;
-  price?: number;
-  team?: string;
-};
-
-const normalizeName = (value: string) =>
-  value
+// Standardiserer navn til fornavn + etternavn (uten aksenter, tegnsetting, casing).
+const standardizeName = (value: string): string => {
+  const cleaned = value
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’'`\"]+/g, "")
+    .replace(/[’'`".,\-]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
+  const parts = cleaned.split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0];
+  return `${parts[0]} ${parts[parts.length - 1]}`;
+};
+
 export const useOddsData = () => {
+  const { globalRiders } = useRiderContext();
   const [data, setData] = useState<RiderData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -36,6 +39,9 @@ export const useOddsData = () => {
   const [lastUpdated, setLastUpdated] = useState<string | null>(null);
 
   useEffect(() => {
+    // Vent til riderne er hentet fra provideren.
+    if (!globalRiders) return;
+
     const fetchOdds = async () => {
       try {
         setLoading(true);
@@ -65,15 +71,12 @@ export const useOddsData = () => {
           return;
         }
 
-        // 2. Load Local JSON
-        const localRidersRes = await fetch("/data/rider_data.json");
-        const localRidersJson =
-          (await localRidersRes.json()) as LocalRiderData[];
-        const localRiderMap = new Map<string, LocalRiderData>();
-
-        localRidersJson.forEach((rider) => {
+        // 2. Build a lookup map keyed on standardized name from the riders
+        //    already fetched by RiderProvider (ingen duplikat DB-kall).
+        const riderMap = new Map<string, Rider>();
+        globalRiders.forEach((rider) => {
           if (rider?.name) {
-            localRiderMap.set(normalizeName(rider.name), rider);
+            riderMap.set(standardizeName(rider.name), rider);
           }
         });
 
@@ -108,16 +111,14 @@ export const useOddsData = () => {
         if (dbData) {
           dbData.forEach((row) => {
             if (!uniqueRiders.has(row.rider_name)) {
-              const localMatch = localRiderMap.get(
-                normalizeName(row.rider_name),
-              );
+              const match = riderMap.get(standardizeName(row.rider_name));
               uniqueRiders.set(row.rider_name, {
                 name: row.rider_name,
                 odds: row.odds,
-                role: localMatch?.category ?? "-",
+                role: match?.category ?? "-",
                 won: false,
-                price: localMatch?.price ?? 0,
-                team: localMatch?.team ?? "-",
+                price: match?.price ?? 0,
+                team: match?.team ?? "-",
               });
             }
           });
@@ -133,7 +134,7 @@ export const useOddsData = () => {
     };
 
     fetchOdds();
-  }, []);
+  }, [globalRiders]);
 
   return { data, loading, error, actualStage, lastUpdated };
 };

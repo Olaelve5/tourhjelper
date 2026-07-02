@@ -5,6 +5,7 @@ import { useMemo, useState, useEffect } from "react";
 import { IconStarFilled, IconTextPlus } from "@tabler/icons-react";
 import { RiderData } from "@/hooks/useOddsData";
 import { useRiderContext } from "@/providers/RiderProvider";
+import { Rider } from "@/types/Rider";
 
 interface OddsTableProps {
   data: RiderData[];
@@ -13,6 +14,54 @@ interface OddsTableProps {
 }
 
 const ITEMS_PER_PAGE = 14;
+
+// Lager en standardisert versjon av fornavn + etternavn for sammenligning.
+// Fjerner aksenter, tegnsetting og mellomnavn.
+const standardizeName = (value: string): string => {
+  const cleaned = value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’'`".,\-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const parts = cleaned.split(" ").filter(Boolean);
+  if (parts.length === 0) return "";
+  if (parts.length === 1) return parts[0];
+  return `${parts[0]} ${parts[parts.length - 1]}`;
+};
+
+const standardizeTeam = (value: string): string =>
+  value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const findRiderImage = (
+  riderName: string,
+  team: string,
+  riders: Rider[] | undefined,
+): string | undefined => {
+  if (!riders || riders.length === 0) return undefined;
+
+  const targetName = standardizeName(riderName);
+  const targetTeam = standardizeTeam(team);
+
+  // Prøv å matche på både navn og lag først (mest presist)
+  const exact = riders.find(
+    (r) =>
+      standardizeName(r.name) === targetName &&
+      standardizeTeam(r.team) === targetTeam,
+  );
+  if (exact?.image_url) return exact.image_url;
+
+  // Fallback: match kun på navn
+  const byName = riders.find((r) => standardizeName(r.name) === targetName);
+  return byName?.image_url;
+};
 
 const OddsTable = ({ data, loading, error }: OddsTableProps) => {
   // State for mobil (load more)
@@ -24,7 +73,7 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
   // Sjekker om skjermen er over 900px bred (returnerer true/false)
   const isDesktop = useMediaQuery("(min-width: 900px)");
 
-  const { riderImages } = useRiderContext();
+  const { globalRiders } = useRiderContext();
 
   const sortedData = useMemo(() => {
     return [...data].sort((a, b) => a.odds - b.odds);
@@ -102,7 +151,7 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
             <Table.Td style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={
-                  riderImages.find((img) => img.team === team)?.image ||
+                  findRiderImage(name, team, globalRiders) ||
                   "neutral-kit.webp"
                 }
                 alt="rider"
