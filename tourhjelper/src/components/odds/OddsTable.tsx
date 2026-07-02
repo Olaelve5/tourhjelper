@@ -13,7 +13,7 @@ interface OddsTableProps {
   error: string | null;
 }
 
-const ITEMS_PER_PAGE = 14;
+const ITEMS_PER_PAGE = 15;
 
 // Fjerner "støyord" som varierer mellom kilder (team, cycling, osv.)
 const stripTeamNoise = (value: string): string =>

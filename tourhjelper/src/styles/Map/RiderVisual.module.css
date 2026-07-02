@@ -97,7 +97,12 @@
     }
 
     .kit {
-        width: 55px;
-        height: 55px;
+        width: 60px;
+        height: 54px;
+    }
+
+    .kitEmpty {
+        width: 50px;
+        height: 54px;
     }
 }
