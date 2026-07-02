@@ -3,13 +3,19 @@ import "@mantine/charts/styles.css";
 import "../styles/globals.css";
 import Head from "next/head";
 import type { AppProps } from "next/app";
+import { useEffect } from "react";
 import { ThemedMantineProvider } from "@/utils/themeUtils";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import UpdatingPage from "../components/updating";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { migratePlansStorage } from "@/utils/localStorageUtils";
 
 export default function App({ Component, pageProps }: AppProps) {
   const isUpdating = process.env.NEXT_PUBLIC_UPDATING === "true";
+
+  useEffect(() => {
+    migratePlansStorage();
+  }, []);
 
   return (
     <ThemeProvider>

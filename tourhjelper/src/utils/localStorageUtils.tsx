@@ -1,5 +1,9 @@
 import { Plan } from "../types/Plan";
 
+const PLANS_STORAGE_KEY = "plans_26";
+const LEGACY_PLANS_STORAGE_KEY = "plans";
+const MIGRATION_FLAG_KEY = "plans_migration_2026";
+
 export const setStorageNotification = (value: boolean) => {
   try {
     localStorage.setItem("hideStorageNotification", value.toString());
@@ -8,9 +12,22 @@ export const setStorageNotification = (value: boolean) => {
   }
 };
 
+// Kjøres én gang ved app-start. Fjerner fjorårets "plans"-nøkkel slik at
+// gamle lag/lagnavn ikke lekker inn i årets sesong.
+export const migratePlansStorage = () => {
+  if (typeof window === "undefined") return;
+  try {
+    if (localStorage.getItem(MIGRATION_FLAG_KEY) === "done") return;
+    localStorage.removeItem(LEGACY_PLANS_STORAGE_KEY);
+    localStorage.setItem(MIGRATION_FLAG_KEY, "done");
+  } catch (error) {
+    console.error("Failed to migrate plans storage:", error);
+  }
+};
+
 export const savePlansToLocalStorage = (plans: Plan[]) => {
   try {
-    localStorage.setItem("plans", JSON.stringify(plans));
+    localStorage.setItem(PLANS_STORAGE_KEY, JSON.stringify(plans));
   } catch (error) {
     console.error("Failed to save plans to localStorage:", error);
   }
@@ -18,7 +35,7 @@ export const savePlansToLocalStorage = (plans: Plan[]) => {
 
 export const getPlansFromLocalStorage = () => {
   try {
-    const savedPlans = localStorage.getItem("plans");
+    const savedPlans = localStorage.getItem(PLANS_STORAGE_KEY);
     const parsedPlans = savedPlans ? JSON.parse(savedPlans) : [];
     return parsedPlans;
   } catch (error) {
