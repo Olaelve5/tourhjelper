@@ -15,7 +15,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <QueryClientProvider client={queryClient}>
       <Analytics />
       <Header />
-      <main style={{ marginBottom: 150 }}>{children}</main>
+      <main style={{ marginBottom: 150, marginTop: 100 }}>{children}</main>
     </QueryClientProvider>
   );
 };
