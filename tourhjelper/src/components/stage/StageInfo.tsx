@@ -37,10 +37,10 @@ export function StageInfo({ stageData }: StageInfoProps) {
         <IconCalendar size={20} className={classes.icon} />
         <span>{stageData?.date}</span>
       </div>
-      <div>
+      {/* <div>
         <IconClockExclamation size={20} className={classes.icon} />
         <span>{stageData?.start_time}</span>
-      </div>
+      </div> */}
       <div>
         <IconBike size={20} className={classes.icon} />
         <span>{stageData?.distance}</span>
