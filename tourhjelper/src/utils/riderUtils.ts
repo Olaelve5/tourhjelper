@@ -44,7 +44,7 @@ const RiderCategoriesTranslation = {
   climber: "Klatrer",
   youth: "Ungdomsrytter",
   support: "Hjelperytter",
-  tempo: "Temporytter",
+  tempo: "Tempo",
   manager: "Sportsdirektør",
 };
 
