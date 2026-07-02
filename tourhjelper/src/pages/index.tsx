@@ -18,7 +18,7 @@ const PlannerPage: React.FC = () => {
       <StageProvider>
         <CombinedProviders>
           <Container size="lg" className={classes.pageContainer}>
-            <ImportTeamInput />
+            {/* <ImportTeamInput /> */}
             <MainPlanner />
             <div
               style={{

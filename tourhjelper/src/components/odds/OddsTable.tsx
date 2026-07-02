@@ -15,30 +15,28 @@ interface OddsTableProps {
 
 const ITEMS_PER_PAGE = 14;
 
-// Lager en standardisert versjon av fornavn + etternavn for sammenligning.
-// Fjerner aksenter, tegnsetting og mellomnavn.
-const standardizeName = (value: string): string => {
-  const cleaned = value
+// Fjerner "støyord" som varierer mellom kilder (team, cycling, osv.)
+const stripTeamNoise = (value: string): string =>
+  value
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’'`".,\-]+/g, " ")
+    .replace(/\b(team|pro cycling|cycling team|cycling|pro team|racing)\b/g, " ")
+    .replace(/[-–—.,'’`"/]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
+// Lager en standardisert versjon av fornavn + etternavn for sammenligning.
+// Fjerner aksenter, tegnsetting, mellomnavn og team-støyord (f.eks. "Team").
+const standardizeName = (value: string): string => {
+  const cleaned = stripTeamNoise(value);
   const parts = cleaned.split(" ").filter(Boolean);
   if (parts.length === 0) return "";
   if (parts.length === 1) return parts[0];
   return `${parts[0]} ${parts[parts.length - 1]}`;
 };
 
-const standardizeTeam = (value: string): string =>
-  value
-    .toLowerCase()
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+const standardizeTeam = (value: string): string => stripTeamNoise(value);
 
 const findRiderImage = (
   riderName: string,
@@ -58,9 +56,53 @@ const findRiderImage = (
   );
   if (exact?.image_url) return exact.image_url;
 
-  // Fallback: match kun på navn
+  // Fallback 1: samme navn, lagnavn er "starts-with" i en av retningene
+  // (fanger opp f.eks. "uae emirates" vs "uae emirates xrg")
+  const partial = riders.find((r) => {
+    if (standardizeName(r.name) !== targetName) return false;
+    const t = standardizeTeam(r.team);
+    return t.startsWith(targetTeam) || targetTeam.startsWith(t);
+  });
+  if (partial?.image_url) return partial.image_url;
+
+  // Fallback 2: match kun på navn
   const byName = riders.find((r) => standardizeName(r.name) === targetName);
-  return byName?.image_url;
+  if (byName?.image_url) return byName.image_url;
+
+  // Fallback 3: navnet er egentlig et lagnavn (direktør-/lag-marked).
+  // Standardiser rytternavnet som om det var et lag og match mot rider.team.
+  const nameAsTeam = standardizeTeam(riderName);
+  if (nameAsTeam) {
+    const byTeam = riders.find((r) => {
+      const t = standardizeTeam(r.team);
+      if (!t) return false;
+      return (
+        t === nameAsTeam ||
+        t.startsWith(nameAsTeam) ||
+        nameAsTeam.startsWith(t)
+      );
+    });
+    if (byTeam?.image_url) return byTeam.image_url;
+  }
+
+  // Fant ingen match – logg til konsollen for debugging.
+  const nameMatches = riders.filter(
+    (r) => standardizeName(r.name) === targetName,
+  );
+  console.warn("[OddsTable] Ingen match for rytter/direktør:", {
+    riderName,
+    team,
+    standardizedName: targetName,
+    standardizedTeam: targetTeam,
+    ridersWithSameName: nameMatches.map((r) => ({
+      name: r.name,
+      team: r.team,
+      standardizedTeam: standardizeTeam(r.team),
+      hasImage: Boolean(r.image_url),
+    })),
+  });
+
+  return undefined;
 };
 
 const OddsTable = ({ data, loading, error }: OddsTableProps) => {

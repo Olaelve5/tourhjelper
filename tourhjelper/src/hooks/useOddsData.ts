@@ -17,6 +17,7 @@ const standardizeName = (value: string): string => {
   const cleaned = value
     .toLowerCase()
     .normalize("NFKD")
+    .replace(/\b(team|pro cycling|cycling team|cycling|pro team|racing)\b/g, " ")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[’'`".,\-]+/g, " ")
     .replace(/\s+/g, " ")
