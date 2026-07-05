@@ -72,7 +72,19 @@ export const useOddsData = () => {
           return;
         }
 
-        // 2. Build a lookup map keyed on standardized name from the riders
+        // 2. Fetch alias mappings from rider_aliases table
+        const { data: aliasData } = await supabase
+          .from("rider_aliases")
+          .select("alias, rider_name");
+
+        const aliasMap = new Map<string, string>();
+        if (aliasData) {
+          aliasData.forEach((row) => {
+            aliasMap.set(standardizeName(row.alias), standardizeName(row.rider_name));
+          });
+        }
+
+        // 3. Build a lookup map keyed on standardized name from the riders
         //    already fetched by RiderProvider (ingen duplikat DB-kall).
         const riderMap = new Map<string, Rider>();
         globalRiders.forEach((rider) => {
@@ -81,7 +93,19 @@ export const useOddsData = () => {
           }
         });
 
-        // 3. Fetch odds strictly for the targetStage
+        // Helper: resolve a rider name through aliases then look up in riderMap
+        const findRider = (name: string): Rider | undefined => {
+          const stdName = standardizeName(name);
+          // Direct match first
+          const direct = riderMap.get(stdName);
+          if (direct) return direct;
+          // Try alias resolution
+          const resolved = aliasMap.get(stdName);
+          if (resolved) return riderMap.get(resolved);
+          return undefined;
+        };
+
+        // 4. Fetch odds strictly for the targetStage
         const { data: dbData, error: dbError } = await supabase
           .from("cycling_odds")
           .select("*")
@@ -91,7 +115,7 @@ export const useOddsData = () => {
 
         if (dbError) throw dbError;
 
-        // 4. Extract the timestamp from the most recent row
+        // 5. Extract the timestamp from the most recent row
         if (dbData && dbData.length > 0) {
           const rawTime = dbData[0].scraped_at.split("+")[0].replace("Z", "");
           const date = new Date(rawTime);
@@ -106,13 +130,13 @@ export const useOddsData = () => {
           setLastUpdated(formattedDate);
         }
 
-        // 5. Process data: Deduplicate
+        // 6. Process data: Deduplicate
         const uniqueRiders = new Map<string, RiderData>();
 
         if (dbData) {
           dbData.forEach((row) => {
             if (!uniqueRiders.has(row.rider_name)) {
-              const match = riderMap.get(standardizeName(row.rider_name));
+              const match = findRider(row.rider_name);
               uniqueRiders.set(row.rider_name, {
                 name: row.rider_name,
                 odds: row.odds,

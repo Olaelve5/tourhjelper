@@ -85,6 +85,17 @@ const findRiderImage = (
     if (byTeam?.image_url) return byTeam.image_url;
   }
 
+  // Fallback 4: vi har et gyldig lagnavn fra useOddsData (alias-oppløst),
+  // men navnet matchet ikke. Finn en vilkårlig rytter på det laget — alle
+  // på samme lag har samme drakt-bilde.
+  if (targetTeam && targetTeam !== "-") {
+    const byTeamOnly = riders.find((r) => {
+      const t = standardizeTeam(r.team);
+      return t === targetTeam || t.startsWith(targetTeam) || targetTeam.startsWith(t);
+    });
+    if (byTeamOnly?.image_url) return byTeamOnly.image_url;
+  }
+
   // Fant ingen match – logg til konsollen for debugging.
   const nameMatches = riders.filter(
     (r) => standardizeName(r.name) === targetName,

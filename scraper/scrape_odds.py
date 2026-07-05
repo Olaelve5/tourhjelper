@@ -46,6 +46,21 @@ def get_next_stage_info():
         return None, None
 
 
+def get_alias_map():
+    """Henter alias-mappingen fra rider_aliases-tabellen i databasen."""
+    try:
+        conn = psycopg2.connect(DB_URI)
+        cur = conn.cursor()
+        cur.execute("SELECT alias, rider_name FROM rider_aliases")
+        rows = cur.fetchall()
+        cur.close()
+        conn.close()
+        return {row[0]: row[1] for row in rows}
+    except Exception as e:
+        print(f"Advarsel: Kunne ikke hente alias-tabell: {e}")
+        return {}
+
+
 def run_scraper():
     print("Søker etter neste etappe...")
 
@@ -59,6 +74,11 @@ def run_scraper():
         return
 
     print(f"Fant Etappe {stage_number}! Henter odds...")
+
+    # Hent alias-mapping for navnekorrigering
+    alias_map = get_alias_map()
+    if alias_map:
+        print(f"Lastet {len(alias_map)} alias-mappinger fra databasen.")
 
     # 2. Sett inn den dynamiske ID-en i den URL-en du brukte i stad
     url = f"https://eu1.offering-api.kambicdn.com/offering/v2018/ubdk/betoffer/event/{event_id}.json?lang=da_DK&market=DK&channel_id=1&ncid=1769285927747&includeParticipants=true&range_size=1"
@@ -93,6 +113,9 @@ def run_scraper():
 
                     if "odds" not in rider:
                         continue
+
+                    # Normaliser navnet via alias-tabellen
+                    rider_name = alias_map.get(rider_name, rider_name)
 
                     real_odds = rider["odds"] / 1000.0
 
