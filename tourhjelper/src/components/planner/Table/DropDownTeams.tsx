@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 
 import { Menu, Image, Group, UnstyledButton } from '@mantine/core';
 import classes from '@/styles/Table/DropDownTeams.module.css';
@@ -6,38 +6,47 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { useFilterContext } from "@/providers/FilterTableProvider";
 import { useRiderContext } from "@/providers/RiderProvider";
 
-interface SelectedType {
-  label: string | null;
-  image: string | null;
+interface TeamEntry {
+  team: string;
+  image: string;
 }
 
 export const DropDownTeams = () => {
-  const { riderImages } = useRiderContext();
+  const { globalRiders } = useRiderContext();
   const { updateFilters, isReset } = useFilterContext();
   const [opened, setOpened] = useState(false);
-  const [selected, setSelected] = useState<SelectedType>({label: null, image: null});
+  const [selected, setSelected] = useState<TeamEntry>({team: 'Alle lag', image: ''});
+
+  // Derive unique teams from the riders DB data
+  const teamEntries: TeamEntry[] = useMemo(() => {
+    if (!globalRiders || globalRiders.length === 0) return [{team: 'Alle lag', image: ''}];
+
+    const teamMap = new Map<string, string>();
+    globalRiders.forEach((rider) => {
+      if (rider.team && !teamMap.has(rider.team)) {
+        teamMap.set(rider.team, rider.image_url || '');
+      }
+    });
+
+    const entries: TeamEntry[] = [{team: 'Alle lag', image: ''}];
+    Array.from(teamMap.entries())
+      .sort(([a], [b]) => a.localeCompare(b))
+      .forEach(([team, image]) => entries.push({team, image}));
+
+    return entries;
+  }, [globalRiders]);
 
   useEffect(() => {
     if(isReset) {
-      setSelected(riderImages.length > 0 ? {label: riderImages[0].team, image: riderImages[0].image} : {label: null, image: null});
+      setSelected({team: 'Alle lag', image: ''});
     }
-  }, [isReset, riderImages]);
+  }, [isReset]);
 
-  useEffect(() => {
-    if (riderImages.length > 0) {
-      setSelected({label: riderImages[0].team, image: riderImages[0].image});
-    }
-  }, [riderImages]);
-
-  const sortedTeams = () => {
-    return riderImages.sort((a, b) => a.team.localeCompare(b.team));
-  }
-
-  const items = sortedTeams().map(({team, image}) => (
+  const items = teamEntries.map(({team, image}) => (
     <Menu.Item
-      leftSection={image == null || image == '' ? <Image src='/neutral-kit.webp' width={25} height={25} /> : <Image src={image} width={25} height={25} /> }
+      leftSection={!image ? <Image src='/neutral-kit.webp' width={25} height={25} /> : <Image src={image} width={25} height={25} /> }
       onClick={() => {
-        setSelected({label: team, image: image});
+        setSelected({team, image});
         if(team === 'Alle lag') {
           updateFilters('team', '');
           return;
@@ -63,8 +72,8 @@ export const DropDownTeams = () => {
       <Menu.Target>
         <UnstyledButton className={classes.control}>
           <Group gap="xs">
-            {selected.image == null || selected.image == '' ? null : <Image src={selected.image} width={25} height={25} />}
-            <span className={classes.label}>{selected.label}</span>
+            {!selected.image ? null : <Image src={selected.image} width={25} height={25} />}
+            <span className={classes.label}>{selected.team}</span>
           </Group>
           <IconChevronDown size="1.1rem" className={classes.icon} stroke={1.5} />
         </UnstyledButton>

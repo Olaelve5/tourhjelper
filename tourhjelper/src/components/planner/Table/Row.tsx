@@ -9,12 +9,10 @@ import {
 import classes from "@/styles/Table/Row.module.css";
 import { useTeamContext } from "@/providers/TeamProvider";
 import { validateUpdate } from "@/utils/MapHelpers";
-import { useRiderContext } from "@/providers/RiderProvider";
 import { getShortenedName } from "@/utils/riderUtils";
 
 export function Row({ rider }: { rider: Rider }) {
   const { addRider, removeRider, activeTeam, budget } = useTeamContext();
-  const { riderImages } = useRiderContext();
   const [selected, setSelected] = useState(false);
   const canBeAdded = validateUpdate(activeTeam, rider);
 

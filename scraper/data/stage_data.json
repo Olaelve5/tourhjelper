@@ -2,16 +2,16 @@
     {
         "stage": 1,
         "date": "07/04",
-        "start": "00:00",
-        "distance": "19 km",
+        "start": "17:05",
+        "distance": "19.6 km",
         "type": "Team Time-Trial",
-        "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/1-tdf26-profils-web-fr/70967/0:0,1004:602-960-0-90/d95bc",
-        "lastUpdated": "2026-05-28T12:29:53.312428"
+        "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/tdf26-profils-web-fr-e-tape-1/71083/0:0,1004:602-960-0-90/f71aa",
+        "lastUpdated": "2026-07-05T10:36:55.119355"
     },
     {
         "stage": 2,
         "date": "07/05",
-        "start": "00:00",
+        "start": "13:45",
         "distance": "182 km",
         "type": "Hilly",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/2-tdf26-profils-web-fr/70964/0:0,1004:602-960-0-90/cf268",
@@ -20,172 +20,172 @@
     {
         "stage": 3,
         "date": "07/06",
-        "start": "00:00",
-        "distance": "196 km",
+        "start": "12:20",
+        "distance": "195.9 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/3-tdf26-profils-web-fr/70962/0:0,1004:602-960-0-90/55d8b",
-        "lastUpdated": "2026-05-28T12:29:58.421715"
+        "lastUpdated": "2026-07-05T10:37:00.287244"
     },
     {
         "stage": 4,
         "date": "07/07",
-        "start": "00:00",
-        "distance": "182 km",
+        "start": "13:25",
+        "distance": "181.9 km",
         "type": "Hilly",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/4-tdf26-profils-web-fr/70960/0:0,1004:602-960-0-90/6aaac",
-        "lastUpdated": "2026-05-28T12:30:00.748921"
+        "lastUpdated": "2026-07-05T10:37:02.728598"
     },
     {
         "stage": 5,
         "date": "07/08",
-        "start": "00:00",
-        "distance": "158 km",
+        "start": "14:15",
+        "distance": "158.3 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/5-tdf26-profils-web-fr/70961/0:0,1004:602-960-0-90/9c154",
-        "lastUpdated": "2026-05-28T12:30:03.098973"
+        "lastUpdated": "2026-07-05T10:37:05.230102"
     },
     {
         "stage": 6,
         "date": "07/09",
-        "start": "00:00",
-        "distance": "186 km",
+        "start": "12:40",
+        "distance": "186.2 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/6-tdf26-profils-web-fr/70968/0:0,1004:602-960-0-90/c69fa",
-        "lastUpdated": "2026-05-28T12:30:05.708463"
+        "lastUpdated": "2026-07-05T10:37:07.841971"
     },
     {
         "stage": 7,
         "date": "07/10",
-        "start": "00:00",
-        "distance": "175 km",
+        "start": "13:25",
+        "distance": "175.1 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/7-tdf26-profils-web-fr/70963/0:0,1004:602-960-0-90/5d682",
-        "lastUpdated": "2026-05-28T12:30:08.157466"
+        "lastUpdated": "2026-07-05T10:37:11.436636"
     },
     {
         "stage": 8,
         "date": "07/11",
-        "start": "00:00",
-        "distance": "182 km",
+        "start": "13:25",
+        "distance": "180.4 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/8-tdf26-profils-web-fr/70970/0:0,1004:602-960-0-90/11298",
-        "lastUpdated": "2026-05-28T12:30:10.505981"
+        "lastUpdated": "2026-07-05T10:37:13.969424"
     },
     {
         "stage": 9,
         "date": "07/12",
-        "start": "00:00",
-        "distance": "185 km",
+        "start": "13:45",
+        "distance": "185.5 km",
         "type": "Hilly",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/9-tdf26-profils-web-fr/70966/0:0,1004:602-960-0-90/96078",
-        "lastUpdated": "2026-05-28T12:30:14.968107"
+        "lastUpdated": "2026-07-05T10:37:16.526715"
     },
     {
         "stage": 10,
         "date": "07/14",
-        "start": "00:00",
-        "distance": "167 km",
+        "start": "13:25",
+        "distance": "166.6 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/10-tdf26-profils-web-fr/70969/0:0,1004:602-960-0-90/afe2a",
-        "lastUpdated": "2026-05-28T12:30:17.931131"
+        "lastUpdated": "2026-07-05T10:37:18.999419"
     },
     {
         "stage": 11,
         "date": "07/15",
-        "start": "00:00",
-        "distance": "161 km",
+        "start": "14:05",
+        "distance": "161.3 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/11-tdf26-profils-web-fr/70965/0:0,1004:602-960-0-90/76dd7",
-        "lastUpdated": "2026-05-28T12:30:20.878923"
+        "lastUpdated": "2026-07-05T10:37:21.482537"
     },
     {
         "stage": 12,
         "date": "07/16",
-        "start": "00:00",
-        "distance": "181 km",
+        "start": "13:40",
+        "distance": "179.1 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/12-tdf26-profils-web-fr/70971/0:0,1004:602-960-0-90/413dc",
-        "lastUpdated": "2026-05-28T12:30:23.959393"
+        "lastUpdated": "2026-07-05T10:37:23.927321"
     },
     {
         "stage": 13,
         "date": "07/17",
-        "start": "00:00",
-        "distance": "205 km",
+        "start": "13:20",
+        "distance": "205.8 km",
         "type": "Hilly",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/13-tdf26-profils-web-fr/70973/0:0,1004:602-960-0-90/bf2e6",
-        "lastUpdated": "2026-05-28T12:30:26.289605"
+        "lastUpdated": "2026-07-05T10:37:26.383927"
     },
     {
         "stage": 14,
         "date": "07/18",
-        "start": "00:00",
-        "distance": "155 km",
+        "start": "13:30",
+        "distance": "155.3 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/14-tdf26-profils-web-fr/70972/0:0,1004:602-960-0-90/2c309",
-        "lastUpdated": "2026-05-28T12:30:29.381703"
+        "lastUpdated": "2026-07-05T10:37:28.886749"
     },
     {
         "stage": 15,
         "date": "07/19",
-        "start": "00:00",
-        "distance": "184 km",
+        "start": "13:20",
+        "distance": "183.9 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/15-tdf26-profils-web-fr/70976/0:0,1004:602-960-0-90/7345e",
-        "lastUpdated": "2026-05-28T12:30:32.372276"
+        "lastUpdated": "2026-07-05T10:37:31.577886"
     },
     {
         "stage": 16,
         "date": "07/21",
-        "start": "00:00",
-        "distance": "26 km",
+        "start": "13:00",
+        "distance": "26.1 km",
         "type": "Individual time-trial",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/16-tdf26-profils-web-fr/70974/0:0,1004:602-960-0-90/e8ad8",
-        "lastUpdated": "2026-05-28T12:30:34.923465"
+        "lastUpdated": "2026-07-05T10:37:34.069399"
     },
     {
         "stage": 17,
         "date": "07/22",
-        "start": "00:00",
-        "distance": "175 km",
+        "start": "13:35",
+        "distance": "174.7 km",
         "type": "Flat",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/17-tdf26-profils-web-fr/70979/0:0,1004:602-960-0-90/e7e70",
-        "lastUpdated": "2026-05-28T12:30:40.934728"
+        "lastUpdated": "2026-07-05T10:37:36.518467"
     },
     {
         "stage": 18,
         "date": "07/23",
-        "start": "00:00",
-        "distance": "185 km",
+        "start": "12:50",
+        "distance": "185.2 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/18-tdf26-profils-web-fr/70977/0:0,1004:602-960-0-90/970be",
-        "lastUpdated": "2026-05-28T12:30:43.942636"
+        "lastUpdated": "2026-07-05T10:37:38.918355"
     },
     {
         "stage": 19,
         "date": "07/24",
-        "start": "00:00",
-        "distance": "128 km",
+        "start": "14:15",
+        "distance": "127.9 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/19-tdf26-profils-web-fr/70975/0:0,1004:602-960-0-90/5575d",
-        "lastUpdated": "2026-05-28T12:30:47.003037"
+        "lastUpdated": "2026-07-05T10:37:41.381620"
     },
     {
         "stage": 20,
         "date": "07/25",
-        "start": "00:00",
-        "distance": "171 km",
+        "start": "11:30",
+        "distance": "170.9 km",
         "type": "Mountain",
         "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/20-tdf26-profils-web-fr/70978/0:0,1004:602-960-0-90/a780c",
-        "lastUpdated": "2026-05-28T12:30:53.695674"
+        "lastUpdated": "2026-07-05T10:37:43.905270"
     },
     {
         "stage": 21,
         "date": "07/26",
-        "start": "00:00",
-        "distance": "130 km",
+        "start": "16:25",
+        "distance": "133 km",
         "type": "Flat",
-        "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/21-tdf26-profils-web-fr/70980/0:0,1004:602-960-0-90/3ff39",
-        "lastUpdated": "2026-05-28T12:30:56.730241"
+        "imageURL": "https://img.aso.fr/core_app/img-cycling-tdf-jpg/tdf26-profils-web-fr-e-tape-21/71082/0:0,1004:602-960-0-90/f1fe2",
+        "lastUpdated": "2026-07-05T10:37:46.302255"
     }
 ]

@@ -13,13 +13,6 @@ export async function getRiders() {
   return data as Rider[];
 }
 
-// Return rider image links from a JSON file in public folder
-export async function getRiderImages() {
-  const response = await fetch("/data/rider_image_links.json");
-  const images = await response.json();
-  return images;
-}
-
 // Get a rider based on name
 export async function getRiderByName(name: string): Promise<Rider | undefined> {
   const riders = await getRiders();

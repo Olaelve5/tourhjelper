@@ -5,7 +5,6 @@ import {IconCirclePlusFilled, IconXboxXFilled, IconSquareMinusFilled, IconSquare
 import classes from '@/styles/Map/RiderVisual.module.css';
 import { useTeamContext } from "@/providers/TeamProvider";
 import { useFilterContext } from '@/providers/FilterTableProvider';
-import { useRiderContext } from '@/providers/RiderProvider';
 import { Rider, RiderCategory } from '@/types/Rider';
 
 interface RiderVisualProps {
@@ -15,7 +14,6 @@ interface RiderVisualProps {
 
 export const RiderVisual: React.FC<RiderVisualProps> = ({ rider }) => {
   const {removeRider} = useTeamContext();
-  const {riderImages} = useRiderContext();
   const {setFocusedCategory, setPage} = useFilterContext();
 
 

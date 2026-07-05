@@ -1,11 +1,9 @@
 import {createContext, useEffect, useContext, useState} from 'react';
 import { Rider } from '@/types/Rider';
-import { getRiders, getRiderImages } from '@/utils/riderUtils';
+import { getRiders } from '@/utils/riderUtils';
 
 interface RiderContextType {
-    // Define the types for the context
     globalRiders: Rider[] | undefined;
-    riderImages: Array<{ team: string; image: string }>;
     getRiderById: (id: number) => Rider | undefined;
 };
 
@@ -26,7 +24,6 @@ export const useRiderContext = () => {
 
 // Create the provider
 export function RiderProvider({ children }: { children: React.ReactNode }) {
-    const [riderImages, setRiderImages] = useState<Array<{ team: string; image: string }>>([]); 
     const [globalRiders, setGlobalRiders] = useState<Rider[] | undefined>(undefined); 
 
     const getRiderById = (id: number): Rider | undefined => {
@@ -34,16 +31,6 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
     }
 
     useEffect(() => {
-        async function fetchImages() {
-            const defaultImage = { team: 'Alle lag', image: '' };
-            try {
-                const images = await getRiderImages();
-                images.push(defaultImage);
-                setRiderImages(images);
-            } catch (e) {
-                console.error("Error fetching rider images: ", e);
-        }}
-
         async function fetchRiders() {
             try {
                 const riders = await getRiders();
@@ -53,12 +40,11 @@ export function RiderProvider({ children }: { children: React.ReactNode }) {
         }}
 
         fetchRiders();
-        fetchImages();
 
     }, []);
 
     return (
-        <RiderContext.Provider value={{ globalRiders, riderImages, getRiderById }}>
+        <RiderContext.Provider value={{ globalRiders, getRiderById }}>
             {children}
         </RiderContext.Provider>
     );

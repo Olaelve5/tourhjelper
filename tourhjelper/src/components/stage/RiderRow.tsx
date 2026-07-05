@@ -1,13 +1,10 @@
 import React from "react";
 import classes from "@/styles/Stage/Favorites.module.css";
 import { IconStarFilled } from "@tabler/icons-react";
-import { useRiderContext } from "@/providers/RiderProvider";
 import { Rider } from "@/types/Rider";
 import { getShortenedName } from "@/utils/riderUtils";
 
 const RiderRow = ({ rider }: { rider: Rider | null }) => {
-  const { riderImages } = useRiderContext();
-
   const imageUrl = rider?.image_url || "neutral-kit.webp";
 
   if (!rider) {
