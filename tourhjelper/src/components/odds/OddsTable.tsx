@@ -2,7 +2,12 @@ import classes from "@/styles/Odds/OddsTable.module.css";
 import { Table, Loader, Button, Pagination } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks"; // Lytter til skjermbredde
 import { useMemo, useState, useEffect } from "react";
-import { IconStarFilled, IconTextPlus } from "@tabler/icons-react";
+import {
+  IconStarFilled,
+  IconTextPlus,
+  IconTriangleFilled,
+  IconTriangleInvertedFilled,
+} from "@tabler/icons-react";
 import { RiderData } from "@/hooks/useOddsData";
 import { useRiderContext } from "@/providers/RiderProvider";
 import { Rider } from "@/types/Rider";
@@ -13,7 +18,7 @@ interface OddsTableProps {
   error: string | null;
 }
 
-const ITEMS_PER_PAGE = 15;
+const ITEMS_PER_PAGE = 16;
 
 // Fjerner "støyord" som varierer mellom kilder (team, cycling, osv.)
 const stripTeamNoise = (value: string): string =>
@@ -21,7 +26,10 @@ const stripTeamNoise = (value: string): string =>
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\b(team|pro cycling|cycling team|cycling|pro team|racing)\b/g, " ")
+    .replace(
+      /\b(team|pro cycling|cycling team|cycling|pro team|racing)\b/g,
+      " ",
+    )
     .replace(/[-–—.,'’`"/]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -77,9 +85,7 @@ const findRiderImage = (
       const t = standardizeTeam(r.team);
       if (!t) return false;
       return (
-        t === nameAsTeam ||
-        t.startsWith(nameAsTeam) ||
-        nameAsTeam.startsWith(t)
+        t === nameAsTeam || t.startsWith(nameAsTeam) || nameAsTeam.startsWith(t)
       );
     });
     if (byTeam?.image_url) return byTeam.image_url;
@@ -91,7 +97,9 @@ const findRiderImage = (
   if (targetTeam && targetTeam !== "-") {
     const byTeamOnly = riders.find((r) => {
       const t = standardizeTeam(r.team);
-      return t === targetTeam || t.startsWith(targetTeam) || targetTeam.startsWith(t);
+      return (
+        t === targetTeam || t.startsWith(targetTeam) || targetTeam.startsWith(t)
+      );
     });
     if (byTeamOnly?.image_url) return byTeamOnly.image_url;
   }
@@ -144,15 +152,33 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
       <Table.Tr key={`skeleton-${index}`}>
         <Table.Td style={{ display: "flex", alignItems: "center" }}>
           <div className={classes.skeletonCircle} />
-          <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "6px" }}>
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+            }}>
             <div className={classes.skeletonLine} style={{ width: "70%" }} />
-            <div className={classes.skeletonLineShort} style={{ width: "40%" }} />
+            <div
+              className={classes.skeletonLineShort}
+              style={{ width: "40%" }}
+            />
           </div>
         </Table.Td>
         <Table.Td>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "6px",
+            }}>
             <div className={classes.skeletonLine} style={{ width: "40%" }} />
-            <div className={classes.skeletonLineShort} style={{ width: "65%" }} />
+            <div
+              className={classes.skeletonLineShort}
+              style={{ width: "65%" }}
+            />
           </div>
         </Table.Td>
         <Table.Td>
@@ -199,13 +225,12 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
             </Table.Td>
           </Table.Tr>,
         ]
-      : visibleData.map(({ name, odds, role, won, price, team }) => (
+      : visibleData.map(({ name, odds, role, won, price, team, trend }) => (
           <Table.Tr key={name}>
             <Table.Td style={{ display: "flex", alignItems: "center" }}>
               <img
                 src={
-                  findRiderImage(name, team, globalRiders) ||
-                  "neutral-kit.webp"
+                  findRiderImage(name, team, globalRiders) || "neutral-kit.webp"
                 }
                 alt="rider"
                 className={classes.riderImage}
@@ -223,6 +248,17 @@ const OddsTable = ({ data, loading, error }: OddsTableProps) => {
               <div className={won ? classes.won : classes.odds}>
                 {odds.toFixed(1)}{" "}
                 {won && <IconStarFilled size={14} className={classes.star} />}
+                {trend === "up" ? (
+                  <IconTriangleInvertedFilled
+                    size={10}
+                    className={classes.triangle}
+                  />
+                ) : trend === "down" ? (
+                  <IconTriangleFilled
+                    size={10}
+                    className={classes.triangleUp}
+                  />
+                ) : null}
               </div>
             </Table.Td>
           </Table.Tr>

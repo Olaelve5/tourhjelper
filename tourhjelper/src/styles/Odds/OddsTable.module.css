@@ -39,6 +39,23 @@
 .odds {
   min-width: 4rem;
   max-width: 4rem;
+  position: relative;
+}
+
+.triangle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e83636;
+  right: -2px;
+}
+
+.triangleUp {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #30e14b;
 }
 
 .won {

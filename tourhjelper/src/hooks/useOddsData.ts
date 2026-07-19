@@ -10,6 +10,7 @@ export interface RiderData {
   won: boolean;
   price: number;
   team: string;
+  trend: "up" | "down" | null;
 }
 
 // Standardiserer navn til fornavn + etternavn (uten aksenter, tegnsetting, casing).
@@ -130,10 +131,12 @@ export const useOddsData = () => {
           setLastUpdated(formattedDate);
         }
 
-        // 6. Process data: Deduplicate
+        // 6. Process data: Deduplicate and compute trend
         const uniqueRiders = new Map<string, RiderData>();
+        const previousOdds = new Map<string, number>();
 
         if (dbData) {
+          // Data is ordered by scraped_at DESC, so first occurrence = latest
           dbData.forEach((row) => {
             if (!uniqueRiders.has(row.rider_name)) {
               const match = findRider(row.rider_name);
@@ -144,9 +147,21 @@ export const useOddsData = () => {
                 won: false,
                 price: match?.price ?? 0,
                 team: match?.team ?? "-",
+                trend: null,
               });
+            } else if (!previousOdds.has(row.rider_name) && row.odds !== uniqueRiders.get(row.rider_name)!.odds) {
+              // First older entry with a different odds value — use it for trend
+              previousOdds.set(row.rider_name, row.odds);
             }
           });
+
+          // Set trends by comparing latest odds to previous
+          for (const [name, prevOdds] of previousOdds) {
+            const rider = uniqueRiders.get(name);
+            if (rider) {
+              rider.trend = rider.odds > prevOdds ? "up" : "down";
+            }
+          }
         }
 
         setData(Array.from(uniqueRiders.values()));
